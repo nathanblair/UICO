@@ -1,0 +1,25 @@
+<!-- player_model.xml -->
+<rect name="player_model">
+	<id> 9000 </id>
+	<depth> -250000 </depth>
+	<locus> &true; </locus>
+	<alpha> 0 </alpha>
+	<x>
+		<copy src="screen()" trait="width"/>
+		<add> -25 </add>
+	</x>
+	<y>
+		<copy src="screen()" trait="height"/>
+		<add> 350 </add>
+	</y>
+	<user1> 11 </user1>
+	<user2> 0 </user2>
+	
+	<user3> -5 </user3>
+	<user4> 2 </user4>
+	<user5> 215 </user5>
+	
+	<user6> -25 </user6>
+	<user7> -25 </user7>
+	<user8> -25 </user8>
+</rect>

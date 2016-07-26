@@ -1,0 +1,736 @@
+<menu name="RepairMenu">
+	<class> IngredientSelectMenu </class>
+	<stackingtype> no_click_past </stackingtype>
+	<alpha>	0 </alpha>
+	<locus> true </locus>
+	<x> 0 </x>
+	<y> 0 </y>
+	<menufade> 0.25 </menufade>
+	<prefab class="focus_box" name="rep_FocusBox">
+		<id> 7 </id>
+		<visible> false </visible>
+		<user15>
+			<copy src="parent()" trait="depth" />
+			<add> 0.5 </add>
+		</user15>
+	</prefab>
+	
+	<image name="rep_inv_background">
+		<filename>
+			Menus\shared\main_background.dds
+		</filename>
+		<depth> 1 </depth>
+		<width> 768 </width>
+		<height> 1024 </height>
+		<visible> true </visible>
+		<locus> true </locus>
+		<x> 
+			<copy src="screen()" trait="width" />
+			<sub src="me()" trait="width" />
+			<div> 2 </div>
+		</x>
+		<y> 
+			<copy src="screen()" trait="height" />
+			<sub src="me()" trait="height" />
+			<div> 2 </div>
+		</y>
+	</image>
+
+	<rect name="rep_contents">
+		<locus> true </locus>
+		<clipwindow> true </clipwindow>
+		<depth> 30 </depth>
+		<x>
+			<copy src="rep_inv_background" trait="x"/>
+			<add>252</add>
+		</x>
+		<y>
+			<copy src="rep_inv_background" trait="y"/>
+			<add>140</add>
+		</y>
+		<width> 512 </width>
+		<height> 420 </height>
+
+		<image name="horiz_grid_top">
+			<filename> Menus\Shared\shared_border_horizontal_1.dds </filename>
+			<visible> true </visible>
+			<alpha> 255 </alpha>
+			<depth> 31 </depth>
+			<x> 0 </x>
+			<y>
+				<copy>0</copy>
+				<sub>
+					<copy src="me()" trait="height"/>
+					<div> 2 </div>
+				</sub>
+			</y>
+			<width>
+				<copy src="parent()" trait="width"/>
+			</width>
+			<height> 4 </height>
+		</image>
+		
+		<image name="horiz_grid_bottom">
+			<filename> Menus\Shared\shared_border_horizontal_3.dds </filename>
+			<visible> true </visible>
+			<alpha> 255 </alpha>
+			<depth> 31 </depth>
+			<x> 0 </x>
+			<y>
+				<copy src="parent()" trait="height"/>
+				<sub>
+					<copy src="me()" trait="height"/>
+					<div> 2 </div>
+				</sub>
+			</y>
+			<width>
+				<copy src="parent()" trait="width"/>
+			</width>
+			<height> 4 </height>
+		</image>
+
+		<image name="vert_grid_left">
+			<filename> Menus\Shared\shared_border_vertical_2.dds </filename>
+			<visible> true </visible>
+			<alpha> 255 </alpha>
+			<depth> 31 </depth>
+			<x>
+				<copy>0</copy>
+				<sub>
+					<copy src="me()" trait="width"/>
+					<div> 2 </div>
+				</sub>
+			</x>
+			<y> 0 </y>
+			<height>
+				<copy src="parent()" trait="height"/>
+			</height>
+			<width> 4 </width>
+		</image>
+
+		<image name="vert_grid_column1">
+			<id>16</id>
+			<filename> Menus\Shared\shared_border_vertical_1.dds </filename>
+			<visible> true </visible>
+			<alpha> 255 </alpha>
+			<depth> 31 </depth>
+			<x>
+				<copy src="parent()" trait="width"/>
+				<sub>
+					<copy src="me()" trait="width"/>
+					<div> 2 </div>
+				</sub>
+				<sub>190</sub>
+			</x>
+			<y> 0 </y>
+			<height>
+				<copy src="parent()" trait="height"/>
+			</height>
+			<width> 4 </width>
+			<clips>true</clips>
+		</image>
+
+		<image name="vert_grid_column2">
+			<id>17</id>
+			<filename> Menus\Shared\shared_border_vertical_1.dds </filename>
+			<visible> true </visible>
+			<alpha> 255 </alpha>
+			<depth> 31 </depth>
+			<x>
+				<copy src="parent()" trait="width"/>
+				<sub>
+					<copy src="me()" trait="width"/>
+					<div> 2 </div>
+				</sub>
+				<sub>95</sub>
+			</x>
+			<y> 0 </y>
+			<height>
+				<copy src="parent()" trait="height"/>
+			</height>
+			<width> 4 </width>
+		</image>
+
+		<image name="vert_grid_right">
+			<filename> Menus\Shared\shared_border_vertical_2.dds </filename>
+			<visible> true </visible>
+			<alpha> 255 </alpha>
+			<depth> 31 </depth>
+			<x>
+				<copy src="parent()" trait="width"/>
+				<sub>
+					<copy src="me()" trait="width"/>
+					<div> 2 </div>
+				</sub>
+			</x>
+			<y> 0 </y>
+			<height>
+				<copy src="parent()" trait="height"/>
+			</height>
+			<width> 4 </width>
+		</image>
+
+		<image name="money_icon">
+			<id>9</id>
+			<depth> 20 </depth>
+			<filename> Menus\Icons\icon_small_value.dds </filename>
+			<width> 32 </width>
+			<height> 32 </height>
+			<x>
+				<copy src="vert_grid_column1" trait="x"/>
+				<add src="vert_grid_column1" trait="width"/>
+				<add>
+					<copy src="vert_grid_column2" trait="x"/>
+					<sub>
+						<copy src="vert_grid_column1" trait="x"/>
+						<add src="vert_grid_column1" trait="width"/>
+					</sub>
+					<sub src="me()" trait="width"/>
+					<div>2</div>
+				</add>
+			</x>
+			<y>
+				<copy>0</copy>
+				<sub src="me()" trait="height"/>
+				<sub>10</sub>
+			</y>
+		</image>
+	
+		<image name="health_icon">
+			<id>10</id>
+			<depth> 20</depth>
+			<filename> Menus\Icons\icon_small_health.dds </filename>
+			<width> 32 </width>
+			<height> 32 </height>
+			<x>
+				<copy src="vert_grid_column2" trait="x"/>
+				<add src="vert_grid_column2" trait="width"/>
+				<add>
+					<copy src="vert_grid_right" trait="x"/>
+					<sub>
+						<copy src="vert_grid_column2" trait="x"/>
+						<add src="vert_grid_column2" trait="width"/>
+					</sub>
+					<sub src="me()" trait="width"/>
+					<div>2</div>
+				</add>
+			</x>
+			<y>
+				<copy>0</copy>
+				<sub src="me()" trait="height"/>
+				<sub>10</sub>
+			</y>
+		</image>
+		
+		<rect name="list_pane">
+			<id> 8 </id>
+			<clips> true </clips>
+			<x> 0 </x>
+			<y>
+				<copy> 0 </copy>
+				<sub src="rep_scroll_bar" trait="user7"/> <!-- user7 = current value -->
+				<mul> 60 </mul>
+			</y>
+			<width>
+				<copy src="parent()" trait="width"/>
+			</width>
+			<height>
+				<copy src="me()" trait="childcount"/>
+				<mul> 60 </mul>
+			</height>
+		</rect>
+		
+		<prefab class="vertical_scroll" name="rep_scroll_bar">
+			<id> 5 </id>
+			<depth> 0 </depth>
+			<x>
+				<copy src="parent()" trait="width"/>
+				<add> 20 </add>
+			</x>
+			<y> 32 </y>
+			<height>
+				<copy src="parent()" trait="height" />
+				<sub> 64 </sub>
+			</height>
+			<user1> 0 </user1>	<!-- minimum range value -->
+			<user2>
+				<copy src="me()" trait="user9" />
+				<sub> 5 </sub>
+			</user2>			<!-- maximum range value -->
+			<user3> 1 </user3>	<!-- step distance -->
+			<user4> 5 </user4>	<!-- jump distance -->
+			<user5> 0 </user5>	<!-- starting value -->
+			<user6> 6 </user6>	<!-- marker's id -->
+								<!-- user7: current value -->
+			<user8> false </user8> <!-- Is text value field visible? -->
+			<user9> 5 </user9>	<!-- Manual step value (multiplied by step distance and added to scroll value -->
+		</prefab>
+	</rect>
+		
+	<template name="rep_item_template">
+		<rect name="rep_item">
+			<target> true </target>
+			<focusinset> 8 </focusinset>
+			<visible>
+				<copy src="me()" trait="y" />
+				<gte> 0 </gte>
+				<and>
+					<copy src="me()" trait="y" />
+					<add> 20 </add>
+					<lt src="rep_contents" trait="height" />
+				</and>
+				<and src="me()" trait="user8" />
+			</visible>
+			<x> -72 </x>
+			<y>
+				<copy src="me()" trait="user0" />
+				<mult src="me()" trait="height" />
+				<sub>
+					<copy src="me()" trait="height" />
+					<mult src="rep_scroll_bar" trait="user7" />
+				</sub>
+			</y>
+			<depth> 1 </depth>
+			<locus> true </locus>
+			<clips> true </clips>
+			<alpha> 0 </alpha>
+			<width>
+				<copy src="rep_contents" trait="width"/>
+				<sub src="me()" trait="x"/>
+			</width>
+			<height>
+				<copy src="rep_contents" trait="height"/>
+				<div>5</div>
+			</height>
+			
+			<user0> 0 </user0>
+			<user1> Item Name </user1>
+			<user5> Fourth Value </user5>
+			<user6> icon/pathname.dds </user6>
+			<user7> 1M </user7>
+			<user8> true </user8>
+			<user9> type </user9>
+			<user10> false </user10>
+			<user11> 0 </user11>
+			<user14> true </user14>
+			<image name="rep_equiped_marker">
+				<visible>
+					<copy src="parent()" trait="user10" />
+				</visible>
+				<depth> 2 </depth>
+				<filename> Menus\Inventory\inv_equiped_marker_1.dds </filename>
+				<alpha> 160 </alpha>
+				<width>
+					<copy src="parent()" trait="width"/>
+				</width>
+				<height> 64 </height>
+				<x> 7 </x>
+				<y> 7 </y>
+			</image>
+			<image name="rep_item_icon">
+				<visible>
+					<sub src="parent()" trait="user10" />
+					<eq> false </eq>
+				</visible>
+				<depth> 3 </depth>
+				<filename>
+					<copy src="parent()" trait="user0" />
+				</filename>
+				<width> 64 </width>
+				<height> 64 </height>
+				<x> 5 </x>
+				<y> 7 </y>
+			</image>
+			<image name="rep_item_over_icon">
+				<visible>
+					<sub src="parent()" trait="user10" />
+				</visible>
+				<depth> 3 </depth>
+				<filename>
+					<copy src="parent()" trait="user6" />
+				</filename>
+				<width> 64 </width>
+				<height> 64 </height>
+				<x> 5 </x>
+				<y> 7 </y>
+			</image>
+			<text name="rep_item_count">
+				<depth> 5 </depth>
+				<justify> right </justify>
+				<font> 3 </font>
+				<red> 117 </red>
+				<green> 59 </green>
+				<blue> 33  </blue>
+				<alpha> 255 </alpha>
+				<wrapwidth> 55 </wrapwidth>
+				<wraplimit> 1 </wraplimit>
+				<string>
+					<copy src="parent()" trait="user7" />
+				</string>
+				<x> 70 </x>
+				<y> 65 </y>
+			</text>
+			<text name="rep_item_name">
+				<depth> 3 </depth>
+				<justify> left </justify>
+				<red> 117 </red>
+				<green> 59 </green>
+				<blue> 33  </blue>
+				<alpha> 255 </alpha>
+				<wrapwidth> 280 </wrapwidth>
+				<wraplimit> 2 </wraplimit>
+				<string>
+					<copy src="parent()" trait="user1" />
+				</string>
+				<x> 80 </x>
+				<y>
+					<copy src="parent()" trait="height" />
+					<sub src="me()" trait="height" />
+					<div> 2 </div>
+				</y>
+			</text>
+			<text name="rep_item_health">
+				<depth> 3 </depth>
+				<justify> center </justify>
+				<red> 117 </red>
+				<green> 59 </green>
+				<blue> 33  </blue>
+				<alpha> 255 </alpha>
+				<wrapwidth> 50 </wrapwidth>
+				<string>
+					<copy src="parent()" trait="user5" />
+				</string>
+				<x>
+					<copy src="parent()" trait="width"/>
+					<sub> 44 </sub>
+				</x>
+				<y>
+					<copy src="parent()" trait="height" />
+					<sub src="me()" trait="height" />
+					<div> 2 </div>
+				</y>
+			</text>
+		</rect>
+	</template>
+	
+	<template name="rep_buy_item_template">
+		<rect name="rep_item">
+			<target> true </target>
+			<focusinset> 8 </focusinset>
+			<visible>
+				<copy src="me()" trait="y" />
+				<gte> 0 </gte>
+				<and>
+					<copy src="me()" trait="y" />
+					<add> 20 </add>
+					<lt src="rep_contents" trait="height" />
+				</and>
+				<and src="me()" trait="user8" />
+			</visible>
+			<x> -72 </x>
+			<y>
+				<copy src="me()" trait="user0" />
+				<mult src="me()" trait="height" />
+				<sub>
+					<copy src="me()" trait="height" />
+					<mult src="rep_scroll_bar" trait="user7" />
+				</sub>
+			</y>
+			<depth> 1 </depth>
+			<locus> true </locus>
+			<alpha> 0 </alpha>
+			<width>
+				<copy src="rep_contents" trait="width"/>
+				<sub src="me()" trait="x"/>
+			</width>
+			<height>
+				<copy src="rep_contents" trait="height"/>
+				<div>5</div>
+			</height>
+			<clips> true </clips>
+			
+			<user0> 0 </user0>
+			<user1> Item Name </user1>
+			<user5> Fourth Value </user5>
+			<user6> icon/pathname.dds </user6>
+			<user7> 1M </user7>
+			<user8> true </user8>
+			<user9> type </user9>
+			<user10> false </user10>
+			<user11> 0 </user11>
+			<user14> true </user14>
+			<image name="rep_equiped_marker">
+				<visible>
+					<copy src="parent()" trait="user10" />
+				</visible>
+				<depth> 2 </depth>
+				<filename> Menus\Inventory\inv_equiped_marker_1.dds </filename>
+				<alpha> 160 </alpha>
+				<width>
+					<copy src="parent()" trait="width"/>
+				</width>
+				<height> 64 </height>
+				<x> 7 </x>
+				<y> 7 </y>
+			</image>
+			<image name="rep_item_icon">
+				<visible>
+					<sub src="parent()" trait="user10" />
+					<eq> false </eq>
+				</visible>
+				<depth> 3 </depth>
+				<filename>
+					<copy src="parent()" trait="user0" />
+				</filename>
+				<width> 64 </width>
+				<height> 64 </height>
+				<x> 5 </x>
+				<y> 7 </y>
+			</image>
+			<image name="rep_item_over_icon">
+				<visible>
+					<sub src="parent()" trait="user10" />
+				</visible>
+				<depth> 3 </depth>
+				<filename>
+					<copy src="parent()" trait="user6" />
+				</filename>
+				<width> 64 </width>
+				<height> 64 </height>
+				<x> 5 </x>
+				<y> 7 </y>
+			</image>
+			<text name="rep_item_count">
+				<depth> 5 </depth>
+				<justify> right </justify>
+				<font> 3 </font>
+				<red> 117 </red>
+				<green> 59 </green>
+				<blue> 33  </blue>
+				<alpha> 255 </alpha>
+				<wrapwidth> 55 </wrapwidth>
+				<wraplimit> 1 </wraplimit>
+				<string>
+					<copy src="parent()" trait="user7" />
+				</string>
+				<x> 70 </x>
+				<y> 65 </y>
+			</text>
+			<text name="rep_item_name">
+				<depth> 3 </depth>
+				<justify> left </justify>
+				<red> 117 </red>
+				<green> 59 </green>
+				<blue> 33  </blue>
+				<alpha> 255 </alpha>
+				<wrapwidth> 280 </wrapwidth>
+				<wraplimit> 2 </wraplimit>
+				<string>
+					<copy src="parent()" trait="user1" />
+				</string>
+				<x> 80 </x>
+				<y>
+					<copy src="parent()" trait="height" />
+					<sub src="me()" trait="height" />
+					<div> 2 </div>
+				</y>
+			</text>
+			<text name="rep_item_cost">
+				<depth> 3 </depth>
+				<justify> center </justify>
+				<red> 117 </red>
+				<green> 59 </green>
+				<blue> 33  </blue>
+				<alpha> 255 </alpha>
+				<wrapwidth> 80 </wrapwidth>
+				<string>
+					<copy src="parent()" trait="user2" />
+				</string>
+				<x>
+					<copy src="rep_item_health" trait="x"/>
+					<sub> 96 </sub>
+				</x>
+				<y>
+					<copy src="parent()" trait="height" />
+					<sub src="me()" trait="height" />
+					<div> 2 </div>
+				</y>
+			</text>
+			<text name="rep_item_health">
+				<depth> 3 </depth>
+				<justify> center </justify>
+				<red> 117 </red>
+				<green> 59 </green>
+				<blue> 33  </blue>
+				<alpha> 255 </alpha>
+				<wrapwidth> 50 </wrapwidth>
+				<string>
+					<copy src="parent()" trait="user5" />
+				</string>
+				<x>
+					<copy src="parent()" trait="width"/>
+					<sub> 44 </sub>
+				</x>
+				<y>
+					<copy src="parent()" trait="height" />
+					<sub src="me()" trait="height" />
+					<div> 2 </div>
+				</y>
+			</text>
+		</rect>
+	</template>
+
+	<image name="rep_button_recharge">
+		<id> 15 </id>
+		<visible>false</visible>
+		<alpha> 255 </alpha>
+		<depth> 31 </depth>
+		<filename> Menus\Container\cont_button_long_off.dds </filename>
+		<width> 177 </width>
+		<height> 43 </height>
+		<locus> true </locus>
+		<target> true </target>
+		<x> 320 </x>
+		<y>
+			<copy src="rep_button_exit" trait="y"/>
+		</y>
+		<user0> Charge All </user0>		<!-- Button text -->
+		<user1> 3 </user1>				<!-- Font -->
+		<image name="rep_button_recharge_on">
+			<alpha>
+				<copy> 255 </copy>
+				<onlyifnot src="parent()" trait="mouseover"/>
+			</alpha>
+			<depth> 1 </depth>
+			<filename> Menus\Container\cont_button_long_on.dds </filename>
+			<width>
+				<copy src="parent()" trait="width"/>
+			</width>
+			<height>
+				<copy src="parent()" trait="height"/>
+			</height>
+			<x> 0 </x>
+			<y> 0 </y>
+		</image>
+		<text name="rep_button_recharge_text">
+			<depth> 2 </depth>
+			<string>
+				<copy src="parent()" trait="user0"/>
+			</string>
+			<font>
+				<copy src="parent()" trait="user1"/>
+			</font>
+			<justify> left </justify>
+			<red> 117 </red>
+			<green> 59 </green>
+			<blue> 33  </blue>
+			<alpha> 255 </alpha>
+			<x>
+				<copy src="parent()" trait="width" />
+				<sub src="me()" trait="width" />
+				<div> 2 </div>
+				<sub> 2 </sub>
+			</x>
+			<y> 3 </y>
+		</text>
+	</image>
+
+	<image name="rep_button_exit">
+		<id> 2 </id>
+		<alpha> 255 </alpha>
+		<depth> 31 </depth>
+		<filename> Menus\Container\cont_button_short_off.dds </filename>
+		<width> 109 </width>
+		<height> 43 </height>
+		<locus> true </locus>
+		<target> true </target>
+		<x> 815 </x>
+		<y> 715 </y>
+		<image name="rep_button_exit_on">
+			<alpha>
+				<copy> 255 </copy>
+				<onlyifnot src="parent()" trait="mouseover"/>
+			</alpha>
+			<depth> 1 </depth>
+			<filename> Menus\Container\cont_button_short_on.dds </filename>
+			<width> 106 </width>
+			<height> 48 </height>
+			<x> 0 </x>
+			<y> 0 </y>
+		</image>
+		
+		<text name="rep_button_exit_text">
+			<depth> 2 </depth>
+			<string> Exit </string>
+			<justify> left </justify>
+			<red> 117 </red>
+			<green> 59 </green>
+			<blue> 33  </blue>
+			<alpha> 255 </alpha>
+			<x>
+				<copy src="parent()" trait="width" />
+				<sub src="me()" trait="width" />
+				<div> 2 </div>
+				<sub> 2 </sub>
+			</x>
+			<y> 3 </y>
+		</text>
+	</image>
+	
+	<!--image name="enchantment_icon">
+		<id>11</id>
+		<depth>20</depth>
+		<filename> Menus\Icons\icon_small_health.dds</filename>
+		<width> 106 </width>
+		<height> 48 </height>
+		<x> 620</x>
+		<y> 100 </y>
+	</image-->
+		
+	<text name="hammer_text">
+		<depth> 2 </depth>
+		<id>14</id>
+		<visible>true</visible>
+		<string> Hammers: </string>
+		<justify> left </justify>
+		<alpha> 255 </alpha>
+		<red> 117 </red>
+		<green> 59 </green>
+		<blue> 33 </blue>
+		<x>
+			<copy src="screen()" trait="width"/>
+			<sub src="me()" trait="width"/>
+			<sub src="hammer_number_text" trait="width"/>
+			<sub>7</sub>
+			<div>2</div>
+		</x>
+		<y> 676 </y>
+	</text>
+	
+	<text name="hammer_number_text">
+		<depth> 2 </depth>
+		<id>3</id>
+		<string> 0 </string>
+		<justify> right </justify>
+		<red>
+			<copy src="hammer_text" trait="red"/>
+		</red>
+		<green>
+			<copy src="hammer_text" trait="green"/>
+		</green>
+		<blue>
+			<copy src="hammer_text" trait="blue"/>
+		</blue>
+		<alpha> 255 </alpha>
+		<x>
+			<copy src="hammer_text" trait="x"/>
+			<add src="hammer_text" trait="width"/>
+			<add src="me()" trait="width"/>
+			<add> 15 </add>
+		</x>
+		<y> 
+			<copy src="hammer_text" trait="y"/>
+		</y>
+	</text>
+	
+</menu>

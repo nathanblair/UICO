@@ -1,0 +1,742 @@
+<menu name="HUDMainMenu">
+	<class> HUDMainMenu </class>
+	<stackingtype> does_not_stack </stackingtype>
+	<alpha>	0 </alpha>
+	<locus> true </locus>
+	<depth> -50 </depth>
+	<x> 0 </x>
+	<y> 0 </y>
+	<menufade> 0.25 </menufade>
+	<user1> 2 </user1>
+	<user2> 1 </user2>
+	<user3> 1 </user3>	<!-- 1 = explore mode / 0 = menu mode -->
+	<user4> 1 </user4>	<!-- current mode... 1=stats, 2=inventory, 3=magic, 4=map -->
+	<user5> 1 </user5>	<!-- last mode... 1=stats, 2=inventory, 3=magic, 4=map -->
+	
+	<rect name="player_grab_zone">
+		<id> 91 </id>
+		<target> true </target>
+		<alpha> 0 </alpha>
+		<x> 800 </x>
+		<y> <copy src="screen()" trait="cropy"/> </y>
+		<width>
+			<copy src="screen()" trait="width"/>
+			<sub src="screen()" trait="cropx"/>
+			<sub src="me()" trait="x"/>
+		</width>
+		<height>
+			<copy src="screen()" trait="height"/>
+			<sub src="screen()" trait="cropy"/>
+			<sub src="screen()" trait="cropy"/>
+		</height>
+	</rect>
+	
+	<rect name="magic_icons">
+		<id> 16 </id>
+		
+		<x>
+			<copy src="screen()" trait="width"/>
+			<sub src="screen()" trait="cropx"/>
+			<sub> 24 </sub>
+		</x>
+		<y>
+			<copy> 0 </copy>
+			<add src="screen()" trait="cropy"/>
+			<add> 18 </add>
+		</y>
+		
+		<_icon_width>		64 </_icon_width>
+		<_icon_height>		64 </_icon_height>
+		<_buffer>			 8 </_buffer>
+		<_icons_per_row>	15 </_icons_per_row>
+	</rect>
+	
+	<template name="icon_template">
+		<image name="effect_icon">
+			<locus>true</locus>
+			<user0></user0>		<!-- index -->
+			<user1></user1>		<!-- time left -->
+			<width>
+				<copy src="magic_icons" trait="_icon_width"/>
+			</width>
+			<height>
+				<copy src="magic_icons" trait="_icon_height"/>
+			</height>
+			<x>
+				<copy src="magic_icons" trait="x"/>							<!-- starting x pos -->
+				<sub src="magic_icons" trait="_icon_width"/>				<!-- move left by width of one icon -->
+				<sub>
+					<copy src="magic_icons" trait="_icon_width"/>
+					<add src="magic_icons" trait="_buffer"/>				<!-- move left by icon width + buffer -->
+					<mult>													<!-- how many times = index % max-per-row -->
+						<copy src="me()" trait="user0"/>
+						<mod src="magic_icons" trait="_icons_per_row"/>
+					</mult>
+				</sub>
+			</x>
+			<y>
+				<copy src="magic_icons" trait="y"/>							<!-- starting y pos -->
+				<add>
+					<copy src="me()" trait="user0"/>						<!-- index/icons_per_row gives you -->
+					<div src="magic_icons" trait="_icons_per_row"/>			<!-- row num plus a fraction -->
+					<sub>
+						<copy src="me()" trait="user0"/>					<!-- subtract the fraction -->
+						<mod src="magic_icons" trait="_icons_per_row"/>
+						<div src="magic_icons" trait="_icons_per_row"/>
+					</sub>
+					<mult>													<!-- multiply row num by num pixels -->
+						<copy src="magic_icons" trait="_icon_height"/>
+						<add src="magic_icons" trait="_buffer"/>
+					</mult>
+				</add>
+			</y>
+			<red>
+				<copy> 1 </copy>
+				<sub src="child(effect_icon_overlay)" trait="_warning"/>
+				<sub> 0.5 </sub>
+				<mul> 255 </mul>
+			</red>
+			<green>
+				<copy> 1 </copy>
+				<sub src="child(effect_icon_overlay)" trait="_warning"/>
+				<sub> 0.5 </sub>
+				<mul> 255 </mul>
+			</green>
+			<blue>
+				<copy> 1 </copy>
+				<sub src="child(effect_icon_overlay)" trait="_warning"/>
+				<sub> 0.5 </sub>
+				<mul> 255 </mul>
+			</blue>
+			<image name="effect_icon_overlay">
+				<filename> <copy src="parent()" trait="filename"/> </filename>
+				<width> <copy src="magic_icons" trait="_icon_width"/> </width>
+				<height> <copy src="magic_icons" trait="_icon_height"/> </height>
+				<x> 0 </x>
+				<y>
+					<copy src="me()" trait="_warning"/>
+					<mul src="me()" trait="height"/>
+				</y>
+				<cropy>
+					<copy src="me()" trait="_warning"/>
+					<mul src="me()" trait="height"/>
+				</cropy>
+				<depth> 1 </depth>
+				<_warning>
+					<copy> 10 </copy>
+					<sub>
+						<copy src="parent()" trait="user1"/>
+						<min> 10 </min>
+					</sub>
+					<div> 10 </div>
+				</_warning>
+				<_in_warning>
+					<copy src="parent()" trait="user1"/>
+					<lt> 10 </lt>
+				</_in_warning>
+				<locus> true </locus>
+				
+				<rect name="effect_icon_divider">
+					<visible>
+						<copy src="parent()" trait="_in_warning"/>
+					</visible>
+					<width> <copy src="parent()" trait="width"/> </width>
+					<depth> 2 </depth>
+					<height> 2 </height>
+					<alpha>
+						<copy src="parent()" trait="_warning"/>
+						<add src="parent()" trait="_warning"/>
+						<mul> 255 </mul>
+					</alpha>
+					<red>
+						<copy src="parent()" trait="_warning"/>
+						<mul> 255 </mul>
+					</red>
+					<green>
+						<copy> 1 </copy>
+						<sub src="parent()" trait="_warning"/>
+						<mul> 255 </mul>
+					</green>
+					<blue> 0 </blue>
+				</rect>
+			</image>
+			<text name="temp_countdown">
+				<depth>1</depth>
+				<alpha>
+					<copy src="parent()" trait="alpha"/>
+				</alpha>
+				<red>255</red>
+				<green>255</green>
+				<blue>255</blue>
+				<font>3</font>
+				<x>
+					<copy src="parent()" trait="width"/>
+					<sub src="me()" trait="width"/>
+					<div>2</div>
+				</x>
+				<y>-20</y>
+				<_integer>
+					<copy src="parent()" trait="user1"/>
+					<ceil> 0 </ceil>
+				</_integer>
+				<string>
+					<copy src="me()" trait="_integer"/>
+				</string>
+			</text>
+			<nif name="icon_timer">
+				<id> 17 </id>
+				<depth>1</depth>
+				<filename>Spell effect timer\timer.NIF </filename>
+				<visible>
+					<copy src="parent()" trait="alpha"/>
+					<eq>255</eq>
+					<copy> false </copy>
+				</visible>
+				<x> 34 </x>
+				<y> 31 </y>
+				<animation> Health_Bar </animation>
+			</nif>
+		</image>
+	</template>
+	
+	<image name="hudmain_background">
+		<id> 1 </id>
+		<filename> Menus\HUD\hud_back.dds </filename>
+		<depth> 100 </depth>
+		<alpha>
+			<copy src="HUDMainMenu" trait="user3"/>
+			<eq> 0 </eq>
+			<sub> 1 </sub>
+			<mul> 255 </mul>
+		</alpha>
+		<width> 620 </width>
+		<height> 66 </height>
+		<locus> true </locus>
+		<x> 117 </x>
+		<y>
+			<copy src="screen()" trait="height"/>
+			<sub> 120 </sub>
+		</y>
+		
+		
+		<image name="hudmain_frame">
+			<id> 8 </id>
+			<filename> Menus\HUD\hud_frame.dds </filename>
+			<depth> 18 </depth>
+			<alpha>
+				<copy> 1 </copy>
+				<sub src="HUDMainMenu" trait="user3"/>
+				<mul> 255 </mul>
+			</alpha>
+			<width> 761 </width>
+			<height> 90 </height>
+			<x> -70 </x>
+			<y> -5 </y>
+			<user0> 135 </user0>
+		</image>
+		
+		
+		
+		<rect name="hudmain_statusbars">
+			<alpha> 0 </alpha>
+			<locus> true </locus>
+			<x>
+				<copy> 8 </copy>
+				<sub>
+					<copy> 60 </copy>
+					<mul src="HUDMainMenu" trait="user3"/>
+				</sub>
+			</x>
+			<y> 12 </y>
+		
+			<image name="hudmain_health_empty">
+				<filename> Menus\HUD\hud_ribbon_health_empty.dds </filename>
+				<depth> 1 </depth>
+				<width> 189 </width>
+				<height> 16 </height>
+				<locus> true </locus>
+				<x> 1 </x>
+				<y> 0 </y>
+					
+				<image name="hudmain_health_full">
+					<ID> 2 </ID>
+					<filename> Menus\HUD\hud_ribbon_health_full.dds </filename>
+					<visible>
+						<copy src="me()" trait="user0"/>
+						<gt> 0 </gt>
+					</visible>
+					<depth> 1 </depth>
+					<width>
+						<copy src="me()" trait="user0"/>
+						<max> 0 </max>
+						<min> 1 </min>
+						<mul> 163 </mul>
+					</width>
+					<height> 11 </height>
+					<locus> true </locus>
+					<x> 11 </x>
+					<y> 2 </y>
+					<user0> 1.0 </user0>
+				</image>
+				<image name="hudmain_health_edge">
+					<filename> Menus\Shared\ribbon_slider.dds </filename>
+					<visible> true </visible>
+					<depth> 2 </depth>
+					<width> 12 </width>
+					<height> 14 </height>
+					<x>
+						<copy src="hudmain_health_full" trait="x"/>
+						<add src="hudmain_health_full" trait="width"/>
+					</x>
+					<y> 0 </y>
+				</image>
+			</image>
+			
+			<image name="hudmain_magic_empty">
+				<filename> Menus\HUD\hud_ribbon_magic_empty.dds </filename>
+				<depth> 1 </depth>
+				<width> 189 </width>
+				<height> 16 </height>
+				<locus> true </locus>
+				<x> 1 </x>
+				<y> 18 </y>
+					
+				<image name="hudmain_magic_full">
+					<ID> 3 </ID>
+					<filename> Menus\HUD\hud_ribbon_magic_full.dds </filename>
+					<visible>
+						<copy src="me()" trait="user0"/>
+						<gt> 0 </gt>
+					</visible>
+					<depth> 1 </depth>
+					<width>
+						<copy src="me()" trait="user0"/>
+						<max> 0 </max>
+						<min> 1 </min>
+						<mul> 163 </mul>
+					</width>
+					<height> 11 </height>
+					<locus> true </locus>
+					<x> 11 </x>
+					<y> 1 </y>
+					<user1> 1.0 </user1>
+				</image>
+				<image name="hudmain_magic_edge">
+					<filename> Menus\Shared\ribbon_slider.dds </filename>
+					<visible> true </visible>
+					<depth> 2 </depth>
+					<width> 12 </width>
+					<height> 14 </height>
+					<x>
+						<copy src="hudmain_magic_full" trait="x"/>
+						<add src="hudmain_magic_full" trait="width"/>
+					</x>
+					<y> -1 </y>
+				</image>
+			</image>
+			
+			<image name="hudmain_fatigue_empty">
+				<filename> Menus\HUD\hud_ribbon_fatigue_empty.dds </filename>
+				<depth> 1 </depth>
+				<width> 189 </width>
+				<height> 16 </height>
+				<locus> true </locus>
+				<x> 0 </x>
+				<y> 36 </y>
+					
+				<image name="hudmain_fatigue_full">
+					<ID> 4 </ID>
+					<filename> Menus\HUD\hud_ribbon_fatigue_full.dds </filename>
+					<visible>
+						<copy src="me()" trait="user0"/>
+						<gt> 0 </gt>
+					</visible>
+					<depth> 1 </depth>
+					<width>
+						<copy src="me()" trait="user0"/>
+						<max> 0 </max>
+						<min> 1 </min>
+						<mul> 163 </mul>
+					</width>
+					<height> 11 </height>
+					<locus> true </locus>
+					<x> 11 </x>
+					<y> 1 </y>
+					<user0> 1.0 </user0>
+				</image>
+				<image name="hudmain_fatigue_edge">
+					<filename> Menus\Shared\ribbon_slider.dds </filename>
+					<visible> true </visible>
+					<depth> 2 </depth>
+					<width> 12 </width>
+					<height> 14 </height>
+					<x>
+						<copy src="hudmain_fatigue_full" trait="x"/>
+						<add src="hudmain_fatigue_full" trait="width"/>
+					</x>
+					<y> 0 </y>
+				</image>
+			</image>
+			
+			<rect name="hudmain_bars_cover">
+				<ID> 9 </ID>
+				<depth> 5 </depth>
+				<target> true </target>
+				<alpha> 0 </alpha>
+				<width> 199 </width>
+				<height> 80 </height>
+				<x> -4 </x>
+				<y> -15 </y>
+			</rect>
+			
+		</rect>
+		
+		
+		
+		<image name="hudmain_Weapon_Icon">
+			<id> 5 </id>
+			<filename> Menus\Icons\icon_hud_default_weapon.dds </filename>
+			<locus> true </locus>
+			<depth> 1 </depth>
+			<width> 64 </width>
+			<height> 64 </height>
+			<x>
+				<copy> 234 </copy>
+				<sub>
+					<copy> 87 </copy>
+					<mul src="HUDMainMenu" trait="user3"/>
+				</sub>
+			</x>
+			<y> 5 </y>
+		
+			<rect name="hudmain_weapon_cover">
+				<id> 10 </id>
+				<target> true </target>
+				<depth> 5 </depth>
+				<alpha> 0 </alpha>
+				<width> 72 </width>
+				<height> 80 </height>
+				<x> -4 </x>
+				<y> -8 </y>
+			</rect>
+		</image>
+		
+		
+		
+		<image name="hudmain_Magic_Icon">
+			<id> 6 </id>
+			<filename> Menus\Icons\icon_hud_default_magic.dds </filename>
+			<depth> 1 </depth>
+			<locus> true </locus>
+			<width> 64 </width>
+			<height> 64 </height>
+			<x>
+				<copy> 322 </copy>
+				<sub>
+					<copy> 102 </copy>
+					<mul src="HUDMainMenu" trait="user3"/>
+				</sub>
+			</x>
+			<y> 5 </y>
+		
+			<rect name="hudmain_magic_cover">
+				<id> 11 </id>
+				<target> true </target>
+				<depth> 5 </depth>
+				<alpha> 0 </alpha>
+				<width> 72 </width>
+				<height> 80 </height>
+				<x> -4 </x>
+				<y> -8 </y>
+			</rect>
+		</image>
+		
+		<rect name="hudmain_compass">
+			<id> 7 </id>
+			<alpha> 0 </alpha>
+			<depth> 1 </depth>
+			<locus> true </locus>
+			<width> 213 </width>
+			<height> 87 </height>
+			<x>
+				<copy> 432 </copy>
+				<sub>
+					<copy> 120 </copy>
+					<mul src="HUDMainMenu" trait="user3"/>
+				</sub>
+			</x>
+			<y> 5 </y>
+			<user0> 0 </user0>		<!-- set by code - heading in degrees, N is 0/360 -->
+			<user1> 2048 </user1>	<!-- width of image (has S in middle) -->
+			<user2>					<!-- texture offset to start (0 degrees, north) -->
+				<copy src="me()" trait="user1"/>
+				<div> 2 </div>
+				<sub> 384 </sub>
+				<sub> 92 </sub>
+			</user2>
+			<user3>					<!-- conversion of degrees to pixels -->
+				<copy> 768 </copy>
+				<div> 360 </div>
+			</user3>
+			
+			
+			<image name="hudmain_compass_frame">
+				<filename> Menus\HUD\hud_compass_frame.dds </filename>
+				<depth> <copy src="hudmain_compass_heading" trait="user1"/> </depth>
+				<width> 212 </width>
+				<height> 68 </height>
+				<alpha>
+					<copy src="HUDMainMenu" trait="user3"/>
+					<eq> 1 </eq>
+					<sub> 1 </sub>
+					<mul> 255 </mul>
+				</alpha>
+				<x> -14 </x>
+				<y> -2 </y>
+			</image>
+			
+			
+			<image name="hudmain_compass_back">
+				<filename> Menus\HUD\hud_back.dds </filename>
+				<depth> 0 </depth>
+				<width> 193 </width>
+				<height> 68 </height>
+				<x> -5 </x>
+				<y> -2 </y>
+			</image>
+			
+			
+			<image name="hudmain_compass_heading">
+				<id> 14 </id>
+				<filename> Menus\HUD\hud_compass_face.dds </filename>
+				<depth> 3 </depth>
+				<width> 185 </width>
+				<height> 62 </height>
+				<cropx>
+					<copy src="parent()" trait="user0"/>	<!-- heading in degrees -->
+					<mul src="parent()" trait="user3"/>		<!-- convert to pixels -->
+					<add src="parent()" trait="user2"/>		<!-- texture offset to start (0 degrees, north) -->
+				</cropx>
+				<x> 0 </x>
+				<y> 1 </y>
+				<user1> 0 </user1>	<!-- max icon depth -->
+				<user2> 0 </user2>	<!-- set by code - min reveal distance -->
+				<user3> 0 </user3>	<!-- set by code - max visible distance -->
+				<_filename_11> Menus\Map\world\world_map_icon_camp_inactive.dds			</_filename_11>
+				<_filename_12> Menus\Map\world\world_map_icon_camp.dds					</_filename_12>
+				<_filename_21> Menus\Map\world\world_map_icon_cave_inactive.dds			</_filename_21>
+				<_filename_22> Menus\Map\world\world_map_icon_cave.dds					</_filename_22>
+				<_filename_31> Menus\Map\world\world_map_icon_city_inactive.dds			</_filename_31>
+				<_filename_32> Menus\Map\world\world_map_icon_city.dds					</_filename_32>
+				<_filename_41> Menus\Map\world\world_map_icon_elven_ruin_inactive.dds	</_filename_41>
+				<_filename_42> Menus\Map\world\world_map_icon_elven_ruin.dds			</_filename_42>
+				<_filename_51> Menus\Map\world\world_map_icon_fort_ruin_inactive.dds	</_filename_51>
+				<_filename_52> Menus\Map\world\world_map_icon_fort_ruin.dds				</_filename_52>
+				<_filename_61> Menus\Map\world\world_map_icon_mine_inactive.dds			</_filename_61>
+				<_filename_62> Menus\Map\world\world_map_icon_mine.dds					</_filename_62>
+				<_filename_71> Menus\Map\world\world_map_icon_mountain_peak_inactive.dds</_filename_71>
+				<_filename_72> Menus\Map\world\world_map_icon_mountain_peak.dds			</_filename_72>
+				<_filename_81> Menus\Map\world\world_map_icon_tavern_inactive.dds		</_filename_81>
+				<_filename_82> Menus\Map\world\world_map_icon_tavern.dds				</_filename_82>
+				
+				<_filename_991> Menus\Map\world\world_map_marker_red_flag.dds </_filename_991>		<!-- quest marker icon -->
+				<_filename_992> Menus\Map\world\world_map_marker_green_flag.dds </_filename_992>	<!-- marker icon -->
+			
+			
+				<template name="hudmain_compass_icon">
+					<image name="hudmain_compass_icon">
+						<filename>
+							<copy src="me()" trait="user5"/>
+							<mul> 10 </mul>
+							<add src="me()" trait="user6"/>
+							<copy src="parent()" trait="_filename_"/>
+						</filename>
+						<depth> 1 </depth>
+						<width>
+							<copy> 28 </copy>
+							<add>
+								<copy> 4 </copy>
+								<onlyif src="me()" trait="user9"/>
+							</add>
+							<sub>
+								<copy src="me()" trait="_offright"/>
+								<sub src="me()" trait="_offleft"/>
+								<onlyif src="me()" trait="user9"/>
+							</sub>
+						</width>
+						<height>
+							<copy> 32 </copy>
+							<add>
+								<copy> 10 </copy>
+								<onlyifnot src="me()" trait="user9"/>
+							</add>
+						</height>
+						<y>
+							<copy> 1 </copy>
+							<onlyifnot src="me()" trait="user9"/>
+						</y>
+						<x>
+							<copy src="me()" trait="_position"/>
+							<add src="me()" trait="_offleft"/>
+							<onlyif src="me()" trait="user9"/>
+							<add>
+								<copy src="me()" trait="_position_marker"/>
+								<onlyifnot src="me()" trait="user9"/>
+							</add>
+						</x>
+						<alpha>
+							<copy> 255 </copy>
+							<mul src="me()" trait="_distance"/>
+							<onlyif src="me()" trait="user9"/>
+							<add>
+								<copy> 255 </copy>
+								<onlyifnot src="me()" trait="user9"/>
+							</add>
+						</alpha>
+						<cropx>
+							<copy src="me()" trait="_offleft"/>
+							<onlyif src="me()" trait="user9"/>
+						</cropx>
+						<_position>
+							<copy> 768 </copy>
+							<sub src="me()" trait="_heading"/>
+							<sub>
+								<copy src="me()" trait="_heading"/>
+								<lt>
+									<copy> 110 </copy>
+									<onlyif src="me()" trait="user9"/>
+									<add>
+										<copy> 384 </copy>
+										<onlyifnot src="me()" trait="user9"/>
+									</add>
+								</lt>
+								<sub> 1 </sub>
+								<mult> 768 </mult>
+							</sub>
+							<add>
+								<copy src="parent()" trait="width"/>
+								<div> 2 </div>
+							</add>
+							<sub> 16 </sub>
+						</_position>
+						<_position_marker>
+							<copy src="me()" trait="_position"/>
+							<max> -4 </max>
+							<min>
+								<copy src="parent()" trait="width"/>
+								<sub> 20 </sub>
+							</min>
+						</_position_marker>
+						<_offright>
+							<copy src="me()" trait="_position"/>
+							<sub> 153 </sub>
+							<max> 0 </max>
+							<min> 32 </min>
+						</_offright>
+						<_offleft>
+							<copy src="me()" trait="_position"/>
+							<lt> 0 </lt>
+							<sub> 1 </sub>
+							<mul src="me()" trait="_position"/>
+							<mul> -1 </mul>
+							<max> 0 </max>
+							<min> 32 </min>
+						</_offleft>
+						<_heading>
+							<copy src="me()" trait="_heading_raw"/>			<!-- heading in degrees -->
+							<mod> 768 </mod>
+							<add>
+								<copy> 768 </copy>
+								<onlyif>
+									<copy src="me()" trait="_heading_raw"/>	<!-- heading in degrees -->
+									<mod> 768 </mod>
+									<lt> 0 </lt>
+								</onlyif>
+							</add>
+						</_heading>
+						<_heading_raw>
+							<copy src="hudmain_compass" trait="user0"/>				<!-- heading in degrees -->
+							<sub>
+								<copy src="me()" trait="user0"/>					<!-- direction in degrees -->
+								<add>
+									<copy src="hudmain_compass" trait="user0"/>		<!-- heading in degrees -->
+									<sub src="me()" trait="user0"/>					<!-- direction in degrees -->
+									<gt> 180 </gt>
+									<sub> 1 </sub>
+									<mul> 360 </mul>
+									<onlyif src="me()" trait="user9"/>
+								</add>
+							</sub>
+							<mul src="hudmain_compass" trait="user3"/>				<!-- convert to pixels -->
+						</_heading_raw>
+						<_distance>
+							<copy> 1 </copy>
+							<sub>
+								<copy src="me()" trait="user1"/>
+								<sub src="parent()" trait="user2"/>		<!-- min reveal distance -->
+								<div src="parent()" trait="user3"/>		<!-- max visible distance -->
+								<min> 1.0 </min>
+							</sub>
+						</_distance>
+						<_log_cutoff> 5 </_log_cutoff>
+						<user0> 0 </user0>			<!-- heading to icon (0-360) -->
+						<user1> 30 </user1>			<!-- distance to icon in feet -->
+						<user2> true </user2>		<!-- unused if true -->
+						<user5> 0 </user5>			<!-- location type -->
+						<user6> false </user6>		<!-- fast travel enabled -->
+						<user9> true </user9>
+					</image>
+				</template>
+				
+				
+			</image>
+		
+			<rect name="hudmain_compass_cover">
+				<id> 12 </id>
+				<target> true </target>
+				<depth> 10 </depth>
+				<alpha> 0 </alpha>
+				<width> 213 </width>
+				<height> 80 </height>
+				<x> -14 </x>
+				<y> -8 </y>
+			</rect>
+		</rect>
+		
+		
+		
+		<nif name="hudmain_brackets">
+			<filename> hud_brackets\A_B_C_D_seq.NIF </filename>
+			<depth> 40 </depth>
+			<locus> true </locus>
+			<alpha> 255 </alpha>
+			<x> -20 </x>
+			<y> -12 </y>
+			<user1> 1 </user1>
+			<user2>-1.0</user2>
+			<visible>
+				<copy src="HUDMainMenu" trait="user3"/>
+				<eq> 0 </eq>
+			</visible>
+			<animation>
+				<copy src="HUDMainMenu" trait="user5"/>		<!-- get the last mode -->
+				<mult> 10 </mult>						<!-- make it the tens digit -->
+				<add src="HUDMainMenu" trait="user4"/>			<!-- make the current mode the ones digit -->
+				<copy src="me()" trait="_animation_"/>	<!-- use animation trait that ends in that number -->
+			</animation>
+			<_animation_12> A_B </_animation_12>
+			<_animation_13> A_C </_animation_13>
+			<_animation_14> A_D </_animation_14>
+			<_animation_21> B_A </_animation_21>
+			<_animation_23> B_C </_animation_23>
+			<_animation_24> B_D </_animation_24>
+			<_animation_31> C_A </_animation_31>
+			<_animation_32> C_B </_animation_32>
+			<_animation_34> C_D </_animation_34>
+			<_animation_41> D_A </_animation_41>
+			<_animation_42> D_B </_animation_42>
+			<_animation_43> D_C </_animation_43>
+		</nif>
+		
+	</image>
+</menu>

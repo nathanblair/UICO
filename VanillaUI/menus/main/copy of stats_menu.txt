@@ -1,0 +1,1568 @@
+<menu name="StatsMenu">
+	<class> StatsMenu </class>
+	<alpha>	0 </alpha>
+	<locus> true </locus>
+	<x> 47 </x>
+	<y> 130 </y>
+	<menufade> 0.25 </menufade>
+	<user1> 10 </user1>
+	<user2> 2 </user2>
+	
+	<image name="stat_background">
+		<target> true </target>
+		<filename> Menus\Main\main_background.dds </filename>
+		<depth> 1 </depth>
+		<width> 741 </width>
+		<height> 788 </height>
+		<x> 0 </x>
+		<y> 0 </y>
+
+
+		<image name="stat_page_5">
+			<filename> Menus\Main\main_page_5.dds </filename>
+			<locus> true </locus>
+			<depth> 8 </depth>
+			<width> 690 </width>
+			<height> 691 </height>
+			<x> 26 </x>
+			<y> 26 </y>
+		</image>
+
+
+		<image name="stat_page4">
+			<filename> Menus\Main\main_page_4.dds </filename>
+			<locus> true </locus>
+			<depth> 10 </depth>
+			<width> 690 </width>
+			<height> 688 </height>
+			<x> 26 </x>
+			<y> 26 </y>
+			
+			<image name="stat_icon_tab_factions_on">
+				<filename> Menus\Main\stat_icon_tab_fact_on.dds </filename>
+				<depth> 1 </depth>
+				<visible>
+					<copy src="parent()" trait="depth"/>
+					<gt> 17 </gt>
+				</visible>
+				<width> 64 </width>
+				<height> 64 </height>
+				<x> 450 </x>
+				<y> 610 </y>
+				<locus> true </locus>
+				<image name="stat_icon_tab_misc_factions_on">
+					<filename> Menus\Main\general_tab_selection_on.dds </filename>
+					<depth> 1 </depth>
+					<width> 137 </width>
+					<height> 36 </height>
+					<x> -36 </x>
+					<y> 16 </y>
+				</image>
+			</image>
+			
+			<image name="stat_icon_tab_factions_off">
+				<filename> Menus\Main\stat_icon_tab_fact_off.dds </filename>
+				<depth> 1 </depth>
+				<visible>
+					<copy src="parent()" trait="depth"/>
+					<lt> 18 </lt>
+				</visible>
+				<width> 64 </width>
+				<height> 64 </height>
+				<x> 450 </x>
+				<y> 610 </y>
+				<locus> true </locus>
+				<image name="stat_icon_tab_misc_factions_off">
+					<filename> Menus\Main\general_tab_selection_off.dds </filename>
+					<depth> 1 </depth>
+					<width> 137 </width>
+					<height> 36 </height>
+					<x> -37 </x>
+					<y> 16 </y>
+				</image>
+			</image>
+			
+			<rect name="stat_tab_factions">
+				<id> 3 </id>
+				<target> true </target>
+				<depth> 2 </depth>
+				<alpha> 9 </alpha>
+				<width> 132 </width>
+				<height> 85 </height>
+				<x> 415 </x>
+				<y> 603 </y>
+			</image>
+
+			<rect name="stat_factions_stuff">
+				<id> 6 </id>
+				<alpha> 0 </alpha>
+			
+				<image name="stat_page_4_shadow">
+					<filename> Menus\Main\main_page_shadow_4.dds </filename>
+					<depth> -1 </depth>
+					<width> 694 </width>
+					<height> 692 </height>
+					<x> 5 </x>
+					<y> 5 </y>
+				</image>
+				
+				<image name="stat_fact_line_left">
+					<filename> Menus\Main\fact_border_vertical_left.dds </filename>
+					<depth> 7 </depth>
+					<width> 3 </width>
+					<height> 511 </height>
+					<x> 25 </x>
+					<y> 45 </y>
+				</image>
+				
+				<image name="stat_fact_line_right">
+					<filename> Menus\Main\fact_border_vertical_right.dds </filename>
+					<depth> 7 </depth>
+					<width> 3 </width>
+					<height> 511 </height>
+					<x> 630 </x>
+					<y> 45 </y>
+				</image>
+				
+				<image name="stat_fact_line_hor_1">
+					<filename> Menus\Main\fact_border_horizontal_1.dds </filename>
+					<depth> 7 </depth>
+					<width> 636 </width>
+					<height> 3 </height>
+					<x> 0 </x>
+					<y> 60 </y>
+				</image>
+				
+				<image name="stat_fact_line_hor_2">
+					<filename> Menus\Main\fact_border_horizontal_2.dds </filename>
+					<depth> 7 </depth>
+					<width> 630 </width>
+					<height> 4 </height>
+					<x> 0 </x>
+					<y> 220 </y>
+				</image>
+				
+				<image name="stat_fact_line_hor_3">
+					<filename> Menus\Main\fact_border_horizontal_3.dds </filename>
+					<depth> 7 </depth>
+					<width> 638 </width>
+					<height> 4 </height>
+					<x> 0 </x>
+					<y> 380 </y>
+				</image>
+				
+				<image name="stat_fact_line_hor_4">
+					<filename> Menus\Main\fact_border_horizontal_1.dds </filename>
+					<depth> 7 </depth>
+					<width> 636 </width>
+					<height> 3 </height>
+					<x> 0 </x>
+					<y> 540 </y>
+				</image>
+			
+			
+				<rect name="stat_fact_scroll_bar">
+					<locus> true </locus>
+					<depth> 11 </depth>
+					<width> 19 </width>
+					<height>
+						<copy src="stat_factions" trait="height"/>
+						<sub src="stat_fact_scroll_up" trait="height"/>
+						<sub src="stat_fact_scroll_down" trait="height"/>
+					</height>
+					<x> 650 </x>
+					<y>
+						<copy src="stat_factions" trait="y"/>
+						<add src="stat_fact_scroll_up" trait="height"/>
+					</y>
+
+					<image name="stat_fact_scroll_upper">
+						<id> 64 </id>
+						<target> true </target>
+						<filename> Menus\Main\general_scrollbar_vert.dds </filename>
+						<depth> 2 </depth>
+						<width> 19 </width>
+						<height> <copy src="stat_fact_scroll_marker" trait="y"/> </height>
+						<x> 0 </x>
+						<y> 0 </y>
+					</image>
+					<image name="stat_fact_scroll_lower">
+						<id> 65 </id>
+						<target> true </target>
+						<filename> Menus\Main\general_scrollbar_vert.dds </filename>
+						<depth> 2 </depth>
+						<width> 19 </width>
+						<height>
+							<copy src="parent()" trait="height"/>
+							<sub src="stat_fact_scroll_upper" trait="height"/>
+							<sub src="stat_fact_scroll_marker" trait="height"/>
+						</height>
+						<x> 0 </x>
+						<y>
+							<copy src="stat_fact_scroll_marker" trait="y"/>
+							<add src="stat_fact_scroll_marker" trait="height"/>
+						</y>
+					</image>
+					<image name="stat_fact_scroll_up">
+						<id> 61 </id>
+						<target> true </target>
+						<filename> Menus\Main\general_scrollbar_up.dds </filename>
+						<depth> 2 </depth>
+						<width> 19 </width>
+						<height> 32 </height>
+						<x> 0 </x>
+						<y> -32 </y>
+					</image>
+					<image name="stat_fact_scroll_down">
+						<id> 62 </id>
+						<target> true </target>
+						<filename> Menus\Main\general_scrollbar_down.dds </filename>
+						<depth> 2 </depth>
+						<width> 19 </width>
+						<height> 32 </height>
+						<x> 0 </x>
+						<y> <copy src="parent()" trait="height"/> </y>
+					</image>
+					<image name="stat_fact_scroll_marker">
+						<id> 63 </id>
+						<target> true </target>
+						<filename> Menus\Main\general_scrollbar_marker.dds </filename>
+						<depth> 4 </depth>
+						<width> 13 </width>
+						<height> 45 </height>
+						<x> 4 </x>
+						<y>
+							<copy> 0 </copy>
+							<sub src="stat_fact_first_item" trait="y"/>
+							<div>
+								<copy src="stat_fact_last_item" trait="y"/>
+								<sub src="stat_fact_first_item" trait="y"/>
+								<sub src="stat_factions" trait="height"/>
+							</div>
+							<mul>
+								<copy src="parent()" trait="height"/>
+								<sub src="me()" trait="height"/>
+							</mul>
+							<sub> 2 </sub>
+						</y>
+						<user0>
+							<copy src="me()" trait="user1"/>
+							<add src="me()" trait="height"/>
+							<add> -10 </add>
+							<div>
+								<copy src="parent()" trait="height"/>
+								<sub src="me()" trait="height"/>
+							</div>
+							<mul>
+								<copy src="stat_factions" trait="child_count"/>
+								<sub> 4 </sub>
+							</mul>
+							<floor> 1 </floor>
+						</user0>
+					</image>
+				</rect>
+				
+				
+				<rect name="stat_factions">
+					<id> 71 </id>
+					<alpha> 0 </alpha>
+					<depth> 0 </depth>
+					<locus> true </locus>
+					<width> 600 </width>
+					<height> 477 </height>
+					<x> 30 </x>
+					<y> 67 </y>
+					<user0> 1 </user0>
+					<user1> 5 </user1>
+					<user2>
+						<copy src="me()" trait="user0"/>
+						<min>
+							<copy src="me()" trait="child_count"/>
+							<sub> 4 </sub>
+						</min>
+						<max> 1 </max>
+					</user2>
+								
+					<rect name="stat_fact_first_item">
+						<id> 72 </id>
+						<depth> 1 </depth>
+						<visible> false </visible>
+						<height> 1 </height>
+						<x> 0 </x>
+						<y>
+							<copy> 1 </copy>
+							<sub src="parent()" trait="user2"/>
+							<mul> 159 </mul>
+						</y>
+					</rect>
+					
+					<rect name="stat_fact_last_item">
+						<id> 73 </id>
+						<depth> 2 </depth>
+						<visible> false </visible>
+						<height> 67 </height>
+						<y>
+							<copy src="sibling()" trait="y"/>
+							<add src="sibling()" trait="height"/>
+							<add> 2 </add>
+						</y>
+					</rect>
+				</rect>
+				
+			</rect>
+		</image>
+
+
+
+
+		<image name="stat_page3">
+			<filename> Menus\Main\main_page_3.dds </filename>
+			<locus> true </locus>
+			<depth> 14 </depth>
+			<width> 692 </width>
+			<height> 689 </height>
+			<x> 26 </x>
+			<y> 26 </y>
+			<image name="stat_icon_tab_skills_on">
+				<filename> Menus\Main\stat_icon_tab_skill_on.dds </filename>
+				<depth> 1 </depth>
+				<visible>
+					<copy src="parent()" trait="depth"/>
+					<gt> 17 </gt>
+				</visible>
+				<width> 64 </width>
+				<height> 64 </height>
+				<x> 315 </x>
+				<y> 610 </y>
+				<locus> true </locus>
+				<image name="stat_icon_tab_skills_select_on">
+					<filename> Menus\Main\general_tab_selection_on.dds </filename>
+					<depth> 2 </depth>
+					<width> 137 </width>
+					<height> 36 </height>
+					<x> -37 </x>
+					<y> 16 </y>
+				</image>
+			</image>
+			<image name="stat_icon_tab_skills_off">
+				<filename> Menus\Main\stat_icon_tab_skill_off.dds </filename>
+				<depth> 1 </depth>
+				<visible>
+					<copy src="parent()" trait="depth"/>
+					<lt> 18 </lt>
+				</visible>
+				<width> 64 </width>
+				<height> 64 </height>
+				<x> 315 </x>
+				<y> 610 </y>
+				<locus> true </locus>
+				<image name="stat_icon_tab_skills_select_off">
+					<filename> Menus\Main\general_tab_selection_off.dds </filename>
+					<depth> 2 </depth>
+					<width> 137 </width>
+					<height> 36 </height>
+					<x> -38 </x>
+					<y> 16 </y>
+				</image>
+			</image>
+
+			<rect name="stat_tab_skills">
+				<id> 2 </id>
+				<target> true </target>
+				<depth> 2 </depth>
+				<alpha> 0 </alpha>
+				<width> 132 </width>
+				<height> 85 </height>
+				<x> 279 </x>
+				<y> 603 </y>
+			</image>
+
+			<rect name="stat_skills_stuff">
+				<id> 5 </id>
+				<locus> true </locus>
+				<alpha> 0 </alpha>
+				<x> -17 </x>
+				<y> -90 </y>
+				
+				<image name="stat_page_3_shadow">
+					<filename> Menus\Main\main_page_shadow_3.dds </filename>
+					<depth> -1 </depth>
+					<width> 696 </width>
+					<height> 693 </height>
+					<x> 28 </x>
+					<y> 95 </y>
+				</image>
+					
+				<text name="stat_major_skills">
+					<depth> 7 </depth>
+					<string> Major Skills </string>
+					<justify> center </justify>
+					<red> 117 </red>
+					<green> 59 </green>
+					<blue> 33 </blue>
+					<alpha> 255 </alpha>
+					<wrapwidth> 300 </wrapwidth>
+					<x> 177 </x>
+					<y> 126 </y>
+				</text>
+					
+				<text name="stat_minor_skills">
+					<depth> 7 </depth>
+					<string> Minor Skills </string>
+					<justify> center </justify>
+					<red> 117 </red>
+					<green> 59 </green>
+					<blue> 33 </blue>
+					<alpha> 255 </alpha>
+					<wrapwidth> 300 </wrapwidth>
+					<x> 512 </x>
+					<y> 126 </y>
+				</text>
+				
+				<image name="stat_box_left">
+					<filename> Menus\Main\stat_skill_box.dds </filename>
+					<depth> 7 </depth>
+					<width> 660 </width>
+					<height> 492 </height>
+					<x> 25 </x>
+					<y> 150 </y>
+				</image>
+				
+				
+				<rect name="stat_skill_scroll_bar">
+					<locus> true </locus>
+					<depth> 11 </depth>
+					<width> 19 </width>
+					<height>
+						<copy src="stat_minors" trait="height"/>
+						<sub src="stat_skill_scroll_up" trait="height"/>
+						<sub src="stat_skill_scroll_down" trait="height"/>
+					</height>
+					<x> 680 </x>
+					<y>
+						<copy src="stat_minors" trait="y"/>
+						<add src="stat_skill_scroll_up" trait="height"/>
+					</y>
+					<alpha> 0 </alpha>
+
+					<image name="stat_skill_scroll_upper">
+						<id> 34 </id>
+						<target> true </target>
+						<filename> Menus\Main\general_scrollbar_vert.dds </filename>
+						<depth> 12 </depth>
+						<width> 19 </width>
+						<height> <copy src="stat_skill_scroll_marker" trait="y"/> </height>
+						<x> 0 </x>
+						<y> 0 </y>
+					</image>
+					<image name="stat_skill_scroll_lower">
+						<id> 35 </id>
+						<target> true </target>
+						<filename> Menus\Main\general_scrollbar_vert.dds </filename>
+						<depth> 12 </depth>
+						<width> 19 </width>
+						<height>
+							<copy src="parent()" trait="height"/>
+							<sub src="stat_skill_scroll_upper" trait="height"/>
+							<sub src="stat_skill_scroll_marker" trait="height"/>
+						</height>
+						<x> 0 </x>
+						<y>
+							<copy src="stat_skill_scroll_marker" trait="y"/>
+							<add src="stat_skill_scroll_marker" trait="height"/>
+						</y>
+					</image>
+					<image name="stat_skill_scroll_up">
+						<id> 31 </id>
+						<target> true </target>
+						<filename> Menus\Main\general_scrollbar_up.dds </filename>
+						<depth> 12 </depth>
+						<width> 19 </width>
+						<height> 32 </height>
+						<x> 0 </x>
+						<y> -32 </y>
+					</image>
+					<image name="stat_skill_scroll_down">
+						<id> 32 </id>
+						<target> true </target>
+						<filename> Menus\Main\general_scrollbar_down.dds </filename>
+						<depth> 12 </depth>
+						<width> 19 </width>
+						<height> 32 </height>
+						<x> 0 </x>
+						<y> 400 </y>
+					</image>
+					<image name="stat_skill_scroll_marker">
+						<id> 33 </id>
+						<target> true </target>
+						<filename> Menus\Main\general_scrollbar_marker.dds </filename>
+						<depth> 13 </depth>
+						<width> 13 </width>
+						<height> 45 </height>
+						<x> 4 </x>
+						<y>
+							<copy> 0 </copy>
+							<sub src="stat_first_item" trait="y"/>
+							<div>
+								<copy src="stat_last_item" trait="y"/>
+								<sub src="stat_first_item" trait="y"/>
+								<sub src="stat_minors" trait="height"/>
+							</div>
+							<mul>
+								<copy src="parent()" trait="height"/>
+								<sub src="me()" trait="height"/>
+							</mul>
+							<sub> 2 </sub>
+						</y>
+						<user0>
+							<copy src="me()" trait="user1"/>
+							<add src="me()" trait="height"/>
+							<add> -10 </add>
+							<div>
+								<copy src="parent()" trait="height"/>
+								<sub src="me()" trait="height"/>
+							</div>
+							<mul>
+								<copy src="stat_minors" trait="child_count"/>
+								<sub> 9 </sub>
+							</mul>
+							<floor> 1 </floor>
+						</user0>
+					</image>
+				</rect>
+				
+				
+				<rect name="stat_majors">
+					<id> 41 </id>
+					<alpha> 0 </alpha>
+					<depth> 8 </depth>
+					<locus> true </locus>
+					<height> 476 </height>
+					<x> 30 </x>
+					<y> 150 </y>
+								
+					<rect name="stat_first_major_item">
+						<id> 53 </id>
+						<visible> false </visible>
+						<height> 1 </height>
+						<x> 0 </x>
+						<y> 0 </y>
+					</rect>
+				</rect>
+		
+		
+				<rect name="stat_minors">
+					<id> 42 </id>
+					<alpha> 0 </alpha>
+					<depth> 8 </depth>
+					<locus> true </locus>
+					<height> 469 </height>
+					<x> 370 </x>
+					<y> 150 </y>
+					<user0> 1 </user0>
+					<user1> 7 </user1>
+					<user2>
+						<copy src="me()" trait="user0"/>
+						<min>
+							<copy src="me()" trait="child_count"/>
+							<sub> 8 </sub>
+						</min>
+						<max> 1 </max>
+					</user2>
+								
+					<rect name="stat_first_item">
+						<id> 51 </id>
+						<visible> false </visible>
+						<height> 1 </height>
+						<x> 0 </x>
+						<y>
+							<copy> 1 </copy>
+							<sub src="parent()" trait="user2"/>
+							<mul> 67 </mul>
+						</y>
+					</rect>
+					
+					<rect name="stat_last_item">
+						<id> 52 </id>
+						<visible> false </visible>
+						<height> 67 </height>
+						<y>
+							<copy src="sibling()" trait="y"/>
+							<add src="sibling()" trait="height"/>
+							<add> 2 </add>
+						</y>
+					</rect>
+				</rect>
+				
+					
+				<text name="stat_progress_label">
+					<depth> 7 </depth>
+					<string> Progress to Next Level </string>
+					<red> 117 </red>
+					<green> 59 </green>
+					<blue> 33 </blue>
+					<alpha> 255 </alpha>
+					<wrapwidth> 600 </wrapwidth>
+					<x> 25 </x>
+					<y> 665 </y>
+				</text>
+				<image name="stat_progress">
+					<locus> true </locus>
+					<filename> Menus\Main\stat_skill_level_ribbon_empty.dds </filename>
+					<depth> 7 </depth>
+					<width> 221 </width>
+					<height> 43 </height>
+					<locus> true </locus>
+					<x> 447 </x>
+					<y> 647 </y>
+					
+					<image name="stat_progress_ribbon">
+						<id> 55 </id>
+						<filename> Menus\Main\stat_skill_level_ribbon_full.dds </filename>
+						<depth> 8 </depth>
+						<width>
+							<copy src="me()" trait="user1"/>
+							<div src="me()" trait="user2"/>
+							<mul> 193 </mul>
+						</width>
+						<height> 20 </height>
+						<locus> true </locus>
+						<x> 26 </x>
+						<y> 6 </y>
+						<user1> 75 </user1>
+						<user2> 100 </user2>
+						
+						<image name="stat_t_ribbon_slider">
+							<filename> Menus\Main\stat_skill_level_ribbon_slider.dds </filename>
+							<depth> 1 </depth>
+							<width> 12 </width>
+							<height> 22 </height>
+							<x>
+								<copy src="parent()" trait="width"/>
+								<sub> 10 </sub>
+							</x>
+							<y> -1 </y>
+						</image>
+					</image>
+				</image>
+				
+					
+			</rect>
+		</image>
+
+
+
+
+		<image name="stat_page2">
+			<filename> Menus\Main\main_page_2.dds </filename>
+			<locus> true </locus>
+			<depth> 18 </depth>
+			<width> 695 </width>
+			<height> 691 </height>
+			<x> 26 </x>
+			<y> 26 </y>
+			
+			<image name="stat_icon_tab_attibutes_on">
+				<filename> Menus\Main\stat_icon_tab_attr_on.dds </filename>
+				<depth> 1 </depth>
+				<visible>
+					<copy src="parent()" trait="depth"/>
+					<gt> 17 </gt>
+				</visible>
+				<width> 64 </width>
+				<height> 64 </height>
+				<x> 178 </x>
+				<y> 610 </y>
+				<locus> true </locus>
+				<image name="stat_icon_tab_attibutes_select_on">
+					<filename> Menus\Main\general_tab_selection_on.dds </filename>
+					<depth> 2 </depth>
+					<width> 137 </width>
+					<height> 36 </height>
+					<x> -37 </x>
+					<y> 16 </y>
+				</image>
+			</image>
+			<image name="stat_icon_tab_attibutes_off">
+				<filename> Menus\Main\stat_icon_tab_attr_off.dds </filename>
+				<depth> 1 </depth>
+				<visible>
+					<copy src="parent()" trait="depth"/>
+					<lt> 18 </lt>
+				</visible>
+				<width> 64 </width>
+				<height> 64 </height>
+				<x> 178 </x>
+				<y> 610 </y>
+				<locus> true </locus>
+				<image name="stat_icon_tab_attibutes_select_off">
+					<filename> Menus\Main\general_tab_selection_off.dds </filename>
+					<depth> 2 </depth>
+					<width> 137 </width>
+					<height> 36 </height>
+					<x> -38 </x>
+					<y> 16 </y>
+				</image>
+			</image>
+			
+			<rect name="inv_tab_all">
+				<id> 1 </id>
+				<target> true </target>
+				<depth> 2 </depth>
+				<alpha> 0 </alpha>
+				<width> 132 </width>
+				<height> 85 </height>
+				<x> 144 </x>
+				<y> 603 </y>
+			</image>
+			
+			<rect name="stat_attributes_stuff">
+				<id> 4 </id>
+				<locus> true </locus>
+				<alpha> 0 </alpha>
+				<x> 0 </x>
+				<y> 0 </y>
+			
+				<image name="stat_page_2_shadow">
+					<filename> Menus\Main\main_page_shadow_2.dds </filename>
+					<depth> -1 </depth>
+					<width> 699 </width>
+					<height> 695 </height>
+					<x> 5 </x>
+					<y> 5 </y>
+				</image>
+
+				<image name="stat_border_left">
+					<filename> Menus\Main\stat_attr_border_left.dds </filename>
+					<depth> 7 </depth>
+					<width> 35 </width>
+					<height> 17 </height>
+					<x>
+						<copy src="stat_Name" trait="x"/>
+						<sub>
+							<copy src="stat_Name" trait="width"/>
+							<div> 2 </div>
+						</sub>
+						<sub> 10 </sub>
+						<sub src="me()" trait="width"/>
+					</x>
+					<y> 41 </y>
+				</image>
+					
+				<text name="stat_Name">
+					<id> 7 </id>
+					<depth> 7 </depth>
+					<string> Eric the Unready </string>
+					<justify> center </justify>
+					<red> 117 </red>
+					<green> 59 </green>
+					<blue> 33 </blue>
+					<alpha> 255 </alpha>
+					<wrapwidth> 500 </wrapwidth>
+					<x> 343 </x>
+					<y> 46 </y>
+				</text>
+				
+				<image name="stat_border_right">
+					<filename> Menus\Main\stat_attr_border_right.dds </filename>
+					<depth> 7 </depth>
+					<width> 35 </width>
+					<height> 17 </height>
+					<x>
+						<copy src="stat_Name" trait="width"/>
+						<div> 2 </div>
+						<add src="stat_Name" trait="x"/>
+						<add> 10 </add>
+					</x>
+					<y> 41 </y>
+				</image>
+
+
+				<image name="stat_lines">
+					<filename> Menus\Main\stat_attr_lines.dds </filename>
+					<depth> 7 </depth>
+					<locus> true </locus>
+					<width> 673 </width>
+					<height> 510 </height>
+					<x> 12 </x>
+					<y> 70 </y>
+
+					<text name="stat_race_label">
+						<depth> 8 </depth>
+						<string> Race </string>
+						<justify> left </justify>
+						<red> 117 </red>
+						<green> 59 </green>
+						<blue> 33 </blue>
+						<alpha> 255 </alpha>
+						<wrapwidth> 200 </wrapwidth>
+						<x> 3 </x>
+						<y> 25 </y>
+					</text>
+					<text name="stat_race">
+						<id> 8 </id>
+						<depth> 8 </depth>
+						<string> Dark Elf </string>
+						<justify> right </justify>
+						<red> 51 </red>
+						<green> 79 </green>
+						<blue> 142 </blue>
+						<alpha> 255 </alpha>
+						<wrapwidth> 250 </wrapwidth>
+						<x> 323 </x>
+						<y>
+							<copy src="me()" trait="height" />
+							<gt> 42 </gt>
+							<sub> 1 </sub>
+							<mul> -21 </mul>
+							<add> 20 </add>
+						</y>
+					</text>
+					
+					<text name="stat_class_label">
+						<depth> 8 </depth>
+						<string> Class </string>
+						<justify> left </justify>
+						<red> 117 </red>
+						<green> 59 </green>
+						<blue> 33 </blue>
+						<alpha> 255 </alpha>
+						<wrapwidth> 200 </wrapwidth>
+						<x> 3 </x>
+						<y> 88 </y>
+					</text>
+					<text name="stat_class">
+						<id> 9 </id>
+						<depth> 8 </depth>
+						<string> Sorcerer </string>
+						<justify> right </justify>
+						<red> 51 </red>
+						<green> 79 </green>
+						<blue> 142 </blue>
+						<alpha> 255 </alpha>
+						<wrapwidth> 250 </wrapwidth>
+						<x> 323 </x>
+						<y>
+							<copy src="me()" trait="height" />
+							<gt> 42 </gt>
+							<sub> 1 </sub>
+							<mul> -21 </mul>
+							<add> 88 </add>
+						</y>
+					</text>
+					
+					<text name="stat_level_label">
+						<depth> 8 </depth>
+						<string> Level </string>
+						<justify> left </justify>
+						<red> 117 </red>
+						<green> 59 </green>
+						<blue> 33 </blue>
+						<alpha> 255 </alpha>
+						<wrapwidth> 200 </wrapwidth>
+						<x> 3 </x>
+						<y> 147 </y>
+					</text>
+					<text name="stat_level">
+						<id> 10 </id>
+						<depth> 8 </depth>
+						<string> 2 </string>
+						<justify> right </justify>
+						<red> 51 </red>
+						<green> 79 </green>
+						<blue> 142 </blue>
+						<alpha> 255 </alpha>
+						<wrapwidth> 200 </wrapwidth>
+						<x> 323 </x>
+						<y> 147 </y>
+					</text>
+					
+					<text name="stat_health_label">
+						<depth> 8 </depth>
+						<string> Health </string>
+						<justify> left </justify>
+						<red> 117 </red>
+						<green> 59 </green>
+						<blue> 33 </blue>
+						<alpha> 255 </alpha>
+						<wrapwidth> 200 </wrapwidth>
+						<x> 337 </x>
+						<y> 25 </y>
+					</text>
+					<text name="stat_health">
+						<id> 11 </id>
+						<depth> 8 </depth>
+						<string> 67/101 </string>
+						<justify> right </justify>
+						<red> 51 </red>
+						<green> 79 </green>
+						<blue> 142 </blue>
+						<alpha> 255 </alpha>
+						<wrapwidth> 200 </wrapwidth>
+						<x> 666 </x>
+						<y> 25 </y>
+						<user1> 67 </user1>
+						<user2> 101 </user2>
+					</text>
+					<image name="stat_health_empty">
+						<filename> Menus\Main\stat_ribbon_empty.dds </filename>
+						<locus> true </locus>
+						<depth> 7 </depth>
+						<width> 185 </width>
+						<height> 26 </height>
+						<x> 499 </x>
+						<y> 42 </y>
+						
+						<image name="stat_health_full">
+							<filename> Menus\Main\stat_ribbon_full_red.dds </filename>
+							<locus> true </locus>
+							<alpha>
+								<copy src="stat_health" trait="user1"/>
+								<gt> 0 </gt>
+								<mul> 255 </mul>
+							</alpha>
+							<depth> 8 </depth>
+							<width>
+								<copy src="stat_health" trait="user1"/>
+								<div src="stat_health" trait="user2"/>
+								<mul> 156 </mul>
+							</width>
+							<height> 13 </height>
+							<locus> true </locus>
+							<x> 12 </x>
+							<y> 1 </y>
+							
+							<image name="hudmain_health_edge">
+								<filename> Menus\HUD\main_ribbon_slider.dds </filename>
+								<depth> 1 </depth>
+								<width> 13 </width>
+								<height> 14 </height>
+								<x>
+									<copy src="parent()" trait="width"/>
+									<sub> 6 </sub>
+								</x>
+								<y> -1 </y>
+							</image>
+						</image>
+					</image>
+						
+						
+					
+					<text name="stat_magicka_label">
+						<depth> 8 </depth>
+						<string> Magicka </string>
+						<justify> left </justify>
+						<red> 117 </red>
+						<green> 59 </green>
+						<blue> 33 </blue>
+						<alpha> 255 </alpha>
+						<wrapwidth> 200 </wrapwidth>
+						<x> 337 </x>
+						<y> 88 </y>
+					</text>
+					<text name="stat_magicka">
+						<id> 12 </id>
+						<depth> 8 </depth>
+						<string> 14/75 </string>
+						<justify> right </justify>
+						<red> 51 </red>
+						<green> 79 </green>
+						<blue> 142 </blue>
+						<alpha> 255 </alpha>
+						<wrapwidth> 200 </wrapwidth>
+						<x> 666 </x>
+						<y> 88 </y>
+						<user1> 14 </user1>
+						<user2> 75 </user2>
+					</text>
+					<image name="stat_magicka_empty">
+						<filename> Menus\Main\stat_ribbon_empty.dds </filename>
+						<locus> true </locus>
+						<depth> 7 </depth>
+						<width> 185 </width>
+						<height> 26 </height>
+						<x> 499 </x>
+						<y> 105 </y>
+						<image name="stat_magicka_full">
+							<filename> Menus\Main\stat_ribbon_full_blue.dds </filename>
+							<locus> true </locus>
+							<alpha>
+								<copy src="stat_magicka" trait="user1"/>
+								<gt> 0 </gt>
+								<mul> 255 </mul>
+							</alpha>
+							<depth> 8 </depth>
+							<width>
+								<copy src="stat_magicka" trait="user1"/>
+								<div src="stat_magicka" trait="user2"/>
+								<mul> 156 </mul>
+							</width>
+							<height> 13 </height>
+							<locus> true </locus>
+							<x> 12 </x>
+							<y> 1 </y>
+							<image name="hudmain_magicka_edge">
+								<filename> Menus\HUD\main_ribbon_slider.dds </filename>
+								<depth> 1 </depth>
+								<width> 13 </width>
+								<height> 14 </height>
+								<x>
+									<copy src="parent()" trait="width"/>
+									<sub> 6 </sub>
+								</x>
+								<y> -1 </y>
+							</image>
+						</image>
+					</image>
+					
+					<text name="stat_fatigue_label">
+						<depth> 8 </depth>
+						<string> Fatigue </string>
+						<justify> left </justify>
+						<red> 117 </red>
+						<green> 59 </green>
+						<blue> 33 </blue>
+						<alpha> 255 </alpha>
+						<wrapwidth> 200 </wrapwidth>
+						<x> 337 </x>
+						<y> 147 </y>
+					</text>
+					<text name="stat_fatigue">
+						<id> 13 </id>
+						<target> true </target>
+						<depth> 8 </depth>
+						<string> 145/200 </string>
+						<justify> right </justify>
+						<red> 51 </red>
+						<green> 79 </green>
+						<blue> 142 </blue>
+						<alpha> 255 </alpha>
+						<wrapwidth> 200 </wrapwidth>
+						<x> 666 </x>
+						<y> 147 </y>
+						<user1> 145 </user1>
+						<user2> 200 </user2>
+					</text>
+					<image name="stat_fatigue_empty">
+						<filename> Menus\Main\stat_ribbon_empty.dds </filename>
+						<locus> true </locus>
+						<depth> 7 </depth>
+						<width> 185 </width>
+						<height> 26 </height>
+						<x> 499 </x>
+						<y> 164 </y>
+						<image name="stat_fatigue_full">
+							<filename> Menus\Main\stat_ribbon_full_green.dds </filename>
+							<locus> true </locus>
+							<alpha>
+								<copy src="stat_fatigue" trait="user1"/>
+								<gt> 0 </gt>
+								<mul> 255 </mul>
+							</alpha>
+							<depth> 8 </depth>
+							<width>
+								<copy src="stat_fatigue" trait="user1"/>
+								<div src="stat_fatigue" trait="user2"/>
+								<mul> 156 </mul>
+							</width>
+							<height> 13 </height>
+							<locus> true </locus>
+							<x> 12 </x>
+							<y> 1 </y>
+							<image name="hudmain_fatigue_edge">
+								<filename> Menus\HUD\main_ribbon_slider.dds </filename>
+								<depth> 1 </depth>
+								<width> 13 </width>
+								<height> 14 </height>
+								<x>
+									<copy src="parent()" trait="width"/>
+									<sub> 6 </sub>
+								</x>
+								<y> -1 </y>
+							</image>
+						</image>
+					</image>
+				</image>
+					
+					
+				<text name="stat_Attributes">
+					<depth> 7 </depth>
+					<string> Attributes </string>
+					<justify> center </justify>
+					<red> 117 </red>
+					<green> 59 </green>
+					<blue> 33 </blue>
+					<alpha> 255 </alpha>
+					<wrapwidth> 300 </wrapwidth>
+					<x> 343 </x>
+					<y> 279 </y>
+				</text>
+				
+				
+				<image name="stat_icons">
+					<filename> Menus\Main\stat_attr_icons.dds </filename>
+					<locus> true </locus>
+					<depth> 7 </depth>
+					<width> 388 </width>
+					<height> 269 </height>
+					<x> 18 </x>
+					<y> 311 </y>
+
+					<text name="stat_strength_label">
+						<depth> 8 </depth>
+						<string> Strength </string>
+						<justify> left </justify>
+						<red> 117 </red>
+						<green> 59 </green>
+						<blue> 33 </blue>
+						<alpha> 255 </alpha>
+						<wrapwidth> 200 </wrapwidth>
+						<x> 65 </x>
+						<y> 34 </y>
+					</text>
+					<text name="stat_strength">
+						<id> 14 </id>
+						<depth> 8 </depth>
+						<string> 40 </string>
+						<justify> right </justify>
+						<red> 51 </red>
+						<green> 79 </green>
+						<blue> 142 </blue>
+						<alpha> 255 </alpha>
+						<wrapwidth> 200 </wrapwidth>
+						<x> 315 </x>
+						<y> 34 </y>
+					</text>
+
+					<text name="stat_intelligence_label">
+						<depth> 8 </depth>
+						<string> Intelligence </string>
+						<justify> left </justify>
+						<red> 117 </red>
+						<green> 59 </green>
+						<blue> 33 </blue>
+						<alpha> 255 </alpha>
+						<wrapwidth> 200 </wrapwidth>
+						<x> 65 </x>
+						<y> 103 </y>
+					</text>
+					<text name="stat_intelligence">
+						<id> 15 </id>
+						<depth> 8 </depth>
+						<string> 50 </string>
+						<justify> right </justify>
+						<red> 51 </red>
+						<green> 79 </green>
+						<blue> 142 </blue>
+						<alpha> 255 </alpha>
+						<wrapwidth> 200 </wrapwidth>
+						<x> 315 </x>
+						<y> 103 </y>
+					</text>
+
+					<text name="stat_willpower_label">
+						<depth> 8 </depth>
+						<string> Willpower </string>
+						<justify> left </justify>
+						<red> 117 </red>
+						<green> 59 </green>
+						<blue> 33 </blue>
+						<alpha> 255 </alpha>
+						<wrapwidth> 200 </wrapwidth>
+						<x> 65 </x>
+						<y> 172 </y>
+					</text>
+					<text name="stat_willpower">
+						<id> 16 </id>
+						<depth> 8 </depth>
+						<string> 52 </string>
+						<justify> right </justify>
+						<red> 51 </red>
+						<green> 79 </green>
+						<blue> 142 </blue>
+						<alpha> 255 </alpha>
+						<wrapwidth> 200 </wrapwidth>
+						<x> 315 </x>
+						<y> 172 </y>
+					</text>
+
+					<text name="stat_agility_label">
+						<depth> 8 </depth>
+						<string> Agility </string>
+						<justify> left </justify>
+						<red> 117 </red>
+						<green> 59 </green>
+						<blue> 33 </blue>
+						<alpha> 255 </alpha>
+						<wrapwidth> 200 </wrapwidth>
+						<x> 65 </x>
+						<y> 241 </y>
+					</text>
+					<text name="stat_agility">
+						<id> 17 </id>
+						<depth> 8 </depth>
+						<string> 39 </string>
+						<justify> right </justify>
+						<red> 51 </red>
+						<green> 79 </green>
+						<blue> 142 </blue>
+						<alpha> 255 </alpha>
+						<wrapwidth> 200 </wrapwidth>
+						<x> 315 </x>
+						<y> 241 </y>
+					</text>
+
+
+
+					<text name="stat_speed_label">
+						<depth> 8 </depth>
+						<string> Speed </string>
+						<justify> left </justify>
+						<red> 117 </red>
+						<green> 59 </green>
+						<blue> 33 </blue>
+						<alpha> 255 </alpha>
+						<wrapwidth> 200 </wrapwidth>
+						<x> 391 </x>
+						<y> 34 </y>
+					</text>
+					<text name="stat_speed">
+						<id> 18 </id>
+						<depth> 8 </depth>
+						<string> 63 </string>
+						<justify> right </justify>
+						<red> 51 </red>
+						<green> 79 </green>
+						<blue> 142 </blue>
+						<alpha> 255 </alpha>
+						<wrapwidth> 200 </wrapwidth>
+						<x> 660 </x>
+						<y> 34 </y>
+					</text>
+
+					<text name="stat_endurance_label">
+						<depth> 8 </depth>
+						<string> Endurance </string>
+						<justify> left </justify>
+						<red> 117 </red>
+						<green> 59 </green>
+						<blue> 33 </blue>
+						<alpha> 255 </alpha>
+						<wrapwidth> 200 </wrapwidth>
+						<x> 391 </x>
+						<y> 103 </y>
+					</text>
+					<text name="stat_endurance">
+						<id> 19 </id>
+						<depth> 8 </depth>
+						<string> 48 </string>
+						<justify> right </justify>
+						<red> 51 </red>
+						<green> 79 </green>
+						<blue> 142 </blue>
+						<alpha> 255 </alpha>
+						<wrapwidth> 200 </wrapwidth>
+						<x> 660 </x>
+						<y> 103 </y>
+					</text>
+
+					<text name="stat_personality_label">
+						<depth> 8 </depth>
+						<string> Personality </string>
+						<justify> left </justify>
+						<red> 117 </red>
+						<green> 59 </green>
+						<blue> 33 </blue>
+						<alpha> 255 </alpha>
+						<wrapwidth> 200 </wrapwidth>
+						<x> 391 </x>
+						<y> 172 </y>
+					</text>
+					<text name="stat_personality">
+						<id> 20 </id>
+						<depth> 8 </depth>
+						<string> 56 </string>
+						<justify> right </justify>
+						<red> 51 </red>
+						<green> 79 </green>
+						<blue> 142 </blue>
+						<alpha> 255 </alpha>
+						<wrapwidth> 200 </wrapwidth>
+						<x> 660 </x>
+						<y> 172 </y>
+					</text>
+
+					<text name="stat_luck_label">
+						<depth> 8 </depth>
+						<string> Luck </string>
+						<justify> left </justify>
+						<red> 117 </red>
+						<green> 59 </green>
+						<blue> 33 </blue>
+						<alpha> 255 </alpha>
+						<wrapwidth> 200 </wrapwidth>
+						<x> 391 </x>
+						<y> 241 </y>
+					</text>
+					<text name="stat_luck">
+						<id> 21 </id>
+						<depth> 8 </depth>
+						<string> 45 </string>
+						<justify> right </justify>
+						<red> 51 </red>
+						<green> 79 </green>
+						<blue> 142 </blue>
+						<alpha> 255 </alpha>
+						<wrapwidth> 200 </wrapwidth>
+						<x> 660 </x>
+						<y> 241 </y>
+					</text>
+				</image>
+			</rect>
+		</image>
+		
+
+
+		<image name="stat_page_1">
+			<filename> Menus\Main\main_page_1.dds </filename>
+			<depth> 8 </depth>
+			<width> 692 </width>
+			<height> 692 </height>
+			<x> 26 </x>
+			<y> 26 </y>
+		</image>
+		
+
+
+		<image name="stat_top_clip">
+			<filename> Menus\Main\main_top_clip.dds </filename>
+			<depth> 46 </depth>
+			<width> 592 </width>
+			<height> 53 </height>
+			<x> 85 </x>
+			<y> -8 </y>
+		</image>
+		
+
+
+		<image name="stat_main_shadow">
+			<filename> Menus\Main\main_page_shadow.dds </filename>
+			<depth> 16 </depth>
+			<width> 691 </width>
+			<height> 64 </height>
+			<x> 26 </x>
+			<y> 628 </y>
+		</image>
+		
+		
+		<image name="stat_hud_left_bracket">
+			<depth> 80 </depth>
+			<filename> Menus\HUD\main_bracket_1.dds </filename>
+			<width> 27 </width>
+			<height> 81 </height>
+			<x> 57 </x>
+			<y> 715 </y>
+		</image>
+		<image name="stat_hud_right_bracket">
+			<depth> 80 </depth>
+			<filename> Menus\HUD\main_bracket_2.dds </filename>
+			<width> 27 </width>
+			<height> 81 </height>
+			<x> 240 </x>
+			<y> 715 </y>
+		</image>
+		<rect name="stat_hud_cover">
+			<depth> 80 </depth>
+			<alpha> 0 </alpha>
+			<target> true </target>
+			<width>
+				<copy src="stat_hud_right_bracket" trait="x"/>
+				<sub src="stat_hud_left_bracket" trait="x"/>
+			</width>
+			<height> 81 </height>
+			<x> <copy src="stat_hud_left_bracket" trait="x"/> </x>
+			<y> <copy src="stat_hud_left_bracket" trait="y"/> </y>
+		</rect>
+		
+	</image>
+	
+	
+	
+	
+	<template name="stat_skill_template">
+		<rect name="SKILL">
+			<alpha> 0 </alpha>
+			<locus> true </locus>
+			<target> true </target>
+			<depth> 1 </depth>
+			<visible>
+				<copy src="me()" trait="y" />
+				<gte> 0 </gte>
+				<and>
+					<copy src="me()" trait="y" />
+					<add> 20 </add>
+					<lt src="parent()" trait="height" />
+				</and>
+			</visible>
+			<x> 0 </x>
+			<y>
+				<copy src="last()" trait="y" />
+				<add src="last()" trait="height" />
+			</y>
+			<height> 67 </height>
+			<width> 310 </width>
+			<string> 50 </string>
+			<user0> SKILL </user0>
+			<user1> 50 </user1>
+			<user2> 100 </user2>
+			
+			<text name="stat_t_skill_name">
+				<depth> 1 </depth>
+				<string> <copy src="parent()" trait="user0"/> </string>
+				<red> 117 </red>
+				<green> 59 </green>
+				<blue> 33 </blue>
+				<alpha> 255 </alpha>
+				<wrapwidth> 300 </wrapwidth>
+				<x> 2 </x>
+				<y> 28 </y>
+			</text>
+			<text name="stat_t_skill_value">
+				<depth> 1 </depth>
+				<string> <copy src="parent()" trait="string"/> </string>
+				<justify> right </justify>
+				<red> 51 </red>
+				<green> 79 </green>
+				<blue> 142 </blue>
+				<alpha> 255 </alpha>
+				<wrapwidth> 100 </wrapwidth>
+				<x> 290 </x>
+				<y> 28 </y>
+			</text>
+
+			<image name="stat_t_ribbon_empty">
+				<filename> Menus\Main\stat_skill_ribbon_empty.dds </filename>
+				<locus> true </locus>
+				<depth> 3 </depth>
+				<width> 185 </width>
+				<height> 26 </height>
+				<x> 125 </x>
+				<y> 49 </y>
+				<user1> <copy src="parent()" trait="user1"/> </user1>
+				<user2> <copy src="parent()" trait="user2"/> </user2>
+				
+				<image name="stat_t_ribbon_full">
+					<filename> Menus\Main\stat_skill_ribbon_full_red.dds </filename>
+					<locus> true </locus>
+					<alpha>
+						<copy src="stat_fatigue" trait="user1"/>
+						<gt> 0 </gt>
+						<mul> 255 </mul>
+					</alpha>
+					<depth> 1 </depth>
+					<width>
+						<copy src="parent()" trait="user1"/>
+						<div src="parent()" trait="user2"/>
+						<mul> 156 </mul>
+					</width>
+					<height> 13 </height>
+					<locus> true </locus>
+					<x> 12 </x>
+					<y> 1 </y>
+					<image name="stat_t_ribbon_slider">
+						<filename> Menus\HUD\main_ribbon_slider.dds </filename>
+						<depth> 1 </depth>
+						<width> 13 </width>
+						<height> 14 </height>
+						<x>
+							<copy src="parent()" trait="width"/>
+							<sub> 6 </sub>
+						</x>
+						<y> -1 </y>
+					</image>
+				</image>
+			</image>
+		</rect>
+	</template>
+
+	
+	<template name="stat_fact_template">
+		<rect name="FACTION">
+			<alpha> 0 </alpha>
+			<locus> true </locus>
+			<depth> 10 </depth>
+			<visible>
+				<copy src="me()" trait="y" />
+				<gte> 0 </gte>
+				<and>
+					<copy src="me()" trait="y" />
+					<add> 20 </add>
+					<lt src="parent()" trait="height" />
+				</and>
+			</visible>
+			<x> 0 </x>
+			<y>
+				<copy src="last()" trait="y" />
+				<add src="last()" trait="height" />
+			</y>
+			<height> 159 </height>
+			<user0> Menus\Main\fact_icon_nobility_1.dds </user0>
+			<user1> Nobility </user0>
+			<user2> Baron </user1>
+			<user3> Earl </user2>
+			
+			<image name="faction_icon">
+				<filename> <copy src="parent()" trait="user0"/> </filename>
+				<depth> 1 </depth>
+				<width> 128 </width>
+				<height> 128 </height>
+				<x> 10 </x>
+				<y> 10 </y>
+			</image>
+			<text name="faction_name">
+				<depth> 1 </depth>
+				<string> <copy src="parent()" trait="user1"/> </string>
+				<red> 51 </red>
+				<green> 79 </green>
+				<blue> 142 </blue>
+				<alpha> 255 </alpha>
+				<wrapwidth> 500 </wrapwidth>
+				<x> 150 </x>
+				<y> 27 </y>
+			</text>
+			<text name="faction_rank">
+				<depth> 1 </depth>
+				<string> <copy src="parent()" trait="user2"/> </string>
+				<red> 117 </red>
+				<green> 59 </green>
+				<blue> 33 </blue>
+				<alpha> 255 </alpha>
+				<wrapwidth> 500 </wrapwidth>
+				<x> 150 </x>
+				<y> 62 </y>
+			</text>
+			<text name="faction_next_rank_label">
+				<depth> 1 </depth>
+				<string> Next Rank: </string>
+				<red> 117 </red>
+				<green> 59 </green>
+				<blue> 33 </blue>
+				<alpha> 255 </alpha>
+				<wrapwidth> 500 </wrapwidth>
+				<x> 150 </x>
+				<y> 120 </y>
+			</text>
+			<text name="faction_next_rank">
+				<depth> 1 </depth>
+				<string> <copy src="parent()" trait="user3"/> </string>
+				<red> 117 </red>
+				<green> 59 </green>
+				<blue> 33 </blue>
+				<alpha> 255 </alpha>
+				<wrapwidth> 300 </wrapwidth>
+				<x> 360 </x>
+				<y> 120 </y>
+			</text>
+		</rect>
+	</template>
+</menu>

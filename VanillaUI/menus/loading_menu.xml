@@ -1,0 +1,187 @@
+<!-- loading_menu.xml -->
+<menu name="LoadingMenu">
+	<class> &LoadingMenu; </class>
+	<stackingtype> &no_click_past; </stackingtype>
+	<visible> &true; </visible>
+	<alpha>	0 </alpha>
+	<x> 0 </x>
+	<y> 0 </y>
+	<locus> &true; </locus>
+	<menufade> 0.0 </menufade>
+	<user0> 0 </user0>										<!-- slideshow step number, 0=title page, set by code -->
+	<user1> Menus\Loading\load_in_game_default.dds </user1>	<!-- background image, set by code -->
+	<user2> <copy src="strings()" trait="_missing"/> </user2><!-- text to display, set by code -->
+	<user3> 0 </user3>										<!-- current progress bar position, set by code -->
+	<user4> 100 </user4>									<!-- maximum progress bar position, set by code -->
+	<user5>  </user5>										<!-- debug text to display, set by code -->
+	
+	
+	<rect name="black">
+		<depth> -1 </depth>
+		<red> 0 </red>
+		<green> 0 </green>
+		<blue> 0 </blue>
+		<alpha> 255 </alpha>
+		<width> <copy src="screen()" trait="width"/> </width>
+		<height> <copy src="screen()" trait="height"/> </height>
+		<x> 0 </x>
+		<y> 0 </y>
+	</rect>
+	
+	
+	<image name="load_title_page">
+		<visible>
+			<copy src="LoadingMenu" trait="user0"/>
+			<eq> 0 </eq>
+		</visible>
+		<filename> Menus\Loading\loading_background.dds </filename>
+		<depth> 1000 </depth>
+		<x> 0 </x>
+		<y> 0 </y>
+		<width> <copy src="screen()" trait="width"/> </width>
+		<height> <copy src="screen()" trait="height"/> </height>
+		<zoom> -1 </zoom>
+		<locus> &true; </locus>
+		
+		<image name="load_symbol">
+			<visible> &true; </visible>
+			<filename> Menus\Loading\loading_symbol.dds </filename>
+			<depth> 2 </depth>
+			<x>
+				<copy src="parent()" trait="width"/>
+				<sub src="me()" trait="width"/>
+				<div> 2 </div>
+			</x>
+			<y> 250 </y>
+			<width> 330 </width>
+			<height> 466 </height>
+		</image>
+	</image>
+		
+	
+	<image name="load_main">
+		<visible>
+			<copy src="LoadingMenu" trait="user0"/>
+			<gt> 0 </gt>
+		</visible>
+		<filename> <copy src="LoadingMenu" trait="user1"/> </filename>
+		<depth> 1000 </depth>
+		<x>
+			<copy src="screen()" trait="width"/>
+			<sub src="me()" trait="width"/>
+			<div> 2 </div>
+		</x>
+		<y>
+			<copy src="screen()" trait="height"/>
+			<sub src="me()" trait="height"/>
+			<div> 2 </div>
+		</y>
+		<width>
+			<copy src="screen()" trait="height"/>
+			<mul>
+				<copy> 16 </copy>
+				<div> 9 </div>
+			</mul>
+		</width>
+		<height> <copy src="screen()" trait="height"/> </height>
+		<zoom> -1 </zoom>
+		<locus> &true; </locus>
+	
+		<text name="load_text">
+			<depth> 3 </depth>
+			<string> <copy src="LoadingMenu" trait="user2"/> </string >
+			<font> 1 </font>
+			<red> 117 </red>
+			<green> 59 </green>
+			<blue> 33  </blue>
+			<alpha> 255 </alpha>
+			<wrapwidth> 850 </wrapwidth>
+			<justify> &left; </justify>
+			<x>
+				<copy src="parent()" trait="width"/>
+				<sub src="me()" trait="width"/>
+				<div> 2 </div>
+			</x>
+			<y>
+				<copy> 120 </copy>
+				<sub src="me()" trait="height"/>
+				<div> 2 </div>
+				<add> 555 </add>
+			</y>
+		</text>
+	</image>
+		
+		
+	<image name="load_progress">
+		<locus> &true; </locus>
+		<filename> Menus\Stats\stat_skill_level_ribbon_empty.dds </filename>
+		<depth> 1005 </depth>
+		<width> 218 </width>
+		<height> 43 </height>
+		<locus> &true; </locus>
+		<x>
+			<copy src="screen()" trait="width"/>
+			<sub src="me()" trait="width"/>
+			<div> 2 </div>
+		</x>
+		<y> 772 </y>
+		
+		<image name="load_progress_ribbon">
+			<locus> &true; </locus>
+			<filename> Menus\Stats\stat_skill_level_ribbon_full.dds </filename>
+			<depth> 2 </depth>
+			<width>
+				<copy src="LoadingMenu" trait="user3"/>
+				<div src="LoadingMenu" trait="user4"/>
+				<mul> 180 </mul>
+				<max> 1 </max>
+			</width>
+			<height> 20 </height>
+			<x> 26 </x>
+			<y> 7 </y>
+			
+			<image name="load_t_ribbon_slider">
+				<filename> Menus\Stats\stat_skill_level_ribbon_slider.dds </filename>
+				<depth> 4 </depth>
+				<width> 12 </width>
+				<height> 23 </height>
+				<x>
+					<copy src="parent()" trait="width"/>
+				</x>
+				<y> -1 </y>
+			</image>
+		</image>
+		
+		<text name="load_loading">
+			<depth> 4 </depth>
+			<string> <copy src="strings()" trait="_loading"/> </string>
+			<font> 1 </font>
+			<red> 117 </red>
+			<green> 59 </green>
+			<blue> 33  </blue>
+			<alpha> 255 </alpha>
+			<wrapwidth> 480 </wrapwidth>
+			<justify> &center; </justify>
+			<x>
+				<copy src="parent()" trait="width"/>
+				<div> 2 </div>
+			</x>
+			<y> 35 </y>
+		</text>
+	</image>
+		
+		
+	<text name="load_debug_info">
+		<depth> 1004 </depth>
+		<string> <copy src="LoadingMenu" trait="user5"/> </string>
+		<font> 1 </font>
+		<red> 117 </red>
+		<green> 59 </green>
+		<blue> 33  </blue>
+		<alpha> 255 </alpha>
+		<justify> &left; </justify>
+		<x> 60 </x>
+		<y> 885 </y>
+	</text>
+	
+</menu>

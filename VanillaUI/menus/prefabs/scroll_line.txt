@@ -1,0 +1,13 @@
+text name="book_line">
+	<visible> true </visible>
+	<depth> 2 </depth>
+	<x> 0 </x>
+	<y> 0 </y>
+	<string> <copy src="parent()" trait="string"/> </string>
+	<wrapwidth> 510 </wrapwidth>
+	<red> 117 </red>
+	<green> 59 </green>
+	<blue> 33 </blue>
+	<alpha> 255 </alpha>
+	<linenum> 1 </linenum>
+</text>

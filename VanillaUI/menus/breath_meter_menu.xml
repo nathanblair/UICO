@@ -1,0 +1,81 @@
+<!-- breath_meter_menu.xml -->
+<menu name="BreathMenu">
+	<class> &BreathMenu; </class>
+	<stackingtype> &does_not_stack; </stackingtype>
+	<visible> &false; </visible>
+	<alpha>	0 </alpha>
+	<depth> 0 </depth>
+	<x>
+		<copy src="screen()" trait="width"/>
+		<div> 2 </div>
+		<sub src="me()" trait="_center_width"/>
+	</x>
+	<y>
+		<copy src="screen()" trait="height"/>
+		<div> 2 </div>
+		<sub src="me()" trait="_center_height"/>
+	</y>
+	<id> 1 </id>
+	<locus> &true; </locus>
+	<user0> 1 </user0>
+	<user1> 600 </user1>
+	
+
+	<width> 1280 </width>
+	<height> 960 </height>
+	<_center_width>
+		<copy src="me()" trait="width"/>
+		<div> 2 </div>
+	</_center_width>
+	<_center_height>
+		<copy src="me()" trait="height"/>
+		<div> 2 </div>
+	</_center_height>
+
+	
+
+	<!--text name="breath_text">
+		<id> 0 </id>
+		<depth> 4 </depth>
+		<string> <copy src="strings()" trait="_breath"/> </string>
+		<font> 2 </font>
+		<red> 254 </red>
+		<green> 244 </green>
+		<blue> 183 </blue>
+		<alpha> 255 </alpha>
+		<wrapwidth> 480 </wrapwidth>
+		<justify> &center; </justify>
+		<x> <copy src="parent()" trait="_center_width"/> </x>
+		<y> 122 </y>
+	</text-->
+	
+	
+	<image name="breath_progress">
+		<locus> &true; </locus>
+		<filename> Menus\BreathMeter\Breath_Meter_empty.dds </filename>
+		<depth> 5 </depth>
+		<width> 418 </width>
+		<height> 64 </height>
+		<locus> &true; </locus>
+		<x> <copy src="parent()" trait="_center_width"/> </x>
+		<x> 480 </x>
+		<y> 72 </y>
+		
+		<image name="breath_progress_ribbon">
+			<id> 2 </id>
+			<locus> &true; </locus>
+			<filename> Menus\BreathMeter\Breath_Meter_fill.dds</filename>
+			<depth> 1 </depth>
+			<width>
+				<copy src="me()" trait="user1"/>
+				<div src="me()" trait="user2"/>
+				<mul> 284 </mul>
+			</width>
+			<height> 40 </height>
+			<x> 11 </x>
+			<y> 11 </y>
+			<user1> 0 </user1>
+			<user2> 100 </user2>
+		</image>
+	</image>
+</menu>

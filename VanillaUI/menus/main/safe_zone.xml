@@ -1,0 +1,203 @@
+<!-- safe_zone.xml -->
+<menu name="HUDSafeZone">
+	<visible> &false; </visible>
+	<stackingtype> &does_not_stack; </stackingtype>
+	<alpha>	0 </alpha>
+	<locus> &true; </locus>
+	<depth> 1000 </depth>
+	<x> 0 </x>
+	<y> 0 </y>
+	<menufade> 0.25 </menufade>
+	
+			<!--
+			<rect name="test_0">
+				<depth> -1 </depth>
+				<red> 0 </red>
+				<green> 0 </green>
+				<blue> 255 </blue>
+				<alpha> 50 </alpha>
+				<width> 200 </width>
+				<height> 38 </height>
+				<x> 100 </x>
+				<y> 100 </y>
+			</image>
+			<text name="test_1">
+				<string> <copy src="strings()" trait="_testing"/> </string>
+				<red> 120 </red>
+				<green> 34 </green>
+				<alpha> 200 </alpha>
+				<blue> 0 </blue>
+				<justify> &right; </justify>
+				<x> 100 </x>
+				<y> 100 </y>
+			</text>
+			<text name="test_3">
+				<string> <copy src="strings()" trait="_testing"/> </string>
+				<red> 120 </red>
+				<green> 34 </green>
+				<alpha> 200 </alpha>
+				<blue> 0 </blue>
+				<justify> &center; </justify>
+				<x> 200 </x>
+				<y> 100 </y>
+			</text>
+			<text name="test_1">
+				<string> <copy src="strings()" trait="_testing"/> </string>
+				<red> 120 </red>
+				<green> 34 </green>
+				<alpha> 200 </alpha>
+				<blue> 0 </blue>
+				<justify> &left; </justify>
+				<x> 300 </x>
+				<y> 100 </y>
+			</text>
+			-->
+			
+	
+	<image name="safe_top">
+		<filename> Menus\Shared\shared_white.dds </filename>
+		<red> 255 </red>
+		<green> 0 </green>
+		<blue> 0 </blue>
+		<alpha> 128 </alpha>
+		<width> <copy src="screen()" trait="width"/> </width>
+		<height> <copy src="screen()" trait="cropy"/> </height>
+		<x> 0 </x>
+		<y> 0 </y>
+	</image>
+		
+	<image name="safe_bottom">
+		<filename> Menus\Shared\shared_white.dds </filename>
+		<red> 255 </red>
+		<green> 0 </green>
+		<blue> 0 </blue>
+		<alpha> 128 </alpha>
+		<width> <copy src="screen()" trait="width"/> </width>
+		<height> <copy src="screen()" trait="cropy"/> </height>
+		<x> 0 </x>
+		<y>
+			<copy src="screen()" trait="height"/>
+			<sub src="screen()" trait="cropy"/>
+		</y>
+	</image>
+	
+	<image name="safe_left">
+		<filename> Menus\Shared\shared_white.dds </filename>
+		<red> 255 </red>
+		<green> 0 </green>
+		<blue> 0 </blue>
+		<alpha> 128 </alpha>
+		<width> <copy src="screen()" trait="cropx"/> </width>
+		<height>
+			<copy src="screen()" trait="height"/>
+			<sub src="screen()" trait="cropy"/>
+			<sub src="screen()" trait="cropy"/>
+		</height>
+		<x> 0 </x>
+		<y> <copy src="screen()" trait="cropy"/> </y>
+	</image>
+	
+	<image name="safe_right">
+		<filename> Menus\Shared\shared_white.dds </filename>
+		<red> 255 </red>
+		<green> 0 </green>
+		<blue> 0 </blue>
+		<alpha> 128 </alpha>
+		<width> <copy src="screen()" trait="cropx"/> </width>
+		<height>
+			<copy src="screen()" trait="height"/>
+			<sub src="screen()" trait="cropy"/>
+			<sub src="screen()" trait="cropy"/>
+		</height>
+		<x>
+			<copy src="screen()" trait="width"/>
+			<sub src="screen()" trait="cropx"/>
+		</x>
+		<y> <copy src="screen()" trait="cropy"/> </y>
+	</image>
+	
+	
+	
+	<image name="safe_top_2">
+		<filename> Menus\Shared\shared_white.dds </filename>
+		<red> 0 </red>
+		<green> 255 </green>
+		<blue> 0 </blue>
+		<alpha> 128 </alpha>
+		<width>
+			<copy src="screen()" trait="width"/>
+			<sub src="screen()" trait="cropx"/>
+			<sub src="screen()" trait="cropx"/>
+		</width>
+		<height> <copy src="screen()" trait="cropy"/> </height>
+		<x> <copy src="safe_left" trait="width"/> </x>
+		<y> <copy src="safe_top" trait="height"/> </y>
+	</image>
+
+	<image name="safe_bottom_2">
+		<filename> Menus\Shared\shared_white.dds </filename>
+		<red> 0 </red>
+		<green> 255 </green>
+		<blue> 0 </blue>
+		<alpha> 128 </alpha>
+		<width>
+			<copy src="screen()" trait="width"/>
+			<sub src="screen()" trait="cropx"/>
+			<sub src="screen()" trait="cropx"/>
+		</width>
+		<height> <copy src="screen()" trait="cropy"/> </height>
+		<x> <copy src="screen()" trait="cropx"/> </x>
+		<y>
+			<copy src="screen()" trait="height"/>
+			<sub src="screen()" trait="cropy"/>
+			<sub src="screen()" trait="cropy"/>
+		</y>
+	</image>
+	
+	<image name="safe_left_2">
+		<filename> Menus\Shared\shared_white.dds </filename>
+		<red> 0 </red>
+		<green> 255 </green>
+		<blue> 0 </blue>
+		<alpha> 128 </alpha>
+		<width> <copy src="screen()" trait="cropx"/> </width>
+		<height>
+			<copy src="screen()" trait="height"/>
+			<sub src="screen()" trait="cropy"/>
+			<sub src="screen()" trait="cropy"/>
+			<sub src="screen()" trait="cropy"/>
+			<sub src="screen()" trait="cropy"/>
+		</height>
+		<x> <copy src="screen()" trait="cropx"/> </x>
+		<y>
+			<copy src="screen()" trait="cropy"/>
+			<mul> 2 </mul>
+		</y>
+	</image>
+	
+	<image name="safe_right_2">
+		<filename> Menus\Shared\shared_white.dds </filename>
+		<red> 0 </red>
+		<green> 255 </green>
+		<blue> 0 </blue>
+		<alpha> 128 </alpha>
+		<width> <copy src="screen()" trait="cropx"/> </width>
+		<height>
+			<copy src="screen()" trait="height"/>
+			<sub src="screen()" trait="cropy"/>
+			<sub src="screen()" trait="cropy"/>
+			<sub src="screen()" trait="cropy"/>
+			<sub src="screen()" trait="cropy"/>
+		</height>
+		<x>
+			<copy src="screen()" trait="width"/>
+			<sub src="screen()" trait="cropx"/>
+			<sub src="screen()" trait="cropx"/>
+		</x>
+		<y>
+			<copy src="screen()" trait="cropy"/>
+			<mul> 2 </mul>
+		</y>
+	</image>
+	
+</menu>
