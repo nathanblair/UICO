@@ -1,0 +1,1170 @@
+<!-- DarN Version 1.1 -->
+<!-- repair_menu.xml -->
+<menu name="RepairMenu">
+	<class> &RepairMenu; </class>
+	<stackingtype> &no_click_past; </stackingtype>
+	<alpha>	0 </alpha>
+	<locus> &true; </locus>
+	<x> 0 </x>
+	<y> 0 </y>
+	<menufade> 0.25 </menufade>
+	<!-- IMPORTANT NOTE:  If you are going to change the mapping of user0 to menu type at all, you MUST
+	do a search in this file for every tile that uses RepairMenu's user0 and make any necessary adjustments. -->
+	<user0> 0 </user0>				<!-- which type of activity we are doing:
+										1 - REPAIR
+										2 - REPAIR_BUY
+										3 - ALCHEMY_SELECT
+										4 - ENCHANTMENT_SELECT
+										5 - SOULGEM_SELECT
+										6 - SIGILSTONE_SELECT       -->
+										
+	<user2>
+		<copy src="me()" trait="x"/>
+		<add>
+			<copy src="child(rep_background_repair)" trait="x"/>
+			<add src="child(rep_background_repair)" trait="width"/>
+			<onlyif>
+				<copy src="me()" trait="_repair"/>
+				<eq>1</eq>
+			</onlyif>
+		</add>
+		<add>
+			<copy src="child(rep_background_general)" trait="x"/>
+			<add src="child(rep_background_general)" trait="width"/>
+			<sub> 20 </sub>
+			<onlyif>
+				<copy src="me()" trait="_other"/>
+				<eq>1</eq>
+			</onlyif>
+		</add>
+	</user2>				<!-- X-position of fully-exposed magic popup menu -->
+	<user12>						<!-- lowest possible drop for the pop-up menu -->
+		<copy src="screen()" trait="height"/>
+		<sub src="screen()" trait="cropy"/>
+		<sub src="screen()" trait="cropy"/>
+		<sub> 175 </sub>
+	</user12>
+	<_repair>
+		<copy src="RepairMenu" trait="user0"/>
+		<lte> 2 </lte>
+		<sub> 1 </sub>
+	</_repair>
+	<_other>
+		<copy src="RepairMenu" trait="user0"/>
+		<gt> 2 </gt>
+		<sub> 1 </sub> 
+	</_other>
+	
+	<!-- <xleft> <ref src="rep_button_exit" trait="mouseover" /> </xleft> -->
+	<xleft> <ref src="rep_button_repair_all" trait="clicked" /> </xleft>
+	<xright> <ref src="rep_button_exit" trait="mouseover" /> </xright>
+	
+	<xbuttonb> <ref src="rep_button_exit" trait="clicked"/> </xbuttonb>
+	<xbuttony> <ref src="rep_button_repair_all" trait="clicked"/> </xbuttony>
+	<xbuttonx> <ref src="rep_button_remove" trait="clicked"/> </xbuttonx>
+	
+	
+	<rect name="rep_FocusBox">
+<include src="darn\focus_box.xml"/>
+		<id> 7 </id>
+		<visible> &false; </visible>
+		<user15>
+			<copy src="parent()" trait="depth" />
+			<add> 0.5 </add>
+		</user15>
+	</rect>
+	
+	<image name="rep_background_repair">
+		<visible>
+			<copy src="RepairMenu" trait="user0"/>
+			<lte> 2 </lte>
+		</visible>
+		<id> &generic; </id>
+		<target> &true; </target>
+		<filename> Textures\DarkUI\Menus\ArmorRepair\Armor_Repairdui.dds </filename>
+		<depth> 1 </depth>
+		<width> 1000 </width>
+		<height> 750 </height>
+		<zoom> -1 </zoom>
+		<locus> &true; </locus>
+		<x> 
+			<copy src="screen()" trait="width" />
+			<sub src="me()" trait="width" />
+			<div> 2 </div>
+		</x>
+		<y> 
+			<copy src="screen()" trait="height" />
+			<sub src="me()" trait="height" />
+			<div> 2 </div>
+		</y>
+	</image>
+	
+	<image name="rep_background_general">
+		<visible>
+			<copy src="RepairMenu" trait="user0"/>
+			<gt> 2 </gt>
+		</visible>
+		<id> &generic; </id>
+		<target> &true; </target>
+		<filename> Textures\DarkUI\Menus\Shared\shared_combo_background_1dui.dds </filename>
+		<depth>
+			<copy src="rep_background_repair" trait="depth"/>
+		</depth>
+		<width> 746 </width>
+		<height> 799 </height>
+		<locus> &true; </locus>
+		<x> 
+			<copy src="screen()" trait="width" />
+			<sub src="me()" trait="width" />
+			<div> 2 </div>
+			<sub>200</sub>
+		</x>
+		<y> 
+			<copy src="screen()" trait="height" />
+			<sub src="me()" trait="height" />
+			<div> 2 </div>
+		</y>
+	
+		<image name="rep_background_general_2">
+			<filename> Textures\DarkUI\Menus\Shared\shared_combo_background_2dui.dds </filename>
+			<width> 64 </width>
+			<height> 799 </height>
+			<x> 700 </x>
+			<y> 0 </y>
+			<depth> -15 </depth>
+		</image>
+	</image>
+
+	<image name="rep_title_left">
+		<filename> Textures\DarkUI\Menus\Shared\shared_decor_blue_leftdui.dds </filename>
+		<visible> <copy src="rep_title" trait="visible"/> </visible>
+		<depth> 7 </depth>
+		<width> 35 </width>
+		<height> 17 </height>
+		<x>
+			<copy src="rep_title" trait="x"/>
+			<sub>
+				<copy src="rep_title" trait="width" />
+				<div> 2 </div>
+			</sub>
+			<sub> 55 </sub>
+		</x>
+		<y>
+			<copy src="rep_title" trait="y"/>
+			<add> 5 </add>
+		</y>
+	</image>
+	<image name="rep_title_right">
+		<filename> Textures\DarkUI\Menus\Shared\shared_decor_blue_rightdui.dds </filename>
+		<visible> <copy src="rep_title" trait="visible"/> </visible>
+		<depth> 7 </depth>
+		<width> 35 </width>
+		<height> 17 </height>
+		<x>
+			<copy src="rep_title" trait="x" />
+			<add>
+				<copy src="rep_title" trait="width" />
+				<div> 2 </div>
+			</add>
+			<add> 20 </add>
+		</x>
+		<y>
+			<copy src="rep_title_left" trait="y"/>
+		</y>
+	</image>
+
+	<text name="rep_title">
+		<visible>
+			<copy src="parent()" trait="user0" />
+			<lte>2</lte>
+		</visible>
+		<depth> 3 </depth>
+		<red> 237 </red>
+		<green> 228 </green>
+		<blue> 160  </blue>
+		<alpha> 255 </alpha>
+		<string> <copy src="strings()" trait="_repair" /> </string>
+		<x>
+			<copy src="rep_background_repair" trait="x" />
+			<add>
+				<copy src="rep_background_repair" trait="width" />
+				<sub src="me()" trait="width" />
+				<div> 2 </div>
+				<sub> 20 </sub> <!-- DarN add -->
+			</add>
+			<sub>
+				<copy> 20 </copy> <!-- DarN 100 -->
+				<onlyif>
+					<copy src="parent()" trait="user0"/>
+					<eq> 2 </eq>
+				</onlyif>
+			</sub>
+		</x>
+		<y>
+			<copy src="rep_contents" trait="y" />
+			<sub src="me()" trait="height" />
+			<sub> 10 </sub>
+		</y>
+		<font> 3 </font> <!-- DarN add -->
+		<justify> &center; </justify> <!-- DarN add -->
+	</text>
+
+	<rect name="rep_contents">
+		<locus> &true; </locus>
+		<clipwindow> &true; </clipwindow>
+		<depth>
+			<copy src="rep_background_repair" trait="depth"/>
+			<add src="rep_background_paper" trait="depth"/>
+			<add>2</add>
+		</depth>
+		<x>
+			<copy src="rep_background_general" trait="x"/>
+			<add> 55 </add>
+			<onlyif src="rep_background_general" trait="visible"/>
+			<add>
+				<copy src="rep_background_repair" trait="x"/>
+				<add> 182 </add>
+				<onlyif src="rep_background_repair" trait="visible"/>
+			</add>
+		</x>
+		<y>
+			<copy src="rep_background_general" trait="y"/>
+			<add> 80 </add><!-- DarN 100 -->
+			<add>
+				<copy src="RepairMenu" trait="_repair"/>
+				<mul> 90 </mul><!-- DarN 70 -->
+			</add>
+		</y>
+		<width> 582 </width>
+		<height>
+			<copy> 425 </copy><!-- DarN 400 -->
+			<add>
+				<copy src="RepairMenu" trait="_other"/>
+				<mul> 180 </mul><!-- DarN 160 -->
+			</add>
+		</height>
+
+		<image name="horiz_grid_top">
+			<filename> Textures\DarkUI\Menus\Shared\shared_border_horizontal_1dui.dds </filename>
+			<visible> &true; </visible>
+			<alpha> 255 </alpha>
+			<depth> 31 </depth>
+			<x> 0 </x>
+			<y>
+				<copy>0</copy>
+				<sub>
+					<copy src="me()" trait="height"/>
+					<div> 2 </div>
+				</sub>
+			</y>
+			<width>
+				<copy src="parent()" trait="width"/>
+			</width>
+			<height> 6 </height>
+		</image>
+		
+		<image name="horiz_grid_bottom">
+			<filename> Textures\DarkUI\Menus\Shared\shared_border_horizontal_2dui.dds </filename>
+			<visible> &true; </visible>
+			<alpha> 255 </alpha>
+			<depth> 31 </depth>
+			<x> 0 </x>
+			<y>
+				<copy src="parent()" trait="height"/>
+				<sub>
+					<copy src="me()" trait="height"/>
+					<div> 2 </div>
+				</sub>
+			</y>
+			<width>
+				<copy src="parent()" trait="width"/>
+			</width>
+			<height> 6 </height>
+		</image>
+
+		<image name="vert_grid_left">
+			<filename> Textures\DarkUI\Menus\Shared\shared_border_vertical_2dui.dds </filename>
+			<visible> &true; </visible>
+			<alpha> 255 </alpha>
+			<depth> 31 </depth>
+			<x>
+				<copy>0</copy>
+				<sub>
+					<copy src="me()" trait="width"/>
+					<div> 2 </div>
+				</sub>
+			</x>
+			<y> 0 </y>
+			<height>
+				<copy src="parent()" trait="height"/>
+			</height>
+			<width> 6 </width>
+		</image>
+
+		<image name="vert_grid_column1">
+			<filename> Textures\DarkUI\Menus\Shared\shared_border_vertical_1dui.dds </filename>
+			<visible>
+				<copy src="RepairMenu" trait="user0"/>
+				<eq>2</eq>	<!-- Repair buy -->
+			</visible>
+			<alpha> 255 </alpha>
+			<depth> 31 </depth>
+			<x>
+				<copy src="parent()" trait="width"/>
+				<sub>
+					<copy src="me()" trait="width"/>
+					<div> 2 </div>
+				</sub>
+				<sub>190</sub>
+			</x>
+			<y> 0 </y>
+			<height>
+				<copy src="parent()" trait="height"/>
+			</height>
+			<width> 6 </width>
+			<clips> &true; </clips>
+		</image>
+
+		<image name="vert_grid_column2">
+			<filename> Textures\DarkUI\Menus\Shared\shared_border_vertical_1dui.dds </filename>
+			<visible>
+				<copy src="RepairMenu" trait="user0"/>
+				<neq>3</neq>	<!-- Alchemy select -->
+				<and>
+					<copy src="RepairMenu" trait="user0"/>
+					<neq>5</neq>	<!-- Soulgem Select" -->
+				</and>
+			</visible>
+			<alpha> 255 </alpha>
+			<depth> 31 </depth>
+			<x>
+				<copy src="parent()" trait="width"/>
+				<sub>
+					<copy src="me()" trait="width"/>
+					<div> 2 </div>
+				</sub>
+				<sub>95</sub>
+			</x>
+			<y> 0 </y>
+			<height>
+				<copy src="parent()" trait="height"/>
+			</height>
+			<width> 6 </width>
+		</image>
+
+		<image name="vert_grid_right">
+			<filename> Textures\DarkUI\Menus\Shared\shared_border_vertical_2dui.dds </filename>
+			<visible> &true; </visible>
+			<alpha> 255 </alpha>
+			<depth> 31 </depth>
+			<x>
+				<copy src="parent()" trait="width"/>
+				<sub>
+					<copy src="me()" trait="width"/>
+					<div> 2 </div>
+				</sub>
+			</x>
+			<y> 0 </y>
+			<height>
+				<copy src="parent()" trait="height"/>
+			</height>
+			<width> 6 </width>
+		</image>
+
+		<image name="money_icon">
+			<depth> 20 </depth>
+				<filename> Textures\DarkUI\Menus\Shared\all_small_iconsdui.dds </filename>
+				<cropx> 168 </cropx><!-- DarN 224 -->
+			<width> 24 </width> <!-- DarN 32 -->
+			<height> 24 </height> <!-- DarN 32 -->
+			<visible>
+				<copy src="RepairMenu" trait="user0"/>
+				<eq>2</eq>		<!-- Repair Buy -->
+			</visible>
+			<x>
+				<copy src="vert_grid_column1" trait="x"/>
+				<add src="vert_grid_column1" trait="width"/>
+				<add>
+					<copy src="vert_grid_column2" trait="x"/>
+					<sub>
+						<copy src="vert_grid_column1" trait="x"/>
+						<add src="vert_grid_column1" trait="width"/>
+					</sub>
+					<sub src="me()" trait="width"/>
+					<div>2</div>
+				</add>
+				<sub> 5 </sub>
+			</x>
+			<y>
+				<copy>0</copy>
+				<sub src="me()" trait="height"/>
+				<sub>6</sub> <!-- DarN 10 -->
+			</y>
+			<locus> &true; </locus>
+			
+			<image name="money_icon_arrow">
+				<filename> Textures\DarkUI\Menus\Shared\all_small_iconsdui.dds </filename>
+				<cropx> 264 </cropx> <!-- DarN 352 -->
+				<width> 24 </width> <!-- DarN 32 -->
+				<height> 24 </height> <!-- DarN 32 -->
+				<x> 23 </x>
+				<y> 2 </y> <!-- DarN 0 -->
+				<zoom> 75 </zoom> <!-- DarN add -->
+			</image>
+			<zoom> 75 </zoom> <!-- DarN add -->
+		</image>
+	
+		<image name="health_icon">
+			<depth> 20</depth>
+			<filename> Textures\DarkUI\Menus\Shared\all_small_iconsdui.dds </filename>
+			<cropx> 192 </cropx> <!-- DarN 256 -->
+			<visible>
+				<copy src="RepairMenu" trait="user0"/>
+				<neq>3</neq>		<!-- Alchemy Select -->
+				<and>
+					<copy src="RepairMenu" trait="user0"/>
+					<neq>5</neq>		<!-- Soulgem Select -->
+				</and>
+			</visible>
+			<width> 24 </width> <!-- DarN 32 -->
+			<height> 24 </height> <!-- DarN 32 -->
+			<x>
+				<copy src="vert_grid_column2" trait="x"/>
+				<add src="vert_grid_column2" trait="width"/>
+				<add>
+					<copy src="vert_grid_right" trait="x"/>
+					<sub>
+						<copy src="vert_grid_column2" trait="x"/>
+						<add src="vert_grid_column2" trait="width"/>
+					</sub>
+					<sub src="me()" trait="width"/>
+					<div>2</div>
+				</add>
+			</x>
+			<y>
+				<copy>0</copy>
+				<sub src="me()" trait="height"/>
+				<sub>6</sub> <!-- DarN 10 -->
+			</y>
+			<zoom> 75 </zoom> <!-- DarN add -->
+		</image>
+		
+		<rect name="rep_list_pane">
+			<id> 8 </id>
+			<clips> &true; </clips>
+			<locus> &true; </locus>
+			<x> 0 </x>
+			<y>
+				<copy> 0 </copy>
+				<sub src="rep_scroll_bar" trait="user7"/> <!-- user7 = current value -->
+				<mul> 30 </mul><!-- DarN 40 -->
+			</y>
+			<width>
+				<copy src="parent()" trait="width"/>
+			</width>
+			<height>
+				<copy src="me()" trait="childcount"/>
+				<mul> 60 </mul><!-- DarN 80 (2x item height???) -->
+			</height>
+						
+			<!-- This is a list pane, and is not a focus itself, but when the child elements don't know how to handle
+				an input command, they defer to their parent. The following directions are for those times. -->
+			<target> &false; </target>
+			<xdefault> &true; </xdefault>
+			<xlist> &xlist; </xlist>
+			<!--xup> &last; </xup>
+			<xdown> &first; </xdown-->
+			<xscroll> <ref src="rep_scroll_bar" trait="user5" /> </xscroll>
+		</rect>
+		
+		
+		<!-- SCROLL ======================================================================-->
+		<image name="rep_scroll_bar">
+<include src="vertical_scroll.xml"/>
+			<id> 5 </id>
+			<depth> 0 </depth>
+			<x>
+				<copy src="parent()" trait="width"/>
+				<add> 20 </add>
+			</x>
+			<y> 32 </y>
+			<height>
+				<copy src="parent()" trait="height" />
+				<sub> 64 </sub>
+			</height>
+		
+			<user1> 0 </user1>		<!-- Minimum value that can be scrolled to (should usually be zero) -->
+			<user2>
+				<copy src="rep_list_pane" trait="child_count" />	<!-- set by code - number of visible elements in list -->
+				<sub src="me()" trait="user8" />
+			</user2>				<!-- Maximum value that can be scrolled to (should be the number of
+											items minus the number of items visible.  i.e. if your list has
+											8 items and you can see 2 at any one time, this should be 6 -->
+			<user3> 1 </user3>		<!-- When the scroll arrow is clicked on, this is how many items it will advance -->
+			<user4>
+				<copy src="me()" trait="user8"/>
+				<sub> 1 </sub>
+			</user4>				<!-- When the scroll bar is clicked on, this is how many items it will advance -->
+			<user5> 0 </user5>		<!-- The starting position of the scroll bar (set this only once) -->
+			<user6> 6 </user6>		<!-- A unique ID so that the scroll marker can be dragged around -->
+			<!-- user7 = current value -->
+			<user8>
+				<copy> 14 </copy> <!-- DarN 12 -->
+				<add>
+					<copy src="RepairMenu" trait="_other"/>
+					<mul> 6 </mul> <!-- DarN 2 -->
+				</add>
+			</user8>				<!-- How many items are visible at once -->
+			<user9> 0 </user9>		<!-- Manual step value (multiplied by step distance and added to scroll value -->
+			<user10> 0 </user10>	<!-- reserved -->
+		</image>
+	</rect>
+		
+		
+	<!-- TEMPLATE ========================================================================-->
+	<template name="rep_item_template">
+		<rect name="rep_item">
+			<visible>
+				<copy src="me()" trait="user8"/>
+			</visible>
+			<listclip>
+				<copy src="me()" trait="listindex"/>
+				<gte>
+					<copy src="rep_scroll_bar" trait="user7"/>
+					<add src="rep_scroll_bar" trait="user8"/>
+				</gte>
+				<or>
+					<copy src="me()" trait="listindex"/>
+					<lt src="rep_scroll_bar" trait="user7"/>
+				</or>
+			</listclip>
+			<target> &true; </target>
+			<repeatvertical> &true; </repeatvertical>
+			<focusinset> 8 </focusinset>
+			<x> -2 </x>
+			<y>
+				<copy src="me()" trait="listindex" />
+				<mul src="me()" trait="height" />
+			</y>
+			<depth> 1 </depth>
+			<locus> &true; </locus>
+			<clips> &true; </clips>
+			<alpha> 0 </alpha>
+			<width>
+				<copy src="rep_contents" trait="width"/>
+				<sub src="me()" trait="x"/>
+			</width>
+			<height> 30 </height><!-- DarN 40 -->
+			
+			<listindex> 0 </listindex>
+			<user0> &false; </user0>			<!-- true if enchanted item and user skill level is too low to repair -->
+			<user1> Item Name </user1>
+			<user5> Fourth Value </user5>
+			<user6> icon/pathname.dds </user6>
+			<user7> 1M </user7>
+			<user8> &true; </user8>
+			<user9> type </user9>
+			<user10> &false; </user10>
+			<user11> 0 </user11>
+			<user12> &false; </user12>			<!-- true if should be greyed out for alchemy select -->
+			<user14> &true; </user14>
+						
+			<!-- This element is a list item. If it gets an input command it doesn't know how to handle
+				it will defer the command to its parent. The xlist trait set to true triggers this. -->
+			<xdefault> &false; </xdefault>
+			<xlist> &xitem; </xlist>
+			<xup> &prev; </xup>
+			<xdown> &next; </xdown>
+			<xscroll>
+				<copy src="me()" trait="listindex" />
+				<sub>
+					<copy src="rep_scroll_bar" trait="user8"/>
+					<div> 2 </div>
+					<ceil> 0 </ceil>
+				</sub>
+				<add> 1 </add>
+			</xscroll>
+			
+			<image name="rep_equiped_marker">
+				<visible>
+					<copy src="parent()" trait="user10" />
+				</visible>
+				<clips> &true; </clips>
+				<depth> 2 </depth>
+				<filename> Textures\DarkUI\Menus\Inventory\inv_equiped_marker_1dui.dds </filename>
+				<alpha> 160 </alpha>
+				<width>
+					<copy src="parent()" trait="width"/>
+				</width>
+				<height> 26 </height><!-- DarN 34 -->
+				<cropy> 5 </cropy>
+				<x> 5 </x> <!-- DarN 7 -->
+				<y> 2 </y> <!-- DarN 4 -->
+			</image>
+			<image name="rep_item_icon">
+				<visible>
+					<sub src="parent()" trait="user10" />
+					<eq> &false; </eq>
+				</visible>
+				<clips> &true; </clips>
+				<depth> 3 </depth>
+				<filename>
+					<copy src="parent()" trait="user0" />
+				</filename>
+				<zoom> 40 </zoom> <!-- DarN 50 -->
+				<width> 25.6 </width> <!-- DarN 32 -->
+				<height> 25.6 </height> <!-- DarN 32 -->
+				<x> 5 </x>
+				<y> 3 </y> <!-- DarN 7 -->
+				<alpha> <copy src="sibling(rep_item_name)" trait="alpha"/> </alpha>
+			</image>
+			<image name="rep_item_over_icon">
+				<visible>
+					<sub src="parent()" trait="user10" />
+				</visible>
+				<clips> &true; </clips>
+				<depth> 3 </depth>
+				<filename>
+					<copy src="parent()" trait="user6" />
+				</filename>
+				<zoom> 40 </zoom> <!-- DarN 50 -->
+				<width> 25.6 </width> <!-- DarN 32 -->
+				<height> 25.6 </height> <!-- DarN 32 -->
+				<x> 5 </x>
+				<y> 3 </y> <!-- DarN 7 -->
+				<alpha> <copy src="sibling(rep_item_name)" trait="alpha"/> </alpha>
+			</image>
+			<text name="rep_item_count">
+				<depth> 5 </depth>
+				<justify> &right; </justify>
+				<font> 2 </font> <!-- DarN 3 -->
+				<red> 217 </red>
+				<green> 185 </green>
+				<blue> 102 </blue>
+				<alpha> <copy src="sibling(rep_item_name)" trait="alpha"/> </alpha>
+				<wrapwidth> 55 </wrapwidth>
+				<wraplines> 1 </wraplines>
+				<string>
+					<copy src="parent()" trait="user7" />
+				</string>
+				<clips> &true; </clips>
+				<x>
+					<copy src="rep_item_icon" trait="x"/>
+					<add src="rep_item_icon" trait="width"/>
+					<add>
+						<copy src="me()" trait="width"/>
+						<div>2</div>
+					</add>
+					<add> 10 </add>
+				</x>
+				<y>
+					<copy src="parent()" trait="height"/>
+					<sub src="me()" trait="height"/>
+					<add> 4 </add> <!-- DarN add -->
+				</y>
+			</text>
+			<text name="rep_item_name">
+				<depth> 3 </depth>
+				<justify> &left; </justify>
+				<_greyed_out>
+					<copy src="parent()" trait="user0"/>
+					<or src="parent()" trait="user12"/>
+				</_greyed_out>
+				<red>
+					<copy>128</copy>		<onlyif src="me()" trait="_greyed_out"/>
+					<add>
+						<copy> 217 </copy>	<onlyifnot src="me()" trait="_greyed_out"/><!-- DarN alchemy test 117 -->
+					</add>
+				</red>
+				<green>
+					<copy>128</copy>		<onlyif src="me()" trait="_greyed_out"/>
+					<add>
+						<copy> 185 </copy>		<onlyifnot src="me()" trait="_greyed_out"/><!-- DarN alchemy test 59 -->
+					</add>
+				</green>
+				<blue>
+					<copy>128</copy>		<onlyif src="me()" trait="_greyed_out"/>
+					<add>
+						<copy> 102 </copy>		<onlyifnot src="me()" trait="_greyed_out"/><!-- DarN alchemy test 33 -->
+					</add>
+				</blue>
+				<alpha>
+					<copy>128</copy>		<onlyif src="me()" trait="_greyed_out"/>
+					<add>
+						<copy>255</copy>	<onlyifnot src="me()" trait="_greyed_out"/>
+					</add>
+				</alpha>
+				<wrapwidth> 280 </wrapwidth>
+				<wraplines> 1 </wraplines>
+				<font> 2 </font> <!-- DarN 3 -->
+				<string>
+					<copy src="parent()" trait="user1" />
+				</string>
+				<clips> &true; </clips>
+				<x> 60 </x>
+				<y>
+					<copy src="parent()" trait="height" />
+					<sub src="me()" trait="height" />
+					<div> 2 </div>
+					<add> 5 </add> <!-- DarN add -->
+				</y>
+			</text>
+			<text name="rep_item_health">
+				<depth> 3 </depth>
+				<justify> &center; </justify>
+				<!--<red> <copy src="sibling(rep_item_name)" trait="red"/> </red>
+				<green> <copy src="sibling(rep_item_name)" trait="green"/> </green>
+				<blue> <copy src="sibling(rep_item_name)" trait="blue"/> </blue>-->
+				<red> 217 </red> <!-- DarN brown nrs... -->
+				<green> 185 </green>
+				<blue> 102 </blue>
+				<alpha> <copy src="sibling(rep_item_name)" trait="alpha"/> </alpha>
+				<wrapwidth> 50 </wrapwidth>
+				<string>
+					<copy src="parent()" trait="user5" />
+				</string>
+				<clips> &true; </clips>
+				<font> 2 </font> <!-- DarN 3 -->
+				<x>
+					<copy src="parent()" trait="width"/>
+					<sub> 44 </sub>
+				</x>
+				<y>
+					<copy src="parent()" trait="height" />
+					<sub src="me()" trait="height" />
+					<div> 2 </div>
+					<add> 5 </add> <!-- DarN add -->
+				</y>
+			</text>
+		</rect>
+	</template>
+	
+	<!-- TEMPLATE 2 ================================================================-->
+	<template name="rep_buy_item_template"> <!-- DarN see changes above -->
+		<rect name="rep_item">
+			<target> &true; </target>
+			<repeatvertical> &true; </repeatvertical>
+			<focusinset> 8 </focusinset>
+			<visible>
+				<copy src="me()" trait="user8" />
+			</visible>
+			<listclip>
+				<copy src="me()" trait="listindex"/>
+				<gte>
+					<copy src="rep_scroll_bar" trait="user7"/>
+					<add src="rep_scroll_bar" trait="user8"/>
+				</gte>
+				<or>
+					<copy src="me()" trait="listindex"/>
+					<lt src="rep_scroll_bar" trait="user7"/>
+				</or>
+			</listclip>
+			<clips> &true; </clips>
+			<x> -2 </x>
+			<y>
+				<copy src="me()" trait="listindex" />
+				<mul src="me()" trait="height" />
+			</y>
+			<depth> 1 </depth>
+			<locus> &true; </locus>
+			<alpha> 0 </alpha>
+			<width>
+				<copy src="rep_contents" trait="width"/>
+				<sub src="me()" trait="x"/>
+			</width>
+			<height> 30 </height>
+			<clips> &true; </clips>
+			
+			<listindex> 0 </listindex>
+			<user1> Item Name </user1>
+			<user5> Fourth Value </user5>
+			<user6> icon/pathname.dds </user6>
+			<user7> 1M </user7>
+			<user8> &true; </user8>
+			<user9> type </user9>
+			<user10> &false; </user10>
+			<user11> 0 </user11>
+			<user14> &true; </user14>
+						
+			<!-- This element is a list item. If it gets an input command it doesn't know how to handle
+				it will defer the command to its parent. The xlist trait set to true triggers this. -->
+			<xdefault> &false; </xdefault>
+			<xlist> &xitem; </xlist>
+			<xup> &prev; </xup>
+			<xdown> &next; </xdown>
+			<xscroll>
+				<copy src="me()" trait="listindex" />
+				<sub>
+					<copy src="rep_scroll_bar" trait="user8"/>
+					<div> 2 </div>
+					<ceil> 0 </ceil>
+				</sub>
+			</xscroll>
+			
+			<image name="rep_equiped_marker">
+				<visible>
+					<copy src="parent()" trait="user10" />
+				</visible>
+				<clips> &true; </clips>
+				<depth> 2 </depth>
+				<filename> Textures\DarkUI\Menus\Inventory\inv_equiped_marker_1dui.dds </filename>
+				<alpha> 160 </alpha>
+				<width>
+					<copy src="parent()" trait="width"/>
+				</width>
+				<height> 26 </height> <!-- DarN 34 -->
+				<cropy> 5 </cropy>
+				<x> 5 </x> <!-- DarN 7 -->
+				<y> 2 </y> <!-- DarN 4 -->
+			</image>
+			<image name="rep_item_icon">
+				<visible>
+					<sub src="parent()" trait="user10" />
+					<eq> &false; </eq>
+				</visible>
+				<clips> &true; </clips>
+				<depth> 3 </depth>
+				<filename>
+					<copy src="parent()" trait="user0" />
+				</filename>
+				<zoom> 36 </zoom> <!-- DarN 50 -->
+				<width> 22 </width> <!-- DarN 32 -->
+				<height> 22 </height> <!-- DarN 32 -->
+				<x> 4 </x> <!-- DarN 5 -->
+				<y> 5 </y> <!-- DarN 7 -->
+			</image>
+			<image name="rep_item_over_icon">
+				<visible>
+					<sub src="parent()" trait="user10" />
+				</visible>
+				<clips> &true; </clips>
+				<depth> 3 </depth>
+				<filename>
+					<copy src="parent()" trait="user6" />
+				</filename>
+				<zoom> 36 </zoom> <!-- DarN 50 -->
+				<width> 22 </width> <!-- DarN 32 -->
+				<height> 22 </height> <!-- DarN 32 -->
+				<x> 4 </x> <!-- DarN 5 -->
+				<y> 5 </y> <!-- DarN 7 -->
+			</image>
+			<text name="rep_item_count">
+				<depth> 5 </depth>
+				<justify> &right; </justify>
+				<font> 2 </font>
+				<red> 217 </red>
+				<green> 185 </green>
+				<blue> 102 </blue>
+				<alpha> 255 </alpha>
+				<wrapwidth> 55 </wrapwidth>
+				<wraplines> 1 </wraplines>
+				<string>
+					<copy src="parent()" trait="user7" />
+				</string>
+				<clips> &true; </clips>
+				<x>
+					<copy src="rep_item_icon" trait="x"/>
+					<add src="rep_item_icon" trait="width"/>
+					<add>
+						<copy src="me()" trait="width"/>
+						<div>2</div>
+					</add>
+					<add> 10 </add>
+				</x> <!-- DarN 70 -->
+				<y>
+					<copy src="rep_item_name" trait="y"/>
+					<add> 5 </add>
+				</y> <!-- DarN 65 -->
+			</text>
+			<text name="rep_item_name">
+				<depth> 3 </depth>
+				<justify> &left; </justify>
+				<red> 217 </red>
+				<green> 185 </green>
+				<blue> 102 </blue>
+				<alpha> 255 </alpha>
+				<font> 2 </font>
+				<wrapwidth> 280 </wrapwidth>
+				<wraplines> 1 </wraplines>
+				<string>
+					<copy src="parent()" trait="user1" />
+				</string>
+				<clips> &true; </clips>
+				<x> 50 </x>
+				<y>
+					<copy src="parent()" trait="height" />
+					<sub src="me()" trait="height" />
+					<div> 2 </div>
+					<add> 5 </add> <!-- DarN add -->
+				</y>
+			</text>
+			<text name="rep_item_cost">
+				<depth> 3 </depth>
+				<justify> &center; </justify>
+				<red> 217 </red>
+				<green> 185 </green>
+				<blue> 102 </blue>
+				<alpha> 255 </alpha>
+				<font> 2 </font>
+				<wrapwidth> 80 </wrapwidth>
+				<string>
+					<copy src="parent()" trait="user2" />
+				</string>
+				<clips> &true; </clips>
+				<x>
+					<copy src="rep_item_health" trait="x"/>
+					<sub> 96 </sub>
+				</x>
+				<y>
+					<copy src="parent()" trait="height" />
+					<sub src="me()" trait="height" />
+					<div> 2 </div>
+					<add> 5 </add> <!-- DarN add -->
+				</y>
+			</text>
+			<text name="rep_item_health">
+				<depth> 3 </depth>
+				<justify> &center; </justify>
+				<red> 217 </red>
+				<green> 185 </green>
+				<blue> 102 </blue>
+				<alpha> 255 </alpha>
+				<font> 2 </font>
+				<wrapwidth> 50 </wrapwidth>
+				<string>
+					<copy src="parent()" trait="user5" />
+				</string>
+				<clips> &true; </clips>
+				<x>
+					<copy src="parent()" trait="width"/>
+					<sub> 44 </sub>
+				</x>
+				<y>
+					<copy src="parent()" trait="height" />
+					<sub src="me()" trait="height" />
+					<div> 2 </div>
+					<add> 5 </add> <!-- DarN add -->
+				</y>
+			</text>
+		</rect>
+	</template>
+
+
+	<!-- BUTTONS =====================================================================-->
+	<image name="rep_button_remove">
+<include src="darn\button_long.xml"/>
+		<id> 15 </id>
+		<visible> &false; </visible>
+		<user0> <copy src="strings()" trait="_remove"/> </user0>
+		<depth>
+			<copy src="rep_background_repair" trait="depth"/>
+			<add src="rep_background_paper" trait="depth"/>
+			<add>2</add>
+		</depth>
+		<x>
+			<copy src="rep_background_general" trait="x"/>
+			<add>
+				<copy src="rep_background_general" trait="width"/>
+				<mul> 0.19 </mul>
+				<copy>90</copy>
+			</add>
+			<sub>
+				<copy>30</copy>
+				<onlyif>&xbox;</onlyif>
+			</sub>
+		</x>
+		<y>
+			<copy> 690 </copy> <!-- DarN 670 -->
+			<add>
+				<copy src="RepairMenu" trait="_other"/>
+				<mul> 90 </mul>
+			</add>
+		</y>
+		
+		<user20> &xbuttonx; </user20>
+		<xdefault> &xboxhint; </xdefault>
+		<xup> <ref src="rep_list_pane" trait="mouseover" /> </xup>
+		<xright> <ref src="rep_button_exit" trait="mouseover" /> </xright>
+	</image>
+
+
+	<image name="rep_button_repair_all">
+<include src="darn\button_long.xml"/>
+		<id> 16 </id>
+		<depth>
+			<copy src="rep_button_remove" trait="depth"/>
+		</depth>
+		<x>
+			<copy src="rep_button_exit" trait="x"/>
+			<sub>500</sub>
+			<add>
+				<copy>10</copy>
+				<onlyifnot>&xbox;</onlyifnot>
+			</add>
+		</x>
+		<y> <copy src="rep_button_exit" trait="y"/> </y>
+		<user0> <copy src="strings()" trait="_repairall"/> </user0>
+		<!--user1>							
+			<copy src="rep_list_pane" trait="childcount"/>
+			<gt> 0 </gt>
+		</user1-->
+		<user3> &false; </user3>		<!-- used by prefab - visible -->
+		
+		<user20> &xbuttony; </user20>
+		<xdefault> &xboxhint; </xdefault>
+		<xup> <ref src="rep_list_pane" trait="mouseover" /> </xup>
+		<xright> <ref src="rep_button_exit" trait="mouseover" /> </xright>
+	</image>
+
+	<image name="rep_button_filter">
+<include src="darn\button_long.xml"/>
+		<id> 17 </id>
+		<depth>
+			<copy src="rep_button_remove" trait="depth"/>
+		</depth>
+		<x>
+			<copy src="rep_button_exit" trait="x"/>
+			<sub>200</sub>
+		</x>
+		<y> <copy src="rep_button_exit" trait="y"/> </y>
+		<user0> <copy src="strings()" trait="_repairall"/> </user0>
+
+		<user3> &false; </user3>		<!-- used by prefab - visible -->
+		
+		<user20> &xbuttony; </user20>
+		<xdefault> &xboxhint; </xdefault>
+	</image>
+
+
+	<image name="rep_button_exit">
+<include src="darn\button_short.xml"/>
+		<id> 2 </id>
+		<target> &true; </target>
+		<user0> <copy src="strings()" trait="_exit"/> </user0>
+		<depth>
+			<copy src="rep_button_remove" trait="depth"/>
+		</depth>
+		<x>
+			<copy src="rep_background_repair" trait="x"/>
+			<add>
+				<copy src="rep_background_repair" trait="width"/>
+				<mul> 0.67 </mul>
+			</add>
+			<onlyif>
+				<copy src="parent()" trait="_repair"/>
+				<eq> 1 </eq>
+			</onlyif>
+			<add>
+				<copy src="rep_background_general" trait="x"/>
+				<add>
+					<copy src="rep_background_general" trait="width"/>
+					<mul> 0.67 </mul>
+				</add>
+				<onlyif>
+					<copy src="parent()" trait="_other"/>
+					<eq> 1 </eq>
+				</onlyif>
+			</add>
+		</x>
+		<y> <copy src="rep_button_remove" trait="y"/> </y>
+		
+		<user20> &xbuttonb; </user20>
+		<xdefault> &xboxhint; </xdefault>
+		<xup> <ref src="rep_list_pane" trait="mouseover" /> </xup>
+		<xleft> <ref src="rep_button_remove" trait="mouseover" /> </xleft>
+	</image>
+
+	<image name="repair_info_icon">
+		<visible>
+			<copy src="RepairMenu" trait="user0"/>
+			<lte>2</lte>
+		</visible>
+		<_icon_1> Menus\Icons\Clutter\IconRepairHammer.dds </_icon_1>
+		<_icon_2> Textures\DarkUI\Menus\Shared\all_small_iconsdui.dds </_icon_2>
+		<filename>
+			<copy src="RepairMenu" trait="user0"/>
+			<copy src="me()" trait="_icon_"/>
+		</filename>
+		<cropx>
+			<copy> 168 </copy> <!-- DarN 224 -->
+			<onlyif>
+				<copy src="RepairMenu" trait="user0"/>
+				<eq> 2 </eq>
+			</onlyif>
+		</cropx>
+		<depth> 3 </depth>
+		<width>
+			<copy> 24 </copy> <!-- DarN 32 -->
+			<onlyif>
+				<copy src="RepairMenu" trait="user0"/>
+				<eq> 1 </eq>
+			</onlyif>
+			<add> 24 </add> <!-- DarN 32 -->
+		</width>
+		<height>
+			<copy src="me()" trait="width"/>
+		</height>
+		<x>
+			<copy src="screen()" trait="width"/>
+			<sub src="me()" trait="width"/>
+			<sub src="hammer_number_text" trait="width"/>
+			<div>2</div>
+			<onlyif>
+				<copy src="RepairMenu" trait="user0"/>
+				<eq>2</eq>
+			</onlyif>
+			<add>
+				<copy src="rep_contents" trait="x"/>
+				<onlyif>
+					<copy src="RepairMenu" trait="user0"/>
+					<eq>1</eq>
+				</onlyif>
+			</add>
+		</x>
+		<y>
+			<copy src="hammer_number_text" trait="y"/>
+			<add>
+				<copy src="hammer_number_text" trait="height"/>
+				<sub src="me()" trait="height"/>
+				<div>2</div>
+			</add>
+			<add>
+				<copy> 10 </copy>
+					<onlyif>
+						<copy src="RepairMenu" trait="user0"/>
+						<eq> 1 </eq>
+					</onlyif>
+			</add>
+		</y>
+		<locus> &true; </locus>
+		<zoom> 75 </zoom> <!-- DarN add -->
+	</image>
+
+	<text name="hammer_number_text">
+		<visible>
+			<copy src="repair_info_icon" trait="visible"/>
+		</visible>
+		<id> 3 </id>
+		<string> <copy src="me()" trait="user0"/> </string>
+		<x>
+			<copy src="repair_info_icon" trait="x"/>
+			<add src="repair_info_icon" trait="width"/>
+			<add>
+				<copy> 10 </copy>
+					<onlyif>
+						<copy src="RepairMenu" trait="user0"/>
+						<eq> 2 </eq>
+					</onlyif>
+			</add>
+		</x>
+		<y> 685 </y> <!-- DarN 670 -->
+		<red> 217 </red>
+		<green> 185 </green>
+		<blue> 102 </blue>
+		<alpha> 255 </alpha>
+		<depth> <copy src="repair_info_icon" trait="depth"/> </depth>
+		<user0> 0 </user0>		<!-- numebr of hammers - set by code -->
+		<font> 3 </font> <!-- DarN add -->
+	</text>
+	
+</menu>

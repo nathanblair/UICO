@@ -1,0 +1,99 @@
+﻿<!-- button_map_world_8.xml -->
+
+<!-- image name="button_map_world_8" -->
+	<id> &generic; </id>
+	<locus> &true; </locus>
+	<width> 23 </width>
+	<height> 23 </height>
+	<x> 0 </x>
+	<y> 0 </y>
+	<alpha> 255 </alpha>
+
+	<_mouseover_any>
+		<copy src="child(button_status_set_to_1_cover_map_world_8)" trait="mouseover"/>
+		<add src="child(button_status_set_to_0_cover_map_world_8)" trait="mouseover"/>
+		<gt> 0 </gt>
+	</_mouseover_any>
+
+	<user7> <!-- status -->
+		<copy src="child(button_status_map_world_8)" trait="_button_status_value"/>
+	</user7>
+	<user13> &true; </user13>
+
+	<image name="button_mouseover_map_world_8">
+		<zoom> 36 </zoom>
+		<id> &generic; </id>
+		<target> 2 </target>
+		<_filename_1> Menus\map\map_icon_tab_world_map.dds </_filename_1>
+		<_filename_2> Menus\map\map_icon_tab_local_map.dds </_filename_2>
+		<filename>
+			<copy src="map_page_1" trait="visible" />
+			<copy src="me()" trait="_filename_" />
+		</filename>
+		<visible> 2 </visible>
+		<red>
+			<copy> 255 </copy>
+		</red>
+		<green>
+			<copy> 255 </copy>
+			<sub>
+				<copy> 200 </copy>
+				<onlyif src="parent()" trait="_mouseover_any" />
+			</sub>
+		</green>
+		<blue>
+			<copy> 255 </copy>
+			<sub>
+				<copy> 200 </copy>
+				<onlyif src="parent()" trait="_mouseover_any" />
+			</sub>
+		</blue>
+		<depth> 2 </depth>
+		<width> 23 </width>
+		<height> 23 </height>
+		<x> 0 </x>
+		<y> 0 </y>
+		<alpha><copy src="parent()" trait="alpha" /></alpha>
+	</image>
+
+	<rect name="button_status_set_to_1_cover_map_world_8">
+		<id> &generic; </id>
+		<alpha> 0 </alpha>
+		<visible>
+			<copy src="button_status_map_world_8" trait="_button_status_value"/>
+			<eq> 0 </eq>
+		</visible>
+		<target> <copy src="parent()" trait="user13"/> </target>
+		<depth> 4 </depth>
+		<width> 23 </width>
+		<height> 23 </height>
+		<x> 0 </x>
+		<y> 0 </y>
+		<clicksound> 5 </clicksound>
+	</rect>
+
+	<rect name="button_status_set_to_0_cover_map_world_8">
+		<id> &generic; </id>
+		<visible>
+			<copy src="button_status_map_world_8" trait="_button_status_value"/>
+			<eq> 1 </eq>
+		</visible>
+		<target> <copy src="parent()" trait="user13"/> </target>
+		<depth> 4 </depth>
+		<width> 23 </width>
+		<height> 23 </height>
+		<x> 0 </x>
+		<y> 0 </y>
+		<clicksound> 5 </clicksound>
+	</rect>
+
+	<rect name="button_status_map_world_8">
+		<_button_status_value>
+			<!-- copy old value -->
+			<sub src="sibling(button_status_set_to_0_cover_map_world_8)" trait="clicked"/>
+			<add src="sibling(button_status_set_to_1_cover_map_world_8)" trait="clicked"/>
+			<max> 0 </max>
+			<min> 1 </min>
+		</_button_status_value>
+	</rect>
+<!-- /image -->

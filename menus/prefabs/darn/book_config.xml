@@ -1,0 +1,17 @@
+
+<!-- DARNIFIED BOOKS CONFIG 1.0
+-->
+<rect name="darnui_settings">
+	<_configversion> 1.0 </_configversion>
+
+	<!-- Page number text (def. 3,0,0,0,255) -->
+	<_pnfont>3</_pnfont>
+	<_pnred>0</_pnred>
+	<_pngreen>0</_pngreen>
+	<_pnblue>0</_pnblue>
+	<_pnalpha>255</_pnalpha>
+
+	<!-- Scroll text (def. 200) -->
+	<_stalpha> 200 </_stalpha>
+
+</rect>

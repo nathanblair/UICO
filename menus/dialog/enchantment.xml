@@ -1,0 +1,942 @@
+<!-- DarN Version 1.2 -->
+<!-- Enchantment.xml -->
+<menu name="EnchantmentMenu">
+	<class> &EnchantmentMenu; </class>
+	<stackingtype> &no_click_past; </stackingtype>
+	<alpha>	0 </alpha>
+	<locus> &true; </locus>
+	<x> 0 </x>
+	<y> 0 </y>
+	<menufade> 0.25 </menufade>
+			
+	<xup>   <ref src="ench_button_create" trait="mouseover"/> </xup>
+	<xdown> <ref src="ench_item_rect" trait="mouseover"/> </xdown>
+	
+	<xbuttonb> <ref src="ench_button_exit" trait="clicked"/> </xbuttonb>
+	<xbuttonx> <ref src="ench_button_create" trait="clicked"/> </xbuttonx>
+	
+<include src="darn\enchantment_config.xml"/>
+
+	<_itemleftheight> <!-- DarN add -->
+		<copy src="ench_known_effect_window" trait="height" />
+		<div src="ench_known_effects_scroll_bar" trait="user8"/>
+	</_itemleftheight>
+	<_itemrightheight> <!-- DarN add -->
+		<copy src="ench_added_effect_window" trait="height" />
+		<div src="ench_added_effects_scroll_bar" trait="user8"/>
+	</_itemrightheight>
+
+	<rect name="ench_focus_box">
+<include src="darn\focus_box.xml"/>
+		<id> 8 </id>
+		<visible> &false; </visible>
+		<clips> &true; </clips>
+		<user15>
+			<copy src="parent()" trait="depth" />
+			<add> 0.5 </add>
+		</user15>
+	</rect>
+	
+	<image name="ench_background">
+		<filename> Textures\DarkUI\Menus\Enchanting\enchantingdui.dds </filename>
+		<depth> 1 </depth>
+		<width> 1064 </width>
+		<height> 812 </height>
+		<zoom> -1 </zoom>
+		<x>
+			<copy src="screen()" trait="width" />
+			<sub src="me()" trait="width" />
+			<div> 2 </div>
+		</x>
+		<y>
+			<copy src="screen()" trait="height" />
+			<sub src="me()" trait="height" />
+			<div> 2 </div>
+		</y>
+		<locus> &true; </locus>
+		<target> &true; </target>
+		
+		
+		<!-- ENCHANTMENT NAME ==========================================================================-->
+		<rect name="ench_name_background">
+			<alpha> 0 </alpha>
+			<id> 24 </id>
+			<user10> &false; </user10>
+			<locus> &true; </locus>
+			<target> &true; </target>
+			<depth> 1 </depth>
+			<x> 205 </x>
+			<y> 135 </y>
+			<height> 40 </height>
+			<width> 645 </width>
+			
+			<xdefault> &false; </xdefault>
+			<xright> <ref src="ench_soulgem_rect" trait="mouseover"/> </xright>
+			<xleft> <ref src="ench_item_rect" trait="mouseover"/> </xleft>
+			<xup> <ref src="ench_button_create" trait="mouseover"/> </xup>
+			<xdown> <ref src="ench_item_rect" trait="mouseover"/> </xdown>
+			
+			<text name="ench_name_text">
+				<id> 2 </id>
+				<depth> 1 </depth>
+				<string>
+					<copy src="strings()" trait="_nameenchantment"/>
+				</string>
+				<red> <copy src="darnui_settings" trait="_enred" /> </red>
+				<green> <copy src="darnui_settings" trait="_engreen" /> </green>
+				<blue> <copy src="darnui_settings" trait="_enblue" /> </blue>
+				<alpha> 255 </alpha>
+				<font> <copy src="darnui_settings" trait="_enfont" /> </font> <!-- DarN 1 -->
+				<wrapwidth> 650 </wrapwidth> <!-- DarN 600 -->
+				<x> 30 </x>
+				<y>
+					<copy src="parent()" trait="height" />
+					<sub src="me()" trait="height" />
+					<div> 2 </div>
+				</y>
+			</text>
+		</rect>
+		
+		
+		<!-- SOUL COST INFO ==========================================================================-->
+		<image name="ench_soul_cost_icon">
+			<id> 4 </id>
+			<visible> &false; </visible>
+			<depth> 1 </depth>
+			<filename> Textures\DarkUI\Menus\Shared\all_small_iconsdui.dds </filename>
+			<cropx> 216 </cropx> <!-- DarN 288 -->
+			<alpha> 255 </alpha>
+			<width> 24 </width> <!-- DarN 32 -->
+			<height> 24 </height> <!-- DarN 32 -->
+			<x> 240 </x>
+			<y> 90 </y>
+			<user0></user0>			<!-- ench_soul_cost_text string -->
+			<user1>&false;</user1>	<!-- exceeded max cost? -->
+			<zoom> 75 </zoom> <!-- DarN add -->
+		</image>
+		
+		<text name="ench_soul_cost_text">
+			<visible> <copy src="ench_soul_cost_icon" trait="visible"/> </visible>
+			<depth> 1 </depth>
+			<string> <copy src="ench_soul_cost_icon" trait="user0"/> </string>
+			<font> <copy src="darnui_settings" trait="_igfont" /> </font> <!-- DarN 3 -->
+			<red>
+				<copy>128</copy>		<onlyif src="ench_soul_cost_icon" trait="user1"/>
+				<add>
+					<copy src="darnui_settings" trait="_igred" /> <onlyifnot src="ench_soul_cost_icon" trait="user1"/>
+				</add>
+			</red>
+			<green>
+				<copy>128</copy>		<onlyif src="ench_soul_cost_icon" trait="user1"/>
+				<add>
+					<copy src="darnui_settings" trait="_iggreen" /> <onlyifnot src="ench_soul_cost_icon" trait="user1"/>
+				</add>
+			</green>
+			<blue>
+				<copy>128</copy>		<onlyif src="ench_soul_cost_icon" trait="user1"/>
+				<add>
+					<copy src="darnui_settings" trait="_igblue" /> <onlyifnot src="ench_soul_cost_icon" trait="user1"/>
+				</add>
+			</blue>
+			<alpha>
+				<copy>128</copy>		<onlyif src="ench_soul_cost_icon" trait="user1"/>
+				<add>
+					<copy>255</copy>	<onlyifnot src="ench_soul_cost_icon" trait="user1"/>
+				</add>
+			</alpha>
+			<x>
+				<copy src="ench_soul_cost_icon" trait="x" />
+				<add src="ench_soul_cost_icon" trait="width" />
+				<add> 10 </add> <!-- DarN 15 -->
+			</x>
+			<y>
+				<copy src="ench_soul_cost_icon" trait="y" />
+				<add>
+					<copy src="ench_soul_cost_icon" trait="height" />
+					<sub src="me()" trait="height" />
+					<div> 2 </div>
+					<add>
+						<copy> 4 </copy>
+						<onlyif>
+							<copy src="me()" trait="font" />
+							<eq> 2 </eq>
+						</onlyif>
+					</add>
+				</add>
+			</y>
+		</text>
+		
+		<image name="ench_uses_icon">
+			<id> 3 </id>
+			<visible> &false; </visible>
+			<depth> 1 </depth>
+			<filename> Textures\DarkUI\Menus\Shared\all_small_iconsdui.dds </filename>
+			<cropx> 0 </cropx>
+			<width> 24 </width><!-- DarN 32 -->
+			<height> 24 </height><!-- DarN 32 -->
+			<x> 400 </x>
+			<y> 90 </y>
+			<user0></user0>		<!-- ench_uses_text string -->
+			<zoom> 75 </zoom> <!-- DarN add -->
+		</image>
+		
+		<text name="ench_uses_text">
+			<visible> <copy src="ench_uses_icon" trait="visible"/> </visible>
+			<depth> 1 </depth>
+			<string> <copy src="ench_uses_icon" trait="user0"/> </string>
+			<font> <copy src="darnui_settings" trait="_igfont" /> </font><!-- DarN 3 -->
+			<red> <copy src="darnui_settings" trait="_igred" /> </red>
+			<green> <copy src="darnui_settings" trait="_iggreen" /> </green>
+			<blue> <copy src="darnui_settings" trait="_igblue" /> </blue>
+			<alpha> 255 </alpha>
+			<x>
+				<copy src="ench_uses_icon" trait="x" />
+				<add src="ench_uses_icon" trait="width" />
+				<add> 10 </add><!-- DarN 15 -->
+			</x>
+			<y>
+				<copy src="ench_soul_cost_text" trait="y" />
+			</y>
+		</text>
+		
+		<!-- SOUL COST INFO ==========================================================================-->
+		<image name="ench_gold_cost_icon">
+			<depth> 1 </depth>
+			<filename> Textures\DarkUI\Menus\Shared\all_small_iconsdui.dds </filename>
+			<cropx> 168 </cropx><!-- DarN 224 -->
+			<alpha> 255 </alpha>
+			<width> 24 </width>
+			<height> 24 </height>
+			<x> 560 </x>
+			<y> <copy src="ench_soul_cost_icon" trait="y" /> </y>
+			<locus> &true; </locus>
+			<zoom> 75 </zoom> <!-- DarN add -->
+			
+			<image name="ench_gold_arrow_icon">
+				<filename> Textures\DarkUI\Menus\Shared\all_small_iconsdui.dds </filename>
+				<cropx> 264 </cropx> <!-- DarN 352 -->
+				<width> 24 </width>
+				<height> 24 </height>
+				<x> 18 </x> <!-- DarN 23 -->
+				<y> 0 </y>
+				<alpha> <copy src="parent()" trait="alpha"/> </alpha>
+				<zoom> 75 </zoom> <!-- DarN add -->
+			</image>
+		</image>
+		
+		<image name="ench_gold_cost_icon1">
+			<depth> 1 </depth>
+			<filename> Textures\DarkUI\Menus\Shared\all_small_iconsdui.dds </filename>
+			<cropx> 168 </cropx> <!-- DarN 224 -->
+			<alpha> 255 </alpha>
+			<width> 24 </width>
+			<height> 24 </height>
+			<x>
+				<copy src="ench_gold_cost_text" trait="x" />
+				<add src="ench_gold_cost_text" trait="width" />
+				<add> 45 </add> <!-- DarN 50 -->
+			</x>
+			<y> <copy src="ench_soul_cost_icon" trait="y" /> </y>
+			<zoom> 75 </zoom> <!-- DarN add -->
+		</image>
+
+		<text name="ench_gold_cost_text">
+			<id> 5 </id>
+			<depth> 1 </depth>
+			<string> 1 </string>
+			<font> <copy src="darnui_settings" trait="_igfont" /> </font> <!-- DarN 3 -->
+			<red>
+				<copy>128</copy>		<onlyif src="me()" trait="user0"/>
+				<add>
+					<copy src="darnui_settings" trait="_igred" /> <onlyifnot src="me()" trait="user0"/>
+				</add>
+			</red>
+			<green>
+				<copy>128</copy>		<onlyif src="me()" trait="user0"/>
+				<add>
+					<copy src="darnui_settings" trait="_iggreen" /> <onlyifnot src="me()" trait="user0"/>
+				</add>
+			</green>
+			<blue>
+				<copy>128</copy>		<onlyif src="me()" trait="user0"/>
+				<add>
+					<copy src="darnui_settings" trait="_igblue" /> <onlyifnot src="me()" trait="user0"/>
+				</add>
+			</blue>
+			<alpha>
+				<copy>128</copy>		<onlyif src="me()" trait="user0"/>
+				<add>
+					<copy>255</copy>	<onlyifnot src="me()" trait="user0"/>
+				</add>
+			</alpha>
+			<x>
+				<copy src="ench_gold_cost_icon" trait="x" />
+				<add src="ench_gold_cost_icon" trait="width" />
+				<add> 20 </add> <!-- DarN 25 -->
+			</x>
+			<y>
+				<copy src="ench_soul_cost_text" trait="y" />
+			</y>
+			<user0>&false;</user0>	<!-- exceeded max? -->
+		</text>
+		<text name="ench_gold_cost_text2">
+			<id> 13 </id>
+			<depth> 1 </depth>
+			<string> 1 </string>
+			<font> <copy src="darnui_settings" trait="_igfont" /> </font> <!-- DarN 3 -->
+			<red><copy src="ench_gold_cost_text" trait="red"/></red>
+			<green><copy src="ench_gold_cost_text" trait="green"/></green>
+			<blue><copy src="ench_gold_cost_text" trait="blue"/></blue>
+			<alpha><copy src="ench_gold_cost_text" trait="alpha"/></alpha>
+			<x>
+				<copy src="ench_gold_cost_icon1" trait="x" />
+				<add src="ench_gold_cost_icon1" trait="width" />
+				<add> 10 </add>
+			</x>
+			<y>
+				<copy src="ench_soul_cost_text" trait="y" />
+			</y>
+			<user0>&false;</user0>	<!-- exceeded max? -->
+		</text>
+		
+		
+		<!-- ITEM TO BE ENCHANTED ==========================================================================-->
+		<rect name="ench_item_rect">
+			<id> 20 </id>
+			<alpha> 0 </alpha>
+			<depth> 8 </depth>
+			<locus> &true; </locus>
+			<target> &true; </target>
+			<x> 153 </x>
+			<y> 205 </y>
+			<height> 70 </height>
+			<width> 325 </width>
+			<user0><copy src="strings()" trait="_additem"/></user0> <!-- effect description string -->
+			<user1></user1> <!-- icon pathname -->
+			
+			<xdefault> &false; </xdefault>
+			<xright> <ref src="ench_soulgem_rect" trait="mouseover"/> </xright>
+			<xleft> <ref src="ench_soulgem_rect" trait="mouseover"/> </xleft>
+			<xup> <ref src="ench_name_background" trait="mouseover"/> </xup>
+			<xdown> <ref src="ench_known_effect_pane" trait="mouseover"/> </xdown>
+			
+			<image name="ench_item_icon">
+				<id> 25 </id>
+				<visible> &false; </visible>
+				<filename></filename>
+				<width>
+					<copy> 63 </copy>
+					<div> 100 </div>
+					<mul src="me()" trait="zoom" />
+				</width>
+				<height> <copy src="me()" trait="width" /> </height>
+				<x> 0 </x>
+				<y>
+					<copy src="parent()" trait="height" />
+					<sub src="me()" trait="height" />
+					<div> 2 </div>
+				</y>
+				<zoom> <copy src="darnui_settings" trait="_iiconzoom" /> </zoom> <!-- DarN add -->
+			</image>
+			
+			<text name="ench_item_text">
+				<font> <copy src="darnui_settings" trait="_ifont" /> </font> <!-- DarN 1 -->
+				<string>
+					<copy src="parent()" trait="user0" />
+				</string>
+				<wrapwidth> 220 </wrapwidth>
+				<x> <!-- DarN 75 -->
+					<copy src="sibling(ench_item_icon)" trait="x" />
+					<add src="sibling(ench_item_icon)" trait="width" />
+					<add> 15 </add>
+				</x>
+				<y>
+					<copy src="parent()" trait="height"/>
+					<sub src="me()" trait="height"/>
+					<div> 2 </div>
+				</y>
+				<red> <copy src="darnui_settings" trait="_ired" /> </red>
+				<green> <copy src="darnui_settings" trait="_igreen" /> </green>
+				<blue> <copy src="darnui_settings" trait="_iblue" /> </blue>
+				<alpha> 255 </alpha>
+			</text>
+		</rect>
+		
+		
+		<!-- SOULGEM TO ENCHANT WITH ==========================================================================-->
+		<rect name="ench_soulgem_rect">
+			<id> 22 </id>
+			<alpha> 0 </alpha>
+			<depth> 8 </depth>
+			<target> &true; </target>
+			<locus> &true; </locus>
+			<x> 515 </x>
+			<y> 205 </y>
+			<height> 70 </height>
+			<width> 390 </width>
+			<user0><copy src="strings()" trait="_addsoulgem"/></user0> <!-- effect description string -->
+			<user1>-1</user1>											<!-- soul in soul gem -->
+			
+			<xdefault> &false; </xdefault>
+			<xright> <ref src="ench_item_rect" trait="mouseover"/> </xright>
+			<xleft> <ref src="ench_item_rect" trait="mouseover"/> </xleft>
+			<xup> <ref src="ench_name_background" trait="mouseover"/> </xup>
+			<xdown> <ref src="ench_added_effect_pane" trait="mouseover"/> </xdown>
+			
+			<image name="ench_soulgem_icon">
+				<id> 26 </id>
+				<filename></filename>	<!-- set in code -->
+				<width>
+					<copy> 63 </copy>
+					<div> 100 </div>
+					<mul src="me()" trait="zoom" />
+				</width> <!-- DarN -1 -->
+				<height> <copy src="me()" trait="width" /> </height>
+				<visible> &false; </visible>
+				<x> 8 </x> <!-- DarN 2 -->
+				<y>
+					<copy src="parent()" trait="height" />
+					<sub src="me()" trait="height" />
+					<div> 2 </div>
+				</y>
+				<zoom> <copy src="darnui_settings" trait="_sgiconzoom" /> </zoom> <!-- DarN add -->
+			</image>
+			
+			<text name="ench_soulgem_text">
+				<string>
+					<copy src="parent()" trait="user0" />
+				</string>
+				<font> <copy src="darnui_settings" trait="_sgfont" /> </font> <!-- DarN 1 -->
+				<wrapwidth> 250 </wrapwidth>
+				<x>
+					<copy src="sibling(ench_soulgem_icon)" trait="x" />
+					<add src="sibling(ench_soulgem_icon)" trait="width" />
+					<add> 15 </add>
+				</x>
+				<y>
+					<copy src="parent()" trait="height"/>
+					<sub src="me()" trait="height"/>
+					<div> 2 </div>
+				</y>
+				<red> <copy src="darnui_settings" trait="_sgred" /> </red>
+				<green> <copy src="darnui_settings" trait="_sggreen" /> </green>
+				<blue> <copy src="darnui_settings" trait="_sgblue" /> </blue>
+				<alpha> 255 </alpha>
+			</text>
+
+			<image name="ench_charge_icon">
+				<visible>
+					<copy src="parent()" trait="user1"/>
+					<gte>0</gte>
+				</visible>
+				<depth> 1 </depth>
+				<filename> Textures\DarkUI\Menus\Shared\all_small_iconsdui.dds </filename>
+				<cropx> 240 </cropx> <!-- DarN 320 -->
+				<width> 24 </width>
+				<height> 24 </height>
+				<x> 350 </x>
+				<y> 15 </y> <!-- DarN 8 -->
+				<zoom> 75 </zoom> <!-- DarN add -->
+			</image>
+			
+			<text name="ench_charge_text">
+				<visible> <copy src="ench_charge_icon" trait="visible"/> </visible>
+				<string>
+					<copy src="parent()" trait="user1" />
+				</string>
+				<justify>&center;</justify>
+				<font> 2 </font> <!-- DarN 3 -->
+				<x>
+					<copy src="ench_charge_icon" trait="x"/>
+					<add>
+						<copy src="ench_charge_icon" trait="width"/>
+						<div> 2 </div>
+					</add>
+				</x>
+				<y>
+					<copy src="ench_charge_icon" trait="y"/>
+					<add src="ench_charge_icon" trait="height"/>
+					<add> 5 </add>
+				</y>
+				<red> 217 </red>
+				<green> 185 </green>
+				<blue> 102 </blue>
+				<alpha> 255 </alpha>
+			</text>
+		</rect>
+		
+		
+		
+		<!-- KNOWN EFFECTS LIST ==========================================================================-->
+		<text name="ench_known_effect_text">
+			<id> 16</id>
+			<depth> 1 </depth>
+			<string> <copy src="strings()" trait="_applicableeffects"/> </string>
+			<font><copy src="darnui_settings" trait="_hfont" /></font>
+			<red> <copy src="darnui_settings" trait="_hred" /> </red>
+			<green> <copy src="darnui_settings" trait="_hgreen" /> </green>
+			<blue> <copy src="darnui_settings" trait="_hblue" /> </blue>
+			<alpha> 255 </alpha>
+			<x> <!-- DarN 150 -->
+				<copy src="ench_known_effect_window" trait="x"/>
+				<add>
+					<copy src="ench_known_effect_window" trait="width"/>
+					<sub src="me()" trait="width"/>
+					<div> 2 </div>
+				</add>
+			</x>
+			<y> <!-- DarN 295 -->
+				<copy src="ench_known_effect_window" trait="y" />
+				<sub src="me()" trait="height" />
+				<sub> 5 </sub>
+			</y>
+		</text>
+		
+		<!-- SCROLL =======================================-->
+		<image name="ench_known_effects_scroll_bar">
+<include src="vertical_scroll.xml"/>
+			<id>9</id>
+			<target> &true; </target>
+			<x> <!-- DarN 460 -->
+				<copy src="ench_known_effect_window" trait="x" />
+				<add src="ench_known_effect_window" trait="width" />
+				<sub>
+					<copy src="me()" trait="width" />
+					<div> 2 </div>
+				</sub>
+			</x>
+			<y>
+				<copy src="ench_known_effect_window" trait="y" />
+				<add> 32 </add>
+			</y>
+			<height>
+				<copy src="ench_known_effect_window" trait="height" />
+				<sub> 64 </sub>
+			</height>
+			<depth> 20 </depth>
+			
+			
+			<user1> 0 </user1>		<!-- Minimum value that can be scrolled to (should usually be zero) -->
+			<user2>
+				<copy src="ench_known_effect_pane" trait="child_count" />	<!-- set by code - number of visible elements in list -->
+				<sub src="me()" trait="user8"/>
+			</user2>				<!-- Maximum value that can be scrolled to (should be the number of
+										 items minus the number of items visible.  i.e. if your list has
+										 8 items and you can see 2 at any one time, this should be 6 -->
+			<user3> 1 </user3>		<!-- When the scroll arrow is clicked on, this is how many items it will advance -->
+			<user4>		<!-- When the scroll bar is clicked on, this is how many items it will advance -->
+				<copy src="me()" trait="user8" />
+				<sub> 1 </sub>
+			</user4>
+			<user5> 0 </user5>		<!-- The starting position of the scroll bar (set this only once) -->
+			<user6> 10 </user6>		<!-- A unique ID so that the scroll marker can be dragged around -->
+			<!-- user7 = current value -->
+			<user8> <copy src="darnui_settings" trait="_l1itemcount" /> </user8>		<!-- How many items are visible at once -->
+			<user9> 0 </user9>		<!-- Manual step value (multiplied by step distance and added to scroll value -->
+			<user10> 0 </user10>	<!-- reserved -->
+		</image>
+		
+		<rect name="ench_known_effect_window">
+			<clipwindow> &true; </clipwindow>
+			<height> 300 </height>
+			<width> 332 </width> <!-- DarN 330 -->
+			<locus> &true; </locus>
+			<x> 150 </x>
+			<y> 325 </y>
+			
+			<rect name="ench_known_effect_pane">
+				<id> 6 </id>
+				<alpha> 0 </alpha>
+				<depth> 8 </depth>
+				<locus> &true; </locus>
+				<clips> &true; </clips>
+				<x> 0 </x>
+				<y>
+					<copy> 0 </copy>
+					<sub>
+						<copy src="ench_known_effects_scroll_bar" trait="user7" />
+						<mul><copy src="EnchantmentMenu" trait="_itemleftheight" /> </mul>
+					</sub>	
+				</y>
+				<width>
+					<copy src="parent()" trait="width" />
+				</width>		
+				<!-- This is a list pane, and is not a focus itself, but when the child elements don't know how to handle
+					an input command, they defer to their parent. The following directions are for those times. -->
+				<target> &false; </target>
+				<xdefault> &false; </xdefault>
+				<xlist> &xlist; </xlist>
+				<xleft> <ref src="ench_item_rect" trait="mouseover" /> </xleft>
+				<xright> <ref src="ench_added_effect_pane" trait="mouseover" /> </xright>
+				<xup> <ref src="ench_item_rect" trait="mouseover" /> </xup>
+				<xdown> <ref src="ench_button_create" trait="mouseover" /> </xdown>
+				<xscroll> <ref src="ench_known_effects_scroll_bar" trait="user5" /> </xscroll>
+				
+				<!-- template items are added here -->
+				
+			</rect>
+		</rect>
+		
+		
+		<!-- ADDED EFFECTS LIST ==========================================================================-->
+		<text name="ench_added_effect_text">
+			<id> 17</id>
+			<depth> 1 </depth>
+			<string> <copy src="strings()" trait="_addedeffects"/> </string>
+			<font><copy src="darnui_settings" trait="_hfont" /></font>
+			<red> <copy src="darnui_settings" trait="_hred" /> </red>
+			<green> <copy src="darnui_settings" trait="_hgreen" /> </green>
+			<blue> <copy src="darnui_settings" trait="_hblue" /> </blue>
+			<alpha> 255 </alpha>
+			<x> <!-- DarN 525 -->
+				<copy src="ench_added_effect_window" trait="x"/>
+				<add>
+					<copy src="ench_added_effect_window" trait="width"/>
+					<sub src="me()" trait="width"/>
+					<div> 2 </div>
+				</add>
+			</x>
+			<y> <copy src="ench_known_effect_text" trait="y" /> </y>
+		</text>
+		
+		<!-- SCROLL =======================================-->
+		<image name="ench_added_effects_scroll_bar">
+<include src="vertical_scroll.xml"/>
+			<id> 12 </id>
+			<target> &true; </target>
+			<x> <!-- DarN 893 -->
+				<copy src="ench_added_effect_window" trait="x"/>
+				<add src="ench_added_effect_window" trait="width"/>
+				<sub>
+					<copy src="me()" trait="width" />
+					<div> 2 </div>
+				</sub>
+			</x>
+			<y>
+				<copy src="ench_added_effect_window" trait="y" />
+				<add> 32 </add>
+			</y>
+			<height>
+				<copy src="ench_added_effect_window" trait="height" />
+				<sub> 64 </sub>
+			</height>
+			<depth> 20 </depth>
+			<user1> 0 </user1> <!-- minimum range value -->
+			<user2>
+				<copy src="ench_added_effect_pane" trait="child_count" />	<!-- set by code - number of visible elements in list -->
+				<sub src="me()" trait="user8"/>
+			</user2> <!-- maximum range value - set by code -->
+			<user3> 1 </user3> <!-- step distance -->
+			<user4> <!-- jump distance DarN 3 -->
+					<copy src="me()" trait="user8" />
+					<sub> 1 </sub>
+			</user4>
+			<user5> 0 </user5> <!-- starting value -->
+			<user6> 11 </user6> <!-- marker's id - must change to enable dragging -->
+			<user8> <copy src="darnui_settings" trait="_l2itemcount" /> </user8> <!-- number of items visible DarN 4 -->
+		</image>
+		
+		<rect name="ench_added_effect_window">
+			<clipwindow> &true; </clipwindow>
+			<height> 300 </height>
+			<width> 399 </width> <!-- DarN 370 -->
+			<locus> &true; </locus>
+			<x> 515 </x> <!-- DarN 510 -->
+			<y> <copy src="ench_known_effect_window" trait="y"/> </y>
+			
+			<rect name="ench_added_effect_pane">
+				<id> 7 </id>
+				<alpha> 0 </alpha>
+				<depth> 8 </depth>
+				<height> 300 </height>
+				<width> <!-- DarN 330 -->
+					<copy src="parent()" trait="width" />
+				</width>
+				<locus> &true; </locus>
+				<clips> &true; </clips>
+				<x> 0 </x>
+				<y>
+					<copy> 0 </copy>
+					<sub>
+						<copy src="ench_added_effects_scroll_bar" trait="user7" />
+						<mul src="EnchantmentMenu" trait="_itemrightheight" />
+					</sub>	
+				</y>
+						
+				<!-- This is a list pane, and is not a focus itself, but when the child elements don't know how to handle
+					an input command, they defer to their parent. The following directions are for those times. -->
+				<target> &false; </target>
+				<xdefault> &false; </xdefault>
+				<xlist> &xlist; </xlist>
+				<xleft> <ref src="ench_known_effect_pane" trait="mouseover" /> </xleft>
+				<xright> <ref src="ench_soulgem_rect" trait="mouseover" /> </xright>
+				<xup> <ref src="ench_soulgem_rect" trait="mouseover" /> </xup>
+				<xdown> <ref src="ench_button_exit" trait="mouseover" /> </xdown>
+				<xscroll> <ref src="ench_added_effects_scroll_bar" trait="user5" /> </xscroll>
+				
+				<!-- template items are added here -->
+				
+			</rect>
+		</rect>
+		
+		
+		<!-- BUTTONS ==========================================================================-->
+		<image name="ench_button_create">
+<include src="darn\button_long.xml"/>
+			<id> 14 </id>
+			<x> 270 </x>
+			<y> 650 </y>
+			<user0> <copy src="strings()" trait="_create"/> </user0>
+			
+			<user20> &xbuttonx; </user20>
+			<xdefault> &xboxhint; </xdefault>
+			<xright> <ref src="ench_button_exit" trait="mouseover"/>   </xright>
+			<xleft>  <ref src="ench_button_exit" trait="mouseover"/>   </xleft>
+			<xup>    <ref src="ench_known_effect_pane" trait="mouseover"/> </xup>
+			<xdown>  <ref src="ench_name_background" trait="mouseover"/>   </xdown>
+		</image>
+		
+		
+		<image name="ench_button_exit">
+<include src="darn\button_short.xml"/>
+			<id> 15 </id>
+			<target> &true; </target>
+			<x> <!-- DarN 650 -->
+				<copy src="ench_added_effect_window" trait="x" />
+				<add>
+					<copy src="ench_added_effect_window" trait="width" />
+					<sub src="me()" trait="width" />
+					<div> 2 </div>
+				</add>
+			</x>
+			<y> <copy src="ench_button_create" trait="y" /> </y>
+			<user0> <copy src="strings()" trait="_exit"/> </user0>
+			
+			<user20> &xbuttonb; </user20>
+			<xdefault> &xboxhint; </xdefault>
+			<xright> <ref src="ench_button_create" trait="mouseover"/>   </xright>
+			<xleft>  <ref src="ench_button_create" trait="mouseover"/>   </xleft>
+			<xup>    <ref src="ench_added_effect_pane" trait="mouseover"/> </xup>
+			<xdown>  <ref src="ench_name_background" trait="mouseover"/>   </xdown>
+		</image>
+	</image>
+	
+	
+	
+	
+	<!-- TEMPLATE 1 ==========================================================================-->
+	<template name="known_effect_template">
+		<rect name="ench_effects_known">
+			<id> 82 </id>
+			<target> &true; </target>
+			<repeatvertical> &true; </repeatvertical>
+			<alpha> 0 </alpha>
+			<depth> 1 </depth>
+			<width>
+				<copy src="parent()" trait="width" />
+				<sub>
+					<copy> 15 </copy>
+					<onlyif>
+						<copy src="ench_known_effects_scroll_bar" trait="visible" />
+						<eq> &true; </eq>
+					</onlyif>
+				</sub>
+			</width>
+			<focusinset> 5 </focusinset>
+			<height> <copy src="EnchantmentMenu" trait="_itemleftheight" /> </height>
+			<clips> &true; </clips>
+			<locus> &true; </locus>
+			<x> 0 </x>
+			<y>
+				<copy src="me()" trait="listindex" />
+				<mul src="me()" trait="height" />
+				<floor> 0 </floor> <!-- Darn add -->
+			</y>
+			<listindex> <copy src="me()" trait="user0"/> </listindex>
+			<user0> 0 </user0>	<!-- position in list - set by code -->
+			
+			<!-- This element is a list item. If it gets an input command it doesn't know how to handle
+			     it will defer the command to its parent. The xlist trait set to true triggers this. -->
+			<xdefault> &false; </xdefault>
+			<xlist> &xitem; </xlist>
+			<xup> &prev; </xup>
+			<xdown> &next; </xdown>
+			<xscroll>
+				<copy src="me()" trait="listindex" />
+				<sub>
+					<copy src="ench_known_effects_scroll_bar" trait="user8"/>
+					<div> 2 </div>
+					<ceil> 0 </ceil>
+				</sub>
+				<add> 1 </add>
+			</xscroll>
+			
+			<image name="known_effect_icon">
+				<filename>
+					<copy src="parent()" trait="user1" />
+				</filename>
+				<depth> 1 </depth>
+				<zoom> <copy src="darnui_settings" trait="_l1iconzoom" /> </zoom> <!-- DarN -1 -->
+				<width>
+					<copy> 64 </copy>
+					<div> 100 </div>
+					<mul src="me()" trait="zoom" />
+					<floor> 0 </floor>
+				</width> <!-- DarN -1 -->
+				<height> <copy src="me()" trait="width" /> </height> <!-- DarN -1 -->
+				<clips> &true; </clips>
+				<x> 5 </x>
+				<y>
+					<copy src="parent()" trait="height" />
+					<sub src="me()" trait="height" />
+					<div> 2 </div>
+					<ceil> 0 </ceil>
+				</y>
+			</image>
+			
+			<text name="ench_known_effect_text">
+				<depth> 1 </depth>
+				<font> <copy src="darnui_settings" trait="_l1font" /> </font> <!-- DarN 3 -->
+				<string>
+					<copy src="parent()" trait="user2" />
+				</string>
+				<justify> &left; </justify>
+				<red> <copy src="darnui_settings" trait="_l1red" /> </red> <!-- DarN 117 -->
+				<green> <copy src="darnui_settings" trait="_l1green" /> </green> <!-- DarN 59 -->
+				<blue> <copy src="darnui_settings" trait="_l1blue" /> </blue> <!-- DarN 33 -->
+				<alpha> 255 </alpha>
+				<wrapwidth> 230 </wrapwidth>
+				<clips> &true; </clips>
+				<x> <!-- DarN 50 -->
+					<copy src="sibling(known_effect_icon)" trait="x" />
+					<add src="sibling(known_effect_icon)" trait="width" />
+					<add> 8 </add>	
+				</x>
+				<y>
+					<copy src="parent()" trait="height" />
+					<sub src="me()" trait="height" />
+					<div> 2 </div>
+					<add>
+						<copy> 5 </copy>
+						<onlyif>
+							<copy src="me()" trait="font" />
+							<eq> 2 </eq>
+						</onlyif>
+					</add>
+				</y>
+			</text>
+		</rect>
+	</template>
+	
+	
+	
+	<!-- TEMPLATE 2 ==========================================================================-->
+	<template name="added_effect_template">
+		<rect name="ench_effects_added">
+			<id> 83 </id>
+			<target> &true; </target>
+			<repeatvertical> &true; </repeatvertical>
+			<alpha> 0 </alpha>
+			<depth> 1 </depth>
+			<width> <!-- DarN 350 -->
+				<copy src="parent()" trait="width" />
+				<sub>
+					<copy> 15 </copy>
+					<onlyif>
+						<copy src="ench_added_effects_scroll_bar" trait="visible" />
+						<eq> &true; </eq>
+					</onlyif>
+				</sub>
+			</width>
+			<height> <copy src="EnchantmentMenu" trait="_itemrightheight" /> </height>
+			<clips> &true; </clips>
+			<locus> &true; </locus>
+			<focusinset> 5 </focusinset>
+			<x> 0 </x> <!-- DarN 20 -->
+			<y>
+				<copy src="me()" trait="listindex" />
+				<mul src="me()" trait="height" />
+				<floor> 0 </floor>
+			</y>
+			<listindex> <copy src="me()" trait="user0"/> </listindex>
+			<user0> 0 </user0>	<!-- position in list - set by code -->
+			
+			<!-- This element is a list item. If it gets an input command it doesn't know how to handle
+			     it will defer the command to its parent. The xlist trait set to true triggers this. -->
+			<xdefault> &false; </xdefault>
+			<xlist> &xitem; </xlist>
+			<xup> &prev; </xup>
+			<xdown> &next; </xdown>
+			<xscroll>
+				<copy src="me()" trait="listindex" />
+				<sub>
+					<copy src="ench_added_effects_scroll_bar" trait="user8"/>
+					<div> 2 </div>
+					<ceil> 0 </ceil>
+				</sub>
+				<add> 1 </add>
+			</xscroll>			
+			
+			<image name="ench_added_effect_icon">
+				<filename> <copy src="parent()" trait="user1" /> </filename>
+				<depth> 1 </depth>
+				<zoom> <copy src="darnui_settings" trait="_l2iconzoom" /> </zoom> <!-- DarN -1 -->
+				<height>
+					<copy> 64 </copy>
+					<div> 100 </div>
+					<mul src="me()" trait="zoom" />
+					<floor> 0 </floor>
+				</height>
+				<width> <copy src="me()" trait="height" /> </width>
+				<clips> &true; </clips>
+				<x> 5 </x>
+				<y>
+					<copy src="parent()" trait="height" />
+					<sub src="me()" trait="height" />
+					<div> 2 </div>
+					<ceil> 0 </ceil>
+				</y>
+			</image>
+			
+			<text name="ench_added_effect_text">
+				<depth> 1 </depth>
+				<font> <copy src="darnui_settings" trait="_l2font" /> </font> <!-- DarN 3 -->
+				<string>
+					<copy src="parent()" trait="user2" />
+				</string>
+				<justify> &left; </justify>
+				<red> <copy src="darnui_settings" trait="_l2red" /> </red> <!-- DarN 117 -->
+				<green> <copy src="darnui_settings" trait="_l2green" /> </green> <!-- DarN 59 -->
+				<blue> <copy src="darnui_settings" trait="_l2blue" /> </blue> <!-- DarN 33 -->
+				<alpha> 255 </alpha>
+				<width>  <!-- DarN 310 -->
+					<copy src="parent" trait="width" />
+					<sub src="me()" trait="x" />
+				</width>
+				<wrapwidth> <!-- DarN 300 -->
+					<copy src="parent" trait="width" />
+					<sub> 20 </sub>
+					<!--<sub src="me()" trait="x" />-->
+				</wrapwidth>
+				<clips> &true; </clips>
+				<x>
+					<copy src="sibling(ench_added_effect_icon)" trait="x" />
+					<add src="sibling(ench_added_effect_icon)" trait="width" />
+					<add> 8 </add>
+				</x>
+				<y>
+					<copy src="parent()" trait="height" />
+					<sub src="me()" trait="height" />
+					<div> 2 </div>
+					<add>
+						<copy> 5 </copy>
+						<onlyif>
+							<copy src="me()" trait="font" />
+							<eq> 2 </eq>
+						</onlyif>
+					</add>
+				</y>
+			</text>
+		</rect>
+	</template>
+</menu>

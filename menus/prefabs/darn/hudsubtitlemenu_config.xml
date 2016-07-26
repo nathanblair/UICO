@@ -1,0 +1,28 @@
+
+<!--	DARNIFIED HUD SUBTITLE MENU CONFIG 1.0
+-->
+<rect name="darnui_settings">
+	<_configversion> 1.0 </_configversion>
+
+	<!-- Subtitle text (def. 3,255,255,255,255,0,-40,&true;,120 -->
+	<_sttfont> 3 </_sttfont>
+	<_sttred> 255 </_sttred>
+	<_sttgreen> 255 </_sttgreen>
+	<_sttblue> 255 </_sttblue>
+	<_sttalpha> 255 </_sttalpha>
+	<_sttxoffset> 0 </_sttxoffset>
+	<_sttyoffset> -40 </_sttyoffset>
+	<_sttbackground> &true; </_sttbackground>
+	<_sttbackgroundalpha> 120 </_sttbackgroundalpha>
+
+	<!-- Notice text "You found, etc" (def. 3,254,244,183,255,0,0,&true;) -->
+	<_ntfont> 3 </_ntfont>
+	<_ntred> 254 </_ntred>
+	<_ntgreen> 244 </_ntgreen>
+	<_ntblue> 183 </_ntblue>
+	<_ntalpha> 255 </_ntalpha>
+
+	<!-- TEXTURES -->
+	<_t_genericicon> Menus\loading\loading_symbol.dds </_t_genericicon>
+
+</rect>

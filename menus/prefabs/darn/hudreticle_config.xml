@@ -1,0 +1,18 @@
+
+<!-- DARNIFIED HUD RETICLE CONFIG 1.0
+-->
+<rect name="darnui_settings">
+	<_configversion> 1.1 </_configversion>
+
+	<!-- Setting the next entry to &true; will show activate icons in third person mode. -->
+	<_forceaicons> &true; </_forceaicons>
+
+	<!-- Enemy Health Bar (def. &true, &true;) -->
+	<_ehbscaled> &true; </_ehbscaled>
+
+	<!-- TEXTURES -->
+	<_t_crosshair> Menus\Misc\hud_reticle.dds </_t_crosshair>
+	<_t_activateicons> Menus\Shared\all_small_activate_icons.dds </_t_activateicons>
+	<_t_sneakicon> Menus\Icons\icon_small_eye.dds </_t_sneakicon>
+
+</rect>

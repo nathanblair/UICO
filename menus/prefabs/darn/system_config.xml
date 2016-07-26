@@ -1,0 +1,67 @@
+
+<!--	DARNIFIED SYSTEM CONFIG 1.0
+-->
+<rect name="darnui_settings">
+	<_configversion> 1.0 </_configversion>
+<!--======================================== Global ========================================-->
+	<!-- Labels (def. 3,0,0,0,200) -->
+	<_lfont>3</_lfont>
+	<_lred>217</_lred>
+	<_lgreen>185</_lgreen>
+	<_lblue>102</_lblue>
+	<_lalpha>255</_lalpha>
+
+<!--======================================= Main Menu ======================================-->
+	<!-- Main menu button text (def. 1,0,0,0,180, &false;) -->
+	<_mmfont>1</_mmfont>
+	<_mmred>217</_mmred>
+	<_mmgreen>185</_mmgreen>
+	<_mmblue>102</_mmblue>
+	<_mmalpha>255</_mmalpha>
+	<_daedric> &false; </_daedric>
+
+<!--======================================= Controls =======================================-->
+	<!-- Number of items in list (def. 20, max. 20) -->
+	<_clinumitems>20</_clinumitems>
+	<!-- Y Offset for bottom line graphic in list (def. 0) -->
+	<_clboffset>0</_clboffset>
+	<!-- Controls list item labels (def. 2,0,0,0,200,0,-4) -->
+	<_clifont>2</_clifont>
+	<_clired>217</_clired>
+	<_cligreen>185</_cligreen>
+	<_cliblue>102</_cliblue>
+	<_clialpha>255</_clialpha>
+	<!-- Controls list labels offsets - Handy if you make your own fonts... -->
+	<_clixoffset>0</_clixoffset>
+	<_cliyoffset>-4</_cliyoffset>
+
+<!--======================================== Video =========================================-->
+	<!-- Where the slider quantity number should go (def. &left;) -->
+	<_vqtypos>&left;</_vqtypos> <!-- choices: &left;, &right; and &center; -->
+	
+<!--======================================== Audio =========================================-->
+	<!-- Where the slider quantity number should go (def. &left;) -->
+	<_aqtypos>&left;</_aqtypos> <!-- choices: &left;, &right; and &center; -->
+	
+<!--====================================== Load/Save =======================================-->
+	<!-- List text (def. 3,117,59,33,200,0,-2) -->
+	<_lsifont>3</_lsifont>
+	<_lsired>217</_lsired>
+	<_lsigreen>185</_lsigreen>
+	<_lsiblue>102</_lsiblue>
+	<_lsialpha>255</_lsialpha>
+	<_lsixoffset>0</_lsixoffset>
+	<_lsiyoffset>-2</_lsiyoffset>
+	<!-- Game description text (def. 3,0,0,0,200) -->
+	<_lsgdfont>3</_lsgdfont>
+	<_lsgdred>217</_lsgdred>
+	<_lsgdgreen>185</_lsgdgreen>
+	<_lsgdblue>102</_lsgdblue>
+	<_lsgdalpha>255</_lsgdalpha>
+	<!-- Help text on top of page (def. 3,117,59,33,255) -->
+	<_lshfont>3</_lshfont>
+	<_lshred>217</_lshred>
+	<_lshgreen>185</_lshgreen>
+	<_lshblue>102</_lshblue>
+	<_lshalpha>255</_lshalpha>
+</rect>

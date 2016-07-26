@@ -1,0 +1,193 @@
+<!-- quantity_menu.xml -->
+<!-- DarN Version 1.1 -->
+<menu name="QuantityMenu">
+	<class> &QuantityMenu; </class>
+	<stackingtype> &no_click_past; </stackingtype>
+	<alpha>	0 </alpha>
+	<locus> &true; </locus>
+	<x> 0 </x>
+	<y> 0 </y>
+	<explorefade> 0.25 </explorefade>
+
+	<xdefault> &true; </xdefault>
+    <xup> <ref src="quantity_button_okay" trait="clicked"/> </xup>
+    <xdown> <ref src="quantity_button_cancel" trait="clicked"/> </xdown>
+    <xleft> <ref src="horizontal_scroll_left" trait="clicked"/> </xleft>
+    <xright> <ref src="horizontal_scroll_right" trait="clicked"/> </xright>
+	<xbuttona> <ref src="quantity_button_okay" trait="clicked"/> </xbuttona>
+	<xbuttonb> <ref src="quantity_button_cancel" trait="clicked"/> </xbuttonb>
+	
+<include src="darn\barter_config.xml"/>
+	
+	<!-- BACKGROUND ============================================================================-->
+	<rect name="quantity_background">
+<include src="darn\generic_background50.xml"/>
+		<id> 1 </id>
+		<target> &true; </target>
+		<user0> 340 </user0> <!-- DarN width 600/380 -->
+		<user1> 170 </user1> <!-- DarN height 260/200 -->
+		<locus> &true; </locus>
+		<x>
+			<copy src="screen()" trait="width"/>
+			<div> 2 </div>
+			<sub>
+				<copy src="me()" trait="width" />
+				<div> 2 </div>
+			</sub>
+		</x>
+		<y>
+			<copy src="screen()" trait="height"/>
+			<div> 2 </div>
+			<sub>
+				<copy src="me()" trait="height" />
+				<div> 2 </div>
+			</sub>
+		</y>
+		<depth> 1 </depth>
+		
+		
+		
+		<!-- TEXT ============================================================================-->
+		<text name="quantity_display_text">
+			<id> 2 </id>
+			<target> &true; </target>
+			<depth> 5 </depth>
+			<string> <copy src="strings()" trait="_howmany"/> </string>
+			<justify> &center; </justify>
+			<font> <copy src="darnui_settings" trait="_tfont" /> </font><!-- DarN add -->
+			<red> <copy src="darnui_settings" trait="_tred" /> </red> <!-- DarN 117 -->
+			<green> <copy src="darnui_settings" trait="_tgreen" /> </green> <!-- DarN 59 -->
+			<blue> <copy src="darnui_settings" trait="_tblue" /> </blue> <!-- DarN 33 -->
+			<alpha> <copy src="darnui_settings" trait="_talpha" /> </alpha> <!-- DarN 255 -->
+			<wrapwidth>
+				<copy src="parent()" trait="width" />
+				<sub> 50 </sub>
+			</wrapwidth>
+			<x>
+				<copy src="parent()" trait="width"/>
+				<div> 2 </div>
+			</x>
+			<y> 15 </y> <!-- DarN 20 -->
+		</text>
+		
+		
+		<!-- SCROLL ============================================================================-->
+		<image name="quantity_scroll">
+<include src="darn\horiz_floating_scroll.xml"/>
+			<id> 3 </id>
+			<user6> 4 </user6>	<!-- ID for marker/slider -->
+			<!--<user4> 10 </user4>-->
+			<width> 230 </width> <!-- DarN 350/250 -->
+			<x>
+				<copy src="parent()" trait="width"/>
+				<sub src="me()" trait="width"/>
+				<div> 2 </div>
+			</x>
+			<y>
+				<copy src="sibling(quantity_display_text)" trait="y"/>
+				<add src="sibling(quantity_display_text)" trait="height"/>
+				<add> 20 </add> <!-- DarN 60 -->
+			</y>
+			<depth> 5 </depth>
+			<user3> 1 </user3>
+			<user8> &true; </user8> <!-- DarN &false; -->
+			<_showperc> &false; </_showperc> <!-- DarN add (set to true if value is a percentage) -->
+			<_textside> &center; </_textside>
+		</image>
+		
+		<image name="quantity_scroll_marker">
+			<zoom> 75 </zoom> <!-- DarN add -->
+			<id> &generic; </id>
+			<target> &true; </target>
+			<repeathorizontal> &true; </repeathorizontal>
+			<depth> 1 </depth>
+			<filename> Textures\DarkUI\Menus\dialog\dialog_selection_fulldui.dds </filename>
+			<alpha>
+				<copy> 255 </copy>
+				<mul>
+					<copy src="me()" trait="mouseover" />
+					<add src="quantity_scroll" trait="_mouseover_any" />
+					<min> 1 </min>
+				</mul>
+			</alpha>
+			<width>
+				<copy src="quantity_scroll" trait="width"/>
+				<add> 90 </add> <!-- DarN 120 -->
+			</width>
+			<height> 48 </height> <!-- DarN 64 -->
+			<x>
+				<copy src="quantity_scroll" trait="x"/>
+				<sub> 45 </sub> <!-- DarN 60 -->
+			</x>
+			<y>
+				<copy src="quantity_scroll" trait="y"/>
+				<sub> 16 </sub> <!-- DarN 21 -->
+			</y>
+			<depth> 3 </depth>
+			<locus> &true; </locus>
+
+			<image name="quantity_scroll_marker_2">
+				<zoom> 75 </zoom> <!-- DarN add -->
+				<depth> 1 </depth>
+				<filename> Textures\DarkUI\Menus\dialog\dialog_selection_cutdui.dds </filename>
+				<alpha> <copy src="parent()" trait="alpha"/> </alpha>
+					<width> 78 </width> <!-- DarN 104 -->
+					<height> 48 </height> <!-- DarN 64 -->
+				<x>
+					<copy src="parent()" trait="width" />
+					<sub> 72 </sub> <!-- DarN 100 -->
+				</x>
+				<y> 0 </y>
+			</image>
+		</image>
+		
+		
+
+		
+				
+				
+		<!-- BUTTON OKAY =====================================================================-->
+		<image name="quantity_button_okay">
+<include src="darn\button_short.xml" />
+			<id> 6 </id>
+			<target> &true; </target>
+			<x>
+				<copy src="quantity_button_cancel" trait="x" />
+				<sub src="me()" trait="width" />
+				<sub> 20 </sub>
+			</x>
+			<y>
+				<!-- <copy src="parent()" trait="height" />
+				<sub src="me()" trait="height" />
+				<sub> 20 </sub> -->
+				<copy src="quantity_button_cancel" trait="y" />
+			</y>
+			<depth> 3 </depth>
+			<user0> <copy src="strings()" trait="_ok"/> </user0>
+			
+			<user20> &xbuttona; </user20>
+		</image>
+		
+		
+		<!-- BUTTON CANCEL =====================================================================-->
+		<image name="quantity_button_cancel">
+<include src="darn\button_long.xml" />
+			<id> 7 </id>
+			<x>
+				<copy src="parent()" trait="width" />
+				<sub src="me()" trait="width" />
+				<sub> 15 </sub>
+			</x>
+			<y>
+				<copy src="parent()" trait="height" />
+				<sub src="me()" trait="height" />
+				<sub> 10 </sub>
+			</y>
+			<depth> 3 </depth>
+			<user0> <copy src="strings()" trait="_cancel"/> </user0>
+			
+			<user20> &xbuttonb; </user20>
+		</image>
+		
+	</rect>
+</menu>

@@ -1,0 +1,34 @@
+<!-- DARNIFIED RECHARGE CONFIG 1.0 -->
+<rect name="darnui_settings">
+<_configversion> 1.0 </_configversion>
+
+
+<!-- How many items visible in the list (def 16) -->
+<_itemcount> 16 </_itemcount>
+
+
+<!-- What the "Items" header should say. I found no suitable string in strings(),
+so if you're on a non english installation, you can write what it should say here. -->
+
+<_itemsheader_text> Items </_itemsheader_text> <!-- def Items -->
+
+
+<!-- Font to use for list items (def 2) -->
+<_itemfont> 2 </_itemfont>
+
+
+<!-- Item names font color -->
+<_ifnred> 217 </_ifnred> <!-- def 0 -->
+<_ifngreen> 185 </_ifngreen> <!-- def 0 -->
+<_ifnblue> 102 </_ifnblue> <!-- def 0 -->
+
+
+<!-- Item Charge font color -->
+<_ifcred> 217 </_ifcred> <!-- def 117 -->
+<_ifcgreen> 185 </_ifcgreen> <!-- def 59 -->
+<_ifcblue> 102 </_ifcblue> <!-- def 33 -->
+
+
+<!-- Zoom for the item icon (def 40) -->
+<_itemiconzoom> 40 </_itemiconzoom>
+</rect>

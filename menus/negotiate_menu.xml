@@ -1,0 +1,387 @@
+<!-- negotiate_menu.xml -->
+<!-- DarN Version 1.0 -->
+<menu name="NegotiateMenu">
+	<class> &NegotiateMenu; </class>
+	<stackingtype> &no_click_past; </stackingtype>
+	<alpha>	0 </alpha>
+	<locus> &true; </locus>
+	<explorefade> 0.25 </explorefade>
+	
+	<xbuttonb> <ref src="negotiate_button_cancel" trait="clicked"/> </xbuttonb>
+	<xbuttona> <ref src="negotiate_button_okay" trait="clicked"/> </xbuttona>
+	<xbuttonlb> <ref src="horizontal_scroll_leftside" trait="clicked"/> </xbuttonlb>
+	<xbuttonrb> <ref src="horizontal_scroll_rightside" trait="clicked"/> </xbuttonrb>
+	
+<include src="darn\barter_config.xml"/>
+	
+	<!-- BACKGROUND ============================================================================-->
+	<rect name="negotiate_background">
+<include src="darn\generic_background75.xml"/>
+		<id>1</id>
+		<visible> 2 </visible>
+		<target> &true; </target>
+		<filename> Menus\Shared\main_page_5.dds </filename>
+		<depth> 5 </depth>
+		<user0> 490 </user0> <!-- DarN width 720/580 -->
+		<user1> 294 </user1> <!-- DarN height 340 -->
+		<locus> &true; </locus>
+		<x>
+			<copy src="screen()" trait="width"/>
+			<div> 2 </div>
+			<sub>
+				<copy src="negotiate_background" trait="width" />
+				<div> 2 </div>
+			</sub>
+		</x>
+		<y>
+			<copy src="screen()" trait="height"/>
+			<div> 2 </div>
+			<sub>
+				<copy src="negotiate_background" trait="height" />
+				<div> 2 </div>
+			</sub>
+		</y>
+		
+		
+		<!-- PROMPT ============================================================================-->
+		<!-- DarN Name of merchant -->
+		<text name="negotiate_display_text">
+			<id> 2 </id>
+			<target> &true; </target>
+			<depth> 5 </depth>
+			<string> <copy src="strings()" trait="_haggle"/> </string>
+			<justify> &center; </justify>
+			<font> <copy src="darnui_settings" trait="_nfont" /> </font><!-- DarN add -->
+			<red> <copy src="darnui_settings" trait="_nred" /> </red> <!-- DarN 117 -->
+			<green> <copy src="darnui_settings" trait="_ngreen" /> </green> <!-- DarN 59 -->
+			<blue> <copy src="darnui_settings" trait="_nblue" /> </blue> <!-- DarN 33 -->
+			<alpha> <copy src="darnui_settings" trait="_nalpha" /> </alpha> <!-- DarN 200 -->
+			<wrapwidth>
+				<copy src="parent()" trait="width" />
+				<sub> 50 </sub>
+			</wrapwidth>
+			<x> <!-- DarN 330 -->
+				<copy src="parent()" trait="width"/>
+				<div> 2 </div>
+			</x>
+			<y> 10 </y>
+		</text>
+
+		<image name="darn_divider"> <!-- DarN add -->
+			<depth> 5 </depth>
+			<filename>Textures\DarkUI\Menus\Shared\shared_border_horizontal_1dui.dds</filename>
+			<x>
+				<copy src="parent()" trait="width"/>
+				<div> 2 </div>
+				<sub>
+					<copy src="me()" trait="width"/>
+					<div> 2 </div>
+				</sub>
+			</x>
+			<y>
+				<copy src="negotiate_display_text" trait="y"/>
+				<add src="negotiate_display_text" trait="height"/>
+				<add> 4 </add> <!-- DarN 40 -->
+			</y>
+			<width>
+				<copy src="parent()" trait="width"/>
+				<sub> 100 </sub>
+			</width>
+			<height> 4 </height>
+		</image>	
+		<!-- SKILL DISPLAY ============================================================================-->
+		<text name="negotiate_mercantile_text">
+			<id> 11 </id>
+			<target> &true; </target>
+			<depth> 5 </depth>
+			<string> <copy src="strings()" trait="_mercantile"/> </string>
+			<justify> &left; </justify> <!-- DarN &center; -->
+			<font> <copy src="darnui_settings" trait="_sfont" /> </font><!-- DarN add -->
+			<red> <copy src="darnui_settings" trait="_sred" /> </red> <!-- DarN 117 -->
+			<green> <copy src="darnui_settings" trait="_sgreen" /> </green> <!-- DarN 59 -->
+			<blue> <copy src="darnui_settings" trait="_sblue" /> </blue> <!-- DarN 33 -->
+			<alpha> <copy src="darnui_settings" trait="_salpha" /> </alpha> <!-- DarN 200 -->
+			<wrapwidth>
+				<copy src="parent()" trait="width" />
+				<sub> 50 </sub>
+			</wrapwidth>
+			<x> <!-- DarN 350 -->
+				<!-- <copy src="negotiate_display_text" trait="x" />
+				<sub src="negotiate_display_text" trait="width" />
+				<div> 2 </div> -->
+				<copy src="negotiate_buy_text" trait="x" />
+			</x>
+			<y> <!-- DarN 40 -->
+				<copy src="darn_divider" trait="y"/>
+				<add src="darn_divider" trait="height"/>
+				<add> 20 </add>
+			</y>
+		</text>
+		
+		<!-- DISPOSITION DISPLAY ============================================================================-->
+		<text name="negotiate_disposition_text">
+			<id> 12 </id>
+			<target> &true; </target>
+			<depth> 5 </depth>
+			<string> <copy src="strings()" trait="_disposition"/> </string>
+			<justify> &left; </justify> <!-- DarN &center; -->
+			<font> <copy src="darnui_settings" trait="_dfont" /> </font><!-- DarN add -->
+			<red> <copy src="darnui_settings" trait="_dred" /> </red> <!-- DarN 117 -->
+			<green> <copy src="darnui_settings" trait="_dgreen" /> </green> <!-- DarN 59 -->
+			<blue> <copy src="darnui_settings" trait="_dblue" /> </blue> <!-- DarN 33 -->
+			<alpha> <copy src="darnui_settings" trait="_dalpha" /> </alpha> <!-- DarN 255 -->
+			<wrapwidth>
+				<copy src="parent()" trait="width" />
+				<sub> 50 </sub>
+			</wrapwidth>
+			<x> <!-- DarN 350 -->
+				<copy src="negotiate_mercantile_text" trait="x" />
+			</x>
+			<y> <!-- DarN 70 -->
+				<copy src="negotiate_mercantile_text" trait="y"/>
+				<add src="negotiate_mercantile_text" trait="height"/>
+				<add> 4 </add>
+			</y>
+		</text>
+		
+		<!-- SCROLL ============================================================================-->
+		<image name="negotiate_scroll">
+<include src="darn\horiz_floating_scroll.xml"/>
+			<id> 3 </id>
+			<user6> 4 </user6>	<!-- ID for marker/slider -->
+			<user8> &false; </user8>
+			<width> 260 </width> <!-- DarN 350 -->
+			<x> <!-- DarN 180/110 -->
+				<copy src="negotiate_display_text" trait="x" />
+				<sub>
+					<copy src="me()" trait="width" />
+					<div> 2 </div>
+				</sub>
+			</x>
+			<y> 130 </y>
+			<depth> 6 </depth>
+			<user3> 1 </user3>
+		</image>
+		
+		<image name="negotiate_scroll_marker">
+			<zoom> 75 </zoom> <!-- DarN add -->
+			<id> &generic; </id>
+			<target> &true; </target>
+			<repeathorizontal> &true; </repeathorizontal>
+			<depth> 3 </depth>
+			<filename> Textures\DarkUI\Menus\dialog\dialog_selection_fulldui.dds </filename>
+			<alpha>
+				<copy> 255 </copy>
+				<mul>
+					<copy src="me()" trait="mouseover" />
+					<add src="negotiate_scroll" trait="_mouseover_any" />
+					<min> 1 </min>
+				</mul>
+			</alpha>
+			<width>
+				<copy src="negotiate_scroll" trait="width"/>
+				<add> 90 </add>
+			</width>
+			<height> 48 </height>
+			<x>
+				<copy src="negotiate_scroll" trait="x"/>
+				<sub> 45 </sub>
+			</x>
+			<y>
+				<copy src="negotiate_scroll" trait="y"/>
+				<sub> 16 </sub>
+			</y>
+			<locus> &true; </locus>
+			
+			<xdefault> &true; </xdefault>
+			<xleft> <ref src="horizontal_scroll_left" trait="clicked"/> </xleft>
+			<xright> <ref src="horizontal_scroll_right" trait="clicked"/> </xright>
+			<xdown> <ref src="negotiate_button_okay" trait="mouseover"/> </xdown>
+			<xup> <ref src="negotiate_button_cancel" trait="mouseover"/> </xup>
+			
+			<image name="negotiate_scroll_marker_2">
+				<zoom> 75 </zoom> <!-- DarN add -->
+				<depth> 2 </depth>
+				<filename> Textures\DarkUI\Menus\dialog\dialog_selection_cutdui.dds </filename>
+				<alpha> <copy src="parent()" trait="alpha"/> </alpha>
+					<width> 78 </width> <!-- DarN 104 -->
+					<height> 48 </height> <!-- DarN 64 -->
+				<x>
+					<copy src="parent()" trait="width" />
+					<sub> 72 </sub>
+				</x>
+				<y> 0 </y>
+			</image>
+		</image>
+		
+		
+		<!-- EASY LABEL =====================================================================-->
+		<text name="negotiate_easy_text">
+			<target> &true; </target>
+			<depth> 5 </depth>
+			<string> <copy src="strings()" trait="_easy"/> </string>
+			<justify> &left; </justify>
+			<font> <copy src="darnui_settings" trait="_difont" /> </font><!-- DarN add -->
+			<red> <copy src="darnui_settings" trait="_dired" /> </red> <!-- DarN 117 -->
+			<green> <copy src="darnui_settings" trait="_digreen" /> </green> <!-- DarN 59 -->
+			<blue> <copy src="darnui_settings" trait="_diblue" /> </blue> <!-- DarN 33 -->
+			<alpha> <copy src="darnui_settings" trait="_dialpha" /> </alpha> <!-- DarN 200 -->
+			<wrapwidth>
+				<copy src="parent()" trait="width" />
+				<sub> 50 </sub>
+			</wrapwidth>
+			<x>
+				<copy src="negotiate_scroll" trait="x"/>
+				<sub src="me()" trait="width"/>
+				<sub> 54 </sub> <!-- DarN 70 -->
+				<sub src="darnui_settings" trait="_dixoffset" />
+			</x>
+			<y>
+				<copy src="negotiate_scroll" trait="y"/>
+				<add>
+					<copy src="negotiate_scroll" trait="height"/>
+					<sub src="me()" trait="height"/>
+					<div> 2 </div>
+				</add>
+				<add src="darnui_settings" trait="_diyoffset" />
+			</y>
+		</text>
+		
+		<!-- HARD LABEL =====================================================================-->
+		<text name="negotiate_hard_text">
+			<target> &true; </target>
+			<depth> 5 </depth>
+			<string> <copy src="strings()" trait="_hard"/> </string>
+			<font> <copy src="darnui_settings" trait="_difont" /> </font><!-- DarN add -->
+			<red> <copy src="darnui_settings" trait="_dired" /> </red> <!-- DarN 117 -->
+			<green> <copy src="darnui_settings" trait="_digreen" /> </green> <!-- DarN 59 -->
+			<blue> <copy src="darnui_settings" trait="_diblue" /> </blue> <!-- DarN 33 -->
+			<alpha> <copy src="darnui_settings" trait="_dialpha" /> </alpha> <!-- DarN 200 -->
+			<wrapwidth>
+				<copy src="parent()" trait="width" />
+				<sub> 50 </sub>
+			</wrapwidth>
+			<x>
+				<copy src="negotiate_scroll" trait="x"/>
+				<add src="negotiate_scroll" trait="width"/>
+				<add> 54 </add> <!-- DarN 70 -->
+				<add src="darnui_settings" trait="_dixoffset" />
+			</x>
+			<y>
+				<copy src="negotiate_easy_text" trait="y"/>
+			</y>
+		</text>
+		
+		
+		<!-- BUY DISPLAY =====================================================================-->
+		<text name="negotiate_buy_text">
+			<id> 9 </id>
+			<target> &true; </target>
+			<depth> 5 </depth>
+			<string> <copy src="strings()" trait="_buyingitemsat"/> </string>
+			<justify> &left; </justify>
+			<font> <copy src="darnui_settings" trait="_ifont" /> </font><!-- DarN add -->
+			<red> <copy src="darnui_settings" trait="_ired" /> </red> <!-- DarN 117 -->
+			<green> <copy src="darnui_settings" trait="_igreen" /> </green> <!-- DarN 59 -->
+			<blue> <copy src="darnui_settings" trait="_iblue" /> </blue> <!-- DarN 33 -->
+			<alpha> <copy src="darnui_settings" trait="_ialpha" /> </alpha> <!-- DarN 200 -->
+			<user1>Buying Items at </user1>
+			<user2> % of value</user2>
+			<wrapwidth>
+				<copy src="parent()" trait="width" />
+				<sub> 50 </sub>
+			</wrapwidth>
+			<x> <!-- DarN 110 -->
+				<copy src="negotiate_display_text" trait="x" />
+				<sub>
+					<copy src="me()" trait="width" />
+					<div> 2 </div>
+				</sub>
+			</x>
+			<y> <!-- DarN 180 -->
+				<copy src="negotiate_scroll" trait="y" />
+				<add  src="negotiate_scroll" trait="height" />
+				<add> 35 </add>
+			</y>
+		</text>
+		
+		<!-- SELL DISPLAY =====================================================================-->
+		<text name="negotiate_sell_text">
+			<id> 10 </id>
+			<target> &true; </target>
+			<depth> 5 </depth>
+			<string> <copy src="strings()" trait="_sellingitemsat"/> </string>
+			<justify> &left; </justify>
+			<user1>Selling Items at </user1>
+			<user2> % of value</user2>
+			<font> <copy src="darnui_settings" trait="_ifont" /> </font><!-- DarN add -->
+			<red> <copy src="darnui_settings" trait="_ired" /> </red> <!-- DarN 117 -->
+			<green> <copy src="darnui_settings" trait="_igreen" /> </green> <!-- DarN 59 -->
+			<blue> <copy src="darnui_settings" trait="_iblue" /> </blue> <!-- DarN 33 -->
+			<alpha> <copy src="darnui_settings" trait="_ialpha" /> </alpha> <!-- DarN 200 -->
+			<wrapwidth>
+				<copy src="parent()" trait="width" />
+				<sub> 50 </sub>
+			</wrapwidth>
+			<x> <!-- DarN 110 -->
+				<copy src="negotiate_buy_text" trait="x" />
+			</x>
+			<y> <!-- DarN 220 -->
+				<copy src="negotiate_buy_text" trait="y" />
+				<add src="negotiate_buy_text" trait="height" />
+			</y>
+		</text>
+				
+				
+		<!-- BUTTON OKAY =====================================================================-->
+		<image name="negotiate_button_okay">
+<include src="darn\button_short.xml" />
+			<id> 6 </id>
+			<target> &true; </target>
+			<x>
+				<copy src="negotiate_button_cancel" trait="x" />
+				<sub src="me()" trait="width" />
+				<sub> 20 </sub>
+			</x>
+			<y>
+				<copy src="parent()" trait="height" />
+				<sub src="me()" trait="height" />
+				<sub> 15 </sub> <!-- DarN 20 -->
+			</y>
+			<depth> 3 </depth>
+			<user0> <copy src="strings()" trait="_ok"/> </user0>
+			
+			<user20> &xbuttona; </user20>
+			<xdefault> &xboxhint; </xdefault>
+			<xleft> <ref src="negotiate_button_cancel" trait="mouseover"/> </xleft>
+			<xright> <ref src="negotiate_button_cancel" trait="mouseover"/> </xright>
+			<xdown> <ref src="negotiate_scroll_marker" trait="mouseover"/> </xdown>
+			<xup> <ref src="negotiate_scroll_marker" trait="mouseover"/> </xup>
+		</image>
+		
+		
+		<!-- BUTTON CANCEL =====================================================================-->
+		<image name="negotiate_button_cancel">
+<include src="darn\button_long.xml" />
+			<id> 7 </id>
+			<x>
+				<copy src="parent()" trait="width" />
+				<sub src="me()" trait="width" />
+				<sub> 20 </sub> <!-- DarN 30 -->
+			</x>
+			<y>
+				<copy src="negotiate_button_okay" trait="y" />
+			</y>
+			<depth> 3 </depth>
+			<user0> <copy src="strings()" trait="_cancel"/> </user0>
+			
+			<user20> &xbuttonb; </user20>
+			<xdefault> &xboxhint; </xdefault>
+			<xleft> <ref src="negotiate_button_okay" trait="mouseover"/> </xleft>
+			<xright> <ref src="negotiate_button_okay" trait="mouseover"/> </xright>
+			<xdown> <ref src="negotiate_scroll_marker" trait="mouseover"/> </xdown>
+			<xup> <ref src="negotiate_scroll_marker" trait="mouseover"/> </xup>
+		</image>
+		
+	</rect>
+</menu>

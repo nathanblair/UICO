@@ -1,0 +1,40 @@
+<!-- created by wz -->
+
+<!-- rect name="inv_lines" -->
+	<x>
+		<copy src="inv_window" trait="x"/>
+		<add> -2 </add>
+	</x>
+	<y>
+		<copy src="inv_window" trait="y"/>
+		<add> -2 </add>
+	</y>
+	<width>
+		<copy src="inv_window" trait="width"/>
+		<add> 4 </add>
+	</width>
+	<height>
+		<copy src="inv_window" trait="height"/>
+		<add> 4 </add>
+	</height>
+	<depth> 6 </depth>
+
+	<locus> &true; </locus>
+	<visible> <copy src="InventoryMenu" trait="_bEnableGrid"/> </visible>
+
+	<image name="inv_tiles">
+		<x> 0 </x>
+		<y> 0 </y>
+		<width> <copy src="parent()" trait="width"/> </width>
+		<height> <copy src="parent()" trait="height"/> </height>
+		<filename> <copy src="InventoryMenu" trait="_sGridFile"/> </filename>
+		<alpha> <copy src="InventoryMenu" trait="_iGridAlpha"/> </alpha>
+		<zoom>
+			<copy src="InventoryMenu" trait="_iItemSize"/>
+			<add> 4 </add>
+			<div> 64 </div>
+			<mul> 100 </mul>
+		</zoom>
+		<tile> &true; </tile>
+	</image>
+<!-- /rect -->

@@ -1,0 +1,7 @@
+# Ignore folders for specific fonts, meshes, and textures
+# These aren't necessary for editing to ensure gamepad compatibility
+
+/fonts
+/meshes
+meta.ini
+/textures

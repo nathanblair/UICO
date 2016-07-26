@@ -1,0 +1,432 @@
+<!-- created by wz -->
+
+<!-- image name="inv_scroll_bar" -->
+	<id> 11 </id>
+	<depth> 12 </depth>
+
+	<user1> 0 </user1> <!-- Minimum value that can be scrolled to (should usually be zero) -->
+	<user2> 1000 </user2> <!-- Maximum value that can be scrolled to -->
+	<user3> <copy src="me()" trait="_step"/> </user3> <!-- When the scroll arrow is clicked on, this is how many items it will advance -->
+	<user4> <!-- When the scroll bar is clicked on, this is how many items it will advance -->
+		<copy src="InventoryMenu" trait="_perPage"/>
+		<sub> 1 </sub>
+		<mul src="me()" trait="_step"/>
+	</user4>
+	<user5> 0 </user5> <!-- The starting position of the scroll bar (set this only once) -->
+	<user6> 12 </user6> <!-- A unique ID so that the scroll marker can be dragged around -->
+	<user7> <copy src="child(vertical_scroll_marker)" trait="_value_scrolled_to"/> </user7> <!-- The current value, dont set! -->
+	<user8> <copy src="InventoryMenu" trait="_perPage"/> </user8> <!-- How many items are visible at once -->
+	<user9> 0 </user9> <!-- Manual step value (multiplied by step distance and added to scroll value -->
+	<user10> </user10> <!-- wz_ - reserved DarN added in scrolled_to -->
+
+
+	<_scroll2>
+		<copy src="me()" trait="user7"/>
+		<div src="me()" trait="user2"/>
+		<mul src="me()" trait="_range"/>
+		<max> 0 </max>
+	</_scroll2>
+
+	<!-- DarN from 1.7 beta
+		Rounds up or down depending on the remainder
+	-->
+	<_scroll>
+		<copy src="me()" trait="_scroll2"/>
+		<floor> 0 </floor> <!-- DarN round down -->
+		<onlyif> <!-- DarN if -->
+			<copy src="me()" trait="_scroll2"/> <!-- DarN _scroll2 -->
+			<mod> 1 </mod> <!-- DarN remainder of divided by 1 -->
+			<lt> 0.5 </lt> <!-- DarN is less than 0.5 -->
+		</onlyif>
+		<add>
+			<copy src="me()" trait="_scroll2"/>
+			<ceil> 0 </ceil>
+			<onlyif>
+				<copy src="me()" trait="_scroll2"/>
+				<mod> 1 </mod>
+				<gte> 0.5 </gte>
+			</onlyif>
+		</add>
+	</_scroll>
+
+	<_step>
+		<copy src="me()" trait="user2"/>
+		<div src="me()" trait="_range"/>
+	</_step>
+
+	<_range>
+		<copy src="inv_list_contents" trait="user2"/>
+		<sub src="InventoryMenu" trait="_perPage"/>
+	</_range>
+
+
+	<!-- vertical_scroll.xml -->
+
+	<locus> &true; </locus>
+
+	<!-- The scrollbar should only be visible if scrolling can be done -->
+	<visible>
+		<copy src="inv_list_contents" trait="user1"/>
+		<div src="InventoryMenu" trait="_perLine"/>
+		<ceil> 0 </ceil>
+		<gt src="me()" trait="user8" />
+	</visible>
+
+	<_scrollable_range>
+		<copy src="me()" trait="user2"/>
+		<sub src="me()" trait="user1"/>
+		<max> 0 </max>
+	</_scrollable_range>
+
+	<x>
+		<copy src="inv_window" trait="x"/>
+		<add>
+			<copy src="inv_window" trait="width"/>
+			<onlyifnot src="InventoryMenu" trait="_bEnableHGrid" />
+		</add>
+	</x>
+	<y>
+		<copy src="inv_window" trait="y"/>
+		<add>
+			<copy src="inv_window" trait="height"/>
+			<onlyif src="InventoryMenu" trait="_bEnableHGrid" />
+		</add>
+	</y>
+	<width>
+		<copy src="inv_window" trait="width"/>
+		<onlyif src="InventoryMenu" trait="_bEnableHGrid" />
+		<add>
+			<copy> 32 </copy>
+			<onlyifnot src="InventoryMenu" trait="_bEnableHGrid" />
+		</add>
+	</width>
+	<height>
+		<copy src="inv_window" trait="height"/>
+		<onlyifnot src="InventoryMenu" trait="_bEnableHGrid" />
+		<add>
+			<copy> 32 </copy>
+			<onlyif src="InventoryMenu" trait="_bEnableHGrid" />
+		</add>
+	</height>
+
+	<filename> Shared\all_general_scrollbar.dds </filename>
+
+	<image name="vertical_scroll_track">
+		<filename> <copy src="parent()" trait="filename"/> </filename>
+		<cropx>
+			<copy> 32 </copy>
+			<onlyifnot src="InventoryMenu" trait="_bEnableHGrid" />
+		</cropx>
+		<cropy>
+			<copy> 32 </copy>
+			<onlyif src="InventoryMenu" trait="_bEnableHGrid" />
+		</cropy>
+		<depth> 1 </depth>
+		<height>
+			<copy src="parent()" trait="height"/>
+			<sub> 64 </sub>
+			<onlyifnot src="InventoryMenu" trait="_bEnableHGrid" />
+			<add>
+				<copy> 20 </copy>
+				<onlyif src="InventoryMenu" trait="_bEnableHGrid" />
+			</add>
+		</height>
+		<width>
+			<copy src="parent()" trait="width"/>
+			<sub> 64 </sub>
+			<onlyif src="InventoryMenu" trait="_bEnableHGrid" />
+			<add>
+				<copy> 20 </copy>
+				<onlyifnot src="InventoryMenu" trait="_bEnableHGrid" />
+			</add>
+		</width>
+		<x>
+			<copy> 32 </copy>
+			<onlyif src="InventoryMenu" trait="_bEnableHGrid" />
+			<add>
+				<copy src="parent()" trait="width"/>
+				<sub src="me()" trait="width"/>
+				<div> 2 </div>
+				<onlyifnot src="InventoryMenu" trait="_bEnableHGrid" />
+			</add>
+		</x>
+		<y>
+			<copy> 32 </copy>
+			<onlyifnot src="InventoryMenu" trait="_bEnableHGrid" />
+			<add>
+				<copy src="parent()" trait="height"/>
+				<sub src="me()" trait="height"/>
+				<div> 2 </div>
+				<onlyif src="InventoryMenu" trait="_bEnableHGrid" />
+			</add>
+		</y>
+	</image>
+
+	<rect name="vertical_scroll_topside">
+		<id> &generic; </id>
+		<target> &true; </target>
+		<depth> 3 </depth>
+		<height>
+			<copy src="sibling(vertical_scroll_marker)" trait="y"/>
+			<onlyifnot src="InventoryMenu" trait="_bEnableHGrid" />
+			<add>
+				<copy> 20 </copy>
+				<onlyif src="InventoryMenu" trait="_bEnableHGrid" />
+			</add>
+		</height>
+		<width>
+			<copy src="sibling(vertical_scroll_marker)" trait="x"/>
+			<onlyif src="InventoryMenu" trait="_bEnableHGrid" />
+			<add>
+				<copy> 20 </copy>
+				<onlyifnot src="InventoryMenu" trait="_bEnableHGrid" />
+			</add>
+		</width>
+		<x>
+			<copy src="parent()" trait="width"/>
+			<sub src="me()" trait="width"/>
+			<div> 2 </div>
+			<onlyifnot src="InventoryMenu" trait="_bEnableHGrid" />
+		</x>
+		<y>
+			<copy src="parent()" trait="height"/>
+			<sub src="me()" trait="height"/>
+			<div> 2 </div>
+			<onlyif src="InventoryMenu" trait="_bEnableHGrid" />
+		</y>
+		<clicksound> 3 </clicksound>
+	</rect>
+
+	<rect name="vertical_scroll_bottomside">
+		<id> &generic; </id>
+		<target> &true; </target>
+		<depth> 2 </depth>
+		<height>
+			<copy src="parent()" trait="height"/>
+			<sub src="sibling(vertical_scroll_topside)" trait="height"/>
+			<sub src="sibling(vertical_scroll_marker)" trait="height"/>
+			<onlyifnot src="InventoryMenu" trait="_bEnableHGrid" />
+			<add>
+				<copy> 20 </copy>
+				<onlyif src="InventoryMenu" trait="_bEnableHGrid" />
+			</add>
+		</height>
+		<width>
+			<copy src="parent()" trait="width"/>
+			<sub src="sibling(vertical_scroll_topside)" trait="width"/>
+			<sub src="sibling(vertical_scroll_marker)" trait="width"/>
+			<onlyif src="InventoryMenu" trait="_bEnableHGrid" />
+			<add>
+				<copy> 20 </copy>
+				<onlyifnot src="InventoryMenu" trait="_bEnableHGrid" />
+			</add>
+		</width>
+		<x>
+			<copy src="sibling(vertical_scroll_topside)" trait="width"/>
+			<add src="sibling(vertical_scroll_marker)" trait="width"/>
+			<onlyif src="InventoryMenu" trait="_bEnableHGrid" />
+			<add>
+				<copy src="parent()" trait="width"/>
+				<sub src="me()" trait="width"/>
+				<div> 2 </div>
+				<onlyifnot src="InventoryMenu" trait="_bEnableHGrid" />
+			</add>
+		</x>
+		<y>
+			<copy src="sibling(vertical_scroll_topside)" trait="height"/>
+			<add src="sibling(vertical_scroll_marker)" trait="height"/>
+			<onlyifnot src="InventoryMenu" trait="_bEnableHGrid" />
+			<add>
+				<copy src="parent()" trait="height"/>
+				<sub src="me()" trait="height"/>
+				<div> 2 </div>
+				<onlyif src="InventoryMenu" trait="_bEnableHGrid" />
+			</add>
+		</y>
+		<clicksound> 3 </clicksound>
+	</rect>
+
+	<image name="vertical_scroll_top">
+		<id> &generic; </id>
+		<target> &true; </target>
+		<filename> <copy src="parent()" trait="filename"/> </filename>
+		<depth> 4 </depth>
+		<width>
+			<copy> 20 </copy>
+			<add>
+				<copy> 12 </copy>
+				<onlyif src="InventoryMenu" trait="_bEnableHGrid" />
+			</add>
+		</width>
+		<height>
+			<copy> 20 </copy>
+			<add>
+				<copy> 12 </copy>
+				<onlyifnot src="InventoryMenu" trait="_bEnableHGrid" />
+			</add>
+		</height>
+		<x> <!-- move off the top edge of parent -->
+			<copy src="parent()" trait="width"/>
+			<sub src="me()" trait="width"/>
+			<div> 2 </div>
+			<onlyifnot src="InventoryMenu" trait="_bEnableHGrid" />
+		</x>
+		<y> <!-- move off the top edge of parent -->
+			<copy src="parent()" trait="height"/>
+			<sub src="me()" trait="height"/>
+			<div> 2 </div>
+			<onlyif src="InventoryMenu" trait="_bEnableHGrid" />
+		</y>
+		<clicksound> 3 </clicksound>
+	</image>
+
+	<image name="vertical_scroll_bottom">
+		<id> &generic; </id>
+		<target> &true; </target>
+		<filename> <copy src="parent()" trait="filename"/> </filename>
+		<cropx>
+			<copy> 96 </copy>
+			<onlyif src="InventoryMenu" trait="_bEnableHGrid" />
+		</cropx>
+		<cropy>
+			<copy> 96 </copy>
+			<onlyifnot src="InventoryMenu" trait="_bEnableHGrid" />
+		</cropy>
+		<depth> 4 </depth>
+		<width>
+			<copy> 20 </copy>
+			<add>
+				<copy> 12 </copy>
+				<onlyif src="InventoryMenu" trait="_bEnableHGrid" />
+			</add>
+		</width>
+		<height>
+			<copy> 20 </copy>
+			<add>
+				<copy> 12 </copy>
+				<onlyifnot src="InventoryMenu" trait="_bEnableHGrid" />
+			</add>
+		</height>
+		<x> <!-- move off the top edge of parent -->
+			<copy src="parent()" trait="width"/>
+			<sub src="me()" trait="width"/>
+			<onlyif src="InventoryMenu" trait="_bEnableHGrid" />
+			<add>
+				<copy src="parent()" trait="width"/>
+				<sub src="me()" trait="width"/>
+				<div> 2 </div>
+				<onlyifnot src="InventoryMenu" trait="_bEnableHGrid" />
+			</add>
+		</x>
+		<y> <!-- move off the top edge of parent -->
+			<copy src="parent()" trait="height"/>
+			<sub src="me()" trait="height"/>
+			<onlyifnot src="InventoryMenu" trait="_bEnableHGrid" />
+			<add>
+				<copy src="parent()" trait="height"/>
+				<sub src="me()" trait="height"/>
+				<div> 2 </div>
+				<onlyif src="InventoryMenu" trait="_bEnableHGrid" />
+			</add>
+		</y>
+		<clicksound> 3 </clicksound>
+	</image>
+
+	<image name="vertical_scroll_marker">
+		<id> <copy src="parent()" trait="user6"/> </id>
+		<target> &true; </target>
+		<filename> <copy src="parent()" trait="filename"/> </filename>
+		<cropx>
+			<copy> 56 </copy>
+			<onlyif src="InventoryMenu" trait="_bEnableHGrid" />
+		</cropx>
+		<cropy>
+			<copy> 34 </copy>
+			<onlyifnot src="InventoryMenu" trait="_bEnableHGrid" />
+		</cropy>
+		<depth> 6 </depth>
+		<width>
+			<copy> 20 </copy>
+			<add>
+				<copy> 18 </copy>
+				<onlyif src="InventoryMenu" trait="_bEnableHGrid" />
+			</add>
+		</width>
+		<height>
+			<copy> 20 </copy>
+			<add>
+				<copy> 18 </copy>
+				<onlyifnot src="InventoryMenu" trait="_bEnableHGrid" />
+			</add>
+		</height>
+		<x> <!-- set my position relative to the current scroll -->
+			<copy src="parent()" trait="width"/>
+			<sub src="me()" trait="width"/>
+			<sub> 64 </sub>
+			<mul>
+				<copy src="me()" trait="_value_scrolled_to"/>
+				<sub src="parent()" trait="user1"/>
+				<div src="parent()" trait="_scrollable_range"/>
+			</mul>
+			<add> 32 </add>
+			<onlyif src="InventoryMenu" trait="_bEnableHGrid" />
+			<add>
+				<copy src="parent()" trait="width"/>
+				<sub src="me()" trait="width"/>
+				<div> 2 </div>
+				<onlyifnot src="InventoryMenu" trait="_bEnableHGrid" />
+			</add>
+		</x>
+		<y> <!-- set my position relative to the current scroll -->
+			<copy src="parent()" trait="height"/>
+			<sub src="me()" trait="height"/>
+			<sub> 64 </sub>
+			<mul>
+				<copy src="me()" trait="_value_scrolled_to"/>
+				<sub src="parent()" trait="user1"/>
+				<div src="parent()" trait="_scrollable_range"/>
+			</mul>
+			<add> 32 </add>
+			<onlyifnot src="InventoryMenu" trait="_bEnableHGrid" />
+			<add>
+				<copy src="parent()" trait="height"/>
+				<sub src="me()" trait="height"/>
+				<div> 2 </div>
+				<onlyif src="InventoryMenu" trait="_bEnableHGrid" />
+			</add>
+		</y>
+		<_value_scrolled_to>
+			<!-- copy old value -->
+			<add>
+				<copy src="sibling(vertical_scroll_bottom)" trait="clicked"/>
+				<sub src="sibling(vertical_scroll_top)" trait="clicked"/>
+				<mul src="parent()" trait="user3"/> <!-- step distance -->
+			</add>
+			<add>
+				<copy src="sibling(vertical_scroll_bottomside)" trait="clicked"/>
+				<sub src="sibling(vertical_scroll_topside)" trait="clicked"/>
+				<mul src="parent()" trait="user4"/>	<!-- jump distance -->
+			</add>
+			<add>
+				<copy src="me()" trait="user9"/>
+				<add src="me()" trait="user10"/>
+				<mul src="parent()" trait="user3"/> <!-- step distance -->
+			</add>
+			<add src="parent()" trait="user5"/>
+		 <!-- <add src="parent()" trait="user10"/> --><!-- DarN CHECK -->
+			<min> <!-- DarN keep between max -->
+				<copy src="parent()" trait="user2"/>
+				<sub src="parent()" trait="user1"/>
+			</min>
+			<max> 0 </max> <!-- DarN and min -->
+		</_value_scrolled_to>
+		<user8>	<!-- for dragging - drag interval -->
+			<copy src="vertical_scroll_track" trait="height"/>
+			<sub src="me()" trait="height"/>
+			<div src="parent()" trait="_range"/>
+		</user8>
+		<user9> 0 </user9>
+		<user10> <copy src="parent()" trait="user9"/> </user10>
+		<clicksound> 3 </clicksound>
+	</image>
+<!-- /image -->

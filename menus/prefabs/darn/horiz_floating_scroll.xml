@@ -1,0 +1,398 @@
+<!-- horiz_floating_scroll.xml -->
+<!-- DarN Version 1.0 -->
+<!-- image name="horiz_floating_scroll" -->
+	<id> &generic; </id>		<!-- MUST change -->
+	<locus> &true; </locus>
+	<repeathorizontal> &true; </repeathorizontal>
+	<depth> 1 </depth>
+	<filename> \Menus\Shared\horizontal_scrollbar_line.dds </filename>
+	<zoom> 75 </zoom> <!-- DarN add -->
+	<height> 12 </height> <!-- DarN 16 -->
+	<width> 300 </width>		<!-- (DarN 400 default, may change - marks the distance between the two arrows, not including them -->
+	<x> 0 </x>					<!-- default, may change - marks the position of the right edge of the left arrow -->
+	<y> 0 </y>					<!-- default, may change -->
+	<alpha>
+		<copy> 128 </copy>
+		<onlyif src="me()" trait="user13"/>
+		<add> 127 </add>
+	</alpha>
+	<clips> &false; </clips>
+	<user1> 0 </user1>			<!-- minimum range value -->
+	<user2> 100 </user2>		<!-- maximum range value -->
+	<user3>						<!-- step distance -->
+		<copy> 1 </copy>
+		<!-- <onlyif> &xbox; </onlyif>
+		<add> 1 </add> -->
+	</user3>
+	<user4> 10 </user4>			<!-- jump distance -->
+	<user5> 0 </user5>			<!-- starting value -->
+	<user6> -1 </user6>			<!-- marker's id - must change to enable dragging -->
+	<user7>						<!-- current value as ineger between min and max -->
+		<copy src="child(horizontal_scroll_marker)" trait="_value_scrolled_to"/>
+	</user7>
+	<user8> &true; </user8>		<!-- is text value field visible -->
+	<user9>						<!-- current value as percentage -->
+		<copy src="child(horizontal_scroll_marker)" trait="_value_scrolled_to"/>
+		<sub src="me()" trait="user1"/>
+		<div src="me()" trait="user2"/>
+	</user9>
+	<include src="darn\common_controls_config.xml"/>
+	<user10> <copy src="darnui_common_settings" trait="_qtyred" /> </user10>		<!-- DarN 120 red component of quantity text color -->
+	<user11> <copy src="darnui_common_settings" trait="_qtygreen" /> </user11>		<!-- DarN 34 green component of quantity text color -->
+	<user12> <copy src="darnui_common_settings" trait="_qtyblue" /> </user12>		<!-- DarN 0 blue component of quantity text color -->
+	<user13> &true; </user13>	<!-- true if enabled, false if disabled -->
+	<_scrollable_range>
+		<copy src="me()" trait="user2"/>
+		<mul>
+			<copy src="me()" trait="_multiplier" />
+			<onlyif>
+				<copy src="me()" trait="_multiplier" />
+				<neq> 0 </neq>
+			</onlyif>
+			<add>
+				<copy> 1 </copy>
+				<onlyif>
+					<copy src="me()" trait="_multiplier" />
+					<eq> 0 </eq>
+				</onlyif>
+			</add>
+		</mul>
+		<sub src="me()" trait="user1"/>
+	</_scrollable_range>
+	<_mouseover_any>
+		<copy src="child(horizontal_scroll_leftside)" trait="mouseover"/>
+		<add src="child(horizontal_scroll_rightside)" trait="mouseover"/>
+		<add src="child(horizontal_scroll_left)" trait="mouseover"/>
+		<add src="child(horizontal_scroll_right)" trait="mouseover"/>
+		<add src="child(horizontal_scroll_marker)" trait="mouseover"/>
+		<gt> 0 </gt>
+		<sub> 1 </sub>
+	</_mouseover_any>
+	
+	
+	<text name="quantity_display_text">
+		<_percentage><copy src="parent()" trait="user9" /><mul> 50 </mul></_percentage> <!-- DarN put this here, or the blasted thing wont work! -->
+		<_string_1><copy src="sibling(horizontal_scroll_marker)" trait="_value_scrolled_to"/></_string_1>
+		<_string_2> <copy src="me()" trait="_percentage" /> </_string_2>
+		<_string_3> None </_string_3>
+		<font> <copy src="darnui_common_settings" trait="_qtyfont" /> </font> <!-- DarN add -->
+		<visible> <copy src="parent()" trait="user8"/> </visible>
+		<depth> 1 </depth>
+		<string>
+			<copy src="parent()" trait="_normalize" />
+			<eq> &true; </eq>
+			<add> <!-- DarN 1.3.2 - area "fix" -->
+				<copy> 1 </copy>
+				<onlyif>
+					<copy src="parent()" trait="_areaID" />
+					<eq> &true; </eq>
+					<and>
+						<copy src="sibling(horizontal_scroll_marker)" trait="_value_scrolled_to"/>
+						<eq> 9 </eq>
+					</and>
+				</onlyif>
+			</add>
+			<copy src="me()" trait="_string_"/>
+		</string>
+		<justify> <!-- DarN &right; -->
+			<copy> 1 </copy>
+			<add>
+				<copy> 3 </copy>
+				<onlyif>
+					<copy src="parent()" trait="_textside" /> <!-- DarN set to &left; or &right; externally -->
+					<eq> &left; </eq>
+				</onlyif>
+			</add>
+			<add>
+				<copy> 1 </copy>
+				<onlyif>
+					<copy src="parent()" trait="_textside" /> <!-- DarN set to &left; or &right; externally -->
+					<eq> &center; </eq>
+				</onlyif>
+			</add>
+		</justify>
+		<red>
+			<copy src="parent()" trait="user10"/>
+		</red>
+		<green>
+			<copy src="parent()" trait="user11"/>
+		</green>
+		<blue>
+			<copy src="parent()" trait="user12"/>
+		</blue>
+		<alpha> <copy src="darnui_common_settings" trait="_qtyalpha" /> </alpha>
+		<x> <!-- DarN -48 -->
+			<copy> -56 </copy>
+			<add>
+				<copy src="parent()" trait="width" />
+				<add src="parent()" trait="x" />
+				<add> 64 </add>
+				<onlyif>
+					<copy src="parent()" trait="_textside" />
+					<eq> &right; </eq>
+				</onlyif>
+			</add>
+			<add>
+				<copy src="sibling(quantity_display_text_perc)" trait="width" />
+				<onlyif>
+					<copy src="parent()" trait="_textside" />
+					<eq> &left; </eq>
+					<and><not src="sibling(quantity_display_text_perc)" trait="visible" /></and>
+				</onlyif>
+			</add>
+			<add>
+				<copy> 112 </copy> <!-- DarN (56*2) -->
+				<add src="parent()" trait="width" />
+				<div> 2 </div>
+				<onlyif>
+					<copy src="parent()" trait="_textside" />
+					<eq> &center; </eq>
+				</onlyif>
+			</add>
+			<sub>
+				<copy src="sibling(quantity_display_text_perc)" trait="width" />
+				<div> 2 </div>
+				<onlyif>
+					<copy src="parent()" trait="_textside" />
+					<eq> &center; </eq>
+					<and src="sibling(quantity_display_text_perc)" trait="visible" />
+				</onlyif>
+			</sub>
+			<add src="darnui_common_settings" trait="_qtyxoffset" />
+		</x>
+		<y> <!-- DarN 8 -->
+			<copy src="sibling(horizontal_scroll_leftside)" trait="y" />
+			<add src="sibling(horizontal_scroll_leftside)" trait="height" />
+			<sub src="me()" trait="height" />
+			<div> 2 </div>
+			<add>
+				<copy src="parent()" trait="height" />
+				<add src="me()" trait="height" />
+				<onlyif>
+					<copy src="parent()" trait="_textside" />
+					<eq> &center; </eq>
+				</onlyif>
+			</add>
+			<add src="darnui_common_settings" trait="_qtyyoffset" />
+		</y>
+		<clips> <copy src="parent()" trait="clips"/> </clips>
+	</text>
+	
+	<text name="quantity_display_text_perc"> <!-- DarN add -->
+		<visible>
+			<copy src="sibling(quantity_display_text)" trait="visible"/>
+			<and src="parent()" trait="_showperc" /> <!-- DarN set to true externally if percentage should be shown -->
+		</visible>
+		<font> <copy src="sibling(quantity_display_text)" trait="font" /> </font>
+		<depth> <copy src="sibling(quantity_display_text)" trait="depth" /> </depth>
+		<string>%</string>
+		<justify>
+			<copy> 1 </copy>
+			<add>
+				<copy> 3 </copy>
+				<onlyif>
+					<copy src="sibling(quantity_display_text)" trait="justify" />
+					<eq> &left; </eq>
+				</onlyif>
+			</add>
+			<add>
+				<copy> 1 </copy>
+				<onlyif>
+					<copy src="parent()" trait="_textside" /> <!-- DarN set to &left; or &right; externally -->
+					<eq> &center; </eq>
+				</onlyif>
+			</add>
+		</justify>
+		<red> <copy src="sibling(quantity_display_text)" trait="red" /> </red>
+		<green> <copy src="sibling(quantity_display_text)" trait="green" /> </green>
+		<blue> <copy src="sibling(quantity_display_text)" trait="blue" /> </blue>
+		<alpha> <copy src="sibling(quantity_display_text)" trait="alpha" /> </alpha>
+		<x>
+			<copy src="sibling(quantity_display_text)" trait="x" />
+			<add>
+				<copy src="sibling(quantity_display_text)" trait="width" />
+				<add src="me()" trait="width" />
+				<onlyif>
+					<copy src="me()" trait="justify" />
+					<eq> &right; </eq>
+				</onlyif>
+			</add>
+			<add>
+				<copy src="sibling(quantity_display_text)" trait="width" />
+				<add src="me()" trait="width" />
+				<div> 2 </div>
+				<onlyif>
+					<copy src="me()" trait="justify" />
+					<eq> &center; </eq>
+				</onlyif>
+			</add>
+		</x>
+		<y> <copy src="sibling(quantity_display_text)" trait="y" /> </y>
+		<clips> <copy src="sibling(quantity_display_text)" trait="clips" /> </clips>
+	</text>	
+
+	<text name="darn_debug"> <!-- DarN add -->
+		<visible> &false; </visible>
+		<font> 5 </font>
+		<depth> <copy src="sibling(quantity_display_text)" trait="depth" /> </depth>
+		<string><copy src="sibling(quantity_display_text_perc)" trait="justify" /></string>
+		<red> 255 </red>
+		<green> 0 </green>
+		<blue> 255 </blue>
+		<x>
+			<copy src="sibling(quantity_display_text)" trait="x" />
+			<sub src="me()" trait="width" />
+		</x>
+		<y> <copy src="sibling(quantity_display_text)" trait="y" /> </y>
+	</text>
+
+	<rect name="horizontal_scroll_leftside">
+		<id> &generic; </id>
+		<target> <copy src="parent()" trait="user13"/> </target>
+		<depth> 3 </depth>
+		<alpha> 0 </alpha>
+		<width> <!-- make it long enough to stretch from the left arrow to the marker -->
+			<copy src="sibling(horizontal_scroll_marker)" trait="x"/>
+		</width>
+		<height> 28 </height>  <!-- DarN 37 -->
+		<x> 0 </x>
+		<y> -8 </y>
+		<clips> <copy src="parent()" trait="clips"/> </clips>
+		<clicksound> 3 </clicksound>
+	</rect>
+	<rect name="horizontal_scroll_rightside">
+		<id> &generic; </id>
+		<target> <copy src="parent()" trait="user13"/> </target>
+		<depth> 2 </depth>
+		<alpha> 0 </alpha>
+		<width>
+			<copy src="parent()" trait="width"/>
+			<sub src="sibling(horizontal_scroll_leftside)" trait="width"/>
+			<sub src="sibling(horizontal_scroll_marker)" trait="width"/>
+		</width>
+		<height> 28 </height>
+		<x>
+			<copy src="sibling(horizontal_scroll_leftside)" trait="width"/>
+			<add src="sibling(horizontal_scroll_marker)" trait="width"/>
+		</x>
+		<y> -8 </y>
+		<clips> <copy src="parent()" trait="clips"/> </clips>
+		<clicksound> 3 </clicksound>
+	</rect>
+	<image name="horizontal_scroll_left">
+		<zoom> 75 </zoom> <!-- DarN add -->
+		<id> &generic; </id>
+		<target> <copy src="parent()" trait="user13"/> </target>
+		<depth> 4 </depth>
+		<filename> \Menus\Shared\horizontal_scrollbar_parts.dds </filename>
+		<cropx> 0 </cropx>
+		<cropy> 0 </cropy>
+		<width> 38 </width> <!-- DarN 50 -->
+		<height> 28 </height>  <!-- DarN 37 -->
+		<x> -37 </x>  <!-- DarN 49 -->
+		<y> -8 </y> <!-- DarN 11 -->
+		<alpha>
+			<copy> 128 </copy>
+			<onlyif src="parent()" trait="user13"/>
+			<add> 128 </add>
+		</alpha>
+		<clips> <copy src="parent()" trait="clips"/> </clips>
+		<clicksound>
+			<copy> 3 </copy>
+			<onlyifnot> &xbox; </onlyifnot>
+		</clicksound>
+	</image>
+	<image name="horizontal_scroll_right">
+		<zoom> 75 </zoom> <!-- DarN  -->
+		<id> &generic; </id>
+		<target> <copy src="parent()" trait="user13"/> </target>
+		<depth> 4 </depth>
+		<filename> \Menus\Shared\horizontal_scrollbar_parts.dds </filename>
+		<cropx> 96 </cropx> <!-- DarN 128 -->
+		<cropy> 0 </cropy>
+		<width> 39 </width> <!-- DarN 51 -->
+		<height> 32 </height> <!-- DarN 42 -->
+		<x>
+			<copy src="parent()" trait="width"/>
+			<sub> 1 </sub>
+		</x>
+		<y> -8 </y> <!-- DarN 11 -->
+		<alpha>
+			<copy> 128 </copy>
+			<onlyif src="parent()" trait="user13"/>
+			<add> 128 </add>
+		</alpha>
+		<clips> <copy src="parent()" trait="clips"/> </clips>
+		<clicksound>
+			<copy> 3 </copy>
+			<onlyifnot> &xbox; </onlyifnot>
+		</clicksound>
+	</image>
+	<image name="horizontal_scroll_marker">
+		<zoom> 75 </zoom> <!-- DarN add -->
+		<id> <copy src="parent()" trait="user6"/> </id>
+		<visible> <copy src="parent()" trait="user13"/> </visible>
+		<target> <copy src="parent()" trait="user13"/> </target>
+		<depth> 6 </depth>
+		<filename> \Menus\Shared\horizontal_scrollbar_parts.dds </filename>
+		<cropx> 48 </cropx> <!-- DarN 64 -->
+		<cropy> 0 </cropy>
+		<width> 29 </width> <!-- DarN 39 -->
+		<height> 26 </height> <!-- DarN 34 -->
+		<x> <!-- set my position relative to the current scroll -->
+			<copy src="parent()" trait="width"/>
+			<sub src="me()" trait="width"/>
+			<mul>
+				<copy src="me()" trait="_value_scrolled_to"/>
+				<sub src="parent()" trait="user1"/>
+				<div src="parent()" trait="_scrollable_range"/>
+			</mul>
+		</x>
+		<y> -7 </y> <!-- DarN -10 -->
+		<clips> <copy src="parent()" trait="clips"/> </clips>
+		<_value_scrolled_to>
+			<!-- copy old value -->
+			<sub>
+				<copy src="sibling(horizontal_scroll_left)" trait="clicked"/>
+				<mul src="parent()" trait="user3"/>
+			</sub>
+			<add>
+				<copy src="sibling(horizontal_scroll_right)" trait="clicked"/>
+				<mul src="parent()" trait="user3"/>
+			</add>
+			<add>
+				<copy src="sibling(horizontal_scroll_rightside)" trait="clicked"/>
+				<sub src="sibling(horizontal_scroll_leftside)" trait="clicked"/>
+				<mul src="parent()" trait="user4"/>	<!-- jump distance -->
+			</add>
+			<add src="me()" trait="user9"/>
+			<add src="parent()" trait="user5"/>
+			<max src="parent()" trait="user1"/>
+			<!-- <min src="parent()" trait="user2"/> -->
+			<min>
+				<copy src="parent()" trait="user2"/>
+				<mul>
+					<copy src="parent()" trait="_multiplier" />
+					<onlyif>
+						<copy src="parent()" trait="_multiplier" />
+						<neq> 0 </neq>
+					</onlyif>
+					<add>
+						<copy> 1 </copy>
+						<onlyif>
+							<copy src="parent()" trait="_multiplier" />
+							<eq> 0 </eq>
+						</onlyif>
+					</add>
+				</mul>
+			</min>
+		</_value_scrolled_to>
+		<user8>	<!-- for dragging - drag interval -->
+			<copy src="parent()" trait="width"/>
+			<sub src="me()" trait="width"/>
+			<div src="parent()" trait="_scrollable_range"/>
+		</user8>
+		<user9> 0 </user9>	<!-- for dragging - lines dragged -->
+		<clicksound> 3 </clicksound>
+	</image>
+<!-- /image -->

@@ -1,0 +1,377 @@
+<!-- hud_reticle.xml -->
+<!-- DarN Version 1.1 -->
+
+<rect name="HUDReticle">
+	<!-- this rect is actually menu level -->
+	<_offset_x><copy src="sibling(HUDMainMenu)" trait="_sex" /></_offset_x>
+	<_offset_y><copy src="sibling(HUDMainMenu)" trait="_sey" /></_offset_y>
+	<_sev><copy src="sibling(HUDMainMenu)" trait="_sev" /></_sev>
+	<_gzoom><copy src="sibling(HUDMainMenu)" trait="_zoom" /></_gzoom>
+	<_chv><copy src="sibling(HUDMainMenu)" trait="_chv" /></_chv>
+	<_3chv><copy src="sibling(HUDMainMenu)" trait="_3chv" /></_3chv>
+	<_ehbv><copy src="sibling(HUDMainMenu)" trait="_ehbv" /></_ehbv>
+	<_mm><copy src="sibling(HUDMainMenu)" trait="_menumode" /></_mm>
+	<_settings_mode><copy src="sibling(HUDMainMenu)" trait="_settingsmode" /></_settings_mode>
+	<_sehover><copy src="sibling(HUDMainMenu)" trait="_sneakhover" /></_sehover>
+	<_chhover><copy src="sibling(HUDMainMenu)" trait="_chhover" /></_chhover>
+	<_he><copy src="sibling(HUDMainMenu)" trait="_he" /></_he>
+	<_ha><copy src="sibling(HUDMainMenu)" trait="_gfx_hudalpha" /></_ha>
+	<_txt_ha><copy src="sibling(HUDMainMenu)" trait="_txt_hudalpha" /></_txt_ha>
+	<_3p><copy src="hudreticle_reticle_activate" trait="_in3rdperson" /></_3p>
+	<!-- <_combat><copy src="hudreticle_enemy_health" trait="alpha" /><gt>0</gt></_combat> --> <!-- DarN TODO -->
+
+	<visible> &false; </visible>
+	<stackingtype> &does_not_stack; </stackingtype>
+	<alpha>	0 </alpha>
+	<locus> &true; </locus>
+	<depth> -10 </depth>
+	<x>
+		<copy src="screen()" trait="width" />
+		<div> 2 </div>
+	</x>
+	<y>
+		<copy src="screen()" trait="height" />
+		<div> 2 </div>
+	</y>
+	<menufade> 0.25 </menufade>
+	
+<include src="darn\hudreticle_config.xml" />
+	
+	<rect name="hudreticle_reticle">
+		<id> 1 </id>
+		<locus> &true; </locus>
+		<user1> &false; </user1>	<!-- true if crime to take action -->
+		<user2> 200 </user2>		<!-- code set - alpha -->
+		<user3> 0.25 </user3>		<!-- DarN 0.5 fade speed -->
+		<user4> &false; </user4>	<!-- true = larger icon -->
+		<user5> 0 </user5>			<!-- icon type -->
+
+		<!-- These are the colors that the reticle should appear based
+			 on whether the player is stealing mousedover item	-->
+		<_red_stealing>   208 </_red_stealing>
+		<_green_stealing>   0 </_green_stealing>
+		<_blue_stealing>    0 </_blue_stealing>
+
+		<!-- default crosshair image -->
+		<image name="hudreticle_reticle_crosshair">
+			<locus> &true; </locus>
+			<visible>
+				<copy src="parent()" trait="user5" />
+				<eq> 0 </eq>
+			</visible>
+			<depth>
+				<copy> 100 </copy>
+				<onlyif src="HUDReticle" trait="_settings_mode" />
+			</depth>
+			<filename> <copy src="darnui_settings" trait="_t_crosshair" /> </filename>
+			<alpha>
+				<copy src="parent()" trait="user2" />
+				<max>
+					<copy> 255 </copy>
+					<onlyif>
+						<copy src="HUDReticle" trait="_3chv" />
+						<and><not src="HUDReticle" trait="_mm" /></and>
+					</onlyif>
+				</max>
+				<min>
+					<copy> 255 </copy> 
+					<onlyif src="HUDReticle" trait="_chv" />
+				</min>
+				<max>
+					<copy> 255 </copy>
+					<onlyif src="HUDReticle" trait="_settings_mode" />
+					<onlyif src="HUDReticle" trait="_chv" />
+				</max>
+			</alpha>
+			<width>
+				<copy> 37 </copy>
+				<div> 100 </div>
+				<mul src="me()" trait="zoom" />
+			</width>
+			<height>
+				<copy> 37 </copy>
+				<div> 100 </div>
+				<mul src="me()" trait="zoom" />
+			</height>
+			<x>
+				<copy> 0 </copy>
+				<sub>
+					<copy src="me()" trait="height" />
+					<div> 2 </div>
+				</sub>
+			</x>
+			<y>
+				<copy> 0 </copy>
+				<sub>
+					<copy src="me()" trait="height" />
+					<div> 2 </div>
+				</sub>
+			</y>
+			<zoom> <copy src="HUDReticle" trait="_gzoom"/> </zoom>
+			<rect name="element_backdrop">
+				<visible> <copy src="HUDReticle" trait="_settings_mode" /> </visible>
+				<_show>
+					<copy src="HUDReticle" trait="_chhover" />
+				</_show>
+				<include src="darn\settings_fader_box.xml"/>
+			</rect>
+		</image>
+
+		<!-- image to show when crosshairs is indicating a particular type of object -->
+		<image name="hudreticle_reticle_activate">
+			<_in3rdperson>
+				<copy src="parent()" trait="user2" />
+				<eq> 0 </eq>
+			</_in3rdperson>
+			<_isTalkIcon>
+				<copy src="parent()" trait="user5" />
+				<eq> 7 </eq>
+			</_isTalkIcon>
+			<_isCrownIcon>
+				<copy src="parent()" trait="user5" />
+				<eq> 10 </eq>
+			</_isCrownIcon>
+			<_blocktalk>
+				<copy src="me()" trait="_isCrownIcon" />
+				<add src="me()" trait="_isTalkIcon" />
+				<add src="me()" trait="_in3rdperson" />
+				<gt> 4 </gt>
+			</_blocktalk>
+			<_noblock>
+				<copy src="darnui_settings" trait="_forceaicons" />
+				<eq> &true; </eq>
+				<and>
+					<copy src="parent()" trait="user2" />
+					<eq> 0 </eq>
+				</and>
+				<or>
+					<copy src="parent()" trait="user2" />
+					<neq> 0 </neq>
+					<and>
+						<copy src="darnui_settings" trait="_forceaicons" />
+						<eq> &false; </eq>
+					</and>
+				</or>
+			</_noblock>
+
+			<zoom> <copy src="HUDReticle" trait="_gzoom"/> </zoom> <!-- DarN add -->
+			<visible>
+				<copy src="parent()" trait="user5" />
+				<gt> 0 </gt>
+			</visible>
+			<filename> <copy src="darnui_settings" trait="_t_activateicons" /> </filename>
+			<cropx>
+				<copy> 34 </copy>
+				<div> 100 </div>
+				<mul src="me()" trait="zoom" />
+				<mul>
+					<copy src="parent()" trait="user5" />
+					<sub> 1 </sub>
+					<sub>
+						<copy> 3 </copy>
+						<onlyif src="HUDReticle" trait="_he" />
+						<onlyif>
+							<copy src="parent()" trait="user5" />
+							<eq> 10 </eq>
+						</onlyif>
+					</sub>
+				</mul>
+			</cropx>
+			<red>
+				<copy src="parent()" trait="_red_stealing" />
+				<onlyif src="parent()" trait="user1" />
+				<add>
+					<copy> 255 </copy>
+					<onlyifnot src="parent()" trait="user1" />
+				</add>
+			</red>
+			<green>
+				<copy src="parent()" trait="_green_stealing" />
+				<onlyif src="parent()" trait="user1" />
+				<add>
+					<copy> 255 </copy>
+					<onlyifnot src="parent()" trait="user1" />
+				</add>
+			</green>
+			<blue>
+				<copy src="parent()" trait="_blue_stealing" />
+				<onlyif src="parent()" trait="user1" />
+				<add>
+					<copy> 255 </copy>
+					<onlyifnot src="parent()" trait="user1" />
+				</add>
+			</blue>
+			<alpha>
+				<copy src="parent()" trait="user2" />
+				<min>
+					<copy src="HUDReticle" trait="_ha" />
+					<onlyif src="me()" trait="_blocktalk" />
+				</min>
+				<max>
+					<copy src="HUDReticle" trait="_ha" />
+					<onlyifnot src="me()" trait="_blocktalk" />
+					<onlyifnot src="HUDReticle" trait="_mm" />
+					<onlyif> <!-- DarN 1.3.1 adhere to 3p crosshair -->
+						<copy src="HUDReticle" trait="_3chv" />
+						<and src="me()" trait="_in3rdperson" />
+						<or>
+							<not src="me()" trait="_in3rdperson" />
+						</or>
+					</onlyif>
+				</max>
+			</alpha>
+			<width>
+				<copy> 34 </copy>
+				<div> 100 </div>
+				<mul src="me()" trait="zoom" />
+			</width>
+			<height>
+				<copy> 32 </copy>
+				<div> 100 </div>
+				<mul src="me()" trait="zoom" />
+			</height>
+			<x> <!-- DarN -16 -->
+				<copy> 0 </copy>
+				<sub>
+					<copy src="me()" trait="width" />
+					<div> 2 </div>
+				</sub>
+			</x>
+			<y> <!-- DarN -16 -->
+				<copy> 0 </copy>
+				<sub>
+					<copy src="me()" trait="height" />
+					<div> 2 </div>
+				</sub>
+			</y>
+		</image>
+
+	</rect>
+
+	<nif name="hudreticle_enemy_health">
+		<id> 2 </id>
+		<filename>
+			<copy src="darnui_settings" trait="_ehbscaled" />
+			<copy src="me()" trait="_filename_"/>
+		</filename>
+		<visible> &true; </visible>
+		<locus> &true; </locus>
+		<alpha>
+			<copy src="me()" trait="user8" />
+			<onlyif src="HUDReticle" trait="_ehbv" />
+			<add>
+				<copy> 255 </copy>
+				<onlyif>
+					<copy src="HUDReticle" trait="_ehbv" />
+					<and src="HUDReticle" trait="_settings_mode" />
+				</onlyif>
+			</add>
+		</alpha>
+		<x> -1 </x>
+		<y> -20 </y> <!-- DarN -20 -->
+		<user1> 1 </user1>
+		<user2> 0.0 </user2>
+		<user8> 0 </user8>	<!-- code set - alpha -->
+		<user9> 0.5 </user9>	<!-- fade speed -->
+		<animation> Health_Bar </animation>
+		<_filename_1> Enemy Health Bar\Health_Bar01.NIF </_filename_1>
+		<_filename_2> darn\Health_Bar01.NIF </_filename_2>
+	</nif>
+
+	<image name="hudreticle_sneak">
+		<locus> &true; </locus>
+		<depth>
+			<copy> 0 </copy>
+			<add>
+				<copy> 98 </copy>
+				<onlyif src="HUDReticle" trait="_settings_mode" />
+			</add>
+		</depth>
+		<id> 3 </id>
+		<visible> &true; </visible> <!-- DarN overridden... -->
+		<filename> <copy src="darnui_settings" trait="_t_sneakicon" /> </filename>
+		<red> 255 </red>
+		<green> 255 </green>
+		<blue> 255 </blue>
+		<zoom><copy src="parent()" trait="_gzoom" /></zoom>
+		<_visible>
+			<copy src="me()" trait="user8" />
+			<eq> 200 </eq>
+		</_visible>
+		<alpha>
+			<copy src="me()" trait="user8" />
+			<min src="parent()" trait="_ha" />
+			<max>
+				<copy src="parent()" trait="_ha" />
+				<onlyif>
+					<copy src="parent()" trait="_sev" />
+					<and>
+						<copy src="me()" trait="_visible" />
+						<or src="parent()" trait="_settings_mode" />
+					</and>
+				</onlyif>
+			</max>
+			<sub> <!-- DarN conditional min 0 ... -->
+				<copy src="me()" trait="user8" />
+				<onlyifnot src="parent()" trait="_sev" />
+			</sub>
+		</alpha>
+		<width> <!-- DarN 64 -->
+			<copy> 64 </copy>
+			<div> 100 </div>
+			<mul src="me()" trait="zoom" />
+		</width>
+		<height> <copy src="me()" trait="width" /> </height>
+		<x>
+			<copy> 0.5 </copy> <!-- DarN 0 -->
+			<sub>
+				<copy src="screen()" trait="width" />
+				<div> 2 </div>
+			</sub>
+			<add src="parent()" trait="_offset_x" />
+		</x>
+		<y>
+			<copy src="screen()" trait="height" />
+			<div> 2 </div>
+			<sub src="me()" trait="height" />
+			<add>
+				<copy> 16 </copy>
+				<mul src="me()" trait="zoom" />
+				<div> 100 </div>
+			</add> <!-- DarN we're zeroed -->
+			<add src="parent()" trait="_offset_y" />
+		</y>
+		<user8> 0 </user8>	<!-- code set - alpha -->
+		<user9> 0.5 </user9>	<!-- fade speed -->
+		<text name="dbg3">
+			<visible> 1 </visible>
+			<x>
+				<copy src="parent()" trait="width" />
+				<add> 10 </add>
+			</x>
+			<y> 0 </y>
+			<red> 255 </red>
+			<green> 255 </green>
+			<blue> 0 </blue>
+			<font> 2 </font>
+			<alpha> 255 </alpha>
+			<string> <copy src="parent()" trait="user8" /> </string>
+		</text>
+		<rect name="element_backdrop">
+			<visible>
+				<copy src="HUDReticle" trait="_settings_mode" />
+				<and>
+					<copy src="parent()" trait="alpha" />
+					<gt> 0 </gt>
+				</and>
+			</visible>
+			<y> -5 </y>
+			<_show>
+				<copy src="HUDReticle" trait="_sehover" />
+			</_show>
+			<include src="darn\settings_fader_box.xml"/>
+		</rect>
+
+	</image>
+	
+</rect>

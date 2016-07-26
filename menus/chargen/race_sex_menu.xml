@@ -1,0 +1,933 @@
+<!-- race_sex_menu.xml -->
+ <!-- DarN Version 1.0 -->
+<menu name="RaceSexMenu">
+	<class> &RaceSexMenu; </class>
+	<stackingtype> &no_click_past; </stackingtype>
+	<x> 0 </x>
+	<y> 0 </y>
+	<visible> &true; </visible>
+	<locus> &true; </locus>
+	<alpha>	0 </alpha>
+	<explorefade> 0.25 </explorefade>
+	
+	<user0> 0 </user0>		<!-- what pane/page is currently visible -->
+	<user1> 0 </user1>		<!-- how many items are in the currently visible pane -->
+	
+	<xbuttonb> <ref src="race_button_done" trait="clicked"/> </xbuttonb>
+
+<include src="darn\chargen_config.xml" />
+	
+	<!-- BACKGROUND ===================================================================-->
+	<rect name="race_background">
+<include src="darn\generic_background75.xml" />
+		<id> &generic; </id>
+		<target> &true; </target>
+		<x> 70 </x>
+		<y>
+			<copy src="screen()" trait="height" />
+			<sub src="me()" trait="height" />
+			<div> 2 </div>
+		</y>
+		<depth> 1 </depth>
+		<locus> &true; </locus>
+		<user0> 560 </user0> <!-- DarN width 560 player name length... -->
+		<user1> <!-- DarN height 740 -->
+			<copy src="race_window" trait="y" />
+			<add src="race_window" trait="height" />
+			<add> 80 </add>
+		</user1>
+	
+	
+		<!-- PLAYER MODEL GRAB ===================================================================-->
+		<rect name="race_player_grab">
+			<id> 2 </id>
+			<target> &true; </target>
+			<width> 800 </width>
+			<height> 1000 </height>
+			<x> 650 </x>
+			<y> 0 </y>
+			<depth> 1 </depth>
+		</rect>
+			
+			
+		<!-- NAME ===================================================================-->
+		<text name="race_name">
+			<font> <copy src="darnui_settings" trait="_pnhfont" /> </font><!-- DarN add -->
+			<red> <copy src="darnui_settings" trait="_pnhred" /> </red> <!-- DarN 117 -->
+			<green> <copy src="darnui_settings" trait="_pnhgreen" /> </green> <!-- DarN 59 -->
+			<blue> <copy src="darnui_settings" trait="_pnhblue" /> </blue> <!-- DarN 33 -->
+			<alpha> <copy src="darnui_settings" trait="_pnhalpha" /> </alpha> <!-- DarN 255 -->
+			<id> 10 </id>
+			<target> &true; </target>
+			<string> </string>
+			<justify> &center; </justify>
+			<wrapwidth> 425 </wrapwidth>
+			<wraplines>1</wraplines>
+			<clicksound>2</clicksound>
+			<x>
+				<copy src="parent()" trait="width"/>
+				<div> 2 </div>
+			</x>
+			<y> 20 </y>
+			<depth> 5 </depth>
+			
+			<xdefault> &false; </xdefault>
+			<xdown> <ref src="race_window" trait="mouseover"/> </xdown>
+		</text>
+			
+		<image name="race_name_marker">
+			<depth> 1 </depth>
+			<filename> <copy src="darnui_settings" trait="_t_mousemarker1" /> </filename>
+			<alpha>
+				<copy> 180 </copy> <!-- DarN 255 --> <!-- DarN 255 -->
+				<mul src="race_name" trait="mouseover"/>
+			</alpha>
+			<width>
+				<copy src="sibling(race_name)" trait="width"/>
+				<add> 120 </add> <!-- DarN 120 -->
+				<max> 85 </max>
+			</width>
+			<height> 48 </height> <!-- DarN 64 -->
+			<x>
+				<copy src="parent()" trait="width"/>
+				<sub src="me()" trait="width"/>
+				<div> 2 </div>
+			</x>
+			<y> 10 </y> <!-- DarN 10 -->
+			<depth> 3 </depth>
+			<locus> &true; </locus>
+			<zoom> 75 </zoom> <!-- DarN add -->
+			
+			<image name="race_name_marker_2">
+				<filename> <copy src="darnui_settings" trait="_t_mousemarker2" /> </filename>
+				<alpha> <copy src="parent()" trait="alpha"/> </alpha>
+				<width> 78 </width> <!-- DarN 104 -->
+				<height> 48 </height> <!-- DarN 64 -->
+				<x>
+					<copy src="parent()" trait="width"/>
+					<sub src="me()" trait="width"/>
+					<add> 6 </add> <!-- DarN 8 -->
+				</x>
+				<y> 0 </y>
+				<depth> 1 </depth>
+				<zoom> 75 </zoom> <!-- DarN add -->
+			</image>
+		</image>
+		
+		
+		<image name="race_name_left">
+			<filename> <copy src="darnui_settings" trait="_t_titleleft" /> </filename>
+			<width> 35 </width>
+			<height> 17 </height> <!-- DarN 17 -->
+			<red> <copy src="race_name" trait="red"/> </red>
+			<green> <copy src="race_name" trait="red"/> </green>
+			<blue> <copy src="race_name" trait="red"/> </blue>
+			<x>
+				<copy src="race_name" trait="x" />
+				<sub>
+					<copy src="race_name" trait="width" />
+					<div> 2 </div>
+				</sub>
+				<sub> 20 </sub>
+				<sub src="me()" trait="width" />
+			</x>
+			<y> <!-- DarN 31 -->
+				<copy src="race_name_marker" trait="y" />
+				<add src="race_name_marker" trait="height" />
+				<sub src="me()" trait="height" />
+				<div> 2 </div>
+				<add> 3 </add> <!-- DarN damn offset -->
+			</y>
+			<depth> 5 </depth>
+		</image>
+		<image name="race_name_right">
+			<filename> <copy src="darnui_settings" trait="_t_titleright" /> </filename>
+			<width> 35 </width>
+			<height> 17 </height> <!-- DarN 17 -->
+			<red> <copy src="race_name" trait="red"/> </red>
+			<green> <copy src="race_name" trait="red"/> </green>
+			<blue> <copy src="race_name" trait="red"/> </blue>
+			<x>
+				<copy src="race_name" trait="width" />
+				<div> 2 </div>
+				<add src="race_name" trait="x" />
+				<add> 20 </add>
+			</x>
+			<y> <!-- DarN 31 -->
+				<copy src="sibling(race_name_left)" trait="y" />
+			</y>
+			<depth> 5 </depth>
+		</image>
+		<image name="race_name_separator">
+			<filename> <copy src="darnui_settings" trait="_t_horizborder" /> </filename>
+			<width> 400 </width>
+			<height> 3 </height>
+			<x> 75 </x>
+			<y> <!-- DarN 75 -->
+				<copy src="sibling(race_name_left)" trait="y" />
+				<add src="sibling(race_name_left)" trait="height" />
+				<add> 20 </add>
+			</y>
+			<depth> 3 </depth>
+		</image>
+
+	
+		<!--=================================================================================-->
+		<!-- PAGES LAYOUT ===================================================================-->
+		<rect name="race_window">
+			<id> 1 </id>
+			<width> 500 </width>
+			<height> <!-- DarN 558 -->
+				<copy src="RaceSexMenu" trait="user1" />
+				<!-- <mul> 70 </mul> -->
+				<mul> <!-- DarN 93 -->
+					<copy> 70 </copy>
+					<onlyif>
+						<copy src="RaceSexMenu" trait="user0" />
+						<neq> 229 </neq>
+						<and><copy src="RaceSexMenu" trait="user0" /> <neq> 239 </neq></and>
+						<and><copy src="RaceSexMenu" trait="user0" /> <neq> 224 </neq></and>
+					</onlyif>
+					<add>
+						<copy> 48 </copy>
+						<onlyif>
+							<copy src="RaceSexMenu" trait="user0" />
+							<eq> 229 </eq>
+							<or><copy src="RaceSexMenu" trait="user0" />	<eq> 239 </eq></or>
+							<or><copy src="RaceSexMenu" trait="user0" />	<eq> 224 </eq></or>
+						</onlyif>
+					</add>
+				</mul>
+				<add> <!-- DarN make room for race description -->
+					<copy> 60 </copy>
+					<onlyif>
+						<copy src="RaceSexMenu" trait="user0" />
+						<eq> 209 </eq>
+					</onlyif>
+				</add>
+				<min> 558 </min>
+			</height>
+			<x> 30 </x>
+			<y> 70 </y> <!-- DarN 85 -->
+			<depth> 8 </depth>
+			<locus> &true; </locus>
+			<clipwindow> &true; </clipwindow>
+						
+			<!-- This is a list pane, and is not a focus itself, but when the child elements don't know how to handle
+				an input command, they defer to their parent. The following directions are for those times. -->
+			<target> &false; </target>
+			<xdefault> &false; </xdefault>
+			<xlist> &xlist; </xlist>
+			<xup> <ref src="race_name" trait="mouseover" /> </xup>
+			<xdown> <ref src="race_button_done" trait="mouseover" /> </xdown>
+			<xscroll> <ref src="race_scroll_bar" trait="user5" /> </xscroll>
+
+
+			<!-- SCROLL ===================================================================-->
+			<image name="race_scroll_bar">
+	<include src="vertical_scroll.xml" />
+				<id> 20 </id>
+				<target> &true; </target>
+				<x>
+					<copy src="parent()" trait="width"/>
+					<sub> 20 </sub>
+				</x>
+				<y> 30 </y> <!-- DarN 25 -->
+				<height>
+					<copy src="parent()" trait="height"/>
+					<sub> 60 </sub> <!-- DarN 50 -->
+				</height>
+				<depth> 20 </depth>
+				<user1> 0 </user1>		<!-- Minimum value that can be scrolled to (should usually be zero) -->
+				<user2>
+					<copy src="RaceSexMenu" trait="user1" /> <!-- DarN # of items in visible pane -->
+					<sub><copy src="me()" trait="user8"/></sub> <!-- DarN 6 -->
+				</user2>				<!-- Maximum value that can be scrolled to -->
+				<user3> 1 </user3>		<!-- When the scroll arrow is clicked on, this is how many items it will advance -->
+				<user4><copy src="me()" trait="user8"/><sub>1</sub></user4> <!-- DarN 5 When the scroll bar is clicked on, this is how many items it will advance -->
+				<user5> 0 </user5>		<!-- The starting position of the scroll bar (set this only once) -->
+				<user6> 21 </user6>		<!-- A unique ID so that the scroll marker can be dragged around -->
+				<!-- user7 = current value -->
+				<user8>		<!-- DarN 6 How many items are visible at once -->
+					<copy> 8 </copy>
+					<add>
+						<copy> 1 </copy>
+						<onlyif>
+							<copy src="RaceSexMenu" trait="user0" />
+							<eq> 229 </eq>
+						</onlyif>
+					</add>
+				</user8>
+				
+				<user9> 0 </user9>		<!-- Manual step value (multiplied by step distance and added to scroll value -->
+				<user10> 0 </user10>	<!-- reserved -->
+			</image>
+			
+			
+			
+			<!--====================================================================-->
+			<!-- template PANES added here by code, and filled with other templates -->
+			<!--====================================================================-->
+				
+				
+			
+		</rect>		<!-- window -->
+				
+				
+				
+		<!-- DONE BUTTON ==============================================================-->
+		<image name="race_button_done">
+<include src="darn\button_long.xml"/>
+			<id> 90 </id>
+			<x>
+				<copy src="parent()" trait="width" />
+				<sub src="me()" trait="width" />
+				<sub> 20 </sub> <!-- DarN 30 -->
+			</x>
+			<y>
+				<copy src="parent()" trait="height" />
+				<sub src="me()" trait="height" />
+				<sub> 15 </sub> <!-- DarN 20 -->
+			</y>
+			<depth> 5 </depth>
+			<user0>
+				<copy src="me()" trait="user5"/>
+				<copy src="me()" trait="_text_"/>
+			</user0>
+			<user5> &false; </user5>	<!-- 1 (false) for Done and 2 (true) for Back -->
+			<clicksound> 2 </clicksound>
+			<_text_1> <copy src="strings()" trait="_done"/> </_text_1>
+			<_text_2> <copy src="strings()" trait="_return"/> </_text_2>
+			
+			<user20> &xbuttonb; </user20>
+			<xdefault> &xboxhint; </xdefault>
+			<xup> <ref src="race_window" trait="mouseover"/> </xup>
+		</image>
+		
+	</rect>		<!-- background -->
+	
+	
+	
+	
+	
+			
+	<!-- TEMPLATE - PANE ===================================================================-->
+	<template name="race_template_pane">
+		<rect name="race_pane">
+			<id> 100 </id>
+			<visible>
+				<copy src="me()" trait="user0"/>
+				<eq src="RaceSexMenu" trait="user0"/>
+			</visible>
+			<width>
+				<copy src="parent()" trait="width"/>
+				<sub>
+					<copy src="me()" trait="childcount"/>
+					<gt> 9 </gt> <!-- DarN 6 -->
+					<sub> 1 </sub>
+					<!-- <mul> 70 </mul> --> <!-- DarN 93 -->
+					<mul> <!-- DarN 93 -->
+						<copy> 70 </copy>
+						<onlyif>
+							<copy src="RaceSexMenu" trait="user0" />
+							<neq> 229 </neq>
+							<and><copy src="RaceSexMenu" trait="user0" /> <neq> 239 </neq></and>
+							<and><copy src="RaceSexMenu" trait="user0" /> <neq> 224 </neq></and>
+						</onlyif>
+						<add>
+							<copy> 48 </copy>
+							<onlyif>
+								<copy src="RaceSexMenu" trait="user0" />
+								<eq> 229 </eq>
+								<or><copy src="RaceSexMenu" trait="user0" />	<eq> 239 </eq></or>
+								<or><copy src="RaceSexMenu" trait="user0" />	<eq> 224 </eq></or>
+							</onlyif>
+						</add>
+					</mul>
+				</sub>
+			</width>
+			<height>
+				<copy src="me()" trait="childcount"/>
+				<mul> <!-- DarN 93 -->
+					<copy> 70 </copy>
+					<onlyif>
+						<copy src="RaceSexMenu" trait="user0" />
+						<neq> 229 </neq>
+						<and><copy src="RaceSexMenu" trait="user0" /> <neq> 239 </neq></and>
+						<and><copy src="RaceSexMenu" trait="user0" /> <neq> 224 </neq></and>
+					</onlyif>
+					<add>
+						<copy> 48 </copy>
+						<onlyif>
+							<copy src="RaceSexMenu" trait="user0" />
+							<eq> 229 </eq>
+							<or><copy src="RaceSexMenu" trait="user0" />	<eq> 239 </eq></or>
+							<or><copy src="RaceSexMenu" trait="user0" />	<eq> 224 </eq></or>
+						</onlyif>
+					</add>
+				</mul>
+			</height>
+			<x> 0 </x>
+			<y>
+				<copy> 0 </copy>
+				<sub>
+					<copy src="race_scroll_bar" trait="user7"/>
+					<!-- <mul> 70 </mul> --><!-- DarN 93 -->
+					<mul> <!-- DarN 93 -->
+						<copy> 70 </copy>
+						<onlyif>
+							<copy src="RaceSexMenu" trait="user0" />
+							<neq> 229 </neq>
+							<and><copy src="RaceSexMenu" trait="user0" /> <neq> 239 </neq></and>
+							<and><copy src="RaceSexMenu" trait="user0" /> <neq> 224 </neq></and>
+						</onlyif>
+						<add>
+							<copy> 48 </copy>
+							<onlyif>
+								<copy src="RaceSexMenu" trait="user0" />
+								<eq> 229 </eq>
+								<or><copy src="RaceSexMenu" trait="user0" />	<eq> 239 </eq></or>
+								<or><copy src="RaceSexMenu" trait="user0" />	<eq> 224 </eq></or>
+							</onlyif>
+						</add>
+					</mul>
+				</sub>
+				<onlyif src="me()" trait="visible"/>
+			</y>
+			<depth> 2 </depth>
+			<locus> &true; </locus>
+			<clips> &true; </clips>
+			<user0> 0 </user0>
+						
+			<!-- This is a list pane, and is not a focus itself, but when the child elements don't know how to handle
+				an input command, they defer to their parent. The following directions are for those times. -->
+			<target> &false; </target>
+			<xdefault> &false; </xdefault>
+			<xlist> &xlist; </xlist>
+			<xup> <ref src="race_name" trait="mouseover"/> </xup>
+			<xdown> <ref src="race_button_done" trait="mouseover"/> </xdown>
+			<xscroll> <ref src="race_scroll_bar" trait="user5" /> </xscroll>
+		
+			<!-- template items added here by code -->
+			
+		</rect>		<!-- pane -->
+	</template>
+	
+	
+	
+	
+	<!-- TEMPLATES - BUTTON =====================================================================-->
+	<template name="race_template_button">
+		<rect name="race_template_button_layout">
+			<id> 101 </id>
+			<target> &true; </target>
+			<repeatvertical> &true; </repeatvertical>
+			<alpha> 0 </alpha>
+			<width> <copy src="parent()" trait="width"/> </width>
+			<height><!-- DarN 93 -->
+				<copy> 48 </copy>
+				<add>
+					<copy> 10 </copy>
+					<onlyif>
+						<copy src="RaceSexMenu" trait="user0" />
+						<eq> 0 </eq>
+					</onlyif>
+				</add>
+			</height>
+			<x> 0 </x>
+			<y>
+				<copy src="me()" trait="listindex"/>
+				<mul src="me()" trait="height"/>
+			</y>
+			<depth> 2 </depth>
+			<locus> &true; </locus>
+			<clips> &true; </clips>
+			<clicksound> 2 </clicksound>
+			<listindex> 0 </listindex>
+			<user0>
+				<add src="me()" trait="clicked"/>
+				<add src="me()" trait="user3"/>
+				<max> 0 </max>
+			</user0>				<!-- current index -->
+			<user1> 0 </user1>		<!-- starting value - compare this to current to see changes -->
+			<user2> </user2>	<!-- text label -->
+			<user3>	0 </user3>		<!-- manual set value -->
+			<user6> Button </user6>	<!-- button name -->
+			
+			<!-- This element is a list item. If it gets an input command it doesn't know how to handle
+			     it will defer the command to its parent. The xlist trait set to true triggers this. -->
+			<xdefault> &false; </xdefault>
+			<xlist> &xitem; </xlist>
+			<xup> &prev; </xup>
+			<xdown> &next; </xdown>
+			<xscroll>
+				<copy src="me()" trait="listindex" />
+				<sub>
+					<copy src="race_scroll_bar" trait="user8"/>
+					<div> 2 </div>
+					<ceil> 0 </ceil>
+				</sub>
+				<add> 1 </add>
+			</xscroll>
+			
+			<text name="race_template_button_label">
+				<string> <copy src="parent()" trait="user2"/> </string>
+				<font> <copy src="darnui_settings" trait="_lblfont" /> </font>
+				<red> <copy src="darnui_settings" trait="_lblred" /> </red>
+				<green> <copy src="darnui_settings" trait="_lblgreen" /> </green>
+				<blue> <copy src="darnui_settings" trait="_lblblue" /> </blue>
+				<alpha> <copy src="darnui_settings" trait="_lblalpha" /> </alpha>
+				<x> <!-- DarN 0 -->
+					<copy src="sibling(race_template_button_marker)" trait="x" />
+					<sub src="me()" trait="with" />
+					<sub> 50 </sub>
+				</x>
+				<y> <!-- DarN 0/18 -->
+					<copy src="sibling(race_template_button_marker)" trait="y" />
+					<add src="sibling(race_template_button_marker)" trait="height" />
+					<sub src="me()" trait="with" />
+					<div> 2 </div>
+					<add> 2 </add> <!-- DarN padding -->
+					<!-- <sub> 30 </sub> -->
+				</y>
+				<depth> 2 </depth>
+				<clips> &true; </clips>
+			</text>
+
+			<text name="race_template_button_label_colon">
+				<string> : </string>
+				<font><copy src="sibling(race_template_button_label)" trait="font" /></font>
+				<red><copy src="sibling(race_template_button_label)" trait="red" /></red>
+				<green><copy src="sibling(race_template_button_label)" trait="green" /></green>
+				<blue><copy src="sibling(race_template_button_label)" trait="blue" /></blue>
+				<alpha><copy src="sibling(race_template_button_label)" trait="alpha" /></alpha>
+				<x> <!-- DarN 0 -->
+					<copy src="sibling(race_template_button_label)" trait="x" />
+					<add src="sibling(race_template_button_label)" trait="width" />
+				</x>
+				<y> <!-- DarN 0/18 -->
+					<copy src="sibling(race_template_button_label)" trait="y" />
+				</y>
+				<depth> 2 </depth>
+				<clips> &true; </clips>
+				<visible>
+					<copy src="RaceSexMenu" trait="user0" />
+					<eq> 0 </eq>
+					<and><copy src="parent()" trait="listindex"/><neq> 1 </neq></and>
+				</visible>
+			</text>
+
+			<text name="race_template_button_text">
+				<font> 3 </font> <!-- DarN add -->
+				<string> <copy src="parent()" trait="user6"/> </string>
+				<justify> &center; </justify>
+				<wrapwidth> 490 </wrapwidth>
+				<red> 217 </red>
+				<green> 185 </green>
+				<blue> 102 </blue>
+				<x>
+					<copy src="parent()" trait="width"/>
+					<div> 2 </div>
+				</x>
+				<y> 25 </y> <!-- DarN 25 -->
+				<depth> 4 </depth>
+				<clips> &true; </clips>
+			</text>
+			
+			<image name="race_template_button_marker">
+				<depth> 1 </depth>
+				<filename> <copy src="darnui_settings" trait="_t_mousemarker1" /> </filename>
+				<alpha>
+					<copy> 180 </copy> <!-- DarN 255 -->
+					<mul src="parent()" trait="mouseover"/>
+				</alpha>
+				<width>
+					<copy src="sibling(race_template_button_text)" trait="width"/>
+					<add> 30 </add>
+					<max> 85 </max>
+				</width>
+				<height> 48 </height> <!-- DarN 64 -->
+				<x>
+					<copy src="parent()" trait="width"/>
+					<sub src="me()" trait="width"/>
+					<div> 2 </div>
+				</x>
+				<y> 15 </y>
+				<locus> &true; </locus>
+				<zoom> 75 </zoom> <!-- DarN add -->
+				
+				<image name="race_template_button_marker_2">
+					<filename> <copy src="darnui_settings" trait="_t_mousemarker2" /> </filename>
+					<alpha> <copy src="parent()" trait="alpha"/> </alpha>
+					<width> 78 </width> <!-- DarN 104 -->
+					<height> 48 </height> <!-- DarN 64 -->
+					<x>
+						<copy src="parent()" trait="width"/>
+						<sub src="me()" trait="width"/>
+						<add> 6 </add> <!-- DarN 10 -->
+					</x>
+					<y> 0 </y>
+					<depth> 1 </depth>
+					<zoom> 75 </zoom> <!-- DarN add -->
+				</image>
+			</image>
+		</rect>
+	</template>
+	
+	
+	
+	<!-- TEMPLATE - TOGGLE =====================================================================-->
+	<template name="race_template_toggle">
+		<rect name="race_template_toggle">
+			<id> 102 </id>
+			<target> <copy src="me()" trait="user13"/> </target>
+			<repeatvertical> &true; </repeatvertical>
+			<width> <copy src="parent()" trait="width"/> </width>
+			<height> 70 </height><!-- DarN 93 -->
+			<x> 0 </x>
+			<y>
+				<copy src="me()" trait="listindex"/>
+				<mul> 70 </mul><!-- DarN 93 -->
+			</y>
+			<locus> &true; </locus>
+			<clips> &true; </clips>
+			<listindex> 0 </listindex>
+			<clicksound> 3 </clicksound>
+			<user0>					<!-- current index -->
+				<!-- retain old value -->
+				<add src="me()" trait="clicked"/>
+				<sub src="child(race_template_toggle_left)" trait="clicked"/>
+				<add src="child(race_template_toggle_right)" trait="clicked"/>
+				<add src="me()" trait="user3"/>
+				<sub src="me()" trait="user4"/>
+				<mod>
+					<copy src="me()" trait="user5"/>
+					<sub src="me()" trait="user4"/>
+					<add> 1 </add>
+				</mod>
+				<add src="me()" trait="user4"/>
+			</user0>				<!-- current index -->
+			<user1> 0 </user1>		<!-- starting value - compare this to current to see changes -->
+			<user2> Label </user2>	<!-- text label -->
+			<user3>	0 </user3>		<!-- manual set value -->
+			<user4>	0 </user4>		<!-- min index -->
+			<user5>	1 </user5>		<!-- max index -->
+			<user6> Value </user6>	<!-- current string - set by code from current index -->
+			<user13> &true; </user13>	<!-- true if enabled, false if disabled -->
+			<_mouseover_any>
+				<copy src="me()" trait="mouseover"/>
+				<add src="child(race_template_toggle_left)" trait="mouseover"/>
+				<add src="child(race_template_toggle_right)" trait="mouseover"/>
+				<gt> 0 </gt>
+				<sub> 1 </sub>
+			</_mouseover_any>
+			
+			<!-- This element is a list item. If it gets an input command it doesn't know how to handle
+			     it will defer the command to its parent. The xlist trait set to true triggers this. -->
+			<xdefault> &false; </xdefault>
+			<xlist> &xitem; </xlist>
+			<xup> &prev; </xup>
+			<xdown> &next; </xdown>
+			<xleft> <ref src="child(race_template_toggle_left)" trait="clicked"/> </xleft>
+			<xright> <ref src="child(race_template_toggle_right)" trait="clicked"/> </xright>
+			<xscroll>
+				<copy src="me()" trait="listindex" />
+				<sub>
+					<copy src="race_scroll_bar" trait="user8"/>
+					<div> 2 </div>
+					<ceil> 0 </ceil>
+				</sub>
+				<add> 1 </add>
+			</xscroll>
+			
+			<text name="race_template_toggle_label">
+				<string> <copy src="parent()" trait="user2"/> </string>
+				<font> <copy src="darnui_settings" trait="_lblfont" /> </font>
+				<red> <copy src="darnui_settings" trait="_lblred" /> </red>
+				<green> <copy src="darnui_settings" trait="_lblgreen" /> </green>
+				<blue> <copy src="darnui_settings" trait="_lblblue" /> </blue>
+				<alpha> <copy src="darnui_settings" trait="_lblalpha" /> </alpha>
+				<x> 0 </x>
+				<y> 18 </y> <!-- DarN 0 -->
+				<depth> 2 </depth>
+				<clips> &true; </clips>
+			</text>
+			
+			<image name="race_template_toggle_left">
+				<id> &generic; </id>
+				<target> &true; </target>
+				<filename> <copy src="darnui_settings" trait="_t_arrowleft" /> </filename>
+				<zoom> 75 </zoom> <!-- DarN add -->
+				<width> 93 </width> <!-- DarN 124 -->
+				<height> 27 </height> <!-- DarN 36 -->
+				<x> 0 </x>
+				<y> 35 </y>
+				<depth> 4 </depth>
+				<clips> &true; </clips>
+				<clicksound> 3 </clicksound>
+				<alpha>
+					<copy> 128 </copy>
+					<onlyif src="parent()" trait="user13"/>
+					<add> 128 </add>
+				</alpha>
+			</image>
+			<text name="race_template_toggle_value">
+				<font> 3 </font> <!-- DarN add -->
+				<string> <copy src="parent()" trait="user6"/> </string>
+				<justify> &center; </justify>
+				<red> 217 </red>
+				<green> 185 </green>
+				<blue> 102 </blue>
+				<wrapwidth> 250 </wrapwidth>
+				<clicksound> 3 </clicksound>
+				<x>
+					<copy src="parent()" trait="width"/>
+					<div> 2 </div>
+				</x>
+				<y>
+					<copy src="parent()" trait="height"/>
+					<sub src="me()" trait="height"/>
+					<div> 2 </div>
+					<add> 12 </add> <!-- DarN 5 -->
+				</y>
+				<depth> 5 </depth>
+				<clips> &true; </clips>
+			</text>
+			<image name="race_template_toggle_right">
+				<id> &generic; </id>
+				<target> &true; </target>
+				<filename> <copy src="darnui_settings" trait="_t_arrowright" /> </filename>
+				<zoom> 75 </zoom> <!-- DarN add -->
+				<width> 91 </width> <!-- DarN 121 -->
+				<height> 27 </height> <!-- DarN 36 -->
+				<clicksound> 3 </clicksound>
+				<x>
+					<copy src="parent()" trait="width"/>
+					<sub src="me()" trait="width"/>
+				</x>
+				<y> 35 </y>
+				<depth> 4 </depth>
+				<clips> &true; </clips>
+				<alpha>
+					<copy> 128 </copy>
+					<onlyif src="parent()" trait="user13"/>
+					<add> 128 </add>
+				</alpha>
+			</image>
+	
+			<image name="race_template_toggle_marker">
+				<filename> <copy src="darnui_settings" trait="_t_mousemarker1" /> </filename>
+				<alpha>
+					<copy> 180 </copy> <!-- DarN 255 --> <!-- DarN 255 -->
+					<mul src="parent()" trait="_mouseover_any" />
+				</alpha>
+				<width>
+					<copy src="parent()" trait="width"/>
+					<add> 10 </add> <!-- DarN add -->
+				</width>
+				<height> 48 </height><!-- DarN 64 -->
+				<x> -6 </x> <!-- DarN -10 -->
+				<y> 27 </y> <!-- DarN 25 -->
+				<depth> 1 </depth>
+				<zoom> 75 </zoom> <!-- DarN add -->
+			</image>
+			<image name="race_template_toggle_marker_2">
+				<filename> <copy src="darnui_settings" trait="_t_mousemarker2" /> </filename>
+				<alpha>
+					<copy src="sibling(race_template_toggle_marker)" trait="alpha" />
+				</alpha>
+				<zoom> 75 </zoom> <!-- DarN add -->
+				<width> 78 </width><!-- DarN 104 -->
+				<height> 48 </height><!-- DarN 64 -->
+				<x>
+					<copy src="parent()" trait="width" />
+					<add> 11 </add> <!-- DarN 15 -->
+					<sub src="me()" trait="width" />
+				</x>
+				<y> 27 </y> <!-- DarN 25 -->
+				<depth> 2 </depth>
+			</image>
+		</rect><!--race_eyes_layout-->
+	</template>
+	
+	
+	
+	<!-- TEMPLATE - SLIDER =====================================================================-->
+	<template name="race_template_slider">
+		<rect name="race_template_slider">
+			<id> 103 </id>
+			<target> <copy src="me()" trait="user13"/> </target>
+			<repeathorizontal> &true; </repeathorizontal>
+			<width> <copy src="parent()" trait="width"/> </width>
+			<height> 70 </height><!-- DarN 93 -->
+			<x> 0 </x>
+			<y>
+				<copy src="me()" trait="listindex"/>
+				<mul> 70 </mul><!-- DarN 93 -->
+			</y>
+			<locus> &true; </locus>
+			<clips> &true; </clips>
+			<listindex> 0 </listindex>
+			<user0> <copy src="child(race_template_slider_bar)" trait="user7"/> </user0>	<!-- current value -->
+			<user1> 0 </user1>			<!-- starting value - compare this to current to see changes -->
+			<user2> Label </user2>		<!-- text label -->
+			<user3>	0 </user3>			<!-- manual set value -->
+			<user6> -1 </user6>			<!-- id for marker -->
+			<user7> -1 </user7>			<!-- this should really be in a seperate data structure and not xml, but it is the editor id of whatever I'm sliding -->
+			<user8> -1 </user8>			<!-- same as above, but this is a geometry/texture flag -->
+			<user10> 0 </user10>		<!-- again, same as above, but this one holds a flag for if this slider has been changed -->
+			<user13> &true; </user13>	<!-- true if enabled, false if disabled -->
+
+			<xbuttonlb> <ref src="horizontal_scroll_leftside" trait="clicked"/> </xbuttonlb>
+			<xbuttonrb> <ref src="horizontal_scroll_rightside" trait="clicked"/> </xbuttonrb>
+
+			<_mouseover_any>
+				<copy src="me()" trait="mouseover"/>
+				<add src="child(race_template_slider_bar)" trait="_mouseover_any"/>
+				<gt> 0 </gt>
+				<sub> 1 </sub>
+			</_mouseover_any>
+			
+			<!-- This element is a list item. If it gets an input command it doesn't know how to handle
+			     it will defer the command to its parent. The xlist trait set to true triggers this. -->
+			<xdefault> &false; </xdefault>
+			<xlist> &xitem; </xlist>
+			<xup> &prev; </xup>
+			<xdown> &next; </xdown>
+			<xleft> <ref src="child(horizontal_scroll_left)" trait="clicked"/> </xleft>
+			<xright> <ref src="child(horizontal_scroll_right)" trait="clicked"/> </xright>
+			<xscroll>
+				<copy src="me()" trait="listindex" />
+				<sub>
+					<copy src="race_scroll_bar" trait="user8"/>
+					<div> 2 </div>
+					<ceil> 0 </ceil>
+				</sub>
+				<add> 1 </add>
+			</xscroll>
+			
+			<text name="race_template_slider_label">
+				<string> <copy src="parent()" trait="user2"/> </string>
+				<font> <copy src="darnui_settings" trait="_lblfont" /> </font> <!-- DarN 3 -->
+				<red> <copy src="darnui_settings" trait="_lblred" /> </red>
+				<green> <copy src="darnui_settings" trait="_lblgreen" /> </green>
+				<blue> <copy src="darnui_settings" trait="_lblblue" /> </blue>
+				<alpha> <copy src="darnui_settings" trait="_lblalpha" /> </alpha>
+				<x> 0 </x>
+				<y> 18 </y> <!-- DarN 0 -->
+				<depth> 3 </depth>
+				<clips> &true; </clips>
+			</text>
+			
+			<image name="race_template_slider_bar">
+<include src="darn\horiz_floating_scroll.xml"/>
+				<id> &generic; </id>
+				<width>
+					<copy src="parent()" trait="width"/>
+					<sub src="child(horizontal_scroll_left)" trait="width"/>
+					<sub src="child(horizontal_scroll_right)" trait="width"/>
+				</width>
+				<x> <copy src="child(horizontal_scroll_left)" trait="width"/> </x>
+				<y> 45 </y>
+				<depth> 6 </depth>
+				<clips> &true; </clips>
+				<user1> 0 </user1>			<!-- minimum range value -->
+				<user2> 1 </user2>			<!-- maximum range value -->
+				<user3>						<!-- step distance -->
+					<!-- <copy> 0.04 </copy>
+					<onlyif> &xbox; </onlyif>
+					<add> 0.01 </add> -->
+					<copy> 0.0005 </copy>
+				</user3>
+				<user4> 0.1 </user4>		<!-- jump distance -->
+				<user5> <copy src="parent()" trait="user3"/> </user5>
+				<user6> <copy src="parent()" trait="user6"/> </user6>		<!-- ID for marker/slider -->
+				<user8> &false; </user8>	<!-- don't show number at end -->
+				<user13> <copy src="parent()" trait="user13"/> </user13>
+				
+				<text name="race_display_text">
+					<font> <copy src="darnui_common_settings" trait="_qtyfont" /> </font>
+					<red> <copy src="darnui_common_settings" trait="_qtyred" /> </red>
+					<green> <copy src="darnui_common_settings" trait="_qtygreen" /> </green>
+					<blue> <copy src="darnui_common_settings" trait="_qtyblue" /> </blue>
+					<alpha> <copy src="darnui_common_settings" trait="_qtyalpha" /> </alpha>
+					<x>
+						<copy src="parent()" trait="width"/>
+						<add src="parent()" trait="x"/>
+					</x>
+					<y>-27</y>
+					<string>
+						<copy src="parent()" trait="user7"/>
+						<mul> 2000 </mul>
+						<sub> 1000 </sub>
+ 					</string>
+					<justify> &right; </justify>
+					<clips> &true; </clips>
+				</text>
+			</image>
+			
+			<image name="race_template_slider_marker">
+				<filename> <copy src="darnui_settings" trait="_t_mousemarker1" /> </filename>
+				<alpha>
+					<copy> 180 </copy> <!-- DarN 255 --> <!-- DarN 255 -->
+					<mul src="parent()" trait="_mouseover_any" />
+				</alpha>
+				<width>
+					<copy src="parent()" trait="width"/>
+					<add> 10 </add>
+				</width>
+				<height> 48 </height><!-- DarN 64 -->
+				<x> -6 </x> <!-- DarN -10 -->
+				<y> 28 </y><!-- DarN 25 -->
+				<depth> 4 </depth>
+				<zoom> 75 </zoom> <!-- DarN add -->
+			</image>
+			<image name="race_template_slider_marker_2">
+				<filename> <copy src="darnui_settings" trait="_t_mousemarker2" /> </filename>
+				<alpha> <copy src="sibling(race_template_slider_marker)" trait="alpha" /> </alpha>
+				<width> 78 </width><!-- DarN 104 -->
+				<height> 48 </height><!-- DarN 64 -->
+				<x>
+					<copy src="parent()" trait="width"/>
+					<add> 11 </add> <!-- DarN 15 -->
+					<sub src="me()" trait="width"/>
+				</x>
+				<y> 28 </y> <!-- DarN 25 -->
+				<depth> 5 </depth>
+				<zoom> 75 </zoom> <!-- DarN add -->
+			</image>
+		</rect>
+	</template>
+	
+	
+	
+	
+	<!-- TEMPLATES - TEXT =====================================================================-->
+	<template name="race_template_text">
+		<text name="race_template_text">
+			<id> 104 </id>
+			<string> <copy src="me()" trait="user6"/> </string>
+			<font> <copy src="darnui_settings" trait="_descfont" /> </font><!-- DarN 1 -->
+			<red> <copy src="darnui_settings" trait="_descred" /> </red>
+			<green> <copy src="darnui_settings" trait="_descgreen" /> </green>
+			<blue> <copy src="darnui_settings" trait="_descblue" /> </blue>
+			<alpha> <copy src="darnui_settings" trait="_descalpha" /> </alpha>
+			<wrapwidth>
+				<copy src="parent()" trait="width"/>
+				<sub> 10 </sub> <!-- DarN add -->
+			</wrapwidth>
+			<x> 0 </x>
+			<y>
+				<copy src="me()" trait="listindex"/>
+				<mul> 70 </mul><!-- DarN 93 -->
+				<add> 30 </add> <!-- DarN 20 -->
+			</y>
+			<depth> 2 </depth>
+			<listindex> 0 </listindex>
+			<user6> Text </user6>	<!-- text -->
+			<clips> &true; </clips>
+		</text>
+	</template>
+	
+	
+</menu>

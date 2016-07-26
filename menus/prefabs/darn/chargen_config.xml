@@ -1,0 +1,90 @@
+
+<!--	DARNIFIED CHARGEN CONFIG 1.0
+-->
+<rect name="darnui_settings">
+	<_configversion> 1.0 </_configversion>
+
+<!-- *********** RaceSex Menu specific ********** -->
+
+	<!-- Label text (controls) (def. 2,0,0,0,200) -->
+	<_lblfont> 2 </_lblfont>
+	<_lblred> 237 </_lblred>
+	<_lblgreen> 228 </_lblgreen>
+	<_lblblue> 160 </_lblblue>
+	<_lblalpha> 255 </_lblalpha>
+
+<!-- ************ Class Menu specific *********** -->
+
+	<!-- Sub header text "Favored Attributes, etc" (def. 3,0,0,0,200) -->
+	<_shfont> 3 </_shfont>
+	<_shred> 237 </_shred>
+	<_shgreen> 228 </_shgreen>
+	<_shblue> 160 </_shblue>
+	<_shalpha> 255 </_shalpha>
+
+	<!-- Sub header 2 text "Stealth, Speed, Sneak" (def. 2,117,59,33,200) -->
+	<_sasfont> 2 </_sasfont>
+	<_sasred> 217 </_sasred>
+	<_sasgreen> 185 </_sasgreen>
+	<_sasblue> 102 </_sasblue>
+	<_sasalpha> 255 </_sasalpha>
+
+	<!-- Header offsets (def. 2,10,36) -->
+	<_minho> 2 </_minho> <!-- DarN between sh2 labels -->
+	<_medho> 10 </_medho> <!-- DarN between sh1 and sh2 labels -->
+	<_majho> 36 </_majho> <!-- DarN between groups -->
+
+<!-- ****************** Shared ****************** -->
+
+	<!-- Player Name/Header text (def. 3,0,0,0,255,0,0) -->
+	<_pnhfont> 3 </_pnhfont>
+	<_pnhred> 237 </_pnhred>
+	<_pnhgreen> 228 </_pnhgreen>
+	<_pnhblue> 160 </_pnhblue>
+	<_pnhalpha> 255 </_pnhalpha>
+	<_pnhxoffset> 0 </_pnhxoffset>
+	<_pnhyoffset> 0 </_pnhyoffset>
+
+	<!-- Description text (def. 2,0,0,0,200) -->
+	<_descfont> 2 </_descfont>
+	<_descred> 217 </_descred>
+	<_descgreen> 185 </_descgreen>
+	<_descblue> 102 </_descblue>
+	<_descalpha> 255 </_descalpha>
+
+	<!-- List text (def. 3,117,59,33,255,0,0) -->
+	<_ltfont> 3 </_ltfont>
+	<_ltred> 217 </_ltred>
+	<_ltgreen> 185 </_ltgreen>
+	<_ltblue> 102 </_ltblue>
+	<_ltalpha> 255 </_ltalpha>
+	<_ltxoffset> 0 </_ltxoffset>
+	<_ltyoffset> 0 </_ltyoffset>
+
+	<!-- TEXTURES -->
+	<_t_eqipedmarker> Textures\DarkUI\Menus\Inventory\inv_equiped_marker_1dui.dds </_t_eqipedmarker>
+	<_t_mousemarker1> Textures\DarkUI\Menus\dialog\dialog_selection_fulldui.dds </_t_mousemarker1>
+	<_t_mousemarker2> Textures\DarkUI\Menus\dialog\dialog_selection_cutdui.dds </_t_mousemarker2>
+	<_t_titleleft> Menus\Stats\stat_title_left.dds </_t_titleleft>
+	<_t_titleright> Menus\Stats\stat_title_right.dds </_t_titleright>
+	<_t_horizborder> Textures\DarkUI\Menus\Stats\stat_border_horizontal_1dui.dds </_t_horizborder>
+	<_t_arrowleft> Menus\Shared\shared_arrow_left.dds </_t_arrowleft>
+	<_t_arrowright> Menus\Shared\shared_arrow_right.dds </_t_arrowright>
+	
+</rect>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

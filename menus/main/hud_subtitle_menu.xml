@@ -1,0 +1,240 @@
+<!-- DarN Version 1.3 -->
+<!-- hud_subtitle_menu.xml -->
+<menu name="HUDSubtitleMenu">
+	<class> &HUDSubtitleMenu; </class>
+	<stackingtype> &does_not_stack; </stackingtype>
+	<visible> &false; </visible>
+	<alpha>	0 </alpha>
+	<locus> &true; </locus>
+	<depth> 0 </depth>
+	<x> 0 </x>
+	<y> 0 </y>
+	<menufade> 0.15 </menufade>
+	<!-- Settings -->
+	<_msg> <copy src="sibling(HUDMainMenu)" trait="_msg" /> </_msg>
+	<_msg_x> <copy src="sibling(HUDMainMenu)" trait="_msg_x" /> </_msg_x>
+	<_msg_y> <copy src="sibling(HUDMainMenu)" trait="_msg_y" /> </_msg_y>
+	<_msg_ca> <copy src="sibling(HUDMainMenu)" trait="_msg_ca" /> </_msg_ca>
+	<_msg_gi> <copy src="sibling(HUDMainMenu)" trait="_msg_gi" /> </_msg_gi>
+	<_sm> <copy src="sibling(HUDMainMenu)" trait="_settingsmode" /> </_sm>
+	<_ha><copy src="sibling(HUDMainMenu)" trait="_gfx_hudalpha" /></_ha>
+	<_txt_ha><copy src="sibling(HUDMainMenu)" trait="_txt_hudalpha" /></_txt_ha>
+
+	<include src="darn\hudsubtitlemenu_config.xml"/>
+
+	<rect name="hudsubtitle_text_layout">
+		<alpha> 0 </alpha>
+		<depth> 2 </depth>
+		<x> 0 </x>
+		<y> 0 </y>
+		<locus> &true; </locus>
+
+		<!-- SUBTITLES =============================================================================-->
+		<rect name="SubtitleBakground">
+		<include src="darn\fader_box.xml"/>
+			<_perc>
+				<copy src="hudsubtitle_text" trait="width" />
+				<mul> 3 </mul>
+				<div> 100 </div>
+			</_perc>
+			<alpha> <copy src="darnui_settings" trait="_sttbackgroundalpha"/> </alpha>
+			<visible>
+				<copy src="hudsubtitle_text" trait="width"/>
+				<gt> 8 </gt> <!-- DarN 8 -->
+				<and src="hudsubtitle_text" trait="visible" />
+				<and src="darnui_settings" trait="_sttbackground"/>
+			</visible>
+			<x>
+				<copy src="hudsubtitle_text" trait="x"/>
+				<sub>
+					<copy src="hudsubtitle_text" trait="width" />
+					<div> 2 </div>
+				</sub>
+				<sub>
+					<copy src="me()" trait="_perc" />
+					<div> 3 </div>
+				</sub>
+			</x>
+			<y>
+				<copy src="hudsubtitle_text" trait="y"/>
+				<sub> 2 </sub>
+			</y>
+			<depth> -2 </depth>
+			<user0>
+				<copy src="hudsubtitle_text" trait="width" />
+				<add src="me()" trait="_perc" />
+			</user0>
+			<user1>
+				<copy src="hudsubtitle_text" trait="height"/>
+				<add> 10 </add>
+			</user1>
+		</rect>
+
+		<text name="hudsubtitle_text">
+			<id> 1 </id>
+			<string> </string>
+			<visible> &false; </visible>
+			<font> <copy src="darnui_settings" trait="_sttfont"/> </font>
+			<red>  <copy src="darnui_settings" trait="_sttred"/> </red>
+			<green> <copy src="darnui_settings" trait="_sttgreen"/> </green>
+			<blue> <copy src="darnui_settings" trait="_sttblue"/> </blue>
+			<alpha> <copy src="darnui_settings" trait="_sttalpha"/> </alpha>
+			<justify> &center; </justify>
+			<wrapwidth> 1000 </wrapwidth>
+			<x>
+				<copy src="screen()" trait="width"/>
+				<div> 2 </div>
+				<add src="darnui_settings" trait="_sttxoffset"/>
+			</x>
+			<y>
+				<copy src="screen()" trait="height"/>
+				<sub>
+					 <copy src="screen()" trait="cropy"/>
+					 <mul> 2 </mul>
+				</sub>
+				<sub> 60 </sub> <!-- DarN clear compass -->
+				<sub src="me()" trait="height"/>
+				<add src="darnui_settings" trait="_sttyoffset"/>
+			</y>
+			<user1> 0 </user1>	<!-- set by code - y value of top of topmost HUDInfoMenu item -->
+		</text>
+
+		<text name="hudsubtitle_text_ds">
+			<depth> -1 </depth>
+			<string> <copy src="sibling(hudsubtitle_text)" trait="string"/> </string>
+			<visible> 
+				<copy src="sibling(hudsubtitle_text)" trait="visible"/>
+				<eq> &true; </eq>
+			</visible>
+			<font> <copy src="sibling(hudsubtitle_text)" trait="font"/> </font>
+			<red> 0 </red>
+			<green> 0 </green>
+			<blue> 0 </blue>
+			<alpha> <copy src="sibling(hudsubtitle_text)" trait="alpha"/> </alpha>
+			<justify> &center; </justify>
+			<wrapwidth> 1000 </wrapwidth>
+			<x>
+				<copy src="sibling(hudsubtitle_text)" trait="x"/>
+				<add> 1 </add>
+			</x>
+			<y>
+				<copy src="sibling(hudsubtitle_text)" trait="y"/>
+				<add> 1 </add>
+			</y>
+		</text>
+		
+		<!-- NOTICE =============================================================================-->
+		<image name="hudsubtitle_icon">
+			<visible> <copy src="sibling(hudsubtitle_notice)" trait="user2"/> </visible>
+			<filename> <copy src="sibling(hudsubtitle_notice)" trait="user1"/> </filename>
+			<width> 32 </width> <!-- DarN 63 -->
+			<height> 32 </height> <!-- DarN 63 -->
+			<x>
+				<copy src="sibling(hudsubtitle_notice)" trait="x" />
+				<sub src="me()" trait="width" />
+				<sub> 8 </sub>
+			</x>
+			<y> <copy src="HUDSubtitleMenu" trait="_msg_y" /> </y>
+			<zoom> 50 </zoom> <!-- DarN add -->
+			<alpha>
+				<!-- <copy src="darnui_settings" trait="_ntalpha"/> -->
+				<copy src="HUDSubtitleMenu" trait="_ha"/>
+				<onlyif src="HUDSubtitleMenu" trait="_msg" />
+			</alpha>
+		</image>
+
+		<!-- DarN Generic Oblivion info icon -->
+		<image name="hudsubtitle_icon_darn">
+			<visible>
+				<not src="sibling(hudsubtitle_notice)" trait="user2"/>
+				<and src="sibling(hudsubtitle_notice)" trait="visible"/>
+				<!-- DarN for message removers -->
+				<and>
+					<copy src="sibling(hudsubtitle_notice)" trait="width"/>
+					<gt> 8 </gt>
+				</and>
+				<and src="HUDSubtitleMenu" trait="_msg_gi" />
+			</visible>
+			<alpha> <copy src="sibling(hudsubtitle_notice)" trait="alpha"/> </alpha>
+			<filename> Menus\darn\omg.dds </filename>
+			<width> 32 </width>
+			<height> 32 </height>
+			<x> <copy src="sibling(hudsubtitle_icon)" trait="x" /> </x>
+			<y> <copy src="sibling(hudsubtitle_icon)" trait="y" /> </y>
+		</image>
+
+		<text name="hudsubtitle_notice">
+			<id> 2 </id>
+			<string> <copy src="strings()" trait="_dummynotice"/> </string>
+			<visible> &false; </visible>
+			<font> <copy src="darnui_settings" trait="_ntfont"/> </font>
+			<red> <copy src="darnui_settings" trait="_ntred"/> </red>
+			<green> <copy src="darnui_settings" trait="_ntgreen"/> </green>
+			<blue> <copy src="darnui_settings" trait="_ntblue"/> </blue>
+			<alpha>
+				<!-- <copy src="darnui_settings" trait="_ntalpha"/> -->
+				<copy src="HUDSubtitleMenu" trait="_txt_ha"/>
+				<onlyif src="HUDSubtitleMenu" trait="_msg" />
+			</alpha>
+			<x>
+				<copy src="HUDSubtitleMenu" trait="_msg_x"/>
+				<add> 8 </add>
+				<add>
+					<copy src="sibling(hudsubtitle_icon)" trait="width"/>
+					<onlyif src="HUDSubtitleMenu" trait="_msg_gi"/>
+				</add>
+				<sub>
+					<copy src="me()" trait="width" />
+					<add> 8 </add>
+					<add>
+						<copy src="sibling(hudsubtitle_icon)" trait="width"/>
+						<onlyif src="HUDSubtitleMenu" trait="_msg_gi"/>
+					</add>
+					<onlyif>
+						<copy src="HUDSubtitleMenu" trait="_msg_x" />
+						<gt>
+							<copy src="screen()" trait="width" />
+							<div> 2 </div>
+						</gt>
+					</onlyif>
+					<onlyifnot src="HUDSubtitleMenu" trait="_msg_ca" />
+				</sub>
+				<sub>
+					<copy src="me()" trait="width" />
+					<div> 2 </div>
+					<onlyif src="HUDSubtitleMenu" trait="_msg_ca" />
+				</sub>
+			</x>
+			<y>
+				<copy src="sibling(hudsubtitle_icon)" trait="y"/>
+			</y>
+			<user1> </user1>				<!-- icon pathname -->
+			<user2> &false; </user2>		<!-- is there an icon, true/false -->
+		</text>
+		
+		<text name="hudsubtitle_notice_ds">
+			<depth> <copy src="sibling(hudsubtitle_notice)" trait="depth"/> <sub> 1 </sub> </depth>
+			<string> <copy src="sibling(hudsubtitle_notice)" trait="string"/> </string>
+			<visible>
+				<copy src="sibling(hudsubtitle_notice)" trait="visible"/>
+			</visible>
+			<font> <copy src="sibling(hudsubtitle_notice)" trait="font"/> </font>
+			<red> 0 </red>
+			<green> 0 </green>
+			<blue> 0 </blue>
+			<alpha> <copy src="sibling(hudsubtitle_notice)" trait="alpha"/> </alpha>
+			<x>
+				<copy src="sibling(hudsubtitle_notice)" trait="x"/>
+				<add> 1 </add>
+			</x>
+			<y>
+				<copy src="sibling(hudsubtitle_notice)" trait="y"/>
+				<add> 1 </add>
+			</y>
+		</text>
+
+	</rect>
+
+</menu>
+
+

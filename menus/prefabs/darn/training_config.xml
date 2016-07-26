@@ -1,0 +1,29 @@
+<!-- DARNIFIED TRAINING CONFIG 1.1 -->
+<rect name="darnui_settings">
+<_configversion> 1.1 </_configversion>
+
+<!-- Skill name ie. "Blade" (def. 3,0,0,0) -->
+<_snfont>3</_snfont>
+<_snred>237</_snred>
+<_sngreen>228</_sngreen>
+<_snblue>160</_snblue>
+
+<!-- Skill description text (def. 2,0,0,0) -->
+<_sdfont>2</_sdfont>
+<_sdred>217</_sdred>
+<_sdgreen>185</_sdgreen>
+<_sdblue>102</_sdblue>
+
+<!-- Info group ie. "Trainer Level", etc. (def. 2,117,59,33) -->
+<_igfont>2</_igfont>
+<_igred>217</_igred>
+<_iggreen>185</_iggreen>
+<_igblue>102</_igblue>
+
+<!-- Warning text (def. 3,200,0,0) -->
+<_wtfont>3</_wtfont>
+<_wtred>217</_wtred>
+<_wtgreen>185</_wtgreen>
+<_wtblue>102</_wtblue>
+
+</rect>

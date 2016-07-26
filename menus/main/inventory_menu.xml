@@ -1,0 +1,239 @@
+<!-- inventory_menu.xml -->
+<!-- modified by wz -->
+
+<menu name="InventoryMenu">
+	<class> &InventoryMenu; </class>
+	<alpha>	 0 </alpha>
+	<locus> &true; </locus>
+	<x> 0 </x>
+	<y> 0 </y>
+	<menufade> 0.25 </menufade>
+	<user0> 1 </user0>				<!-- current tab -->
+	<user1> -1 </user1>				<!-- position of weapons header in list -->
+	<user2> -1 </user2>				<!-- position of apparel header in list -->
+	<user3> -1 </user3>				<!-- position of alchemy header in list -->
+	<user4> -1 </user4>				<!-- position of misc header in list -->
+	<user5> 0 </user5>				<!-- number of items in list -->
+	<user6> 0 </user6>				<!-- encumberance -->
+	<user7> 0 </user7>				<!-- encumberance max -->
+	<user8> 0 </user8>				<!-- armor -->
+	<user9> 0 </user9>				<!-- gold -->
+	<user10>					<!-- X-position of fully-exposed magic popup menu -->
+		<copy src="me()" trait="x" />
+		<add src="child(inv_background)" trait="x" />
+		<add src="child(inv_background)" trait="width" />
+		<sub> 20 </sub>
+	</user10>
+	<user11></user11>				<!-- used for xbox hints - what should the A button do, TEXT -->
+	<user12>					<!-- lowest possible drop for the pop-up menu -->
+		<copy src="screen()" trait="height" />
+		<sub src="screen()" trait="cropy" />
+		<sub src="screen()" trait="cropy" />
+		<sub> 175 </sub>
+		<min>
+			<copy> 9999 </copy>
+			<onlyifnot> &xbox; </onlyifnot>
+			<add src="inv_xbox_hints" trait="y" />
+		</min>
+	</user12>
+	<!-- user13 through user17 used for additional header positioning -->
+	<user18> &true; </user18>			<!-- is A button hint visible? xbox only -->
+
+	<xleft> <ref src="inv_tabs_prev" trait="clicked" /> </xleft>
+	<xright> <ref src="inv_tabs_next" trait="clicked" /> </xright>
+
+
+
+	<text name="item_count">
+		<string> <copy src="parent()" trait="user5" /> <add> 1 </add> </string>
+		<x> <copy src="screen()" trait="width" /> <sub src="me()" trait="width" /> <sub> 10 </sub> </x>
+		<y> 10 </y>
+		<font> 3 </font>
+		<red> 255 </red>
+		<green> 0 </green>
+		<blue> 255 </blue>
+		<visible> 1 </visible>
+	</text>
+
+	<text name="item_sel_col">
+		<string> <copy src="parent()" trait="_iSelectionCol" /> </string>
+		<x> <copy src="screen()" trait="width" /> <sub src="me()" trait="width" /> <sub> 10 </sub> </x>
+		<y> 40 </y>
+		<font> 3 </font>
+		<red> 255 </red>
+		<green> 255 </green>
+		<blue> 255 </blue>
+		<visible> 1 </visible>
+	</text>
+
+	<text name="item_sel_row">
+		<string> <copy src="parent()" trait="_iSelectionRow" /> </string>
+		<x> <copy src="screen()" trait="width" /> <sub src="me()" trait="width" /> <sub> 10 </sub> </x>
+		<y> 56 </y>
+		<font> 3 </font>
+		<red> 255 </red>
+		<green> 10 </green>
+		<blue> 255 </blue>
+		<visible> 1 </visible>
+	</text>
+	
+	<text name="darn_dbg">
+		<string>  </string>
+		<x> <copy src="screen()" trait="width" /> <sub src="me()" trait="width" /> <sub> 10 </sub> </x>
+		<y> 56 </y>
+		<font> 3 </font>
+		<red> 255 </red>
+		<green> 10 </green>
+		<blue> 255 </blue>
+		<visible> 1 </visible>
+	</text>
+
+
+	<!-- CONFIG =====================================================================-->
+	<include src="darn\inventory_config.xml" />
+
+	<!-- DarN moved out of headers for speed -->
+	
+	<_no1> <copy src="me()" trait="user1" /> </_no1>
+	<_no2> <copy src="me()" trait="user2" /> </_no2>
+	<_no3>
+		<copy src="me()" trait="user3" /> <!-- position of alchemy header in list -->
+		<onlyif>
+			<copy src="me()" trait="user0" />
+			<neq> 4 </neq>
+		</onlyif>
+		<add>
+			<copy src="inv_p4p5_header_top" trait="user1" />
+			<onlyif>
+				<copy src="me()" trait="user0" />
+				<eq> 4 </eq>
+			</onlyif>
+		</add>
+	</_no3>
+	<_no4>
+		<copy src="me()" trait="user4" /> <!-- position of misc header in list -->
+		<onlyif>
+			<copy src="me()" trait="user0" /> <!-- DarN onlyif page != 4 -->
+			<neq> 4 </neq>
+		</onlyif>
+		<add>
+			<copy src="inv_p4p5_header_top" trait="user2" />
+			<onlyif>
+				<copy src="me()" trait="user0" />
+				<eq> 4 </eq>
+			</onlyif>
+		</add>
+	</_no4>
+	<_no5>
+		<copy src="me()" trait="user13" />
+		<onlyif>
+			<copy src="me()" trait="user0" />
+			<neq> 4 </neq>
+		</onlyif>
+		<add>
+			<copy src="inv_p4p5_header_top" trait="user3" />
+			<onlyif>
+				<copy src="me()" trait="user0" />
+				<eq> 4 </eq>
+			</onlyif>
+		</add>
+	</_no5>
+	<_no6>
+		<copy src="me()" trait="user14" />
+		<onlyif>
+			<copy src="me()" trait="user0" />
+			<lt> 5 </lt>
+		</onlyif>
+		<add>
+			<copy src="inv_p4p5_header_top" trait="user1" />
+			<onlyif>
+				<copy src="me()" trait="user0" />
+				<eq> 5 </eq>
+			</onlyif>
+		</add>
+	</_no6>
+	<_no7>
+		<copy src="me()" trait="user15" />
+		<onlyif>
+			<copy src="me()" trait="user0" />
+			<lt> 5 </lt>
+		</onlyif>
+		<add>
+			<copy src="inv_p4p5_header_top" trait="user2" />
+			<onlyif>
+				<copy src="me()" trait="user0" />
+				<eq> 5 </eq>
+			</onlyif>
+		</add>
+	</_no7>
+	<_no8>
+		<copy src="me()" trait="user16" />
+		<onlyif>
+			<copy src="me()" trait="user0" />
+			<neq> 5 </neq>
+		</onlyif>
+		<add>
+			<copy src="inv_p4p5_header_top" trait="user3" />
+			<onlyif>
+				<copy src="me()" trait="user0" />
+				<eq> 5 </eq>
+			</onlyif>
+		</add>
+	</_no8>
+	<_no9>
+		<copy src="me()" trait="user17" />
+		<onlyif>
+			<copy src="me()" trait="user0" />
+			<neq> 5 </neq>
+		</onlyif>
+		<add>
+			<copy src="inv_p4p5_header_top" trait="user4" />
+			<onlyif>
+				<copy src="me()" trait="user0" />
+				<eq> 5 </eq>
+			</onlyif>
+		</add>
+	</_no9>
+
+	<!-- SETUP ======================================================================-->
+	<include src="darn\inventory\inventory_setup.xml" />
+
+
+	<!-- FOCUS BOX ==================================================================-->
+	<rect name="inv_FocusBox">
+		<id> 9 </id>
+		<rect name="inv_DescPopup">
+			<include src="darn\inventory\inventory_popup.xml" />
+		</rect>
+
+		<visible> &false; </visible>
+		<locus> &true; </locus>
+
+		<rect name="inv_RealFocusBox" >
+			<x> 0 </x>
+			<y> 0 </y>
+			<width> <copy src="parent()" trait="width" /> </width>
+			<height> <copy src="parent()" trait="height" /> </height>
+			<depth>
+				<copy> 22 </copy>
+				<onlyif src="sibling(inv_DescPopup)" trait="visible" />
+			</depth>
+			<include src="darn\focus_box.xml" />
+		</rect>
+	</rect>
+
+
+	<!-- BACKGROUND =================================================================-->
+	<!-- change theme here -->
+	<include src="darn\inventory\theme_journal.xml" />
+	<!-- <include src="darn\inventory\theme_container.xml" /> -->
+
+
+	<!-- TEMPLATES ================================================================= -->
+	<template name="inv_item_template">
+	<_test> 98 </_test>
+		<rect name="inv_item">
+			<include src="darn\inventory\inventory_item.xml" />
+		</rect>
+	</template>
+</menu>

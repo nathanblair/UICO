@@ -1,0 +1,369 @@
+<!-- sleep_wait_menu.xml -->
+ <!-- DarN Version 1.1 -->
+<menu name="SleepWaitMenu">
+	<class> &SleepWaitMenu; </class>
+	<stackingtype> &no_click_past; </stackingtype>
+	<alpha>	0 </alpha>
+	<explorefade> 0.25 </explorefade>
+	<locus> &true; </locus>
+	
+	<user0> &false; </user0>	<!-- true if sleeping, false if waiting -->
+	
+	<xbuttonb> <ref src="sleep_button_cancel" trait="clicked"/> </xbuttonb>
+	<xbuttona> <ref src="sleep_button_sleep_wait" trait="clicked"/> </xbuttona>
+
+<include src="darn\sleepwait_config.xml"/>	
+
+	<!-- BACKGROUND ============================================================================-->
+	<rect name="sleep_background">
+<include src="darn\generic_background75.xml"/>
+		<id> 1 </id>
+		<target> &true; </target>
+		<depth> 1 </depth>
+		<user0> <!-- DarN 720/440 -->
+			<copy> 440 </copy>
+			<max> <!-- DarN prevent text overflow -->
+				<copy src="game_info_2" trait="x" />
+				<add src="game_info_2" trait="width" />
+			</max>
+		</user0>
+		<user1> 230 </user1> <!-- DarN 380 -->
+		<x>
+			<copy src="screen()" trait="width"/>
+			<div> 2 </div>
+			<sub>
+				<copy src="sleep_background" trait="width" />
+				<div> 2 </div>
+			</sub>
+		</x>
+		<y>
+			<copy src="screen()" trait="height"/>
+			<div> 2 </div>
+			<sub>
+				<copy src="sleep_background" trait="height" />
+				<div> 2 </div>
+			</sub>
+		</y>
+		
+		
+		<!-- PROMPT ============================================================================-->
+		<text name="sleep_display_text">
+			<id> 2 </id>
+			<target> &true; </target>
+			<depth> 5 </depth>
+			<string>
+				<copy src="SleepWaitMenu" trait="user0"/>
+				<copy src="me()" trait="_question_"/>
+			</string>
+			<justify> &left; </justify>
+			<font> <copy src="darnui_settings" trait="_swtfont" /> </font><!-- DarN add -->
+			<red> <copy src="darnui_settings" trait="_swtred" /> </red> <!-- DarN 117 -->
+			<green> <copy src="darnui_settings" trait="_swtgreen" /> </green> <!-- DarN 59 -->
+			<blue> <copy src="darnui_settings" trait="_swtblue" /> </blue> <!-- DarN 33 -->
+			<alpha> <copy src="darnui_settings" trait="_swtalpha" /> </alpha> <!-- DarN 255 -->
+			<wrapwidth>
+				<copy src="parent()" trait="width" />
+				<sub> 50 </sub>
+			</wrapwidth>
+			<x>
+				<copy src="parent()" trait="width"/>
+				<sub src="me()" trait="width"/>
+				<div> 2 </div>
+			</x>
+			<y> 15 </y><!-- DarN 34 -->
+			<_question_1> <copy src="strings()" trait="_waitquestion"/> </_question_1>
+			<_question_2> <copy src="strings()" trait="_restquestion"/> </_question_2>
+			<xdefault>&false;</xdefault>
+		</text>
+		
+		
+		<!-- SCROLL BAR ============================================================================-->
+		<image name="sleep_scroll">
+<include src="darn\horiz_floating_scroll.xml"/>
+			<id> 3 </id>
+			<user6> 4 </user6>	<!-- ID for marker/slider -->
+			<user8> &false; </user8>
+			<width> 300 </width> <!-- DarN 350 -->
+			<x> <!-- DarN 180 -->
+				<copy src="parent()" trait="width"/>
+				<sub src="me()" trait="width"/>
+				<div> 2 </div>
+			</x>
+			<y> <!-- DarN 110 -->
+				<copy src="sleep_display_text" trait="y" />
+				<add src="sleep_display_text" trait="height" />
+				<add> 30 </add>
+			</y>
+			<depth> 6 </depth>
+			<user3> 1 </user3>
+		</image>
+		
+		<image name="sleep_scroll_marker">
+			<!--<id> &generic; </id>-->
+			<zoom> 75 </zoom> <!-- DarN add -->
+			<id> 11 </id>
+			<target> <copy src="sleep_scroll_disable" trait="target"/> <eq> &false; </eq> </target>
+			<repeathorizontal> &true; </repeathorizontal>
+			<depth> 1 </depth>
+			<filename> Textures\DarkUI\Menus\dialog\dialog_selection_fulldui.dds </filename>
+			<alpha>
+				<copy> 255 </copy>
+				<mul>
+					<copy src="me()" trait="mouseover" />
+					<add src="sleep_scroll" trait="_mouseover_any" />
+					<min> 1 </min>
+				</mul>
+			</alpha>
+			<width>
+				<copy src="sleep_scroll" trait="width"/>
+				<add> 90 </add> <!-- DarN 120 -->
+			</width>
+			<height> 48 </height> <!-- DarN 64 -->
+			<x>
+				<copy src="sleep_scroll" trait="x"/>
+				<sub> 45 </sub>
+			</x>
+			<y>
+				<copy src="sleep_scroll" trait="y"/>
+				<sub> 16 </sub>
+			</y>
+			<depth> 3 </depth>
+			<locus> &true; </locus>
+			
+			<xdefault> &true; </xdefault>
+			<xleft> <ref src="horizontal_scroll_left" trait="clicked"/> </xleft>
+			<xright> <ref src="horizontal_scroll_right" trait="clicked"/> </xright>
+			<xdown> <ref src="sleep_button_sleep_wait" trait="mouseover"/> </xdown>
+			<xbuttonlb> <ref src="horizontal_scroll_leftside" trait="clicked"/> </xbuttonlb>
+			<xbuttonrb> <ref src="horizontal_scroll_rightside" trait="clicked"/> </xbuttonrb>
+			
+			<image name="sleep_scroll_marker_2">
+				<zoom> 75 </zoom> <!-- DarN add -->
+				<depth> 2 </depth>
+				<filename> Textures\DarkUI\Menus\dialog\dialog_selection_cutdui.dds </filename>
+				<alpha> <copy src="parent()" trait="alpha"/> </alpha>
+				<width> 78 </width> <!-- DarN 104 -->
+				<height> 48 </height> <!-- DarN 64 -->
+				<x>
+					<copy src="parent()" trait="width" />
+					<sub> 72 </sub>
+				</x>
+				<y> 0 </y>
+			</image>
+		</image>
+		
+		<rect name="sleep_scroll_disable">
+			<id>10</id>
+			<depth>
+				<copy src="sleep_scroll" trait="depth"/>
+				<add>7</add>	<!-- this is the magic number if you want something completely on top of your scroll bar and all its components -->
+			</depth>
+			<target> &false; </target>	<!-- target becomes true when player clicks "Wait" -->
+			<x>
+				<copy src="sleep_scroll" trait="x"/>
+				<sub>32</sub>
+			</x>
+			<y>
+				<copy src="sleep_scroll" trait="y"/>
+			</y>
+			<width>
+				<copy src="sleep_scroll" trait="width"/>
+				<add>64</add>
+			</width>
+			<height>24</height>
+		</rect>
+		
+		
+		<!-- TEXT ============================================================================-->
+		<text name="rest_time_text">
+			<string> <copy src="sleep_scroll" trait="user7"/> </string>
+			<justify> &right; </justify> <!-- DarN &center; -->
+			<font> <copy src="darnui_common_settings" trait="_qtyfont" /> </font><!-- DarN add -->
+			<red> <copy src="darnui_common_settings" trait="_qtyred" /> </red> <!-- DarN 117 -->
+			<green> <copy src="darnui_common_settings" trait="_qtygreen" /> </green> <!-- DarN 59 -->
+			<blue> <copy src="darnui_common_settings" trait="_qtyblue" /> </blue> <!-- DarN 33 -->
+			<alpha> <copy src="darnui_common_settings" trait="_qtyalpha" /> </alpha> <!-- DarN 255 -->
+			<x>
+				<copy src="sleep_scroll" trait="x"/>
+				<add>
+					<copy src="sleep_scroll" trait="width"/>
+					<sub src="rest_time_text2" trait="width"/>
+					<sub src="rest_time_text3" trait="width"/>
+					<div> 2 </div>
+				</add>
+			</x>
+			<y> <!-- DarN 150 -->
+				<copy src="sleep_scroll" trait="y" />
+				<add src="sleep_scroll" trait="height" />
+				<add> 20 </add>
+			</y>
+			<depth> 4 </depth>
+		</text>
+
+		<text name="rest_time_text2">
+			<font> <copy src="darnui_common_settings" trait="_qtyfont" /> </font><!-- DarN add -->
+			<red> <copy src="darnui_common_settings" trait="_qtyred" /> </red> <!-- DarN 117 -->
+			<green> <copy src="darnui_common_settings" trait="_qtygreen" /> </green> <!-- DarN 59 -->
+			<blue> <copy src="darnui_common_settings" trait="_qtyblue" /> </blue> <!-- DarN 33 -->
+			<alpha> <copy src="darnui_common_settings" trait="_qtyalpha" /> </alpha> <!-- DarN 255 -->
+			<visible> &true; </visible>
+			<x>
+				<copy src="rest_time_text" trait="x"/>
+				<add>10</add>
+			</x>
+			<y>
+				<copy src="rest_time_text" trait="y"/>
+			</y>
+			<depth> 4 </depth>
+			<string> <copy src="strings()" trait="_hour"/> </string>
+		</text>
+		
+		<text name="rest_time_text3">
+			<font> <copy src="darnui_common_settings" trait="_qtyfont" /> </font><!-- DarN add -->
+			<red> <copy src="darnui_common_settings" trait="_qtyred" /> </red> <!-- DarN 117 -->
+			<green> <copy src="darnui_common_settings" trait="_qtygreen" /> </green> <!-- DarN 59 -->
+			<blue> <copy src="darnui_common_settings" trait="_qtyblue" /> </blue> <!-- DarN 33 -->
+			<alpha> <copy src="darnui_common_settings" trait="_qtyalpha" /> </alpha> <!-- DarN 255 -->
+			<visible> <!-- DarN &true; -->
+				<copy src="sleep_scroll" trait="user7"/>
+				<neq>1</neq>
+			</visible>
+			<x>
+				<copy src="rest_time_text2" trait="x"/>
+				<add src="rest_time_text2" trait="width"/>
+				<add>0</add>
+			</x>
+			<y>
+				<copy src="rest_time_text2" trait="y"/>
+			</y>
+			<depth> 4 </depth>
+			<string> <copy src="strings()" trait="_s"/> </string>
+		</text>
+
+		
+		
+		<!-- BUTTONS ==================================================================-->
+		<image name="sleep_button_sleep_wait">
+<include src="darn\button_long.xml" />
+			<id> 5 </id>
+			<depth> 5 </depth>
+			<x>
+				<copy src="sleep_button_cancel" trait="x" />
+				<sub src="me()" trait="width" />
+				<sub> 20 </sub>
+			</x>
+			<y>
+				<copy src="parent()" trait="height" />
+				<sub src="me()" trait="height" />
+				<sub> 15 </sub>
+			</y>
+			<user0> <copy src="strings()" trait="_rest" /> </user0>
+			
+			<user20> &xbuttona; </user20>
+			<xdefault> &xboxhint; </xdefault>
+			<xleft> <ref src="sleep_button_cancel" trait="mouseover"/> </xleft>
+			<xright> <ref src="sleep_button_cancel" trait="mouseover"/> </xright>
+			<xup> <ref src="sleep_scroll_marker" trait="mouseover"/> </xup>
+		</image>
+		
+		
+		<image name="sleep_button_cancel">
+<include src="darn\button_long.xml" />
+			<id> 6 </id>
+			<depth> 5 </depth>
+			<x>
+				<copy src="parent()" trait="width" />
+				<sub src="me()" trait="width" />
+				<sub> 15 </sub>
+			</x>
+			<y>
+				<copy src="parent()" trait="height" />
+				<sub src="me()" trait="height" />
+				<sub> 15 </sub>
+			</y>
+			<user0> <copy src="strings()" trait="_cancel" /> </user0>
+			
+			<user20> &xbuttonb; </user20>
+			<xdefault> &xboxhint; </xdefault>
+			<xleft> <ref src="sleep_button_sleep_wait" trait="mouseover"/> </xleft>
+			<xright> <ref src="sleep_button_sleep_wait" trait="mouseover"/> </xright>
+			<xup> <ref src="sleep_scroll_marker" trait="mouseover"/> </xup>
+		</image>
+		
+		
+		
+		
+		<!-- INFO ==================================================================-->
+		<text name="game_info_1">
+			<id> 8 </id>
+			<depth> 4 </depth>
+			<string> <copy src="strings()" trait="_dayoftheweek"/> </string>
+			<justify> &right; </justify> <!-- DarN &center; -->
+			<font> <copy src="darnui_settings" trait="_swdfont" /> </font><!-- DarN add -->
+			<red> <copy src="darnui_settings" trait="_swdred" /> </red> <!-- DarN 117 -->
+			<green> <copy src="darnui_settings" trait="_swdgreen" /> </green> <!-- DarN 59 -->
+			<blue> <copy src="darnui_settings" trait="_swdblue" /> </blue> <!-- DarN 33 -->
+			<alpha> <copy src="darnui_settings" trait="_swdalpha" /> </alpha> <!-- DarN 255 -->
+			<x> <!-- DarN 360 -->
+				<copy src="parent()" trait="width"/>
+				<add src="me()" trait="width"/>
+				<sub src="game_info_2" trait="width"/>
+				<sub src="game_info_divider" trait="width"/>
+				<sub> 20 </sub>
+				<div> 2 </div>
+			</x>
+			<y> <!-- DarN 200 -->
+				<copy src="rest_time_text" trait="y" />
+				<add src="rest_time_text" trait="height" />
+				<add> 20 </add>
+			</y>
+		</text>
+
+		<text name="game_info_divider">
+			<depth> 4 </depth>
+			<string>_</string> <!-- DarN dont put a '-' here... -->
+			<justify> &left; </justify> <!-- DarN &center; -->
+			<font> <copy src="darnui_settings" trait="_swdfont" /> </font><!-- DarN add -->
+			<red> <copy src="darnui_settings" trait="_swdred" /> </red> <!-- DarN 117 -->
+			<green> <copy src="darnui_settings" trait="_swdgreen" /> </green> <!-- DarN 59 -->
+			<blue> <copy src="darnui_settings" trait="_swdblue" /> </blue> <!-- DarN 33 -->
+			<alpha> <copy src="darnui_settings" trait="_swdalpha" /> </alpha> <!-- DarN 255 -->
+			<x> <!-- DarN 360 -->
+				<copy src="game_info_1" trait="x"/>
+				<add> 10 </add>
+			</x>
+			<y> <!-- DarN 200 -->
+				<copy src="game_info_1" trait="y"/>
+				<sub> <!-- DarN center underline -->
+					<copy src="me()" trait="height" />
+					<div> 2 </div>
+				</sub>
+			</y>
+		</text>
+		
+		<text name="game_info_2">
+			<id> 9 </id>
+			<depth> 4 </depth>
+			<string> <copy src="strings()" trait="_monthdayyear"/> </string>
+			<justify> &left; </justify> <!-- DarN &center; -->
+			<font> <copy src="darnui_settings" trait="_swdfont" /> </font><!-- DarN add -->
+			<red> <copy src="darnui_settings" trait="_swdred" /> </red> <!-- DarN 117 -->
+			<green> <copy src="darnui_settings" trait="_swdgreen" /> </green> <!-- DarN 59 -->
+			<blue> <copy src="darnui_settings" trait="_swdblue" /> </blue> <!-- DarN 33 -->
+			<alpha> <copy src="darnui_settings" trait="_swdalpha" /> </alpha> <!-- DarN 255 -->
+			<wrapwidth>
+				<copy src="parent()" trait="width" />
+				<sub> 50 </sub>
+			</wrapwidth>
+			<x>  <!-- DarN 360 -->
+				<copy src="game_info_divider" trait="x"/>
+				<add src="game_info_divider" trait="width"/>
+				<add> 10 </add>
+			</x>
+			<y>  <!-- DarN 240 -->
+				<copy src="game_info_1" trait="y"/>
+			</y>
+		</text>
+		
+	</rect>
+</menu>
