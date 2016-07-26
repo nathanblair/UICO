@@ -1,0 +1,143 @@
+<!-- focus_box.xml -->
+ <!-- DarN Version 1.0 -->
+<!-- rect name="FocusBox" -->
+	<locus> &true; </locus>
+	
+	<image name="focus_center">
+		<filename> Menus\Focus\focus_center_x4.dds </filename>
+		<zoom> -1 </zoom>
+		<x> -1 </x>
+		<y> -1 </y>
+		<width>
+			<copy src="parent()" trait="width"/>
+			<add> 2 </add>
+		</width>
+		<height>
+			<copy src="parent()" trait="height"/>
+			<add> 2 </add>
+		</height>
+	</image>
+
+	<image name="focus_top">
+		<zoom> 75 </zoom> <!-- DarN add -->
+		<filename> Menus\Focus\focus_top.dds </filename>
+		<x> -1 </x>
+		<y> -6 </y>
+		<tile> &true; </tile>
+		<width>
+			<copy src="parent()" trait="width"/>
+			<add> 2 </add>
+		</width>
+		<height> 7 </height>
+	</image>
+
+	<image name="focus_bottom">
+		<zoom> 75 </zoom> <!-- DarN add -->
+		<filename> Menus\Focus\focus_bottom.dds </filename>
+		<x> -1 </x>
+		<y> <copy src="parent()" trait="height"/> </y>
+		<tile> &true; </tile>
+		<width>
+			<copy src="parent()" trait="width"/>
+			<add> 2 </add>
+		</width>
+		<height> 11 </height>
+	</image>
+
+	<image name="focus_left">
+		<zoom> 75 </zoom> <!-- DarN add -->
+		<filename> Menus\Focus\focus_left.dds </filename>
+		<x> -6 </x>
+		<y> -1 </y>
+		<tile> &true; </tile>
+		<width> 6 </width>
+		<height>
+			<copy src="parent()" trait="height"/>
+			<add> 2 </add>
+		</height>
+	</image>
+
+	<image name="focus_right">
+		<zoom> 75 </zoom> <!-- DarN add -->
+		<filename> Menus\Focus\focus_right.dds </filename>
+		<x> <copy src="parent()" trait="width"/> </x>
+		<y> -1 </y>
+		<tile> &true; </tile>
+		<width> 9 </width>
+		<height>
+			<copy src="parent()" trait="height"/>
+			<add> 2 </add>
+		</height>
+	</image>
+	
+
+	<image name="focus_top_left">
+		<zoom> 75 </zoom> <!-- DarN add -->
+		<filename> Menus\Focus\focus_top_left.dds </filename>
+		<x> -6 </x>
+		<y> -7 </y>
+		<width> 13 </width>
+		<height> 14 </height>
+		<depth> 1 </depth>
+	</image>
+
+	<image name="focus_top_right">
+		<zoom> 75 </zoom> <!-- DarN add -->
+		<filename> Menus\Focus\focus_top_right.dds </filename>
+		<x>
+			<copy src="parent()" trait="width"/>
+			<add> -6 </add>
+		</x>
+		<y> -6 </y>
+		<width> 17 </width>
+		<height> 16 </height>
+		<depth> 1 </depth>
+		<locus> &true; </locus>
+	</image>
+
+	<image name="focus_bottom_right">
+		<zoom> 75 </zoom> <!-- DarN add -->
+		<filename> Menus\Focus\focus_bottom_right.dds </filename>
+		<x> <copy src="parent()" trait="width"/> </x>
+		<y> <copy src="parent()" trait="height"/> </y>
+		<width> 9 </width>
+		<height> 11 </height>
+		<depth> 1 </depth>
+		<locus> &true; </locus>
+
+		<image name="focus_bottom_right_fade_right">
+			<zoom> 75 </zoom> <!-- DarN add -->
+			<filename> Menus\Focus\focus_bottom_right_fade_right.dds </filename>
+			<x> -2 </x>
+			<y> -6 </y>
+			<width> 6 </width>
+			<height> 6 </height>
+			<depth> 1 </depth>
+		</image>
+
+		<image name="focus_bottom_right_fade_bottom">
+			<zoom> 75 </zoom> <!-- DarN add -->
+			<filename> Menus\Focus\focus_bottom_right_fade_bottom.dds </filename>
+			<x> -6 </x>
+			<y> 0 </y>
+			<width> 6 </width>
+			<height> 6 </height>
+			<depth> 1 </depth>
+		</image>
+	</image>
+
+	<image name="focus_bottom_left">
+		<zoom> 75 </zoom> <!-- DarN add -->
+		<filename> Menus\Focus\focus_bottom_left.dds </filename>
+		<x> -6 </x>
+		<y>
+			<copy src="parent()" trait="height"/>
+			<add> -6 </add>
+		</y>
+		<width> 13 </width>
+		<height> 17 </height>
+		<depth> 1 </depth>
+		<locus> &true; </locus>
+	</image>
+
+<!-- /rect -->

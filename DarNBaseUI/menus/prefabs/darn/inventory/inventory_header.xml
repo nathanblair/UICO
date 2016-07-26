@@ -1,0 +1,709 @@
+<!-- created by wz -->
+
+<!-- rect name="inv_headers_top" -->
+	<x>
+		<copy src="inv_window" trait="x" />
+	</x>
+	<y>
+		<copy src="inv_window" trait="y" />
+		<sub> 2 </sub>
+		<sub src="me()" trait="height" />
+	</y>
+	<width>
+		<copy src="inv_window" trait="width" />
+	</width>
+	<height> 32 </height> <!-- DarN 48 -->
+	<locus> &true; </locus>
+
+<!-- TOGGLE GRID ============================================================== -->
+	<image name="inv_toggle_grid_1">
+		<include src="darn\inventory\inventory_togglegrid.xml" />
+		<id> 103 </id>
+		<visible>
+			<copy src="InventoryMenu" trait="user0" />
+			<eq> 1 </eq>
+		</visible>
+		<user1>
+			<copy src="InventoryMenu" trait="_bGrid_All" />
+		</user1>
+	</image>
+	<!-- inv_toggle_grid -->
+
+	<image name="inv_toggle_grid_2">
+		<include src="darn\inventory\inventory_togglegrid.xml" />
+		<id> 104 </id>
+		<visible>
+			<copy src="InventoryMenu" trait="user0" />
+			<eq> 2 </eq>
+		</visible>
+		<user1>
+			<copy src="InventoryMenu" trait="_bGrid_Weapons" />
+		</user1>
+	</image>
+	<!-- inv_toggle_grid -->
+
+	<image name="inv_toggle_grid_3">
+		<include src="darn\inventory\inventory_togglegrid.xml" />
+		<id> 105 </id>
+		<visible>
+			<copy src="InventoryMenu" trait="user0" />
+			<eq> 3 </eq>
+		</visible>
+		<user1>
+			<copy src="InventoryMenu" trait="_bGrid_Apparel" />
+		</user1>
+	</image>
+	<!-- inv_toggle_grid -->
+
+	<image name="inv_toggle_grid_4">
+		<include src="darn\inventory\inventory_togglegrid.xml" />
+		<id> 106 </id>
+		<visible>
+			<copy src="InventoryMenu" trait="user0" />
+			<eq> 4 </eq>
+		</visible>
+		<user1>
+			<copy src="InventoryMenu" trait="_bGrid_Alchemy" />
+		</user1>
+	</image>
+	<!-- inv_toggle_grid -->
+
+	<image name="inv_toggle_grid_5">
+		<include src="darn\inventory\inventory_togglegrid.xml" />
+		<id> 107 </id>
+		<visible>
+			<copy src="InventoryMenu" trait="user0" />
+			<eq> 5 </eq>
+		</visible>
+		<user1>
+			<copy src="InventoryMenu" trait="_bGrid_Misc" />
+		</user1>
+	</image>
+	<!-- inv_toggle_grid -->
+
+	<rect name="inv_p123_header_top">
+		<visible>
+			<copy src="InventoryMenu" trait="user0" />
+			<lte> 3 </lte>
+		</visible>
+		<x> 0 </x>
+		<y> 0 </y>
+		<width>
+			<copy src="parent()" trait="width" />
+		</width>
+		<height>
+			<copy src="parent()" trait="height" />
+		</height>
+		<depth> 7 </depth>
+		<locus> &true; </locus>
+		
+		<_header_1>	<copy src="strings()" trait="_weapons" /> </_header_1>
+		<_header_2>	<copy src="strings()" trait="_apparel" /> </_header_2>
+		<_header_3>	<copy src="strings()" trait="_apparatuses" /> </_header_3>
+		<_header_4>	<copy src="strings()" trait="_potions" /> </_header_4>
+		<_header_5>	<copy src="strings()" trait="_ingredients" /> </_header_5>
+		<_header_6>	<copy src="strings()" trait="_books" /> </_header_6>
+		<_header_7>	<copy src="strings()" trait="_keys" /> </_header_7>
+		<_header_8>	<copy src="strings()" trait="_stones" /> </_header_8>
+		<_header_9>	<copy src="strings()" trait="_misc" /> </_header_9>
+		
+		<_headernum>
+			<copy src="InventoryMenu" trait="user0" />
+			<sub> 1 </sub>
+			<onlyif>
+				<copy src="InventoryMenu" trait="user0" />
+				<gte> 1 </gte>
+			</onlyif>
+			<add>
+				<copy> 1 </copy>
+				<add>
+					<copy> 1 </copy>
+					<onlyif>
+						<copy src="inv_scroll_bar" trait="_scroll" />
+						<gt>
+							<copy src="inv_apparel_header" trait="_idx" />
+							<div src="InventoryMenu" trait="_perLine" />
+							<floor> 0 </floor>
+						</gt>
+					</onlyif>
+				</add>
+				<add>
+					<copy> 1 </copy>
+					<onlyif>
+						<copy src="inv_scroll_bar" trait="_scroll" />
+						<gt>
+							<copy src="inv_apparatus_header" trait="_idx" />
+							<div src="InventoryMenu" trait="_perLine" />
+							<floor> 0 </floor>
+						</gt>
+					</onlyif>
+				</add>
+				<add>
+					<copy> 1 </copy>
+					<onlyif>
+						<copy src="inv_scroll_bar" trait="_scroll" />
+						<gt>
+							<copy src="inv_potions_header" trait="_idx" />
+							<div src="InventoryMenu" trait="_perLine" />
+							<floor> 0 </floor>
+						</gt>
+					</onlyif>
+				</add>
+				<add>
+					<copy> 1 </copy>
+					<onlyif>
+						<copy src="inv_scroll_bar" trait="_scroll" />
+						<gt>
+							<copy src="inv_ingr_header" trait="_idx" />
+							<div src="InventoryMenu" trait="_perLine" />
+							<floor> 0 </floor>
+						</gt>
+					</onlyif>
+				</add>
+				<add>
+					<copy> 1 </copy>
+					<onlyif>
+						<copy src="inv_scroll_bar" trait="_scroll" />
+						<gt>
+							<copy src="inv_book_header" trait="_idx" />
+							<div src="InventoryMenu" trait="_perLine" />
+							<floor> 0 </floor>
+						</gt>
+					</onlyif>
+				</add>
+				<add>
+					<copy> 1 </copy>
+					<onlyif>
+						<copy src="inv_scroll_bar" trait="_scroll" />
+						<gt>
+							<copy src="inv_keys_header" trait="_idx" />
+							<div src="InventoryMenu" trait="_perLine" />
+							<floor> 0 </floor>
+						</gt>
+					</onlyif>
+				</add>
+				<add>
+					<copy> 1 </copy>
+					<onlyif>
+						<copy src="inv_scroll_bar" trait="_scroll" />
+						<gt>
+							<copy src="inv_stones_header" trait="_idx" />
+							<div src="InventoryMenu" trait="_perLine" />
+							<floor> 0 </floor>
+						</gt>
+					</onlyif>
+				</add>
+				<add>
+					<copy> 1 </copy>
+					<onlyif>
+						<copy src="inv_scroll_bar" trait="_scroll" />
+						<gt>
+							<copy src="inv_misc_header" trait="_idx" />
+							<div src="InventoryMenu" trait="_perLine" />
+							<floor> 0 </floor>
+						</gt>
+					</onlyif>
+				</add>
+				<onlyif>
+					<copy src="InventoryMenu" trait="user0" />
+					<eq> 1 </eq>
+				</onlyif>
+			</add>
+		</_headernum>
+		
+		<image name="inv_p123_header_left">
+			<filename> Menus\Shared\shared_decor_blue_left.dds </filename>
+			<depth> 7 </depth>
+			<width> 35 </width>
+			<height> 17 </height>
+			<x>
+				<copy> 80 </copy>
+				<onlyifnot src="InventoryMenu" trait="_bEnableGrid" />
+				<add>
+					<copy src="sibling(inv_p123_header_img1)" trait="x" />
+					<sub src="inv_toggle_grid_1" trait="x" />
+					<sub src="inv_toggle_grid_1" trait="width" />
+					<sub src="me()" trait="width" />
+					<sub src="sibling(inv_p123_header_text)" trait="width" />
+					<sub src="sibling(inv_p123_header_right)" trait="width" />
+					<sub> 40 </sub>
+					<sub> 32 </sub>
+					<mul> 0.5 </mul>
+					<mul>
+						<copy src="InventoryMenu" trait="_posHeaderText" />
+						<div> 2 </div>
+						<floor> 0 </floor>
+					</mul>
+					<add src="inv_toggle_grid_1" trait="x" />
+					<add src="inv_toggle_grid_1" trait="width" />
+					<add> 16 </add>
+					<onlyif src="InventoryMenu" trait="_bEnableGrid" />
+				</add>
+			</x>
+			<y>
+				<copy src="sibling(inv_p123_header_text)" trait="y" />
+				<add> 6 </add>
+			</y>
+		</image>
+		<image name="inv_p123_header_right">
+			<filename> Menus\Shared\shared_decor_blue_right.dds </filename>
+			<depth> 7 </depth>
+			<width> 35 </width>
+			<height> 17 </height>
+			<x>
+				<copy src="sibling(inv_p123_header_text)" trait="x" />
+				<add src="sibling(inv_p123_header_text)" trait="width" />
+				<add> 20 </add>
+			</x>
+			<y>
+				<copy src="sibling(inv_p123_header_left)" trait="y" />
+			</y>
+		</image>
+		<text name="inv_p123_header_text">
+			<id> 14 </id>
+			<target> &true; </target>
+			<clicksound> 3 </clicksound>
+			<string>
+				<copy src="parent()" trait="_headernum" />
+				<copy src="parent()" trait="_header_" /> 
+			</string>
+			<font> 3 </font>
+			<x>
+				<copy src="sibling(inv_p123_header_left)" trait="x" />
+				<add src="sibling(inv_p123_header_left)" trait="width" />
+				<add> 20 </add>
+			</x>
+			<y>
+				<copy src="parent()" trait="height" />
+				<sub src="me()" trait="height" />
+				<div> 2 </div>
+			</y>
+			<red> 51 </red>
+			<green> 79 </green>
+			<blue> 142 </blue>
+			<alpha> 255 </alpha>
+			<justify> &left; </justify>
+			<xright> <ref src="sibling(inv_p123_header_img1)" trait="mouseover" /> </xright>
+			<xdown> <ref src="inv_list_contents" trait="mouseover" /> </xdown>
+		</text>
+
+		<image name="inv_p123_header_img1">
+			<id> 15 </id>
+			<target> &true; </target>
+			<clicksound> 3 </clicksound>
+			<filename> Menus\Shared\all_small_icons.dds </filename>
+			<cropx> 168 </cropx> <!-- DarN 224 -->
+			<zoom> 75 </zoom> <!-- DarN add -->
+			<x>
+				<copy src="sibling(inv_p123_header_img2)" trait="x" />
+				<sub> 60 </sub>
+				<sub>
+					<copy> 13 </copy>
+					<onlyifnot src="InventoryMenu" trait="_bEnableGrid" />
+				</sub>
+			</x>
+			<y>
+				<copy src="parent()" trait="height" />
+				<sub src="me()" trait="height" />
+				<div> 2 </div>
+			</y>
+			<width> 24 </width> <!-- DarN 32 -->
+			<height> 24 </height> <!-- DarN 32 -->
+			<xleft> <ref src="sibling(inv_p123_header_text)" trait="mouseover" /> </xleft>
+			<xright> <ref src="sibling(inv_p123_header_img2)" trait="mouseover" /> </xright>
+			<xdown> <ref src="inv_list_contents" trait="mouseover" /> </xdown>
+		</image>
+		<image name="inv_p123_header_img2">
+			<id> 16 </id>
+			<target> &true; </target>
+			<clicksound> 3 </clicksound>
+			<filename> Menus\Shared\all_small_icons.dds </filename>
+			<cropx> 24 </cropx> <!-- DarN 32 -->
+			<zoom> 75 </zoom> <!-- DarN add -->
+			<x>
+				<copy src="sibling(inv_p123_header_img4)" trait="x" />
+				<sub>
+					<copy> 60 </copy>
+					<onlyif>
+						<copy src="sibling(inv_p123_header_img4)" trait="visible" />
+						<or> <not src="InventoryMenu" trait="_bEnableGrid" /> </or>
+					</onlyif>
+				</sub>
+				<sub>
+					<copy> 60 </copy>
+					<onlyif>
+						<copy src="sibling(inv_p123_header_img3a)" trait="visible" />
+						<or src="sibling(inv_p123_header_img3b)" trait="visible" />
+						<or src="sibling(inv_p123_header_img3c)" trait="visible" />
+						<or> <not src="InventoryMenu" trait="_bEnableGrid" /> </or>
+					</onlyif>
+				</sub>
+			</x>
+			<y>
+				<copy src="parent()" trait="height" />
+				<sub src="me()" trait="height" />
+				<div> 2 </div>
+			</y>
+			<width> 24 </width> <!-- DarN 32 -->
+			<height> 24 </height> <!-- DarN 32 -->
+			<xleft> <ref src="sibling(inv_p123_header_img1)" trait="mouseover" /> </xleft>
+			<xright> <ref src="sibling(inv_p123_header_img3a)" trait="mouseover" /> </xright>
+			<xdown> <ref src="inv_list_contents" trait="mouseover" /> </xdown>
+		</image>
+		<image name="inv_p123_header_img3a">
+			<id> 17 </id>
+			<target> &true; </target>
+			<clicksound> 3 </clicksound>
+			<visible>
+				<copy src="parent()" trait="_headernum" />
+				<eq> 1 </eq>
+			</visible>
+			<filename> Menus\Shared\all_small_icons.dds </filename>
+			<cropx> 120 </cropx> <!-- DarN 160 -->
+			<zoom> 75 </zoom> <!-- DarN add -->
+			<x>
+				<copy src="sibling(inv_p123_header_img4)" trait="x" />
+				<sub>
+					<copy> 60 </copy>
+					<onlyif>
+						<copy src="sibling(inv_p123_header_img4)" trait="visible" />
+						<or> <not src="InventoryMenu" trait="_bEnableGrid" /> </or>
+					</onlyif>
+				</sub>
+			</x>
+			<y>
+				<copy src="parent()" trait="height" />
+				<sub src="me()" trait="height" />
+				<div> 2 </div>
+			</y>
+			<width> 24 </width> <!-- DarN 32 -->
+			<height> 24 </height> <!-- DarN 32 -->
+			<xleft> <ref src="sibling(inv_p123_header_img2)" trait="mouseover" /> </xleft>
+			<xright> <ref src="sibling(inv_p123_header_img3b)" trait="mouseover" /> </xright>
+			<xdown> <ref src="inv_list_contents" trait="mouseover" /> </xdown>
+		</image>
+		<image name="inv_p123_header_img3b">
+			<id> 17 </id>
+			<target> &true; </target>
+			<clicksound> 3 </clicksound>
+			<visible>
+				<copy src="parent()" trait="_headernum" />
+				<eq> 2 </eq>
+			</visible>
+			<filename> Menus\Shared\all_small_icons.dds </filename>
+			<cropx> 96 </cropx> <!-- DarN 128 -->
+			<zoom> 75 </zoom> <!-- DarN add -->
+			<x>
+				<copy src="sibling(inv_p123_header_img4)" trait="x" />
+				<sub>
+					<copy> 60 </copy>
+					<onlyif>
+						<copy src="sibling(inv_p123_header_img4)" trait="visible" />
+						<or> <not src="InventoryMenu" trait="_bEnableGrid" /> </or>
+					</onlyif>
+				</sub>
+			</x>
+			<y>
+				<copy src="parent()" trait="height" />
+				<sub src="me()" trait="height" />
+				<div> 2 </div>
+			</y>
+			<width> 24 </width> <!-- DarN 32 -->
+			<height> 24 </height> <!-- DarN 32 -->
+			<xleft> <ref src="sibling(inv_p123_header_img3a)" trait="mouseover" /> </xleft>
+			<xright> <ref src="sibling(inv_p123_header_img3c)" trait="mouseover" /> </xright>
+			<xdown> <ref src="inv_list_contents" trait="mouseover" /> </xdown>
+		</image>
+		<image name="inv_p123_header_img3c">
+			<id> 17 </id>
+			<target> &true; </target>
+			<clicksound> 3 </clicksound>
+			<visible>
+				<copy src="parent()" trait="_headernum" />
+				<eq> 3 </eq>
+			</visible>
+			<filename> Menus\Shared\all_small_icons.dds </filename>
+			<cropx> 72 </cropx> <!-- DarN 96 -->
+			<zoom> 75 </zoom> <!-- DarN add -->
+			<x>
+				<copy src="sibling(inv_p123_header_img4)" trait="x" />
+				<sub>
+					<copy> 60 </copy>
+					<onlyif>
+						<copy src="sibling(inv_p123_header_img4)" trait="visible" />
+						<or> <not src="InventoryMenu" trait="_bEnableGrid" /> </or>
+					</onlyif>
+				</sub>
+			</x>
+			<y>
+				<copy src="parent()" trait="height" />
+				<sub src="me()" trait="height" />
+				<div> 2 </div>
+			</y>
+			<width> 24 </width> <!-- DarN 32 -->
+			<height> 24 </height> <!-- DarN 32 -->
+			<xleft> <ref src="sibling(inv_p123_header_img3b)" trait="mouseover" /> </xleft>
+			<xright> <ref src="sibling(inv_p123_header_img4)" trait="mouseover" /> </xright>
+			<xdown> <ref src="inv_list_contents" trait="mouseover" /> </xdown>
+		</image>
+		<image name="inv_p123_header_img4">
+			<id> 18 </id>
+			<target> &true; </target>
+			<clicksound> 3 </clicksound>
+			<visible>
+				<copy src="parent()" trait="_headernum" />
+				<lte> 2 </lte>
+			</visible>
+			<filename> Menus\Shared\all_small_icons.dds </filename>
+			<cropx> 192 </cropx> <!-- DarN 256 -->
+			<zoom> 75 </zoom> <!-- DarN add -->
+			<x>
+				<copy src="parent()" trait="width" />
+				<sub src="me()" trait="width" />
+				<sub>
+					<copy> 26 </copy> <!-- DarN 22 -->
+					<onlyifnot src="InventoryMenu" trait="_bEnableGrid" />
+				</sub>
+			</x>
+			<y>
+				<copy src="parent()" trait="height" />
+				<sub src="me()" trait="height" />
+				<div> 2 </div>
+			</y>
+			<width> 24 </width> <!-- DarN 32 -->
+			<height> 24 </height> <!-- DarN 32 -->
+			<xleft> <ref src="sibling(inv_p123_header_img3c)" trait="mouseover" /> </xleft>
+			<xdown> <ref src="inv_list_contents" trait="mouseover" /> </xdown>
+		</image>
+	</rect>
+
+	<rect name="inv_p4p5_header_top">
+		<id> 13 </id>
+		<visible>
+			<copy src="InventoryMenu" trait="user0" />
+			<gte> 4 </gte>
+		</visible>
+		<x> 0 </x>
+		<y> 0 </y>
+		<width>
+			<copy src="parent()" trait="width" />
+		</width>
+		<height>
+			<copy src="parent()" trait="height" />
+		</height>
+		<depth> 7 </depth>
+		<locus> &true; </locus>
+		
+		<user1> -1 </user1>	<!-- position of header 1 in list -->
+		<user2> -1 </user2>	<!-- position of header 2 in list -->
+		<user3> -1 </user3>	<!-- position of header 3 in list -->
+		<user4> -1 </user4>	<!-- position of header 4 in list -->
+		
+		<!-- Alchemy tab -->
+		<_header_1> <copy src="strings()" trait="_alchemy" /> </_header_1>
+		<_header_2> <copy src="strings()" trait="_apparatuses" /> </_header_2>
+		<_header_3> <copy src="strings()" trait="_potions" /> </_header_3>
+		<_header_4>	<copy src="strings()" trait="_ingredients" /> </_header_4>
+		
+		<!-- Misc tab -->
+		<_header_5>	<copy src="strings()" trait="_misc" /> </_header_5>
+		<_header_6>	<copy src="strings()" trait="_books" /> </_header_6>
+		<_header_7>	<copy src="strings()" trait="_keys" /> </_header_7>
+		<_header_8>	<copy src="strings()" trait="_stones" /> </_header_8>
+		<_header_9>	<copy src="strings()" trait="_misc" /> </_header_9>
+		
+		<_headernum>
+			<copy> 1 </copy>
+			<add>
+				<copy> 4 </copy>
+				<onlyif>
+					<copy src="InventoryMenu" trait="user0" />
+					<eq> 5 </eq>
+				</onlyif>
+			</add>
+			<add>
+				<copy> 1 </copy>
+				<onlyif>
+					<copy src="inv_scroll_bar" trait="_scroll" />
+					<gt>
+						<copy src="me()" trait="user1" />
+						<div src="InventoryMenu" trait="_perLine" />
+					</gt>
+				</onlyif>
+			</add>
+			<add>
+				<copy> 1 </copy>
+				<onlyif>
+					<copy src="inv_scroll_bar" trait="_scroll" />
+					<gt>
+						<copy src="me()" trait="user2" />
+						<div src="InventoryMenu" trait="_perLine" />
+					</gt>
+				</onlyif>
+			</add>
+			<add>
+				<copy> 1 </copy>
+				<onlyif>
+					<copy src="inv_scroll_bar" trait="_scroll" />
+					<gt>
+						<copy src="me()" trait="user3" />
+						<div src="InventoryMenu" trait="_perLine" />
+					</gt>
+				</onlyif>
+			</add>
+			<add>
+				<copy> 1 </copy>
+				<onlyif>
+					<copy src="inv_scroll_bar" trait="_scroll" />
+					<gt>
+						<copy src="me()" trait="user4" />
+						<div src="InventoryMenu" trait="_perLine" />
+					</gt>
+				</onlyif>
+			</add>
+		</_headernum>
+		
+		<image name="inv_p4p5_header_left">
+			<filename> Menus\Shared\shared_decor_blue_left.dds </filename>
+			<depth> 7 </depth>
+			<width> 35 </width>
+			<height> 17 </height>
+			<x>
+				<copy src="inv_p123_header_left" trait="x" />
+			</x>
+			<y>
+				<copy src="sibling(inv_p4p5_header_text)" trait="y" />
+				<add> 6 </add>
+			</y>
+		</image>
+		<image name="inv_p4p5_header_right">
+			<filename> Menus\Shared\shared_decor_blue_right.dds </filename>
+			<depth> 7 </depth>
+			<width> 35 </width>
+			<height> 17 </height>
+			<x>
+				<copy src="sibling(inv_p4p5_header_text)" trait="x" />
+				<add src="sibling(inv_p4p5_header_text)" trait="width" />
+				<add> 20 </add>
+			</x>
+			<y>
+				<copy src="sibling(inv_p4p5_header_left)" trait="y" />
+			</y>
+		</image>
+		<text name="inv_p4p5_header_text">
+			<id> 14 </id>
+			<target> &true; </target>
+			<clicksound> 3 </clicksound>
+			<string>
+				<copy src="parent()" trait="_headernum" />
+				<copy src="parent()" trait="_header_" />
+			</string>
+			<font> 3 </font>
+			<x>
+				<copy src="sibling(inv_p4p5_header_left)" trait="x" />
+				<add src="sibling(inv_p4p5_header_left)" trait="width" />
+				<add> 20 </add>
+			</x>
+			<y>
+				<copy src="parent()" trait="height" />
+				<sub src="me()" trait="height" />
+				<div> 2 </div>
+			</y>
+			<red> 51 </red>
+			<green> 79 </green>
+			<blue> 142 </blue>
+			<alpha> 255 </alpha>
+			<justify> &left; </justify>
+			<xright> <ref src="sibling(inv_p4p5_header_img1)" trait="mouseover" /> </xright>
+			<xdown> <ref src="inv_list_contents" trait="mouseover" /> </xdown>
+		</text>
+
+		<image name="inv_p4p5_header_img1">
+			<id> 15 </id>
+			<target> &true; </target>
+			<clicksound> 3 </clicksound>
+			<filename> Menus\Shared\all_small_icons.dds </filename>
+			<cropx> 168 </cropx> <!-- DarN 224 -->
+			<zoom> 75 </zoom> <!-- DarN add -->
+			<x>
+				<copy src="sibling(inv_p4p5_header_img2)" trait="x" />
+				<sub> 60 </sub>
+				<sub>
+					<copy> 17 </copy> <!-- DarN 13 -->
+					<onlyifnot src="InventoryMenu" trait="_bEnableGrid" />
+				</sub>
+			</x>
+			<y>
+				<copy src="parent()" trait="height" />
+				<sub src="me()" trait="height" />
+				<div> 2 </div>
+			</y>
+			<width> 24 </width> <!-- DarN 32 -->
+			<height> 24 </height> <!-- DarN 32 -->
+			<xleft> <ref src="sibling(inv_p4p5_header_text)" trait="mouseover" /> </xleft>
+			<xright> <ref src="sibling(inv_p4p5_header_img2)" trait="mouseover" /> </xright>
+			<xdown> <ref src="inv_list_contents" trait="mouseover" /> </xdown>
+		</image>
+		<image name="inv_p4p5_header_img2">
+			<id> 16 </id>
+			<target> &true; </target>
+			<clicksound> 3 </clicksound>
+			<filename> Menus\Shared\all_small_icons.dds </filename>
+			<cropx> 24 </cropx> <!-- DarN 32 -->
+			<zoom> 75 </zoom> <!-- DarN add -->
+			<x>
+				<copy src="sibling(inv_p4p5_header_img3)" trait="x" />
+				<sub>
+					<copy> 56 </copy> <!-- DarN 60 -->
+					<onlyif>
+						<copy src="sibling(inv_p4p5_header_img3)" trait="visible" />
+						<or> <not src="InventoryMenu" trait="_bEnableGrid" /> </or>
+					</onlyif>
+				</sub>
+			</x>
+			<y>
+				<copy src="parent()" trait="height" />
+				<sub src="me()" trait="height" />
+				<div> 2 </div>
+			</y>
+			<width> 24 </width> <!-- DarN 32 -->
+			<height> 24 </height> <!-- DarN 32 -->
+			<xleft> <ref src="sibling(inv_p4p5_header_img1)" trait="mouseover" /> </xleft>
+			<xright> <ref src="sibling(inv_p4p5_header_img3)" trait="mouseover" /> </xright>
+			<xdown> <ref src="inv_list_contents" trait="mouseover" /> </xdown>
+		</image>
+		<image name="inv_p4p5_header_img3">
+			<id> 17 </id>
+			<target> &true; </target>
+			<clicksound> 3 </clicksound>
+			<visible>
+				<copy src="parent()" trait="_headernum" />
+				<eq> 2 </eq>	<!-- only show for apparatus -->
+			</visible>
+			<filename> Menus\Shared\all_small_icons.dds </filename>
+			<cropx> 72 </cropx> <!-- DarN 96 -->
+			<zoom> 75 </zoom> <!-- DarN add -->
+			<x>
+				<copy src="parent()" trait="width" />
+				<sub>
+					<copy> 64 </copy> <!-- DarN 64 -->
+					<onlyifnot src="InventoryMenu" trait="_bEnableGrid" />
+				</sub>
+				<sub src="me()" trait="width" />
+				<sub>
+					<copy> 22 </copy>
+					<onlyifnot src="InventoryMenu" trait="_bEnableGrid" />
+				</sub>
+			</x>
+			<y>
+				<copy src="parent()" trait="height" />
+				<sub src="me()" trait="height" />
+				<div> 2 </div>
+			</y>
+			<width> 24 </width> <!-- DarN 32 -->
+			<height> 24 </height> <!-- DarN 32 -->
+			<xleft> <ref src="sibling(inv_p4p5_header_img2)" trait="mouseover" /> </xleft>
+			<xdown> <ref src="inv_list_contents" trait="mouseover" /> </xdown>
+		</image>
+	</rect>
+<!-- /rect> - inv_headers_top -->

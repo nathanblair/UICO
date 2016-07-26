@@ -1,0 +1,2904 @@
+<!-- created by wz -->
+
+<!-- rect name="inv_pane" -->
+	<locus> &true; </locus>
+	<x> 0 </x>
+	<y>
+		<copy src="InventoryMenu" trait="_iItemSize" />
+		<add> 1 </add> <!-- DarN 4 -->
+			<add>
+				<copy> 3 </copy>
+				<onlyif src="InventoryMenu" trait="_bEnableGrid" />
+			</add>
+		<mul src="inv_scroll_bar" trait="_scroll" />
+		<mul> -1 </mul>
+	</y>
+
+
+<!-- LIST HEADERS ============================================================== -->
+	<rect name="inv_weapon_header">
+		<_idx>
+			<copy src="me()" trait="_idx2" />
+			<max> 0 </max>
+		</_idx>
+		<_idx2>
+			<copy src="InventoryMenu" trait="user1" /> <!-- position of weapons header in list -->
+		</_idx2>
+		<_off>
+			<copy src="me()" trait="_idx2" />
+			<sub src="me()" trait="_idx" />
+		</_off>
+
+		<_col>
+			<copy src="me()" trait="_idx" />
+			<mod src="InventoryMenu" trait="_perLine" />
+		</_col>
+
+		<_row>
+			<copy src="me()" trait="_idx" />
+			<div src="InventoryMenu" trait="_perLine" />
+			<floor> 0 </floor>
+		</_row>
+
+		<listclip> <!-- DarN add -->
+			<copy src="me()" trait="_row" />
+			<gte>
+				<copy src="inv_scroll_bar" trait="_scroll" />
+				<add src="InventoryMenu" trait="_perPage" />
+			</gte>
+			<or>
+				<copy src="me()" trait="_row" />
+				<add> 1 </add>
+				<lte src="inv_scroll_bar" trait="_scroll" />
+			</or>
+		</listclip>
+
+		<x>
+			<copy src="me()" trait="width" />
+			<add> 4 </add>
+			<mul src="me()" trait="_col" />
+		</x>
+		<y>
+			<copy src="me()" trait="height" />
+			<add> 1 </add> <!-- DarN 4 -->
+				<add>
+					<copy> 3 </copy>
+					<onlyif src="InventoryMenu" trait="_bEnableGrid" />
+				</add>
+			<mul src="me()" trait="_row" />
+		</y>
+		<width>
+			<copy src="InventoryMenu" trait="_iItemSize" />
+			<onlyif src="InventoryMenu" trait="_bEnableGrid" />
+			<add>
+				<copy src="inv_window" trait="width" />
+				<onlyifnot src="InventoryMenu" trait="_bEnableGrid" />
+			</add>
+		</width>
+		<height>
+			<copy src="InventoryMenu" trait="_iItemSize" />
+		</height>
+		<visible>
+			<copy src="InventoryMenu" trait="user1" />
+			<neq src="InventoryMenu" trait="user2" />
+		</visible>
+		<depth> 3 </depth>
+		<locus> &true; </locus>
+		<clips> &true; </clips>
+		<_toggle>
+			<copy src="child(inv_weapon_header_toggle)" trait="user2" />
+			<or> <not src="me()" trait="visible" /> </or>
+		</_toggle>
+		<rect name="inv_weapon_header_toggle">
+			<user1> <copy src="InventoryMenu" trait="_bToggle_Weapons" /> </user1>
+			<include src="darn\inventory\inventory_togglesep.xml" />
+			<user4> 2 </user4>
+			<x>
+				<copy src="sibling(inv_weapon_header_separator)" trait="x" />
+				<onlyif src="sibling(inv_weapon_header_separator)" trait="visible" />
+				<add>
+					<copy src="sibling(inv_weapon_header_text)" trait="x" />
+					<onlyif src="sibling(inv_weapon_header_text)" trait="visible" />
+				</add>
+			</x>
+			<y>
+				<copy src="sibling(inv_weapon_header_separator)" trait="y" />
+				<onlyif src="sibling(inv_weapon_header_separator)" trait="visible" />
+				<add>
+					<copy src="sibling(inv_weapon_header_text)" trait="y" />
+					<onlyif src="sibling(inv_weapon_header_text)" trait="visible" />
+				</add>
+			</y>
+			<width>
+				<copy src="sibling(inv_weapon_header_separator)" trait="width" />
+				<onlyif src="sibling(inv_weapon_header_separator)" trait="visible" />
+				<add>
+					<copy src="sibling(inv_weapon_header_text)" trait="width" />
+					<onlyif src="sibling(inv_weapon_header_text)" trait="visible" />
+				</add>
+			</width>
+			<height>
+				<copy src="sibling(inv_weapon_header_separator)" trait="height" />
+				<onlyif src="sibling(inv_weapon_header_separator)" trait="visible" />
+				<add>
+					<copy src="sibling(inv_weapon_header_text)" trait="height" />
+					<onlyif src="sibling(inv_weapon_header_text)" trait="visible" />
+				</add>
+			</height>
+			<depth> 8 </depth>
+		</rect>
+		<image name="inv_weapon_header_separator">
+			<filename>
+				<copy src="InventoryMenu" trait="_sSeparatorFile" />
+			</filename>
+			<alpha>
+				<copy src="InventoryMenu" trait="_iSeparatorAlpha" />
+			</alpha>
+			<cropx> 0 </cropx>
+			<depth> 7 </depth>
+			<width>
+				<copy src="InventoryMenu" trait="_iItemSize" />
+			</width>
+			<height>
+				<copy src="InventoryMenu" trait="_iItemSize" />
+			</height>
+			<zoom>
+				<copy src="me()" trait="width" />
+				<div> 64 </div>
+				<mul> 100 </mul>
+			</zoom>
+			<clips> &true; </clips>
+			<x>
+				<copy src="parent()" trait="width" />
+				<sub src="me()" trait="width" />
+				<div> 2 </div>
+				<floor> 0 </floor>
+			</x>
+			<y>
+				<copy src="parent()" trait="height" />
+				<sub src="me()" trait="height" />
+				<div> 2 </div>
+				<floor> 0 </floor>
+			</y>
+			<visible> <copy src="InventoryMenu" trait="_bEnableGrid" /> </visible>
+		</image>
+		<image name="inv_weapon_header_left">
+			<filename> Shared\shared_decor_blue_left.dds </filename>
+			<depth> 7 </depth>
+			<width> 35 </width>
+			<height> 17 </height>
+			<clips> &true; </clips>
+			<x>
+				<copy src="sibling(inv_weapon_header_text)" trait="x" />
+				<sub> 55 </sub>
+			</x>
+			<y>
+				<copy src="sibling(inv_weapon_header_text)" trait="y" />
+				<add> 5 </add>
+			</y>
+			<visible> <not src="InventoryMenu" trait="_bEnableGrid" /> </visible>
+		</image>
+		<image name="inv_weapon_header_right">
+			<filename> Shared\shared_decor_blue_right.dds </filename>
+			<depth> 7 </depth>
+			<width> 35 </width>
+			<height> 17 </height>
+			<clips> &true; </clips>
+			<x>
+				<copy src="sibling(inv_weapon_header_text)" trait="x" />
+				<add src="sibling(inv_weapon_header_text)" trait="width" />
+				<add> 20 </add>
+			</x>
+			<y>
+				<copy src="sibling(inv_weapon_header_text)" trait="y" />
+				<add> 5 </add>
+			</y>
+			<visible> <not src="InventoryMenu" trait="_bEnableGrid" /> </visible>
+		</image>
+		<text name="inv_weapon_header_text">
+			<string> <copy src="strings()" trait="_weapons" /> </string>
+			<font> 3 </font>
+			<x>
+				<copy src="inv_headers_top" trait="x" />
+				<add src="inv_p123_header_text" trait="x" />
+				<sub src="inv_window" trait="x" />
+				<sub src="parent()" trait="x" />
+			</x>
+			<y>
+				<copy src="parent()" trait="height" />
+				<sub src="me()" trait="height" />
+				<sub> 8 </sub>
+			</y>
+			<red> 51 </red>
+			<green> 79 </green>
+			<blue> 142 </blue>
+			<alpha> 255 </alpha>
+			<clips> &true; </clips>
+			<visible> <not src="InventoryMenu" trait="_bEnableGrid" /> </visible>
+		</text>				
+		<image name="inv_weapon_header_img1">
+			<filename> Shared\all_small_icons.dds </filename>
+			<cropx> 168 </cropx> <!-- DarN 224 -->
+				<zoom> 75 </zoom> <!-- DarN add -->
+			<x>
+				<copy src="inv_headers_top" trait="x" />
+				<add src="inv_p123_header_img1" trait="x" />
+				<sub src="inv_window" trait="x" />
+				<sub src="parent()" trait="x" />
+			</x>
+			<y>
+				<copy src="parent()" trait="height" />
+				<sub src="me()" trait="height" />
+				<div> 2 </div>
+			</y>
+			<width> 24 </width> <!-- DarN 32 -->
+			<height> 24 </height> <!-- DarN 32 -->
+			<clips> &true; </clips>
+			<visible> <not src="InventoryMenu" trait="_bEnableGrid" /> </visible>
+		</image>
+		<image name="inv_weapon_header_img2">
+			<filename> Shared\all_small_icons.dds </filename>
+			<cropx> 24 </cropx> <!-- DarN 32 -->
+				<zoom> 75 </zoom> <!-- DarN add -->
+			<x>
+				<copy src="inv_headers_top" trait="x" />
+				<add src="inv_p123_header_img2" trait="x" />
+				<sub src="inv_window" trait="x" />
+				<sub src="parent()" trait="x" />
+			</x>
+			<y>
+				<copy src="parent()" trait="height" />
+				<sub src="me()" trait="height" />
+				<div> 2 </div>
+			</y>
+			<width> 24 </width> <!-- DarN 32 -->
+			<height> 24 </height> <!-- DarN 32 -->
+			<clips> &true; </clips>
+			<visible> <not src="InventoryMenu" trait="_bEnableGrid" /> </visible>
+		</image>
+		<image name="inv_weapon_header_img3">
+			<filename> Shared\all_small_icons.dds </filename>
+			<cropx> 120 </cropx> <!-- DarN 160 -->
+				<zoom> 75 </zoom> <!-- DarN add -->
+			<x>
+				<copy src="inv_headers_top" trait="x" />
+				<add src="inv_p123_header_img3a" trait="x" />
+				<sub src="inv_window" trait="x" />
+				<sub src="parent()" trait="x" />
+			</x>
+			<y>
+				<copy src="parent()" trait="height" />
+				<sub src="me()" trait="height" />
+				<div> 2 </div>
+			</y>
+			<width> 24 </width> <!-- DarN 32 -->
+			<height> 24 </height> <!-- DarN 32 -->
+			<clips> &true; </clips>
+			<visible> <not src="InventoryMenu" trait="_bEnableGrid" /> </visible>
+		</image>
+		<image name="inv_weapon_header_img4">
+			<filename> Shared\all_small_icons.dds </filename>
+			<cropx> 192 </cropx> <!-- DarN 256 -->
+				<zoom> 75 </zoom> <!-- DarN add -->
+			<x>
+				<copy src="inv_headers_top" trait="x" />
+				<add src="inv_p123_header_img4" trait="x" />
+				<sub src="inv_window" trait="x" />
+				<sub src="parent()" trait="x" />
+			</x>
+			<y>
+				<copy src="parent()" trait="height" />
+				<sub src="me()" trait="height" />
+				<div> 2 </div>
+			</y>
+			<width> 24 </width> <!-- DarN 32 -->
+			<height> 24 </height> <!-- DarN 32 -->
+			<clips> &true; </clips>
+			<visible> <not src="InventoryMenu" trait="_bEnableGrid" /> </visible>
+		</image>
+	</rect>
+
+	<rect name="inv_apparel_header">
+		<_idx>
+			<copy src="me()" trait="_idx2" />
+			<sub src="sibling(inv_weapon_header)" trait="_off" />
+			<onlyif src="sibling(inv_weapon_header)" trait="_toggle" />
+			<add>
+				<copy src="sibling(inv_weapon_header)" trait="_idx" />
+				<add> 1 </add>
+				<onlyifnot src="sibling(inv_weapon_header)" trait="_toggle" />
+			</add>
+			<max> 0 </max>
+			<div>
+				<copy src="InventoryMenu" trait="_perLine"/>
+				<onlyif>
+					<copy src="InventoryMenu" trait="_bGridSepNewline"/>
+					<and src="me()" trait="visible"/>
+				</onlyif>
+				<add>
+					<copy> 1 </copy>
+					<onlyif>
+						<not src="InventoryMenu" trait="_bGridSepNewline"/>
+						<or><not src="me()" trait="visible"/></or>
+					</onlyif>
+				</add>
+			</div>
+			<ceil> 0 </ceil>
+			<add>
+				<copy src="InventoryMenu" trait="_iGridSepBlankLines"/>
+				<onlyif>
+					<copy src="sibling(inv_weapon_header)" trait="visible"/>
+					<and src="sibling(inv_weapon_header)" trait="_toggle"/>
+					<and src="InventoryMenu" trait="_bGridSepNewline"/>
+				</onlyif>
+			</add>
+			<mul>
+				<copy src="InventoryMenu" trait="_perLine"/>
+				<onlyif>
+					<copy src="InventoryMenu" trait="_bGridSepNewline"/>
+					<and src="me()" trait="visible"/>
+				</onlyif>
+				<add>
+					<copy> 1 </copy>
+					<onlyif>
+						<not src="InventoryMenu" trait="_bGridSepNewline"/>
+						<or><not src="me()" trait="visible"/></or>
+					</onlyif>
+				</add>
+			</mul>
+		</_idx>
+		<_idx2>
+			<copy src="InventoryMenu" trait="user2" /> <!-- position of apparel header in list -->
+		</_idx2>
+		<_off>
+			<copy src="me()" trait="_idx2" />
+			<sub src="me()" trait="_idx" />
+		</_off>
+
+		<_c_1>
+			<copy src="me()" trait="_idx" />
+			<mod src="InventoryMenu" trait="_perLine" />
+		</_c_1>
+
+		<_c_2>
+			<copy src="me()" trait="_idx" />
+			<div src="InventoryMenu" trait="_perLine" />
+			<floor> 0 </floor>
+		</_c_2>
+
+		<_col>
+			<copy src="InventoryMenu" trait="_bEnableHGrid" />
+			<copy src="me()" trait="_c_" />
+		</_col>
+
+		<!-- DarN rewrite 1.3 -
+			_row was invalid on initial journal view - trait="_c_" works only once? -->
+		<_row>
+			<copy src="me()" trait="_idx" />
+			<div src="InventoryMenu" trait="_perLine" />
+			<floor> 0 </floor>
+			<onlyif src="InventoryMenu" trait="_bNotEnableHGrid" />
+			<add>
+				<copy src="me()" trait="_idx" />
+				<mod src="InventoryMenu" trait="_perLine" />
+				<onlyif src="InventoryMenu" trait="_bEnableHGrid" />
+			</add>
+		</_row>
+
+		<listclip> <!-- DarN add -->
+			<copy src="me()" trait="_row" />
+			<gte>
+				<copy src="inv_scroll_bar" trait="_scroll" />
+				<add src="InventoryMenu" trait="_perPage" />
+			</gte>
+			<or>
+				<copy src="me()" trait="_row" />
+				<add> 1 </add>
+				<lte src="inv_scroll_bar" trait="_scroll" />
+			</or>
+		</listclip>
+
+		<x>
+			<copy src="me()" trait="width" />
+			<add> 4 </add>
+			<mul src="me()" trait="_col" />
+		</x>
+		<y>
+			<copy src="me()" trait="height" />
+			<add> 1 </add> <!-- DarN 4 -->
+			<add>
+				<copy> 3 </copy>
+				<onlyif src="InventoryMenu" trait="_bEnableGrid" />
+			</add>
+			<mul src="me()" trait="_row" />
+		</y>
+		<width>
+			<copy src="InventoryMenu" trait="_iItemSize" />
+			<onlyif src="InventoryMenu" trait="_bEnableGrid" />
+			<add>
+				<copy src="inv_window" trait="width" />
+				<onlyifnot src="InventoryMenu" trait="_bEnableGrid" />
+			</add>
+		</width>
+		<height>
+			<copy src="InventoryMenu" trait="_iItemSize" />
+		</height>
+		<visible>
+			<copy src="InventoryMenu" trait="user2" />
+			<neq src="InventoryMenu" trait="user3" />
+		</visible>
+		<depth> 10 </depth>
+		<locus> &true; </locus>
+		<clips> &true; </clips>
+		<_toggle>
+			<copy src="child(inv_apparel_header_toggle)" trait="user2" />
+			<or> <not src="me()" trait="visible" /> </or>
+		</_toggle>
+		<rect name="inv_apparel_header_toggle">
+			<user1> <copy src="InventoryMenu" trait="_bToggle_Apparel" /> </user1>
+			<include src="darn\inventory\inventory_togglesep.xml" />
+			<user4> 3 </user4>
+			<x>
+				<copy src="sibling(inv_apparel_header_separator)" trait="x" />
+				<onlyif src="sibling(inv_apparel_header_separator)" trait="visible" />
+				<add>
+					<copy src="sibling(inv_apparel_header_text)" trait="x" />
+					<onlyif src="sibling(inv_apparel_header_text)" trait="visible" />
+				</add>
+			</x>
+			<y>
+				<copy src="sibling(inv_apparel_header_separator)" trait="y" />
+				<onlyif src="sibling(inv_apparel_header_separator)" trait="visible" />
+				<add>
+					<copy src="sibling(inv_apparel_header_text)" trait="y" />
+					<onlyif src="sibling(inv_apparel_header_text)" trait="visible" />
+				</add>
+			</y>
+			<width>
+				<copy src="sibling(inv_apparel_header_separator)" trait="width" />
+				<onlyif src="sibling(inv_apparel_header_separator)" trait="visible" />
+				<add>
+					<copy src="sibling(inv_apparel_header_text)" trait="width" />
+					<onlyif src="sibling(inv_apparel_header_text)" trait="visible" />
+				</add>
+			</width>
+			<height>
+				<copy src="sibling(inv_apparel_header_separator)" trait="height" />
+				<onlyif src="sibling(inv_apparel_header_separator)" trait="visible" />
+				<add>
+					<copy src="sibling(inv_apparel_header_text)" trait="height" />
+					<onlyif src="sibling(inv_apparel_header_text)" trait="visible" />
+				</add>
+			</height>
+			<depth> 8 </depth>
+		</rect>
+		<image name="inv_apparel_header_separator">
+			<filename>
+				<copy src="InventoryMenu" trait="_sSeparatorFile" />
+			</filename>
+			<alpha>
+				<copy src="InventoryMenu" trait="_iSeparatorAlpha" />
+			</alpha>
+			<cropx>
+				<copy> 1 </copy>
+				<mul src="me()" trait="width" />
+			</cropx>
+			<depth> 7 </depth>
+			<width> <copy src="InventoryMenu" trait="_iItemSize" /> </width>
+			<height> <copy src="InventoryMenu" trait="_iItemSize" /> </height>
+			<zoom>
+				<copy src="me()" trait="width" />
+				<div> 64 </div>
+				<mul> 100 </mul>
+			</zoom>
+			<clips> &true; </clips>
+			<x>
+				<copy src="parent()" trait="width" />
+				<sub src="me()" trait="width" />
+				<div> 2 </div>
+				<floor> 0 </floor>
+			</x>
+			<y>
+				<copy src="parent()" trait="height" />
+				<sub src="me()" trait="height" />
+				<div> 2 </div>
+				<floor> 0 </floor>
+			</y>
+			<visible> <copy src="InventoryMenu" trait="_bEnableGrid" /> </visible>
+		</image>
+		<image name="inv_apparel_header_left">
+			<filename> Shared\shared_decor_blue_left.dds </filename>
+			<depth> 7 </depth>
+			<width> 35 </width>
+			<height> 17 </height>
+			<clips> &true; </clips>
+			<x>
+				<copy src="sibling(inv_apparel_header_text)" trait="x" />
+				<sub> 55 </sub>
+			</x>
+			<y>
+				<copy src="sibling(inv_apparel_header_text)" trait="y" />
+				<add> 5 </add>
+			</y>
+			<visible> <not src="InventoryMenu" trait="_bEnableGrid" /> </visible>
+		</image>
+		<image name="inv_apparel_header_right">
+			<filename> Shared\shared_decor_blue_right.dds </filename>
+			<depth> 7 </depth>
+			<width> 35 </width>
+			<height> 17 </height>
+			<clips> &true; </clips>
+			<x>
+				<copy src="sibling(inv_apparel_header_text)" trait="x" />
+				<add src="sibling(inv_apparel_header_text)" trait="width" />
+				<add> 20 </add>
+			</x>
+			<y>
+				<copy src="sibling(inv_apparel_header_text)" trait="y" />
+				<add> 5 </add>
+			</y>
+			<visible> <not src="InventoryMenu" trait="_bEnableGrid" /> </visible>
+		</image>
+		<text name="inv_apparel_header_text">
+			<string> <copy src="strings()" trait="_apparel" /> </string>
+			<font> 3 </font>
+			<x>
+				<copy src="inv_headers_top" trait="x" />
+				<add src="inv_p123_header_text" trait="x" />
+				<sub src="inv_window" trait="x" />
+				<sub src="parent()" trait="x" />
+			</x>
+			<y>
+				<copy src="parent()" trait="height" />
+				<sub src="me()" trait="height" />
+				<sub> 8 </sub>
+			</y>
+			<red> 51 </red>
+			<green> 79 </green>
+			<blue> 142 </blue>
+			<alpha> 255 </alpha>
+			<clips> &true; </clips>
+			<visible> <not src="InventoryMenu" trait="_bEnableGrid" /> </visible>
+		</text>
+		<image name="inv_apparel_header_img1">
+			<filename> Shared\all_small_icons.dds </filename>
+			<cropx> 168 </cropx> <!-- DarN 224 -->
+				<zoom> 75 </zoom> <!-- DarN add -->
+			<x>
+				<copy src="inv_headers_top" trait="x" />
+				<add src="inv_p123_header_img1" trait="x" />
+				<sub src="inv_window" trait="x" />
+				<sub src="parent()" trait="x" />
+			</x>
+			<y>
+				<copy src="parent()" trait="height" />
+				<sub src="me()" trait="height" />
+				<div> 2 </div>
+			</y>
+			<width> 24 </width> <!-- DarN 32 -->
+			<height> 24 </height> <!-- DarN 32 -->
+			<clips> &true; </clips>
+			<visible> <not src="InventoryMenu" trait="_bEnableGrid" /> </visible>
+		</image>
+		<image name="inv_apparel_header_img2">
+			<filename> Shared\all_small_icons.dds </filename>
+			<cropx> 24 </cropx> <!-- DarN 32 -->
+				<zoom> 75 </zoom> <!-- DarN add -->
+			<x>
+				<copy src="inv_headers_top" trait="x" />
+				<add src="inv_p123_header_img2" trait="x" />
+				<sub src="inv_window" trait="x" />
+				<sub src="parent()" trait="x" />
+			</x>
+			<y>
+				<copy src="parent()" trait="height" />
+				<sub src="me()" trait="height" />
+				<div> 2 </div>
+			</y>
+			<width> 24 </width> <!-- DarN 32 -->
+			<height> 24 </height> <!-- DarN 32 -->
+			<clips> &true; </clips>
+			<visible> <not src="InventoryMenu" trait="_bEnableGrid" /> </visible>
+		</image>
+		<image name="inv_apparel_header_img3">
+			<filename> Shared\all_small_icons.dds </filename>
+			<cropx> 96 </cropx> <!-- DarN 128 -->
+				<zoom> 75 </zoom> <!-- DarN add -->
+			<x>
+				<copy src="inv_headers_top" trait="x" />
+				<add src="inv_p123_header_img3a" trait="x" />
+				<sub src="inv_window" trait="x" />
+				<sub src="parent()" trait="x" />
+			</x>
+			<y>
+				<copy src="parent()" trait="height" />
+				<sub src="me()" trait="height" />
+				<div> 2 </div>
+			</y>
+			<width> 24 </width> <!-- DarN 32 -->
+			<height> 24 </height> <!-- DarN 32 -->
+			<clips> &true; </clips>
+			<visible> <not src="InventoryMenu" trait="_bEnableGrid" /> </visible>
+		</image>
+		<image name="inv_apparel_header_img4">
+			<filename> Shared\all_small_icons.dds </filename>
+			<cropx> 192 </cropx> <!-- DarN 256 -->
+				<zoom> 75 </zoom> <!-- DarN add -->
+			<x>
+				<copy src="inv_headers_top" trait="x" />
+				<add src="inv_p123_header_img4" trait="x" />
+				<sub src="inv_window" trait="x" />
+				<sub src="parent()" trait="x" />
+			</x>
+			<y>
+				<copy src="parent()" trait="height" />
+				<sub src="me()" trait="height" />
+				<div> 2 </div>
+			</y>
+			<width> 24 </width> <!-- DarN 32 -->
+			<height> 24 </height> <!-- DarN 32 -->
+			<clips> &true; </clips>
+			<visible> <not src="InventoryMenu" trait="_bEnableGrid" /> </visible>
+		</image>
+	</rect>	
+
+	<rect name="inv_apparatus_header">
+		<_idx>
+			<copy src="me()" trait="_idx2" />
+			<sub src="sibling(inv_apparel_header)" trait="_off" />
+			<onlyif src="sibling(inv_apparel_header)" trait="_toggle" />
+			<add>
+				<copy src="sibling(inv_apparel_header)" trait="_idx" />
+				<add> 1 </add>
+				<onlyifnot src="sibling(inv_apparel_header)" trait="_toggle" />
+			</add>
+			<max> 0 </max>
+			<div>
+				<copy src="InventoryMenu" trait="_perLine"/>
+				<onlyif>
+					<copy src="InventoryMenu" trait="_bGridSepNewline"/>
+					<and src="me()" trait="visible"/>
+				</onlyif>
+				<add>
+					<copy> 1 </copy>
+					<onlyif>
+						<not src="InventoryMenu" trait="_bGridSepNewline"/>
+						<or><not src="me()" trait="visible"/></or>
+					</onlyif>
+				</add>
+			</div>
+			<ceil> 0 </ceil>
+			<add>
+				<copy src="InventoryMenu" trait="_iGridSepBlankLines"/>
+				<onlyif>
+					<copy src="sibling(inv_apparel_header)" trait="visible"/>
+					<and src="sibling(inv_apparel_header)" trait="_toggle"/>
+					<and src="InventoryMenu" trait="_bGridSepNewline"/>
+				</onlyif>
+			</add>
+			<mul>
+				<copy src="InventoryMenu" trait="_perLine"/>
+				<onlyif>
+					<copy src="InventoryMenu" trait="_bGridSepNewline"/>
+					<and src="me()" trait="visible"/>
+				</onlyif>
+				<add>
+					<copy> 1 </copy>
+					<onlyif>
+						<not src="InventoryMenu" trait="_bGridSepNewline"/>
+						<or><not src="me()" trait="visible"/></or>
+					</onlyif>
+				</add>
+			</mul>
+		</_idx>
+		<_idx2>
+			<copy src="InventoryMenu" trait="_no3" />
+		</_idx2>
+		<_off>
+			<copy src="me()" trait="_idx2" />
+			<sub src="me()" trait="_idx" />
+		</_off>
+
+		<_c_1>
+			<copy src="me()" trait="_idx" />
+			<mod src="InventoryMenu" trait="_perLine" />
+		</_c_1>
+
+		<_c_2>
+			<copy src="me()" trait="_idx" />
+			<div src="InventoryMenu" trait="_perLine" />
+			<floor> 0 </floor>
+		</_c_2>
+
+		<_col>
+			<copy src="InventoryMenu" trait="_bEnableHGrid" />
+			<copy src="me()" trait="_c_" />
+		</_col>
+
+		<_row> <!-- DarN rewrite 1.3 - _row was invalid on initial journal view -->
+			<copy src="me()" trait="_idx" />
+			<div src="InventoryMenu" trait="_perLine" />
+			<floor> 0 </floor>
+			<onlyif src="InventoryMenu" trait="_bNotEnableHGrid" />
+			<add>
+				<copy src="me()" trait="_idx" />
+				<mod src="InventoryMenu" trait="_perLine" />
+				<onlyif src="InventoryMenu" trait="_bEnableHGrid" />
+			</add>
+		</_row>
+
+		<listclip> <!-- DarN add -->
+			<copy src="me()" trait="_row" />
+			<gte>
+				<copy src="inv_scroll_bar" trait="_scroll" />
+				<add src="InventoryMenu" trait="_perPage" />
+			</gte>
+			<or>
+				<copy src="me()" trait="_row" />
+				<add> 1 </add>
+				<lte src="inv_scroll_bar" trait="_scroll" />
+			</or>
+		</listclip>
+
+		<x>
+			<copy src="me()" trait="width" />
+			<add> 4 </add>
+			<mul src="me()" trait="_col" />
+		</x>
+		<y>
+			<copy src="me()" trait="height" />
+			<add> 1 </add> <!-- DarN 4 -->
+				<add>
+					<copy> 3 </copy>
+					<onlyif src="InventoryMenu" trait="_bEnableGrid" />
+				</add>
+			<mul src="me()" trait="_row" />
+		</y>
+		<width>
+			<copy src="InventoryMenu" trait="_iItemSize" />
+			<onlyif src="InventoryMenu" trait="_bEnableGrid" />
+			<add>
+				<copy src="inv_window" trait="width" />
+				<onlyifnot src="InventoryMenu" trait="_bEnableGrid" />
+			</add>
+		</width>
+		<height>
+			<copy src="InventoryMenu" trait="_iItemSize" />
+		</height>
+		<visible>
+			<copy src="me()" trait="_idx2" />
+			<neq src="sibling(inv_potions_header)" trait="_idx2" />
+		</visible>
+		<depth> 10 </depth>
+		<locus> &true; </locus>
+		<clips> &true; </clips>
+		<_toggle>
+			<copy src="child(inv_apparatus_header_toggle)" trait="user2" />
+			<or> <not src="me()" trait="visible" /> </or>
+		</_toggle>
+		<rect name="inv_apparatus_header_toggle">
+			<_idx><copy src="parent()" trait="_idx2" /></_idx>
+			<user1> <copy src="InventoryMenu" trait="_bToggle_Apparatus" /> </user1>
+			<include src="darn\inventory\inventory_togglesep.xml" />
+			<x>
+				<copy src="sibling(inv_apparatus_header_separator)" trait="x" />
+				<onlyif src="sibling(inv_apparatus_header_separator)" trait="visible" />
+				<add>
+					<copy src="sibling(inv_apparatus_header_text)" trait="x" />
+					<onlyif src="sibling(inv_apparatus_header_text)" trait="visible" />
+				</add>
+			</x>
+			<y>
+				<copy src="sibling(inv_apparatus_header_separator)" trait="y" />
+				<onlyif src="sibling(inv_apparatus_header_separator)" trait="visible" />
+				<add>
+					<copy src="sibling(inv_apparatus_header_text)" trait="y" />
+					<onlyif src="sibling(inv_apparatus_header_text)" trait="visible" />
+				</add>
+			</y>
+			<width>
+				<copy src="sibling(inv_apparatus_header_separator)" trait="width" />
+				<onlyif src="sibling(inv_apparatus_header_separator)" trait="visible" />
+				<add>
+					<copy src="sibling(inv_apparatus_header_text)" trait="width" />
+					<onlyif src="sibling(inv_apparatus_header_text)" trait="visible" />
+				</add>
+			</width>
+			<height>
+				<copy src="sibling(inv_apparatus_header_separator)" trait="height" />
+				<onlyif src="sibling(inv_apparatus_header_separator)" trait="visible" />
+				<add>
+					<copy src="sibling(inv_apparatus_header_text)" trait="height" />
+					<onlyif src="sibling(inv_apparatus_header_text)" trait="visible" />
+				</add>
+			</height>
+			<depth> 8 </depth>
+		</rect>
+		<image name="inv_apparatus_header_separator">
+			<filename>
+				<copy src="InventoryMenu" trait="_sSeparatorFile" />
+			</filename>
+			<alpha>
+				<copy src="InventoryMenu" trait="_iSeparatorAlpha" />
+			</alpha>
+			<cropx>
+				<copy> 2 </copy>
+				<mul src="me()" trait="width" />
+			</cropx>
+			<depth> 7 </depth> <!-- DarN 7 -->
+			<width> <copy src="InventoryMenu" trait="_iItemSize" /> </width>
+			<height> <copy src="InventoryMenu" trait="_iItemSize" /> </height>
+			<zoom>
+				<copy src="me()" trait="width" />
+				<div> 64 </div>
+				<mul> 100 </mul>
+			</zoom>
+			<clips> &true; </clips>
+			<x>
+				<copy src="parent()" trait="width" />
+				<sub src="me()" trait="width" />
+				<div> 2 </div>
+				<floor> 0 </floor>
+			</x>
+			<y>
+				<copy src="parent()" trait="height" />
+				<sub src="me()" trait="height" />
+				<div> 2 </div>
+				<floor> 0 </floor>
+			</y>
+			<visible> <copy src="InventoryMenu" trait="_bEnableGrid" /> </visible>
+		</image>
+		<image name="inv_apparatus_header_left">
+			<filename> Shared\shared_decor_blue_left.dds </filename>
+			<depth> 7 </depth>
+			<width> 35 </width>
+			<height> 17 </height>
+			<clips> &true; </clips>
+			<x>
+				<copy src="sibling(inv_apparatus_header_text)" trait="x" />
+				<sub> 55 </sub>
+			</x>
+			<y>
+				<copy src="sibling(inv_apparatus_header_text)" trait="y" />
+				<add> 5 </add>
+			</y>
+			<visible> <not src="InventoryMenu" trait="_bEnableGrid" /> </visible>
+		</image>
+		<image name="inv_apparatus_header_right">
+			<filename> Shared\shared_decor_blue_right.dds </filename>
+			<depth> 7 </depth>
+			<width> 35 </width>
+			<height> 17 </height>
+			<clips> &true; </clips>
+			<x>
+				<copy src="sibling(inv_apparatus_header_text)" trait="x" />
+				<add src="sibling(inv_apparatus_header_text)" trait="width" />
+				<add> 20 </add>
+			</x>
+			<y>
+				<copy src="sibling(inv_apparatus_header_text)" trait="y" />
+				<add> 5 </add>
+			</y>
+			<visible> <not src="InventoryMenu" trait="_bEnableGrid" /> </visible>
+		</image>
+		<text name="inv_apparatus_header_text">
+			<string> <copy src="strings()" trait="_apparatuses" /> </string>
+			<font> 3 </font>
+			<x>
+				<copy src="inv_headers_top" trait="x" />
+				<add src="inv_p123_header_text" trait="x" />
+				<sub src="inv_window" trait="x" />
+				<sub src="parent()" trait="x" />
+			</x>
+			<y>
+				<copy src="parent()" trait="height" />
+				<sub src="me()" trait="height" />
+				<sub> 8 </sub>
+			</y>
+			<red> 51 </red>
+			<green> 79 </green>
+			<blue> 142 </blue>
+			<alpha> 255 </alpha>
+			<clips> &true; </clips>
+			<visible> <not src="InventoryMenu" trait="_bEnableGrid" /> </visible>
+		</text>
+		<image name="inv_apparatus_header_img1">
+			<filename> Shared\all_small_icons.dds </filename>
+			<cropx> 168 </cropx> <!-- DarN 224 -->
+			<zoom> 75 </zoom> <!-- DarN add -->
+			<x>
+				<copy src="inv_headers_top" trait="x" />
+				<add src="inv_p123_header_img1" trait="x" />
+				<sub src="inv_window" trait="x" />
+				<sub src="parent()" trait="x" />
+			</x>
+			<y>
+				<copy src="parent()" trait="height" />
+				<sub src="me()" trait="height" />
+				<div> 2 </div>
+			</y>
+			<width> 24 </width> <!-- DarN 32 -->
+			<height> 24 </height> <!-- DarN 32 -->
+			<clips> &true; </clips>
+			<visible> <not src="InventoryMenu" trait="_bEnableGrid" /> </visible>
+		</image>
+		<image name="inv_apparatus_header_img2">
+			<filename> Shared\all_small_icons.dds </filename>
+			<cropx> 24 </cropx> <!-- DarN 32 -->
+			<zoom> 75 </zoom> <!-- DarN add -->
+			<x>
+				<copy src="inv_headers_top" trait="x" />
+				<add src="inv_p123_header_img2" trait="x" />
+				<sub src="inv_window" trait="x" />
+				<sub src="parent()" trait="x" />
+			</x>
+			<y>
+				<copy src="parent()" trait="height" />
+				<sub src="me()" trait="height" />
+				<div> 2 </div>
+			</y>
+			<width> 24 </width> <!-- DarN 32 -->
+			<height> 24 </height> <!-- DarN 32 -->
+			<clips> &true; </clips>
+			<visible> <not src="InventoryMenu" trait="_bEnableGrid" /> </visible>
+		</image>
+		<image name="inv_apparatus_header_img3">
+			<filename> Shared\all_small_icons.dds </filename>
+			<cropx> 72 </cropx> <!-- DarN 96 -->
+			<zoom> 75 </zoom> <!-- DarN add -->
+			<x>
+				<copy src="inv_headers_top" trait="x" />
+				<add src="inv_p123_header_img3a" trait="x" />
+				<sub src="inv_window" trait="x" />
+				<sub src="parent()" trait="x" />
+			</x>
+			<y>
+				<copy src="parent()" trait="height" />
+				<sub src="me()" trait="height" />
+				<div> 2 </div>
+			</y>
+			<width> 24 </width> <!-- DarN 32 -->
+			<height> 24 </height> <!-- DarN 32 -->
+			<clips> &true; </clips>
+			<visible> <not src="InventoryMenu" trait="_bEnableGrid" /> </visible>
+		</image>
+	</rect>
+
+	<rect name="inv_potions_header">
+		<_idx>
+			<copy src="me()" trait="_idx2" />
+			<sub src="sibling(inv_apparatus_header)" trait="_off" />
+			<onlyif src="sibling(inv_apparatus_header)" trait="_toggle" />
+			<add>
+				<copy src="sibling(inv_apparatus_header)" trait="_idx" />
+				<add> 1 </add>
+				<onlyifnot src="sibling(inv_apparatus_header)" trait="_toggle" />
+			</add>
+			<max> 0 </max>
+			<div>
+				<copy src="InventoryMenu" trait="_perLine"/>
+				<onlyif>
+					<copy src="InventoryMenu" trait="_bGridSepNewline"/>
+					<and src="me()" trait="visible"/>
+				</onlyif>
+				<add>
+					<copy> 1 </copy>
+					<onlyif>
+						<not src="InventoryMenu" trait="_bGridSepNewline"/>
+						<or><not src="me()" trait="visible"/></or>
+					</onlyif>
+				</add>
+			</div>
+			<ceil> 0 </ceil>
+			<add>
+				<copy src="InventoryMenu" trait="_iGridSepBlankLines"/>
+				<onlyif>
+					<copy src="sibling(inv_apparatus_header)" trait="visible"/>
+					<and src="sibling(inv_apparatus_header)" trait="_toggle"/>
+					<and src="InventoryMenu" trait="_bGridSepNewline"/>
+				</onlyif>
+			</add>
+			<mul>
+				<copy src="InventoryMenu" trait="_perLine"/>
+				<onlyif>
+					<copy src="InventoryMenu" trait="_bGridSepNewline"/>
+					<and src="me()" trait="visible"/>
+				</onlyif>
+				<add>
+					<copy> 1 </copy>
+					<onlyif>
+						<not src="InventoryMenu" trait="_bGridSepNewline"/>
+						<or><not src="me()" trait="visible"/></or>
+					</onlyif>
+				</add>
+			</mul>
+		</_idx>
+		<_idx2>
+			<copy src="InventoryMenu" trait="_no4" />
+		</_idx2>
+		<_off>
+			<copy src="me()" trait="_idx2" />
+			<sub src="me()" trait="_idx" />
+		</_off>
+
+		<_c_1>
+			<copy src="me()" trait="_idx" />
+			<mod src="InventoryMenu" trait="_perLine" />
+		</_c_1>
+
+		<_c_2>
+			<copy src="me()" trait="_idx" />
+			<div src="InventoryMenu" trait="_perLine" />
+			<floor> 0 </floor>
+		</_c_2>
+
+		<_col>
+			<copy src="InventoryMenu" trait="_bEnableHGrid" />
+			<copy src="me()" trait="_c_" />
+		</_col>
+
+		<_row> <!-- DarN rewrite 1.3 - _row was invalid on initial journal view -->
+			<copy src="me()" trait="_idx" />
+			<div src="InventoryMenu" trait="_perLine" />
+			<floor> 0 </floor>
+			<onlyif src="InventoryMenu" trait="_bNotEnableHGrid" />
+			<add>
+				<copy src="me()" trait="_idx" />
+				<mod src="InventoryMenu" trait="_perLine" />
+				<onlyif src="InventoryMenu" trait="_bEnableHGrid" />
+			</add>
+		</_row>
+
+		<listclip> <!-- DarN add -->
+			<copy src="me()" trait="_row" />
+			<gte>
+				<copy src="inv_scroll_bar" trait="_scroll" />
+				<add src="InventoryMenu" trait="_perPage" />
+			</gte>
+			<or>
+				<copy src="me()" trait="_row" />
+				<add> 1 </add>
+				<lte src="inv_scroll_bar" trait="_scroll" />
+			</or>
+		</listclip>
+
+		<x>
+			<copy src="me()" trait="width" />
+			<add> 4 </add>
+			<mul src="me()" trait="_col" />
+		</x>
+		<y>
+			<copy src="me()" trait="height" />
+			<add> 1 </add> <!-- DarN 4 -->
+				<add>
+					<copy> 3 </copy>
+					<onlyif src="InventoryMenu" trait="_bEnableGrid" />
+				</add>
+			<mul src="me()" trait="_row" />
+		</y>
+		<width>
+			<copy src="InventoryMenu" trait="_iItemSize" />
+			<onlyif src="InventoryMenu" trait="_bEnableGrid" />
+			<add>
+				<copy src="inv_window" trait="width" />
+				<onlyifnot src="InventoryMenu" trait="_bEnableGrid" />
+			</add>
+		</width>
+		<height>
+			<copy src="InventoryMenu" trait="_iItemSize" />
+		</height>
+		<visible>
+			<copy src="me()" trait="_idx2" />
+			<neq src="sibling(inv_ingr_header)" trait="_idx2" />
+		</visible>
+		<depth> 10 </depth>
+		<locus> &true; </locus>
+		<clips> &true; </clips>
+		<_toggle>
+			<copy src="child(inv_potions_header_toggle)" trait="user2" />
+			<or> <not src="me()" trait="visible" /> </or>
+		</_toggle>
+		<rect name="inv_potions_header_toggle">
+			<user1> <copy src="InventoryMenu" trait="_bToggle_Potions" /> </user1>
+			<include src="darn\inventory\inventory_togglesep.xml" />
+			<x>
+				<copy src="sibling(inv_potions_header_separator)" trait="x" />
+				<onlyif src="sibling(inv_potions_header_separator)" trait="visible" />
+				<add>
+					<copy src="sibling(inv_potions_header_text)" trait="x" />
+					<onlyif src="sibling(inv_potions_header_text)" trait="visible" />
+				</add>
+			</x>
+			<y>
+				<copy src="sibling(inv_potions_header_separator)" trait="y" />
+				<onlyif src="sibling(inv_potions_header_separator)" trait="visible" />
+				<add>
+					<copy src="sibling(inv_potions_header_text)" trait="y" />
+					<onlyif src="sibling(inv_potions_header_text)" trait="visible" />
+				</add>
+			</y>
+			<width>
+				<copy src="sibling(inv_potions_header_separator)" trait="width" />
+				<onlyif src="sibling(inv_potions_header_separator)" trait="visible" />
+				<add>
+					<copy src="sibling(inv_potions_header_text)" trait="width" />
+					<onlyif src="sibling(inv_potions_header_text)" trait="visible" />
+				</add>
+			</width>
+			<height>
+				<copy src="sibling(inv_potions_header_separator)" trait="height" />
+				<onlyif src="sibling(inv_potions_header_separator)" trait="visible" />
+				<add>
+					<copy src="sibling(inv_potions_header_text)" trait="height" />
+					<onlyif src="sibling(inv_potions_header_text)" trait="visible" />
+				</add>
+			</height>
+			<depth> 8 </depth>
+		</rect>
+		<image name="inv_potions_header_separator">
+			<filename>
+				<copy src="InventoryMenu" trait="_sSeparatorFile" />
+			</filename>
+			<alpha>
+				<copy src="InventoryMenu" trait="_iSeparatorAlpha" />
+			</alpha>
+			<cropx>
+				<copy> 3 </copy>
+				<mul src="me()" trait="width" />
+			</cropx>
+			<depth> 7 </depth>
+			<width> <copy src="InventoryMenu" trait="_iItemSize" /> </width>
+			<height> <copy src="InventoryMenu" trait="_iItemSize" /> </height>
+			<zoom>
+				<copy src="me()" trait="width" />
+				<div> 64 </div>
+				<mul> 100 </mul>
+			</zoom>
+			<clips> &true; </clips>
+			<x>
+				<copy src="parent()" trait="width" />
+				<sub src="me()" trait="width" />
+				<div> 2 </div>
+				<floor> 0 </floor>
+			</x>
+			<y>
+				<copy src="parent()" trait="height" />
+				<sub src="me()" trait="height" />
+				<div> 2 </div>
+				<floor> 0 </floor>
+			</y>
+			<visible> <copy src="InventoryMenu" trait="_bEnableGrid" /> </visible>
+		</image>
+		<image name="inv_potions_header_left">
+			<filename> Shared\shared_decor_blue_left.dds </filename>
+			<depth> 7 </depth>
+			<width> 35 </width>
+			<height> 17 </height>
+			<clips> &true; </clips>
+			<x>
+				<copy src="sibling(inv_potions_header_text)" trait="x" />
+				<sub> 55 </sub>
+			</x>
+			<y>
+				<copy src="sibling(inv_potions_header_text)" trait="y" />
+				<add> 5 </add>
+			</y>
+			<visible> <not src="InventoryMenu" trait="_bEnableGrid" /> </visible>
+		</image>
+		<image name="inv_potions_header_right">
+			<filename> Shared\shared_decor_blue_right.dds </filename>
+			<depth> 7 </depth>
+			<width> 35 </width>
+			<height> 17 </height>
+			<clips> &true; </clips>
+			<x>
+				<copy src="sibling(inv_potions_header_text)" trait="x" />
+				<add src="sibling(inv_potions_header_text)" trait="width" />
+				<add> 20 </add>
+			</x>
+			<y>
+				<copy src="sibling(inv_potions_header_text)" trait="y" />
+				<add> 5 </add>
+			</y>
+			<visible> <not src="InventoryMenu" trait="_bEnableGrid" /> </visible>
+		</image>
+		<text name="inv_potions_header_text">
+			<string> <copy src="strings()" trait="_potions" /> </string>
+			<font> 3 </font>
+			<x>
+				<copy src="inv_headers_top" trait="x" />
+				<add src="inv_p123_header_text" trait="x" />
+				<sub src="inv_window" trait="x" />
+				<sub src="parent()" trait="x" />
+			</x>
+			<y>
+				<copy src="parent()" trait="height" />
+				<sub src="me()" trait="height" />
+				<sub> 8 </sub>
+			</y>
+			<red> 51 </red>
+			<green> 79 </green>
+			<blue> 142 </blue>
+			<alpha> 255 </alpha>
+			<clips> &true; </clips>
+			<visible> <not src="InventoryMenu" trait="_bEnableGrid" /> </visible>
+		</text>
+		<image name="inv_potions_header_img1">
+			<filename> Shared\all_small_icons.dds </filename>
+			<cropx> 168 </cropx> <!-- DarN 224 -->
+			<zoom> 75 </zoom> <!-- DarN add -->
+			<x>
+				<copy src="inv_headers_top" trait="x" />
+				<add src="inv_p123_header_img1" trait="x" />
+				<sub src="inv_window" trait="x" />
+				<sub src="parent()" trait="x" />
+			</x>
+			<y>
+				<copy src="parent()" trait="height" />
+				<sub src="me()" trait="height" />
+				<div> 2 </div>
+			</y>
+			<width> 24 </width> <!-- DarN 32 -->
+			<height> 24 </height> <!-- DarN 32 -->
+			<clips> &true; </clips>
+			<visible> <not src="InventoryMenu" trait="_bEnableGrid" /> </visible>
+		</image>
+		<image name="inv_potions_header_img2">
+			<filename> Shared\all_small_icons.dds </filename>
+			<cropx> 24 </cropx> <!-- DarN 32 -->
+			<zoom> 75 </zoom> <!-- DarN add -->
+			<x>
+				<copy src="inv_headers_top" trait="x" />
+				<add src="inv_p123_header_img2" trait="x" />
+				<sub src="inv_window" trait="x" />
+				<sub src="parent()" trait="x" />
+			</x>
+			<y>
+				<copy src="parent()" trait="height" />
+				<sub src="me()" trait="height" />
+				<div> 2 </div>
+			</y>
+			<width> 24 </width> <!-- DarN 32 -->
+			<height> 24 </height> <!-- DarN 32 -->
+			<clips> &true; </clips>
+			<visible> <not src="InventoryMenu" trait="_bEnableGrid" /> </visible>
+		</image>
+	</rect>
+
+	<rect name="inv_ingr_header">
+		<_idx>
+			<copy src="me()" trait="_idx2" />
+			<sub src="sibling(inv_potions_header)" trait="_off" />
+			<onlyif src="sibling(inv_potions_header)" trait="_toggle" />
+			<add>
+				<copy src="sibling(inv_potions_header)" trait="_idx" />
+				<add> 1 </add>
+				<onlyifnot src="sibling(inv_potions_header)" trait="_toggle" />
+			</add>
+			<max> 0 </max>
+			<div>
+				<copy src="InventoryMenu" trait="_perLine"/>
+				<onlyif>
+					<copy src="InventoryMenu" trait="_bGridSepNewline"/>
+					<and src="me()" trait="visible"/>
+				</onlyif>
+				<add>
+					<copy> 1 </copy>
+					<onlyif>
+						<not src="InventoryMenu" trait="_bGridSepNewline"/>
+						<or><not src="me()" trait="visible"/></or>
+					</onlyif>
+				</add>
+			</div>
+			<ceil> 0 </ceil>
+			<add>
+				<copy src="InventoryMenu" trait="_iGridSepBlankLines"/>
+				<onlyif>
+					<copy src="sibling(inv_potions_header)" trait="visible"/>
+					<and src="sibling(inv_potions_header)" trait="_toggle"/>
+					<and src="InventoryMenu" trait="_bGridSepNewline"/>
+				</onlyif>
+			</add>
+			<mul>
+				<copy src="InventoryMenu" trait="_perLine"/>
+				<onlyif>
+					<copy src="InventoryMenu" trait="_bGridSepNewline"/>
+					<and src="me()" trait="visible"/>
+				</onlyif>
+				<add>
+					<copy> 1 </copy>
+					<onlyif>
+						<not src="InventoryMenu" trait="_bGridSepNewline"/>
+						<or><not src="me()" trait="visible"/></or>
+					</onlyif>
+				</add>
+			</mul>
+		</_idx>
+		<_idx2>
+			<copy src="InventoryMenu" trait="_no5" />
+		</_idx2>
+		<_off>
+			<copy src="me()" trait="_idx2" />
+			<sub src="me()" trait="_idx" />
+			<!-- <add>
+				<copy> -1 </copy>
+				<onlyif>
+					<copy src="InventoryMenu" trait="user0" />
+					<eq> 4 </eq>
+				</onlyif>
+			</add> -->
+		</_off>
+
+		<_c_1>
+			<copy src="me()" trait="_idx" />
+			<mod src="InventoryMenu" trait="_perLine" />
+		</_c_1>
+
+		<_c_2>
+			<copy src="me()" trait="_idx" />
+			<div src="InventoryMenu" trait="_perLine" />
+			<floor> 0 </floor>
+		</_c_2>
+
+		<_col>
+			<copy src="InventoryMenu" trait="_bEnableHGrid" />
+			<copy src="me()" trait="_c_" />
+		</_col>
+
+		<_row> <!-- DarN rewrite 1.3 - _row was invalid on initial journal view -->
+			<copy src="me()" trait="_idx" />
+			<div src="InventoryMenu" trait="_perLine" />
+			<floor> 0 </floor>
+			<onlyif src="InventoryMenu" trait="_bNotEnableHGrid" />
+			<add>
+				<copy src="me()" trait="_idx" />
+				<mod src="InventoryMenu" trait="_perLine" />
+				<onlyif src="InventoryMenu" trait="_bEnableHGrid" />
+			</add>
+		</_row>
+
+		<listclip> <!-- DarN add -->
+			<copy src="me()" trait="_row" />
+			<gte>
+				<copy src="inv_scroll_bar" trait="_scroll" />
+				<add src="InventoryMenu" trait="_perPage" />
+			</gte>
+			<or>
+				<copy src="me()" trait="_row" />
+				<add> 1 </add>
+				<lte src="inv_scroll_bar" trait="_scroll" />
+			</or>
+		</listclip>
+
+		<x>
+			<copy src="me()" trait="width" />
+			<add> 4 </add>
+			<mul src="me()" trait="_col" />
+		</x>
+		<y>
+			<copy src="me()" trait="height" />
+			<add> 1 </add> <!-- DarN 4 -->
+				<add>
+					<copy> 3 </copy>
+					<onlyif src="InventoryMenu" trait="_bEnableGrid" />
+				</add>
+			<mul src="me()" trait="_row" />
+		</y>
+		<width>
+			<copy src="InventoryMenu" trait="_iItemSize" />
+			<onlyif src="InventoryMenu" trait="_bEnableGrid" />
+			<add>
+				<copy src="inv_window" trait="width" />
+				<onlyifnot src="InventoryMenu" trait="_bEnableGrid" />
+			</add>
+		</width>
+		<height>
+			<copy src="InventoryMenu" trait="_iItemSize" />
+		</height>
+		<visible>
+			<copy src="InventoryMenu" trait="user0" />
+			<eq> 1 </eq>
+			<and>
+				<copy src="InventoryMenu" trait="user13" />
+				<neq src="InventoryMenu" trait="user14" />
+			</and>
+			<or>
+				<copy src="InventoryMenu" trait="user0" />
+				<eq> 4 </eq>
+				<and>
+					<copy src="inv_p4p5_header_top" trait="user3" />
+					<neq src="inv_p4p5_header_top" trait="user4" />
+				</and>
+			</or>
+		</visible>
+		<depth> 3 </depth>
+		<locus> &true; </locus>
+		<clips> &true; </clips>
+		<_toggle>
+			<copy src="child(inv_ingr_header_toggle)" trait="user2" />
+			<or> <not src="me()" trait="visible" /> </or>
+		</_toggle>
+		<rect name="inv_ingr_header_toggle">
+			<user1> <copy src="InventoryMenu" trait="_bToggle_Ingr" /> </user1>
+			<include src="darn\inventory\inventory_togglesep.xml" />
+			<x>
+				<copy src="sibling(inv_ingr_header_separator)" trait="x" />
+				<onlyif src="sibling(inv_ingr_header_separator)" trait="visible" />
+				<add>
+					<copy src="sibling(inv_ingr_header_text)" trait="x" />
+					<onlyif src="sibling(inv_ingr_header_text)" trait="visible" />
+				</add>
+			</x>
+			<y>
+				<copy src="sibling(inv_ingr_header_separator)" trait="y" />
+				<onlyif src="sibling(inv_ingr_header_separator)" trait="visible" />
+				<add>
+					<copy src="sibling(inv_ingr_header_text)" trait="y" />
+					<onlyif src="sibling(inv_ingr_header_text)" trait="visible" />
+				</add>
+			</y>
+			<width>
+				<copy src="sibling(inv_ingr_header_separator)" trait="width" />
+				<onlyif src="sibling(inv_ingr_header_separator)" trait="visible" />
+				<add>
+					<copy src="sibling(inv_ingr_header_text)" trait="width" />
+					<onlyif src="sibling(inv_ingr_header_text)" trait="visible" />
+				</add>
+			</width>
+			<height>
+				<copy src="sibling(inv_ingr_header_separator)" trait="height" />
+				<onlyif src="sibling(inv_ingr_header_separator)" trait="visible" />
+				<add>
+					<copy src="sibling(inv_ingr_header_text)" trait="height" />
+					<onlyif src="sibling(inv_ingr_header_text)" trait="visible" />
+				</add>
+			</height>
+			<depth> 8 </depth>
+		</rect>
+		<image name="inv_ingr_header_separator">
+			<filename>
+				<copy src="InventoryMenu" trait="_sSeparatorFile" />
+			</filename>
+			<alpha>
+				<copy src="InventoryMenu" trait="_iSeparatorAlpha" />
+			</alpha>
+			<cropx>
+				<copy> 4 </copy>
+				<mul src="me()" trait="width" />
+			</cropx>
+			<depth> 7 </depth>
+			<width> <copy src="InventoryMenu" trait="_iItemSize" /> </width>
+			<height> <copy src="InventoryMenu" trait="_iItemSize" /> </height>
+			<zoom>
+				<copy src="me()" trait="width" />
+				<div> 64 </div>
+				<mul> 100 </mul>
+			</zoom>
+			<clips> &true; </clips>
+			<x>
+				<copy src="parent()" trait="width" />
+				<sub src="me()" trait="width" />
+				<div> 2 </div>
+				<floor> 0 </floor>
+			</x>
+			<y>
+				<copy src="parent()" trait="height" />
+				<sub src="me()" trait="height" />
+				<div> 2 </div>
+				<floor> 0 </floor>
+			</y>
+			<visible> <copy src="InventoryMenu" trait="_bEnableGrid" /> </visible>
+		</image>
+		<image name="inv_ingr_header_left">
+			<filename> Shared\shared_decor_blue_left.dds </filename>
+			<depth> 7 </depth>
+			<width> 35 </width>
+			<height> 17 </height>
+			<clips> &true; </clips>
+			<x>
+				<copy src="sibling(inv_ingr_header_text)" trait="x" />
+				<sub> 55 </sub>
+			</x>
+			<y>
+				<copy src="sibling(inv_ingr_header_text)" trait="y" />
+				<add> 5 </add>
+			</y>
+			<visible> <not src="InventoryMenu" trait="_bEnableGrid" /> </visible>
+		</image>
+		<image name="inv_ingr_header_right">
+			<filename> Shared\shared_decor_blue_right.dds </filename>
+			<depth> 7 </depth>
+			<width> 35 </width>
+			<height> 17 </height>
+			<clips> &true; </clips>
+			<x>
+				<copy src="sibling(inv_ingr_header_text)" trait="x" />
+				<add src="sibling(inv_ingr_header_text)" trait="width" />
+				<add> 20 </add>
+			</x>
+			<y>
+				<copy src="sibling(inv_ingr_header_text)" trait="y" />
+				<add> 5 </add>
+			</y>
+			<visible> <not src="InventoryMenu" trait="_bEnableGrid" /> </visible>
+		</image>
+		<text name="inv_ingr_header_text">
+			<string> <copy src="strings()" trait="_ingredients" /> </string>
+			<font> 3 </font>
+			<x>
+				<copy src="inv_headers_top" trait="x" />
+				<add src="inv_p123_header_text" trait="x" />
+				<sub src="inv_window" trait="x" />
+				<sub src="parent()" trait="x" />
+			</x>
+			<y>
+				<copy src="parent()" trait="height" />
+				<sub src="me()" trait="height" />
+				<sub> 8 </sub>
+			</y>
+			<red> 51 </red>
+			<green> 79 </green>
+			<blue> 142 </blue>
+			<alpha> 255 </alpha>
+			<clips> &true; </clips>
+			<visible> <not src="InventoryMenu" trait="_bEnableGrid" /> </visible>
+		</text>
+		<image name="inv_ingr_header_img1">
+			<filename> Shared\all_small_icons.dds </filename>
+			<cropx> 168 </cropx> <!-- DarN 224 -->
+			<zoom> 75 </zoom> <!-- DarN add -->
+			<x>
+				<copy src="inv_headers_top" trait="x" />
+				<add src="inv_p123_header_img1" trait="x" />
+				<sub src="inv_window" trait="x" />
+				<sub src="parent()" trait="x" />
+			</x>
+			<y>
+				<copy src="parent()" trait="height" />
+				<sub src="me()" trait="height" />
+				<div> 2 </div>
+			</y>
+			<width> 24 </width> <!-- DarN 32 -->
+			<height> 24 </height> <!-- DarN 32 -->
+			<clips> &true; </clips>
+			<visible> <not src="InventoryMenu" trait="_bEnableGrid" /> </visible>
+		</image>
+		<image name="inv_ingr_header_img2">
+			<filename> Shared\all_small_icons.dds </filename>
+			<cropx> 24 </cropx> <!-- DarN 32 -->
+			<zoom> 75 </zoom> <!-- DarN add -->
+			<x>
+				<copy src="inv_headers_top" trait="x" />
+				<add src="inv_p123_header_img2" trait="x" />
+				<sub src="inv_window" trait="x" />
+				<sub src="parent()" trait="x" />
+			</x>
+			<y>
+				<copy src="parent()" trait="height" />
+				<sub src="me()" trait="height" />
+				<div> 2 </div>
+			</y>
+			<width> 24 </width> <!-- DarN 32 -->
+			<height> 24 </height> <!-- DarN 32 -->
+			<clips> &true; </clips>
+			<visible> <not src="InventoryMenu" trait="_bEnableGrid" /> </visible>
+		</image>
+	</rect>
+	
+	<rect name="inv_book_header">
+		<_idx>
+			<copy src="me()" trait="_idx2" />
+			<sub src="sibling(inv_ingr_header)" trait="_off" />
+			<onlyif src="sibling(inv_ingr_header)" trait="_toggle" />
+			<add>
+				<copy src="sibling(inv_ingr_header)" trait="_idx" />
+				<add> 1 </add>
+				<onlyifnot src="sibling(inv_ingr_header)" trait="_toggle" />
+			</add>
+			<max> 0 </max>
+			<div>
+				<copy src="InventoryMenu" trait="_perLine"/>
+				<onlyif>
+					<copy src="InventoryMenu" trait="_bGridSepNewline"/>
+					<and src="me()" trait="visible"/>
+				</onlyif>
+				<add>
+					<copy> 1 </copy>
+					<onlyif>
+						<not src="InventoryMenu" trait="_bGridSepNewline"/>
+						<or><not src="me()" trait="visible"/></or>
+					</onlyif>
+				</add>
+			</div>
+			<ceil> 0 </ceil>
+			<add>
+				<copy src="InventoryMenu" trait="_iGridSepBlankLines"/>
+				<onlyif>
+					<copy src="sibling(inv_ingr_header)" trait="visible"/>
+					<and src="sibling(inv_ingr_header)" trait="_toggle"/>
+					<and src="InventoryMenu" trait="_bGridSepNewline"/>
+				</onlyif>
+			</add>
+			<mul>
+				<copy src="InventoryMenu" trait="_perLine"/>
+				<onlyif>
+					<copy src="InventoryMenu" trait="_bGridSepNewline"/>
+					<and src="me()" trait="visible"/>
+				</onlyif>
+				<add>
+					<copy> 1 </copy>
+					<onlyif>
+						<not src="InventoryMenu" trait="_bGridSepNewline"/>
+						<or><not src="me()" trait="visible"/></or>
+					</onlyif>
+				</add>
+			</mul>
+		</_idx>
+		<_idx2>
+			<copy src="InventoryMenu" trait="_no6" />
+		</_idx2>
+		<_off>
+			<copy src="me()" trait="_idx2" />
+			<sub src="me()" trait="_idx" />
+		</_off>
+
+		<_c_1>
+			<copy src="me()" trait="_idx" />
+			<mod src="InventoryMenu" trait="_perLine" />
+		</_c_1>
+
+		<_c_2>
+			<copy src="me()" trait="_idx" />
+			<div src="InventoryMenu" trait="_perLine" />
+			<floor> 0 </floor>
+		</_c_2>
+
+		<_col>
+			<copy src="InventoryMenu" trait="_bEnableHGrid" />
+			<copy src="me()" trait="_c_" />
+		</_col>
+
+		<_row> <!-- DarN rewrite 1.3 - _row was invalid on initial journal view -->
+			<copy src="me()" trait="_idx" />
+			<div src="InventoryMenu" trait="_perLine" />
+			<floor> 0 </floor>
+			<onlyif src="InventoryMenu" trait="_bNotEnableHGrid" />
+			<add>
+				<copy src="me()" trait="_idx" />
+				<mod src="InventoryMenu" trait="_perLine" />
+				<onlyif src="InventoryMenu" trait="_bEnableHGrid" />
+			</add>
+		</_row>
+
+		<listclip> <!-- DarN add -->
+			<copy src="me()" trait="_row" />
+			<gte>
+				<copy src="inv_scroll_bar" trait="_scroll" />
+				<add src="InventoryMenu" trait="_perPage" />
+			</gte>
+			<or>
+				<copy src="me()" trait="_row" />
+				<add> 1 </add>
+				<lte src="inv_scroll_bar" trait="_scroll" />
+			</or>
+		</listclip>
+
+		<x>
+			<copy src="me()" trait="width" />
+			<add> 4 </add>
+			<mul src="me()" trait="_col" />
+		</x>
+		<y>
+			<copy src="me()" trait="height" />
+			<add> 1 </add> <!-- DarN 4 -->
+				<add>
+					<copy> 3 </copy>
+					<onlyif src="InventoryMenu" trait="_bEnableGrid" />
+				</add>
+			<mul src="me()" trait="_row" />
+		</y>
+		<width>
+			<copy src="InventoryMenu" trait="_iItemSize" />
+			<onlyif src="InventoryMenu" trait="_bEnableGrid" />
+			<add>
+				<copy src="inv_window" trait="width" />
+				<onlyifnot src="InventoryMenu" trait="_bEnableGrid" />
+			</add>
+		</width>
+		<height>
+			<copy src="InventoryMenu" trait="_iItemSize" />
+		</height>
+		<visible>
+			<copy src="me()" trait="_idx2" />
+			<neq src="sibling(inv_keys_header)" trait="_idx2" />
+		</visible>
+		<depth> 3 </depth>
+		<locus> &true; </locus>
+		<clips> &true; </clips>
+		<_toggle>
+			<copy src="child(inv_book_header_toggle)" trait="user2" />
+			<or> <not src="me()" trait="visible" /> </or>
+		</_toggle>
+		<rect name="inv_book_header_toggle">
+			<user1> <copy src="InventoryMenu" trait="_bToggle_Book" /> </user1>
+			<include src="darn\inventory\inventory_togglesep.xml" />
+			<x>
+				<copy src="sibling(inv_book_header_separator)" trait="x" />
+				<onlyif src="sibling(inv_book_header_separator)" trait="visible" />
+				<add>
+					<copy src="sibling(inv_book_header_text)" trait="x" />
+					<onlyif src="sibling(inv_book_header_text)" trait="visible" />
+				</add>
+			</x>
+			<y>
+				<copy src="sibling(inv_book_header_separator)" trait="y" />
+				<onlyif src="sibling(inv_book_header_separator)" trait="visible" />
+				<add>
+					<copy src="sibling(inv_book_header_text)" trait="y" />
+					<onlyif src="sibling(inv_book_header_text)" trait="visible" />
+				</add>
+			</y>
+			<width>
+				<copy src="sibling(inv_book_header_separator)" trait="width" />
+				<onlyif src="sibling(inv_book_header_separator)" trait="visible" />
+				<add>
+					<copy src="sibling(inv_book_header_text)" trait="width" />
+					<onlyif src="sibling(inv_book_header_text)" trait="visible" />
+				</add>
+			</width>
+			<height>
+				<copy src="sibling(inv_book_header_separator)" trait="height" />
+				<onlyif src="sibling(inv_book_header_separator)" trait="visible" />
+				<add>
+					<copy src="sibling(inv_book_header_text)" trait="height" />
+					<onlyif src="sibling(inv_book_header_text)" trait="visible" />
+				</add>
+			</height>
+			<depth> 8 </depth>
+		</rect>
+		<image name="inv_book_header_separator">
+			<filename>
+				<copy src="InventoryMenu" trait="_sSeparatorFile" />
+			</filename>
+			<alpha>
+				<copy src="InventoryMenu" trait="_iSeparatorAlpha" />
+			</alpha>
+			<cropx>
+				<copy> 5 </copy>
+				<mul src="me()" trait="width" />
+			</cropx>
+			<depth> 7 </depth>
+			<width> <copy src="InventoryMenu" trait="_iItemSize" /> </width>
+			<height> <copy src="InventoryMenu" trait="_iItemSize" /> </height>
+			<zoom>
+				<copy src="me()" trait="width" />
+				<div> 64 </div>
+				<mul> 100 </mul>
+			</zoom>
+			<clips> &true; </clips>
+			<x>
+				<copy src="parent()" trait="width" />
+				<sub src="me()" trait="width" />
+				<div> 2 </div>
+				<floor> 0 </floor>
+			</x>
+			<y>
+				<copy src="parent()" trait="height" />
+				<sub src="me()" trait="height" />
+				<div> 2 </div>
+				<floor> 0 </floor>
+			</y>
+			<visible> <copy src="InventoryMenu" trait="_bEnableGrid" /> </visible>
+		</image>
+		<image name="inv_book_header_left">
+			<filename> Shared\shared_decor_blue_left.dds </filename>
+			<depth> 7 </depth>
+			<width> 35 </width>
+			<height> 17 </height>
+			<clips> &true; </clips>
+			<x>
+				<copy src="sibling(inv_book_header_text)" trait="x" />
+				<sub> 55 </sub>
+			</x>
+			<y>
+				<copy src="sibling(inv_book_header_text)" trait="y" />
+				<add> 5 </add>
+			</y>
+			<visible> <not src="InventoryMenu" trait="_bEnableGrid" /> </visible>
+		</image>
+		<image name="inv_book_header_right">
+			<filename> Shared\shared_decor_blue_right.dds </filename>
+			<depth> 7 </depth>
+			<width> 35 </width>
+			<height> 17 </height>
+			<clips> &true; </clips>
+			<x>
+				<copy src="sibling(inv_book_header_text)" trait="x" />
+				<add src="sibling(inv_book_header_text)" trait="width" />
+				<add> 20 </add>
+			</x>
+			<y>
+				<copy src="sibling(inv_book_header_text)" trait="y" />
+				<add> 5 </add>
+			</y>
+			<visible> <not src="InventoryMenu" trait="_bEnableGrid" /> </visible>
+		</image>
+		<text name="inv_book_header_text">
+			<string> <copy src="strings()" trait="_books" /> </string>
+			<font> 3 </font>
+			<x>
+				<copy src="inv_headers_top" trait="x" />
+				<add src="inv_p123_header_text" trait="x" />
+				<sub src="inv_window" trait="x" />
+				<sub src="parent()" trait="x" />
+			</x>
+			<y>
+				<copy src="parent()" trait="height" />
+				<sub src="me()" trait="height" />
+				<sub> 8 </sub>
+			</y>
+			<red> 51 </red>
+			<green> 79 </green>
+			<blue> 142 </blue>
+			<alpha> 255 </alpha>
+			<clips> &true; </clips>
+			<visible> <not src="InventoryMenu" trait="_bEnableGrid" /> </visible>
+		</text>
+		<image name="inv_book_header_img">
+			<filename> Shared\all_small_icons.dds </filename>
+			<cropx> 168 </cropx> <!-- DarN 224 -->
+			<zoom> 75 </zoom> <!-- DarN add -->
+			<x>
+				<copy src="inv_headers_top" trait="x" />
+				<add src="inv_p123_header_img1" trait="x" />
+				<sub src="inv_window" trait="x" />
+				<sub src="parent()" trait="x" />
+			</x>
+			<y>
+				<copy src="parent()" trait="height" />
+				<sub src="me()" trait="height" />
+				<div> 2 </div>
+			</y>
+			<width> 24 </width> <!-- DarN 32 -->
+			<height> 24 </height> <!-- DarN 32 -->
+			<clips> &true; </clips>
+			<visible> <not src="InventoryMenu" trait="_bEnableGrid" /> </visible>
+		</image>
+		<image name="inv_book_header_img2">
+			<filename> Shared\all_small_icons.dds </filename>
+			<cropx> 24 </cropx> <!-- DarN 32 -->
+			<zoom> 75 </zoom> <!-- DarN add -->
+			<x>
+				<copy src="inv_headers_top" trait="x" />
+				<add src="inv_p123_header_img2" trait="x" />
+				<sub src="inv_window" trait="x" />
+				<sub src="parent()" trait="x" />
+			</x>
+			<y>
+				<copy src="parent()" trait="height" />
+				<sub src="me()" trait="height" />
+				<div> 2 </div>
+			</y>
+			<width> 24 </width> <!-- DarN 32 -->
+			<height> 24 </height> <!-- DarN 32 -->
+			<clips> &true; </clips>
+			<visible> <not src="InventoryMenu" trait="_bEnableGrid" /> </visible>
+		</image>
+	</rect>
+	
+	<rect name="inv_keys_header">
+		<_idx>
+			<copy src="me()" trait="_idx2" />
+			<sub src="sibling(inv_book_header)" trait="_off" />
+			<onlyif src="sibling(inv_book_header)" trait="_toggle" />
+			<add>
+				<copy src="sibling(inv_book_header)" trait="_idx" />
+				<add> 1 </add>
+				<onlyifnot src="sibling(inv_book_header)" trait="_toggle" />
+			</add>
+			<max> 0 </max>
+			<div>
+				<copy src="InventoryMenu" trait="_perLine"/>
+				<onlyif>
+					<copy src="InventoryMenu" trait="_bGridSepNewline"/>
+					<and src="me()" trait="visible"/>
+				</onlyif>
+				<add>
+					<copy> 1 </copy>
+					<onlyif>
+						<not src="InventoryMenu" trait="_bGridSepNewline"/>
+						<or><not src="me()" trait="visible"/></or>
+					</onlyif>
+				</add>
+			</div>
+			<ceil> 0 </ceil>
+			<add>
+				<copy src="InventoryMenu" trait="_iGridSepBlankLines"/>
+				<onlyif>
+					<copy src="sibling(inv_book_header)" trait="visible"/>
+					<and src="sibling(inv_book_header)" trait="_toggle"/>
+					<and src="InventoryMenu" trait="_bGridSepNewline"/>
+				</onlyif>
+			</add>
+			<mul>
+				<copy src="InventoryMenu" trait="_perLine"/>
+				<onlyif>
+					<copy src="InventoryMenu" trait="_bGridSepNewline"/>
+					<and src="me()" trait="visible"/>
+				</onlyif>
+				<add>
+					<copy> 1 </copy>
+					<onlyif>
+						<not src="InventoryMenu" trait="_bGridSepNewline"/>
+						<or><not src="me()" trait="visible"/></or>
+					</onlyif>
+				</add>
+			</mul>
+		</_idx>
+		<_idx2>
+			<copy src="InventoryMenu" trait="_no7" />
+		</_idx2>
+		<_off>
+			<copy src="me()" trait="_idx2" />
+			<sub src="me()" trait="_idx" />
+		</_off>
+
+		<_c_1>
+			<copy src="me()" trait="_idx" />
+			<mod src="InventoryMenu" trait="_perLine" />
+		</_c_1>
+
+		<_c_2>
+			<copy src="me()" trait="_idx" />
+			<div src="InventoryMenu" trait="_perLine" />
+			<floor> 0 </floor>
+		</_c_2>
+
+		<_col>
+			<copy src="InventoryMenu" trait="_bEnableHGrid" />
+			<copy src="me()" trait="_c_" />
+		</_col>
+
+		<_row> <!-- DarN rewrite 1.3 - _row was invalid on initial journal view -->
+			<copy src="me()" trait="_idx" />
+			<div src="InventoryMenu" trait="_perLine" />
+			<floor> 0 </floor>
+			<onlyif src="InventoryMenu" trait="_bNotEnableHGrid" />
+			<add>
+				<copy src="me()" trait="_idx" />
+				<mod src="InventoryMenu" trait="_perLine" />
+				<onlyif src="InventoryMenu" trait="_bEnableHGrid" />
+			</add>
+		</_row>
+
+		<listclip> <!-- DarN add -->
+			<copy src="me()" trait="_row" />
+			<gte>
+				<copy src="inv_scroll_bar" trait="_scroll" />
+				<add src="InventoryMenu" trait="_perPage" />
+			</gte>
+			<or>
+				<copy src="me()" trait="_row" />
+				<add> 1 </add>
+				<lte src="inv_scroll_bar" trait="_scroll" />
+			</or>
+		</listclip>
+
+		<x>
+			<copy src="me()" trait="width" />
+			<add> 4 </add>
+			<mul src="me()" trait="_col" />
+		</x>
+		<y>
+			<copy src="me()" trait="height" />
+			<add> 1 </add> <!-- DarN 4 -->
+				<add>
+					<copy> 3 </copy>
+					<onlyif src="InventoryMenu" trait="_bEnableGrid" />
+				</add>
+			<mul src="me()" trait="_row" />
+		</y>
+		<width>
+			<copy src="InventoryMenu" trait="_iItemSize" />
+			<onlyif src="InventoryMenu" trait="_bEnableGrid" />
+			<add>
+				<copy src="inv_window" trait="width" />
+				<onlyifnot src="InventoryMenu" trait="_bEnableGrid" />
+			</add>
+		</width>
+		<height>
+			<copy src="InventoryMenu" trait="_iItemSize" />
+		</height>
+		<visible>
+			<copy src="me()" trait="_idx2" />
+			<neq src="sibling(inv_stones_header)" trait="_idx2" />
+		</visible>
+		<depth> 3 </depth>
+		<locus> &true; </locus>
+		<clips> &true; </clips>
+		<_toggle>
+			<copy src="child(inv_keys_header_toggle)" trait="user2" />
+			<or> <not src="me()" trait="visible" /> </or>
+		</_toggle>
+		<rect name="inv_keys_header_toggle">
+			<user1> <copy src="InventoryMenu" trait="_bToggle_Keys" /> </user1>
+			<include src="darn\inventory\inventory_togglesep.xml" />
+			<x>
+				<copy src="sibling(inv_keys_header_separator)" trait="x" />
+				<onlyif src="sibling(inv_keys_header_separator)" trait="visible" />
+				<add>
+					<copy src="sibling(inv_keys_header_text)" trait="x" />
+					<onlyif src="sibling(inv_keys_header_text)" trait="visible" />
+				</add>
+			</x>
+			<y>
+				<copy src="sibling(inv_keys_header_separator)" trait="y" />
+				<onlyif src="sibling(inv_keys_header_separator)" trait="visible" />
+				<add>
+					<copy src="sibling(inv_keys_header_text)" trait="y" />
+					<onlyif src="sibling(inv_keys_header_text)" trait="visible" />
+				</add>
+			</y>
+			<width>
+				<copy src="sibling(inv_keys_header_separator)" trait="width" />
+				<onlyif src="sibling(inv_keys_header_separator)" trait="visible" />
+				<add>
+					<copy src="sibling(inv_keys_header_text)" trait="width" />
+					<onlyif src="sibling(inv_keys_header_text)" trait="visible" />
+				</add>
+			</width>
+			<height>
+				<copy src="sibling(inv_keys_header_separator)" trait="height" />
+				<onlyif src="sibling(inv_keys_header_separator)" trait="visible" />
+				<add>
+					<copy src="sibling(inv_keys_header_text)" trait="height" />
+					<onlyif src="sibling(inv_keys_header_text)" trait="visible" />
+				</add>
+			</height>
+			<depth> 8 </depth>
+		</rect>
+		<image name="inv_keys_header_separator">
+			<filename>
+				<copy src="InventoryMenu" trait="_sSeparatorFile" />
+			</filename>
+			<alpha>
+				<copy src="InventoryMenu" trait="_iSeparatorAlpha" />
+			</alpha>
+			<cropx>
+				<copy> 6 </copy>
+				<mul src="me()" trait="width" />
+			</cropx>
+			<depth> 7 </depth>
+			<width> <copy src="InventoryMenu" trait="_iItemSize" /> </width>
+			<height> <copy src="InventoryMenu" trait="_iItemSize" /> </height>
+			<zoom>
+				<copy src="me()" trait="width" />
+				<div> 64 </div>
+				<mul> 100 </mul>
+			</zoom>
+			<clips> &true; </clips>
+			<x>
+				<copy src="parent()" trait="width" />
+				<sub src="me()" trait="width" />
+				<div> 2 </div>
+				<floor> 0 </floor>
+			</x>
+			<y>
+				<copy src="parent()" trait="height" />
+				<sub src="me()" trait="height" />
+				<div> 2 </div>
+				<floor> 0 </floor>
+			</y>
+			<visible> <copy src="InventoryMenu" trait="_bEnableGrid" /> </visible>
+		</image>
+		<image name="inv_keys_header_left">
+			<filename> Shared\shared_decor_blue_left.dds </filename>
+			<depth> 7 </depth>
+			<width> 35 </width>
+			<height> 17 </height>
+			<clips> &true; </clips>
+			<x>
+				<copy src="sibling(inv_keys_header_text)" trait="x" />
+				<sub> 55 </sub>
+			</x>
+			<y>
+				<copy src="sibling(inv_keys_header_text)" trait="y" />
+				<add> 5 </add>
+			</y>
+			<visible> <not src="InventoryMenu" trait="_bEnableGrid" /> </visible>
+		</image>
+		<image name="inv_keys_header_right">
+			<filename> Shared\shared_decor_blue_right.dds </filename>
+			<depth> 7 </depth>
+			<width> 35 </width>
+			<height> 17 </height>
+			<clips> &true; </clips>
+			<x>
+				<copy src="sibling(inv_keys_header_text)" trait="x" />
+				<add src="sibling(inv_keys_header_text)" trait="width" />
+				<add> 20 </add>
+			</x>
+			<y>
+				<copy src="sibling(inv_keys_header_text)" trait="y" />
+				<add> 5 </add>
+			</y>
+			<visible> <not src="InventoryMenu" trait="_bEnableGrid" /> </visible>
+		</image>
+		<text name="inv_keys_header_text">
+			<string> <copy src="strings()" trait="_keys" /> </string>
+			<font> 3 </font>
+			<x>
+				<copy src="inv_headers_top" trait="x" />
+				<add src="inv_p123_header_text" trait="x" />
+				<sub src="inv_window" trait="x" />
+				<sub src="parent()" trait="x" />
+			</x>
+			<y>
+				<copy src="parent()" trait="height" />
+				<sub src="me()" trait="height" />
+				<sub> 8 </sub>
+			</y>
+			<red> 51 </red>
+			<green> 79 </green>
+			<blue> 142 </blue>
+			<alpha> 255 </alpha>
+			<clips> &true; </clips>
+			<visible> <not src="InventoryMenu" trait="_bEnableGrid" /> </visible>
+		</text>
+		<image name="inv_keys_header_img">
+			<filename> Shared\all_small_icons.dds </filename>
+			<cropx> 168 </cropx> <!-- DarN 224 -->
+				<zoom> 75 </zoom> <!-- DarN add -->
+			<x>
+				<copy src="inv_headers_top" trait="x" />
+				<add src="inv_p123_header_img1" trait="x" />
+				<sub src="inv_window" trait="x" />
+				<sub src="parent()" trait="x" />
+			</x>
+			<y>
+				<copy src="parent()" trait="height" />
+				<sub src="me()" trait="height" />
+				<div> 2 </div>
+			</y>
+			<width> 24 </width> <!-- DarN 32 -->
+			<height> 24 </height> <!-- DarN 32 -->
+			<clips> &true; </clips>
+			<visible> <not src="InventoryMenu" trait="_bEnableGrid" /> </visible>
+		</image>
+		<image name="inv_keys_header_img">
+			<filename> Shared\all_small_icons.dds </filename>
+			<cropx> 24 </cropx> <!-- DarN 32 -->
+				<zoom> 75 </zoom> <!-- DarN add -->
+			<x>
+				<copy src="inv_headers_top" trait="x" />
+				<add src="inv_p123_header_img2" trait="x" />
+				<sub src="inv_window" trait="x" />
+				<sub src="parent()" trait="x" />
+			</x>
+			<y>
+				<copy src="parent()" trait="height" />
+				<sub src="me()" trait="height" />
+				<div> 2 </div>
+			</y>
+			<width> 24 </width> <!-- DarN 32 -->
+			<height> 24 </height> <!-- DarN 32 -->
+			<clips> &true; </clips>
+			<visible> <not src="InventoryMenu" trait="_bEnableGrid" /> </visible>
+		</image>
+	</rect>
+	
+	<rect name="inv_stones_header">
+		<_idx>
+			<copy src="me()" trait="_idx2" />
+			<sub src="sibling(inv_keys_header)" trait="_off" />
+			<onlyif src="sibling(inv_keys_header)" trait="_toggle" />
+			<add>
+				<copy src="sibling(inv_keys_header)" trait="_idx" />
+				<add> 1 </add>
+				<onlyifnot src="sibling(inv_keys_header)" trait="_toggle" />
+			</add>
+			<max> 0 </max>
+			<div>
+				<copy src="InventoryMenu" trait="_perLine"/>
+				<onlyif>
+					<copy src="InventoryMenu" trait="_bGridSepNewline"/>
+					<and src="me()" trait="visible"/>
+				</onlyif>
+				<add>
+					<copy> 1 </copy>
+					<onlyif>
+						<not src="InventoryMenu" trait="_bGridSepNewline"/>
+						<or><not src="me()" trait="visible"/></or>
+					</onlyif>
+				</add>
+			</div>
+			<ceil> 0 </ceil>
+			<add>
+				<copy src="InventoryMenu" trait="_iGridSepBlankLines"/>
+				<onlyif>
+					<copy src="sibling(inv_keys_header)" trait="visible"/>
+					<and src="sibling(inv_keys_header)" trait="_toggle"/>
+					<and src="InventoryMenu" trait="_bGridSepNewline"/>
+				</onlyif>
+			</add>
+			<mul>
+				<copy src="InventoryMenu" trait="_perLine"/>
+				<onlyif>
+					<copy src="InventoryMenu" trait="_bGridSepNewline"/>
+					<and src="me()" trait="visible"/>
+				</onlyif>
+				<add>
+					<copy> 1 </copy>
+					<onlyif>
+						<not src="InventoryMenu" trait="_bGridSepNewline"/>
+						<or><not src="me()" trait="visible"/></or>
+					</onlyif>
+				</add>
+			</mul>
+		</_idx>
+		<_idx2>
+			<copy src="InventoryMenu" trait="_no8" />
+		</_idx2>
+		<_off>
+			<copy src="me()" trait="_idx2" />
+			<sub src="me()" trait="_idx" />
+		</_off>
+
+		<_c_1>
+			<copy src="me()" trait="_idx" />
+			<mod src="InventoryMenu" trait="_perLine" />
+		</_c_1>
+
+		<_c_2>
+			<copy src="me()" trait="_idx" />
+			<div src="InventoryMenu" trait="_perLine" />
+			<floor> 0 </floor>
+		</_c_2>
+
+		<_col>
+			<copy src="InventoryMenu" trait="_bEnableHGrid" />
+			<copy src="me()" trait="_c_" />
+		</_col>
+
+		<_row> <!-- DarN rewrite 1.3 - _row was invalid on initial journal view -->
+			<copy src="me()" trait="_idx" />
+			<div src="InventoryMenu" trait="_perLine" />
+			<floor> 0 </floor>
+			<onlyif src="InventoryMenu" trait="_bNotEnableHGrid" />
+			<add>
+				<copy src="me()" trait="_idx" />
+				<mod src="InventoryMenu" trait="_perLine" />
+				<onlyif src="InventoryMenu" trait="_bEnableHGrid" />
+			</add>
+		</_row>
+
+		<listclip> <!-- DarN add -->
+			<copy src="me()" trait="_row" />
+			<gte>
+				<copy src="inv_scroll_bar" trait="_scroll" />
+				<add src="InventoryMenu" trait="_perPage" />
+			</gte>
+			<or>
+				<copy src="me()" trait="_row" />
+				<add> 1 </add>
+				<lte src="inv_scroll_bar" trait="_scroll" />
+			</or>
+		</listclip>
+
+		<x>
+			<copy src="me()" trait="width" />
+			<add> 4 </add>
+			<mul src="me()" trait="_col" />
+		</x>
+		<y>
+			<copy src="me()" trait="height" />
+			<add> 1 </add> <!-- DarN 4 -->
+				<add>
+					<copy> 3 </copy>
+					<onlyif src="InventoryMenu" trait="_bEnableGrid" />
+				</add>
+			<mul src="me()" trait="_row" />
+		</y>
+		<width>
+			<copy src="InventoryMenu" trait="_iItemSize" />
+			<onlyif src="InventoryMenu" trait="_bEnableGrid" />
+			<add>
+				<copy src="inv_window" trait="width" />
+				<onlyifnot src="InventoryMenu" trait="_bEnableGrid" />
+			</add>
+		</width>
+		<height>
+			<copy src="InventoryMenu" trait="_iItemSize" />
+		</height>
+		<visible>
+			<copy src="me()" trait="_idx2" />
+			<neq src="sibling(inv_misc_header)" trait="_idx2" />
+		</visible>
+		<depth> 3 </depth>
+		<locus> &true; </locus>
+		<clips> &true; </clips>
+		<_toggle>
+			<copy src="child(inv_stones_header_toggle)" trait="user2" />
+			<or> <not src="me()" trait="visible" /> </or>
+		</_toggle>
+		<rect name="inv_stones_header_toggle">
+			<user1> <copy src="InventoryMenu" trait="_bToggle_Stones" /> </user1>
+			<include src="darn\inventory\inventory_togglesep.xml" />
+			<_row> <copy src="parent()" trait="_row" /> </_row>
+			<_col> <copy src="parent()" trait="_col" /> </_col>
+			<x>
+				<copy src="sibling(inv_stones_header_separator)" trait="x" />
+				<onlyif src="sibling(inv_stones_header_separator)" trait="visible" />
+				<add>
+					<copy src="sibling(inv_stones_header_text)" trait="x" />
+					<onlyif src="sibling(inv_stones_header_text)" trait="visible" />
+				</add>
+			</x>
+			<y>
+				<copy src="sibling(inv_stones_header_separator)" trait="y" />
+				<onlyif src="sibling(inv_stones_header_separator)" trait="visible" />
+				<add>
+					<copy src="sibling(inv_stones_header_text)" trait="y" />
+					<onlyif src="sibling(inv_stones_header_text)" trait="visible" />
+				</add>
+			</y>
+			<width>
+				<copy src="sibling(inv_stones_header_separator)" trait="width" />
+				<onlyif src="sibling(inv_stones_header_separator)" trait="visible" />
+				<add>
+					<copy src="sibling(inv_stones_header_text)" trait="width" />
+					<onlyif src="sibling(inv_stones_header_text)" trait="visible" />
+				</add>
+			</width>
+			<height>
+				<copy src="sibling(inv_stones_header_separator)" trait="height" />
+				<onlyif src="sibling(inv_stones_header_separator)" trait="visible" />
+				<add>
+					<copy src="sibling(inv_stones_header_text)" trait="height" />
+					<onlyif src="sibling(inv_stones_header_text)" trait="visible" />
+				</add>
+			</height>
+			<depth> 8 </depth>
+		</rect>
+		<image name="inv_stones_header_separator">
+			<filename>
+				<copy src="InventoryMenu" trait="_sSeparatorFile" />
+			</filename>
+			<alpha>
+				<copy src="InventoryMenu" trait="_iSeparatorAlpha" />
+			</alpha>
+			<cropx>
+				<copy> 7 </copy>
+				<mul src="me()" trait="width" />
+			</cropx>
+			<depth> 7 </depth>
+			<width> <copy src="InventoryMenu" trait="_iItemSize" /> </width>
+			<height> <copy src="InventoryMenu" trait="_iItemSize" /> </height>
+			<zoom>
+				<copy src="me()" trait="width" />
+				<div> 64 </div>
+				<mul> 100 </mul>
+			</zoom>
+			<clips> &true; </clips>
+			<x>
+				<copy src="parent()" trait="width" />
+				<sub src="me()" trait="width" />
+				<div> 2 </div>
+				<floor> 0 </floor>
+			</x>
+			<y>
+				<copy src="parent()" trait="height" />
+				<sub src="me()" trait="height" />
+				<div> 2 </div>
+				<floor> 0 </floor>
+			</y>
+			<visible> <copy src="InventoryMenu" trait="_bEnableGrid" /> </visible>
+		</image>
+		<image name="inv_stones_header_left">
+			<filename> Shared\shared_decor_blue_left.dds </filename>
+			<depth> 7 </depth>
+			<width> 35 </width>
+			<height> 17 </height>
+			<clips> &true; </clips>
+			<x>
+				<copy src="sibling(inv_stones_header_text)" trait="x" />
+				<sub> 55 </sub>
+			</x>
+			<y>
+				<copy src="sibling(inv_stones_header_text)" trait="y" />
+				<add> 5 </add>
+			</y>
+			<visible> <not src="InventoryMenu" trait="_bEnableGrid" /> </visible>
+		</image>
+		<image name="inv_stones_header_right">
+			<filename> Shared\shared_decor_blue_right.dds </filename>
+			<depth> 7 </depth>
+			<width> 35 </width>
+			<height> 17 </height>
+			<clips> &true; </clips>
+			<x>
+				<copy src="sibling(inv_stones_header_text)" trait="x" />
+				<add src="sibling(inv_stones_header_text)" trait="width" />
+				<add> 20 </add>
+			</x>
+			<y>
+				<copy src="sibling(inv_stones_header_text)" trait="y" />
+				<add> 5 </add>
+			</y>
+			<visible> <not src="InventoryMenu" trait="_bEnableGrid" /> </visible>
+		</image>
+		<text name="inv_stones_header_text">
+			<string> <copy src="strings()" trait="_stones" /> </string>
+			<font> 3 </font>
+			<x>
+				<copy src="inv_headers_top" trait="x" />
+				<add src="inv_p123_header_text" trait="x" />
+				<sub src="inv_window" trait="x" />
+				<sub src="parent()" trait="x" />
+			</x>
+			<y>
+				<copy src="parent()" trait="height" />
+				<sub src="me()" trait="height" />
+				<sub> 8 </sub>
+			</y>
+			<red> 51 </red>
+			<green> 79 </green>
+			<blue> 142 </blue>
+			<alpha> 255 </alpha>
+			<clips> &true; </clips>
+			<visible> <not src="InventoryMenu" trait="_bEnableGrid" /> </visible>
+		</text>
+		<image name="inv_stones_header_img1">
+			<filename> Shared\all_small_icons.dds </filename>
+			<cropx> 168 </cropx> <!-- DarN 224 -->
+			<zoom> 75 </zoom> <!-- DarN add -->
+			<x>
+				<copy src="inv_headers_top" trait="x" />
+				<add src="inv_p123_header_img1" trait="x" />
+				<sub src="inv_window" trait="x" />
+				<sub src="parent()" trait="x" />
+			</x>
+			<y>
+				<copy src="parent()" trait="height" />
+				<sub src="me()" trait="height" />
+				<div> 2 </div>
+			</y>
+			<width> 24 </width> <!-- DarN 32 -->
+			<height> 24 </height> <!-- DarN 32 -->
+			<clips> &true; </clips>
+			<visible> <not src="InventoryMenu" trait="_bEnableGrid" /> </visible>
+		</image>
+		<image name="inv_stones_header_img2">
+			<filename> Shared\all_small_icons.dds </filename>
+			<cropx> 24 </cropx> <!-- DarN 32 -->
+			<zoom> 75 </zoom> <!-- DarN add -->
+			<x>
+				<copy src="inv_headers_top" trait="x" />
+				<add src="inv_p123_header_img2" trait="x" />
+				<sub src="inv_window" trait="x" />
+				<sub src="parent()" trait="x" />
+			</x>
+			<y>
+				<copy src="parent()" trait="height" />
+				<sub src="me()" trait="height" />
+				<div> 2 </div>
+			</y>
+			<width> 24 </width> <!-- DarN 32 -->
+			<height> 24 </height> <!-- DarN 32 -->
+			<clips> &true; </clips>
+			<visible> <not src="InventoryMenu" trait="_bEnableGrid" /> </visible>
+		</image>
+	</rect>
+	
+	<rect name="inv_misc_header">
+		<_idx>
+			<copy src="me()" trait="_idx2" />
+			<sub src="sibling(inv_stones_header)" trait="_off" />
+			<onlyif src="sibling(inv_stones_header)" trait="_toggle" />
+			<add>
+				<copy src="sibling(inv_stones_header)" trait="_idx" />
+				<add> 1 </add>
+				<onlyifnot src="sibling(inv_stones_header)" trait="_toggle" />
+			</add>
+			<max> 0 </max>
+			<div>
+				<copy src="InventoryMenu" trait="_perLine"/>
+				<onlyif>
+					<copy src="InventoryMenu" trait="_bGridSepNewline"/>
+					<and src="me()" trait="visible"/>
+				</onlyif>
+				<add>
+					<copy> 1 </copy>
+					<onlyif>
+						<not src="InventoryMenu" trait="_bGridSepNewline"/>
+						<or><not src="me()" trait="visible"/></or>
+					</onlyif>
+				</add>
+			</div>
+			<ceil> 0 </ceil>
+			<add>
+				<copy src="InventoryMenu" trait="_iGridSepBlankLines"/>
+				<onlyif>
+					<copy src="sibling(inv_stones_header)" trait="visible"/>
+					<and src="sibling(inv_stones_header)" trait="_toggle"/>
+					<and src="InventoryMenu" trait="_bGridSepNewline"/>
+				</onlyif>
+			</add>
+			<mul>
+				<copy src="InventoryMenu" trait="_perLine"/>
+				<onlyif>
+					<copy src="InventoryMenu" trait="_bGridSepNewline"/>
+					<and src="me()" trait="visible"/>
+				</onlyif>
+				<add>
+					<copy> 1 </copy>
+					<onlyif>
+						<not src="InventoryMenu" trait="_bGridSepNewline"/>
+						<or><not src="me()" trait="visible"/></or>
+					</onlyif>
+				</add>
+			</mul>
+		</_idx>
+		<_idx2>
+			<copy src="InventoryMenu" trait="_no9" />
+		</_idx2>
+		<_off>
+			<copy src="me()" trait="_idx2" />
+			<sub src="me()" trait="_idx" />
+		</_off>
+
+		<_c_1>
+			<copy src="me()" trait="_idx" />
+			<mod src="InventoryMenu" trait="_perLine" />
+		</_c_1>
+
+		<_c_2>
+			<copy src="me()" trait="_idx" />
+			<div src="InventoryMenu" trait="_perLine" />
+			<floor> 0 </floor>
+		</_c_2>
+
+		<_col>
+			<copy src="InventoryMenu" trait="_bEnableHGrid" />
+			<copy src="me()" trait="_c_" />
+		</_col>
+
+		<_row> <!-- DarN rewrite 1.3 - _row was invalid on initial journal view -->
+			<copy src="me()" trait="_idx" />
+			<div src="InventoryMenu" trait="_perLine" />
+			<floor> 0 </floor>
+			<onlyif src="InventoryMenu" trait="_bNotEnableHGrid" />
+			<add>
+				<copy src="me()" trait="_idx" />
+				<mod src="InventoryMenu" trait="_perLine" />
+				<onlyif src="InventoryMenu" trait="_bEnableHGrid" />
+			</add>
+		</_row>
+
+		<listclip> <!-- DarN add -->
+			<copy src="me()" trait="_row" />
+			<gte>
+				<copy src="inv_scroll_bar" trait="_scroll" />
+				<add src="InventoryMenu" trait="_perPage" />
+			</gte>
+			<or>
+				<copy src="me()" trait="_row" />
+				<add> 1 </add>
+				<lte src="inv_scroll_bar" trait="_scroll" />
+			</or>
+		</listclip>
+
+		<x>
+			<copy src="me()" trait="width" />
+			<add> 4 </add>
+			<mul src="me()" trait="_col" />
+		</x>
+		<y>
+			<copy src="me()" trait="height" />
+			<add> 1 </add> <!-- DarN 4 -->
+				<add>
+					<copy> 3 </copy>
+					<onlyif src="InventoryMenu" trait="_bEnableGrid" />
+				</add>
+			<mul src="me()" trait="_row" />
+		</y>
+		<width>
+			<copy src="InventoryMenu" trait="_iItemSize" />
+			<onlyif src="InventoryMenu" trait="_bEnableGrid" />
+			<add>
+				<copy src="inv_window" trait="width" />
+				<onlyifnot src="InventoryMenu" trait="_bEnableGrid" />
+			</add>
+		</width>
+		<height>
+			<copy src="InventoryMenu" trait="_iItemSize" />
+		</height>
+		<visible>
+			<copy src="me()" trait="_idx2" />
+			<neq src="InventoryMenu" trait="user5" />
+		</visible>
+		<depth> 3 </depth>
+		<locus> &true; </locus>
+		<clips> &true; </clips>
+		<_toggle>
+			<copy src="child(inv_misc_header_toggle)" trait="user2" />
+			<or> <not src="me()" trait="visible" /> </or>
+		</_toggle>
+		<rect name="inv_misc_header_toggle">
+			<user1> <copy src="InventoryMenu" trait="_bToggle_Misc" /> </user1>
+			<include src="darn\inventory\inventory_togglesep.xml" />
+			<x>
+				<copy src="sibling(inv_misc_header_separator)" trait="x" />
+				<onlyif src="sibling(inv_misc_header_separator)" trait="visible" />
+				<add>
+					<copy src="sibling(inv_misc_header_text)" trait="x" />
+					<onlyif src="sibling(inv_misc_header_text)" trait="visible" />
+				</add>
+			</x>
+			<y>
+				<copy src="sibling(inv_misc_header_separator)" trait="y" />
+				<onlyif src="sibling(inv_misc_header_separator)" trait="visible" />
+				<add>
+					<copy src="sibling(inv_misc_header_text)" trait="y" />
+					<onlyif src="sibling(inv_misc_header_text)" trait="visible" />
+				</add>
+			</y>
+			<width>
+				<copy src="sibling(inv_misc_header_separator)" trait="width" />
+				<onlyif src="sibling(inv_misc_header_separator)" trait="visible" />
+				<add>
+					<copy src="sibling(inv_misc_header_text)" trait="width" />
+					<onlyif src="sibling(inv_misc_header_text)" trait="visible" />
+				</add>
+			</width>
+			<height>
+				<copy src="sibling(inv_misc_header_separator)" trait="height" />
+				<onlyif src="sibling(inv_misc_header_separator)" trait="visible" />
+				<add>
+					<copy src="sibling(inv_misc_header_text)" trait="height" />
+					<onlyif src="sibling(inv_misc_header_text)" trait="visible" />
+				</add>
+			</height>
+			<depth> 8 </depth>
+		</rect>
+		<image name="inv_misc_header_separator">
+			<filename>
+				<copy src="InventoryMenu" trait="_sSeparatorFile" />
+			</filename>
+			<alpha>
+				<copy src="InventoryMenu" trait="_iSeparatorAlpha" />
+			</alpha>
+			<cropx>
+				<copy> 8 </copy>
+				<mul src="me()" trait="width" />
+			</cropx>
+			<depth> 7 </depth>
+			<width> <copy src="InventoryMenu" trait="_iItemSize" /> </width>
+			<height> <copy src="InventoryMenu" trait="_iItemSize" /> </height>
+			<zoom>
+				<copy src="me()" trait="width" />
+				<div> 64 </div>
+				<mul> 100 </mul>
+			</zoom>
+			<clips> &true; </clips>
+			<x>
+				<copy src="parent()" trait="width" />
+				<sub src="me()" trait="width" />
+				<div> 2 </div>
+				<floor> 0 </floor>
+			</x>
+			<y>
+				<copy src="parent()" trait="height" />
+				<sub src="me()" trait="height" />
+				<div> 2 </div>
+				<floor> 0 </floor>
+			</y>
+			<visible> <copy src="InventoryMenu" trait="_bEnableGrid" /> </visible>
+		</image>
+		<image name="inv_misc_header_left">
+			<filename> Shared\shared_decor_blue_left.dds </filename>
+			<depth> 7 </depth>
+			<width> 35 </width>
+			<height> 17 </height>
+			<clips> &true; </clips>
+			<x>
+				<copy src="sibling(inv_misc_header_text)" trait="x" />
+				<sub> 55 </sub>
+			</x>
+			<y>
+				<copy src="sibling(inv_misc_header_text)" trait="y" />
+				<add> 5 </add>
+			</y>
+			<visible> <not src="InventoryMenu" trait="_bEnableGrid" /> </visible>
+		</image>
+		<image name="inv_misc_header_right">
+			<filename> Shared\shared_decor_blue_right.dds </filename>
+			<depth> 7 </depth>
+			<width> 35 </width>
+			<height> 17 </height>
+			<clips> &true; </clips>
+			<x>
+				<copy src="sibling(inv_misc_header_text)" trait="x" />
+				<add src="sibling(inv_misc_header_text)" trait="width" />
+				<add> 20 </add>
+			</x>
+			<y>
+				<copy src="sibling(inv_misc_header_text)" trait="y" />
+				<add> 5 </add>
+			</y>
+			<visible> <not src="InventoryMenu" trait="_bEnableGrid" /> </visible>
+		</image>
+		<text name="inv_misc_header_text">
+			<string> <copy src="strings()" trait="_misc" /> </string>
+			<font> 3 </font>
+			<x>
+				<copy src="inv_headers_top" trait="x" />
+				<add src="inv_p123_header_text" trait="x" />
+				<sub src="inv_window" trait="x" />
+				<sub src="parent()" trait="x" />
+			</x>
+			<y>
+				<copy src="parent()" trait="height" />
+				<sub src="me()" trait="height" />
+				<sub> 8 </sub>
+			</y>
+			<red> 51 </red>
+			<green> 79 </green>
+			<blue> 142 </blue>
+			<alpha> 255 </alpha>
+			<clips> &true; </clips>
+			<visible> <not src="InventoryMenu" trait="_bEnableGrid" /> </visible>
+		</text>		
+		<image name="inv_misc_header_img1">
+			<filename> Shared\all_small_icons.dds </filename>
+			<cropx> 168 </cropx> <!-- DarN 224 -->
+			<zoom> 75 </zoom> <!-- DarN add -->
+			<x>
+				<copy src="inv_headers_top" trait="x" />
+				<add src="inv_p123_header_img1" trait="x" />
+				<sub src="inv_window" trait="x" />
+				<sub src="parent()" trait="x" />
+			</x>
+			<y>
+				<copy src="parent()" trait="height" />
+				<sub src="me()" trait="height" />
+				<div> 2 </div>
+			</y>
+			<width> 24 </width> <!-- DarN 32 -->
+			<height> 24 </height> <!-- DarN 32 -->
+			<clips> &true; </clips>
+			<visible> <not src="InventoryMenu" trait="_bEnableGrid" /> </visible>
+		</image>
+		<image name="inv_misc_header_img2">
+			<filename> Shared\all_small_icons.dds </filename>
+			<cropx> 24 </cropx> <!-- DarN 32 -->
+			<zoom> 75 </zoom> <!-- DarN add -->
+			<x>
+				<copy src="inv_headers_top" trait="x" />
+				<add src="inv_p123_header_img2" trait="x" />
+				<sub src="inv_window" trait="x" />
+				<sub src="parent()" trait="x" />
+			</x>
+			<y>
+				<copy src="parent()" trait="height" />
+				<sub src="me()" trait="height" />
+				<div> 2 </div>
+			</y>
+			<width> 24 </width> <!-- DarN 32 -->
+			<height> 24 </height> <!-- DarN 32 -->
+			<clips> &true; </clips>
+			<visible> <not src="InventoryMenu" trait="_bEnableGrid" /> </visible>
+		</image>
+	</rect>
+
+	<rect name="inv_category_toggle">
+		<_show_1>
+			<copy src="sibling(inv_weapon_header)" trait="_toggle" />
+		 </_show_1>
+		<_show_2>
+			<copy src="sibling(inv_apparel_header)" trait="_toggle" />
+		</_show_2>
+		<_show_3>
+			<copy src="sibling(inv_apparatus_header)" trait="_toggle" />
+		</_show_3>
+		<_show_4>
+			<copy src="sibling(inv_potions_header)" trait="_toggle" />
+		</_show_4>
+		<_show_5>
+			<copy src="sibling(inv_ingr_header)" trait="_toggle" />
+		</_show_5>
+		<_show_6>
+			<copy src="sibling(inv_book_header)" trait="_toggle" />
+		</_show_6>
+		<_show_7>
+			<copy src="sibling(inv_keys_header)" trait="_toggle" />
+		</_show_7>
+		<_show_8>
+			<copy src="sibling(inv_stones_header)" trait="_toggle" />
+		</_show_8>
+		<_show_9>
+			<copy src="sibling(inv_misc_header)" trait="_toggle" />
+		</_show_9>
+
+		<_off_1>
+			<copy src="sibling(inv_weapon_header)" trait="_off" />
+		</_off_1>
+		<_off_2>
+			<copy src="sibling(inv_apparel_header)" trait="_off" />
+		</_off_2>
+		<_off_3>
+				<copy src="sibling(inv_apparatus_header)" trait="_off" />
+		</_off_3>
+		<_off_4>
+			<copy src="sibling(inv_potions_header)" trait="_off" />
+		</_off_4>
+		<_off_5>
+			<copy src="sibling(inv_ingr_header)" trait="_off" />
+		</_off_5>
+		<_off_6>
+			<copy src="sibling(inv_book_header)" trait="_off" />
+		</_off_6>
+		<_off_7>
+			<copy src="sibling(inv_keys_header)" trait="_off" />
+		</_off_7>
+		<_off_8>
+			<copy src="sibling(inv_stones_header)" trait="_off" />
+		</_off_8>
+		<_off_9>
+			<copy src="sibling(inv_misc_header)" trait="_off" />
+		</_off_9>
+	</rect>
+
+	<!-- CONTENTS ======================================================= -->
+	<rect name="inv_list_contents">
+		<_curX>
+			<copy src="inv_background" trait="x" />
+			<add src="inv_window" trait="x" />
+			<add src="inv_pane" trait="x" />
+			<add src="me()" trait="x" />
+		</_curX>
+		<_curY>
+			<copy src="inv_background" trait="y" />
+			<add src="inv_window" trait="y" />
+			<add src="inv_pane" trait="y" />
+			<add src="me()" trait="y" />
+		</_curY> 
+		<id> 10 </id>
+		<user0> 0 </user0>	<!-- set by code - number of visible elements in list -->
+		<user1>
+			<copy src="me()" trait="user0" />
+			<sub src="sibling(inv_misc_header)" trait="_off" />
+			<sub>
+				<copy src="InventoryMenu" trait="user5" />
+				<sub src="sibling(inv_misc_header)" trait="_idx2" />
+				<onlyifnot src="sibling(inv_misc_header)" trait="_toggle" />
+			</sub>
+		</user1>
+		<user2>
+			<copy src="me()" trait="user1" />
+			<div src="InventoryMenu" trait="_perLine" /> <!-- DarN = 1 with list -->
+			<!-- DarN HACK
+				This eliminates the 'empty' item at the bottom for page 4 when the 'Ingredients'
+				header is in folded state. This only modifies the scrollable range and does not
+				fix the problem	where it originates. Lord knows where that is...
+			-->
+			<floor> 0 </floor>
+			<add> 1 </add>
+		</user2>
+
+		<locus> &true; </locus>
+
+
+		<!-- code created template items are inserted here -->
+			
+		<!-- This is a list pane, and is not a focus itself, but when the child elements don't know how to handle
+			an input command, they defer to their parent. The following directions are for those times. -->
+		<target> &false; </target>
+		<xdefault> &true; </xdefault>
+		<xlist> &xlist; </xlist>
+		<xup> <ref src="inv_p123_header_text" trait="mouseover" /> </xup>
+		<!--xdown> &first; </xdown-->
+		<xscroll> <ref src="inv_scroll_bar" trait="user5" /> </xscroll>
+	</rect>
+	
+<!-- /rect> - inv_pane -->

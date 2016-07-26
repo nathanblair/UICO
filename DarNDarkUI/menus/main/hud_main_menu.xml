@@ -1,0 +1,2690 @@
+<!-- DarN Version 1.5 -->
+<!-- hud_main_menu.xml -->
+<menu name="HUDMainMenu">
+	<class> &HUDMainMenu; </class>
+	<stackingtype> &does_not_stack; </stackingtype>
+	<alpha>	0 </alpha>
+	<locus> &true; </locus>
+	<depth> -50 </depth>
+	<x> 0 </x>
+	<y> 0 </y>
+	<menufade> 0.25 </menufade>
+	<user1> 0 </user1>
+	<user2> 0 </user2>
+	<user3> 1 </user3>	<!-- 1 = explore mode / 0 = menu mode -->
+	<user4> 1 </user4>	<!-- current mode... 1=stats, 2=inventory, 3=magic, 4=map -->
+	<user5> 0 </user5>	<!-- last mode... 1=stats, 2=inventory, 3=magic, 4=map -->
+	<user6> 50 </user6>	<!-- player model first zoom percentage... 100=face, 0=full body -->
+
+	<!-- Region text -->
+	<user7> 0 </user7>	<!-- alpha -->
+	<user8> Region name text </user8>
+
+	<rect name="player_grab_zone">
+		<id> 91 </id>
+		<target> &true; </target>
+		<alpha> 128 </alpha>
+		<x> 0 </x>
+		<y> 0 </y>
+		<width> <copy src="screen()" trait="width" /> </width>
+		<height> <copy src="screen()" trait="height" /> </height>
+	</rect>
+
+<include src="darn\hudmainmenu_config.xml" />
+<include src="darn\common_controls_config.xml" />
+<include src="darn\hud_settings.xml" />
+
+
+	<rect name="magic_icons">
+		<id> 16 </id>
+		<!-- <x> <copy src="darnui_settings" trait="_aex" /> </x>
+		<y> <copy src="darnui_settings" trait="_aey" /> </y> -->
+		<x>
+			<copy src="screen()" trait="width"/>
+			<add src="HUDMainMenu" trait="_mex" /> </x>
+		<y>
+			<copy src="HUDMainMenu" trait="_mey" />
+			<add>
+				<copy> 8 </copy>
+				<onlyif src="HUDMainMenu" trait="_atv" />
+			</add>
+			<add>
+				<copy> 18 </copy>
+				<onlyif src="HUDMainMenu" trait="_ttv" />
+			</add>
+		</y>
+
+		<_icon_width>
+			<copy> 64 </copy>
+			<mul src="HUDMainMenu" trait="_zoom" />
+			<div> 100 </div>
+		</_icon_width>
+		<_icon_height>
+			<copy> 64 </copy>
+			<mul src="HUDMainMenu" trait="_zoom" />
+			<div> 100 </div>
+		</_icon_height>
+		<_buffer> <copy src="darnui_settings" trait="_aeis" /> </_buffer>
+		<_icons_per_row> <copy src="HUDMainMenu" trait="_mepr" /> </_icons_per_row>
+
+	</rect>
+
+	<template name="icon_template">
+		<image name="effect_icon">
+			<locus> &true; </locus>
+			<user0> </user0>		<!-- index -->
+			<user1> </user1>		<!-- time left -->
+			<width> <copy src="magic_icons" trait="_icon_width" /> </width>
+			<height> <copy src="magic_icons" trait="_icon_height" /> </height>
+			<zoom> <copy src="HUDMainMenu" trait="_zoom" /> </zoom>
+			<alpha> <copy src="HUDMainMenu" trait="_gfx_hudalpha" /> </alpha>
+			<visible>
+				<copy src="HUDMainMenu" trait="_etv" />
+				<or>
+					<copy src="HUDMainMenu" trait="_menumode" />
+					<and><not src="HUDMainMenu" trait="_settingsmode" /></and>
+				</or>
+			</visible>
+			<x>
+				<copy src="magic_icons" trait="x" />							<!-- starting x pos -->
+				<sub src="magic_icons" trait="_icon_width" />					<!-- move left by width of one icon -->
+				<sub>
+					<copy src="magic_icons" trait="_icon_width" />
+					<add src="magic_icons" trait="_buffer" />					<!-- move left by icon width + buffer -->
+					<mul>														<!-- how many times = index % max-per-row -->
+						<copy src="me()" trait="user0" />
+						<mod src="magic_icons" trait="_icons_per_row" />
+					</mul>
+				</sub>
+			</x>
+			<y>
+				<copy src="magic_icons" trait="y" />							<!-- starting y pos -->
+				<add>
+					<copy src="me()" trait="user0" />							<!-- index/icons_per_row gives you -->
+					<div src="magic_icons" trait="_icons_per_row" />			<!-- row num plus a fraction -->
+					<sub>
+						<copy src="me()" trait="user0" />						<!-- subtract the fraction -->
+						<mod src="magic_icons" trait="_icons_per_row" />
+						<div src="magic_icons" trait="_icons_per_row" />
+					</sub>
+					<mul>														<!-- multiply row num by num pixels -->
+						<copy src="magic_icons" trait="_icon_height" />
+						<add src="magic_icons" trait="_buffer" />
+						<add>
+							<copy> 16 </copy>
+							<onlyif src="HUDMainMenu" trait="_ttv" />
+						</add>
+					</mul>
+				</add>
+			</y>
+			<nif name="icon_timer">
+				<id> 17 </id>
+				<alpha>
+					<!-- <copy> 255 </copy> -->
+					<copy src="parent()" trait="alpha" />
+					<onlyif src="HUDMainMenu" trait="_atv" />
+				</alpha>
+				<depth> 1 </depth>
+				<filename> darn\Health_Bar01.NIF </filename>
+				<visible>
+					<copy src="parent()" trait="alpha" />
+					<!-- <eq> 255 </eq> -->
+					<gt> 0 </gt>
+					<and>
+						<copy src="parent()" trait="user1" />		<!-- time left < 0 for constant effects -->
+						<gte> 0 </gte>
+					</and>
+				</visible>
+				<x> <!-- DarN 23/15 -->
+					<copy src="parent()" trait="width" />
+					<sub src="me()" trait="width" />
+					<div> 2 </div>
+					<sub> 1 </sub>
+				</x>
+				<y> 0 </y>
+				<animation> Health_Bar </animation>
+			</nif>
+
+			<text name="temp_countdown">
+				<depth> 3 </depth>
+				<visible> <copy src="HUDMainMenu" trait="_ttv" /> </visible>
+				<alpha>
+					<copy src="HUDMainMenu" trait="_global_txt_alpha" />
+					<onlyif>
+						<copy src="parent()" trait="user1" />	<!-- time left < 0 for constant effects -->
+						<gte> 0 </gte>
+					</onlyif>
+				</alpha>
+				<red> <copy src="darnui_settings" trait="_aectr" /> </red>
+				<green> <copy src="darnui_settings" trait="_aectg" /> </green>
+				<blue> <copy src="darnui_settings" trait="_aectb" /> </blue>
+				<font> <copy src="darnui_settings" trait="_aectf" /> </font>
+				<x>
+					<copy src="parent()" trait="width" />
+					<sub src="me()" trait="width" />
+					<div> 2 </div>
+					<add src="darnui_settings" trait="_aectx" />
+				</x>
+				<y>
+					<copy> -14 </copy>
+					<sub>
+						<copy> 4 </copy>
+						<onlyif src="HUDMainMenu" trait="_atv" />
+					</sub>
+					<add src="darnui_settings" trait="_aecty" />
+				</y>
+				<_integer>
+					<copy src="parent()" trait="user1" />
+					<ceil> 0 </ceil>
+				</_integer>
+				<string> <copy src="me()" trait="_integer" /> </string>
+			</text>
+			<text name="temp_countdown_s"> <!-- DarN add -->
+				<depth> 2 </depth>
+				<visible> <copy src="sibling(temp_countdown)" trait="visible" /> </visible>
+				<alpha> <copy src="sibling(temp_countdown)" trait="alpha" /> </alpha>
+				<red> 0 </red>
+				<green> 0 </green>
+				<blue> 0 </blue>
+				<font> <copy src="darnui_settings" trait="_aectf" /> </font>
+				<x>
+					<copy src="sibling(temp_countdown)" trait="x" />
+					<add> 1 </add>
+				</x>
+				<y>
+					<copy src="sibling(temp_countdown)" trait="y" />
+					<add> 1 </add>
+				</y>
+				<string> <copy src="sibling(temp_countdown)" trait="string" /> </string>
+			</text>
+
+			<rect name="element_backdrop">
+				<_show>
+					<copy src="HUDMainMenu" trait="_mehover" />
+				</_show>
+				<include src="darn\settings_fader_box.xml"/>
+			</rect>
+		</image>
+	</template>
+
+	<rect name="location_info">
+		<x>
+			<copy src="screen()" trait="width" />
+			<sub src="me()" trait="width" />
+			<add src="HUDMainMenu" trait="_lx" />
+		</x>
+		<y>
+			<copy src="screen()" trait="height" />
+			<sub src="me()" trait="height" />
+			<add src="HUDMainMenu" trait="_ly" />
+		</y>
+		<width> 360 </width>
+		<height> 42 </height>
+		<locus> &true; </locus>
+		<visible> <copy src="HUDMainMenu" trait="_lo" /> </visible>
+		<depth>
+			<copy> 100 </copy>
+			<onlyif src="HUDMainMenu" trait="_settingsmode" />
+		</depth>
+
+		<rect name="element_backdrop">
+			<_show>
+				<copy src="HUDMainMenu" trait="_locationhover" />
+			</_show>
+			<include src="darn\settings_fader_box.xml"/>
+		</rect>
+
+		<!-- DarN Location Background frame -->
+		<image name="hudmain_location_frame">
+			<filename> darn\hud_location_frame_darn.dds </filename>
+			<depth>
+				<copy src="sibling(hudmain_region)" trait="depth" />
+				<sub> 2 </sub>
+			</depth>
+			<width> 360 </width>
+			<height> 42 </height>
+			<visible>
+				<copy src="HUDMainMenu" trait="_lf" />
+				<and src="HUDMainMenu" trait="_lo" />
+			</visible>
+			<alpha>
+				<copy src="sibling(hudmain_region)" trait="alpha" />
+				<!-- <add>
+					<copy> 63 </copy>
+					<onlyif>
+						<copy src="HUDMainMenu" trait="user7" />
+						<gt> 0 </gt>
+					</onlyif>
+				</add> -->
+				<!-- <max>
+					<copy> 255 </copy>
+					<onlyif src="HUDMainMenu" trait="_settingsmode" />
+				</max> -->
+			</alpha>
+			<x> 0 </x>
+			<y> 0 </y>
+		</image>
+
+		<image name="hudmain_location_back">
+			<filename> <copy src="darnui_settings" trait="_darnback" /> </filename>
+			<visible> <copy src="sibling(hudmain_location_frame)" trait="visible" /> </visible>
+			<depth>
+				<copy src="sibling(hudmain_region)" trait="depth" />
+				<sub> 3 </sub>
+			</depth>
+			<width> 350 </width> <!-- 308/310 -->
+			<red> 0 </red>
+			<green> 0 </green>
+			<blue> 0 </blue>
+			<height> 36 </height> <!-- 34 -->
+			<alpha>
+				<copy src="sibling(hudmain_location_frame)" trait="alpha" />
+				<div> 2 </div>
+				<!-- <sub> 165 </sub> -->
+			</alpha>
+			<x> 5 </x>
+			<y> 4 </y>
+		</image>
+
+		<text name="hudmain_region">
+			<justify> &center; </justify>
+			<wrapwidth> 340 </wrapwidth> <!-- DarN 300 -->
+			<x>
+				<copy src="sibling(hudmain_location_frame)" trait="width" />
+				<div> 2 </div>
+				<add> -2 </add> <!-- DarN offset -->
+				<add>
+					<copy src="me()" trait="width" />
+					<div> 2 </div>
+					<onlyif>
+						<copy src="darnui_settings" trait="_locAlignment" />
+						<eq> &right; </eq>
+					</onlyif>
+				</add>
+				<sub>
+					<copy src="me()" trait="width" />
+					<div> 2 </div>
+					<onlyif>
+						<copy src="darnui_settings" trait="_locAlignment" />
+						<eq> &left; </eq>
+					</onlyif>
+				</sub>
+			</x>
+			<y>
+				<copy src="sibling(hudmain_location_frame)" trait="height" />
+				<sub>
+					<copy src="me()" trait="height" />
+					<add src="sibling(hudmain_location_frame)" trait="height" />
+					<div> 2 </div>
+				</sub>
+			</y>
+			<string> <copy src="HUDMainMenu" trait="user8" /> </string>
+			<alpha>
+				<copy> 1 </copy>
+				<max>
+					<copy src="HUDMainMenu" trait="_txt_hudalpha" />
+					<onlyif>
+						<copy src="HUDMainMenu" trait="user7" />
+						<gt> 0 </gt>
+						<or src="HUDMainMenu" trait="_settingsmode" />
+					</onlyif>
+					<onlyif src="HUDMainMenu" trait="_lo" />
+				</max>
+			</alpha>
+			<font> 3 </font> 	<!-- DarN (2) Place name -->
+			<red> 254 </red>
+			<green> 244 </green>
+			<blue> 183 </blue>
+		</text>
+
+		<text name="hudmain_region_s">
+			<wrapwidth> 341 </wrapwidth>
+			<justify> &center; </justify>
+			<depth>
+				<copy src="sibling(hudmain_region)" trait="depth" />
+				<sub> 1 </sub>
+			</depth>
+			<x>
+				<copy src="sibling(hudmain_region)" trait="x" />
+				<add> 1 </add>
+			</x>
+			<y>
+				<copy src="sibling(hudmain_region)" trait="y" />
+				<add> 1 </add>
+			</y>
+			<string> <copy src="sibling(hudmain_region)" trait="string" /> </string>
+			<alpha> <copy src="sibling(hudmain_region)" trait="alpha" /> </alpha>
+			<font> 3 </font>
+			<red> 0 </red>
+			<green> 0 </green>
+			<blue> 0 </blue>
+		</text>
+	</rect>
+
+	<image name="hudmain_background">
+		<id> 1 </id>
+		<filename> <copy src="darnui_settings" trait="_hudback" /> </filename>
+		<depth> 55 </depth>
+		<alpha>
+			<copy src="HUDMainMenu" trait="_menumode" />
+			<sub> 1 </sub>
+			<mul> 255 </mul>
+		</alpha>
+		<width> 620 </width>
+		<height> 70 </height>
+		<locus> &true; </locus>
+		<x>
+			<copy src="screen()" trait="cropx" />
+			<add src="screen()" trait="cropx" />
+			<sub> 60 </sub>
+			<max src="screen()" trait="cropx" />
+			<add> 67 </add>
+		</x>
+		<y>
+			<copy src="screen()" trait="height" />
+			<sub src="screen()" trait="cropy" />
+			<sub src="screen()" trait="cropy" />
+			<sub src="me()" trait="height" />
+		</y>
+
+		<image name="hudmain_frame">
+			<id> 8 </id>
+			<filename> <copy src="darnui_settings" trait="_hudframe" /> </filename>
+			<depth> 18 </depth>
+			<visible> <copy src="HUDMainMenu" trait="_menumode" /> </visible>
+			<width> 761 </width>
+			<height> 90 </height>
+			<x> -70 </x>
+			<y> -5 </y>
+			<user0> 135 </user0>
+			<locus> &true; </locus>
+		</image>
+
+<!--
+										CLICK ZONES
+
+	BEIDER COMMENT
+		These things are the click zones, I moved it out of the objects and put it
+		locked in place where the buttons are supposed to be. That way you can still
+		click in the same place even after moving the other stuff.
+	-->
+	<rect name="hudmain_bars_cover">
+		<ID> 9 </ID>
+		<depth> 5 </depth>
+		<target> &true; </target>
+		<alpha> 0 </alpha>
+		<width> 199 </width>
+		<height> 80 </height>
+		<x> 0 </x>
+		<y> 0 </y>
+	</rect>
+
+	<rect name="hudmain_weapon_cover">
+		<id> 10 </id>
+		<target> &true; </target>
+		<depth> 5 </depth>
+		<alpha> 0 </alpha>
+		<width> 74 </width>
+		<height> 80 </height>
+		<x> 230 </x>
+		<y> 0 </y>
+	</rect>
+
+	<rect name="hudmain_magic_cover">
+		<id> 11 </id>
+		<target> &true; </target>
+		<depth> 5 </depth>
+		<alpha> 0 </alpha>
+		<width> 74 </width>
+		<height> 80 </height>
+		<x> 320 </x>
+		<y> 0 </y>
+	</rect>
+
+	<rect name="hudmain_compass_cover">
+		<id> 12 </id>
+		<target> &true; </target>
+		<depth> 25 </depth>
+		<alpha> 0 </alpha>
+		<red> 0 </red>
+		<width> 217 </width>
+		<height> 80 </height>
+		<x> 415 </x>
+		<y> 0 </y>
+	</rect>
+
+<!-- ONSCREEN WARNINGS FOR LOW HP / MAGICA / FATIGUE -->
+
+	<rect name="health_warning">
+		<x>
+			<copy src="screen()" trait="width" />
+			<sub src="me()" trait="width" />
+			<div> 2 </div>
+			<sub src="parent()" trait="x" />
+			<add src="darnui_settings" trait="_hpwtextx" />
+		</x>
+		<y>
+			<copy> -700 </copy>
+			<add src="darnui_settings" trait="_hpwtexty" />
+		</y>
+		<width>
+			<copy src="child(health_warning_image_right)" trait="width" />
+			<mul> 2 </mul>
+			<add src="child(health_low_hp_warning)" trait="width" />
+			<add> 30 </add> <!-- DarN 15px between text and icons -->
+		</width>
+		<height> 32 </height>
+		<locus> &true; </locus>
+		<visible>
+			<copy src="HUDMainMenu" trait="_exploremode" />
+			<and>
+				<copy src="hudmain_health_full" trait="width" /> <!-- DarN current width -->
+				<div> <!-- DarN div by max width -->
+					<copy> 163 </copy>
+					<mul src="HUDMainMenu" trait="_currentzoom" />
+					<div> 100 </div>
+				</div>
+				<mul> 100 </mul> <!-- DarN percentage of... -->
+				<lte src="darnui_settings" trait="_hpwtextvisible" /> <!-- DarN ...is less or equal to user limit -->
+			</and>
+		</visible>
+
+		<image name="health_warning_image_left">
+			<x> 0 </x>
+			<y> 0 </y>
+			<width> 32 </width>
+			<height> 32 </height>
+			<filename> Menus\Icons\Small\Magic\restoration_icon01.dds </filename>
+		</image>
+
+		<image name="health_warning_image_right">
+			<x>
+				<copy src="parent()" trait="width" />
+				<sub src="me()" trait="width" />
+			</x>
+			<y> 0 </y>
+			<width> 32 </width>
+			<height> 32 </height>
+			<filename> Menus\Icons\Small\Magic\restoration_icon01.dds </filename>
+		</image>
+
+		<text name="health_low_hp_warning">
+			<depth> 3 </depth>
+			<justify> &center; </justify>
+			<font> <copy src="darnui_settings" trait="_hpwtextfont" /> </font>
+			<red> <copy src="darnui_settings" trait="_hpwtextred" /> </red>
+			<green> <copy src="darnui_settings" trait="_hpwtextgreen" /> </green>
+			<blue> <copy src="darnui_settings" trait="_hpwtextblue" /> </blue>
+			<alpha> <copy src="darnui_settings" trait="_hpwtextalpha" /> </alpha>
+			<wraplines> 1 </wraplines>
+			<string> <copy src="darnui_settings" trait="_hpwfronttext" /> </string>
+	        <x>
+				<copy src="parent()" trait="width" />
+				<div> 2 </div>
+			</x>
+			<y>
+				<copy src="parent()" trait="height" />
+				<sub src="me()" trait="height" />
+				<div> 2 </div>
+			</y>
+		</text>
+
+		<text name="health_low_hp_warning_ds">
+			<depth> 2 </depth>
+			<justify> &center; </justify>
+			<font> <copy src="sibling(health_low_hp_warning)" trait="font" /> </font>
+			<red> 0 </red>
+			<green> 0 </green>
+			<blue> 0 </blue>
+			<alpha> 255 </alpha>
+			<wraplines> 1 </wraplines>
+			<string> <copy src="sibling(health_low_hp_warning)" trait="string" /> </string>
+			<x>
+				<copy src="sibling(health_low_hp_warning)" trait="x" />
+				<add> 1 </add>
+			</x>
+			<y>
+				<copy src="sibling(health_low_hp_warning)" trait="y" />
+				<add> 1 </add>
+			</y>
+		</text>
+	</rect>
+
+	<rect name="magicka_warning">
+		<depth> 3 </depth>
+		<x>
+			<copy src="screen()" trait="width" />
+			<sub src="me()" trait="width" />
+			<div> 2 </div>
+			<sub src="parent()" trait="x" />
+		</x>
+		<y> <copy src="darnui_settings" trait="_mawtexty" /> </y>
+		<width>
+			<copy src="child(magicka_warning_image_right)" trait="width" />
+			<mul> 2 </mul>
+			<add src="child(magicka_low_ma_warning)" trait="width" />
+			<add> 30 </add> <!-- DarN 15px between text and icons -->
+		</width>
+		<height> 32 </height>
+		<locus> &true; </locus>
+		<visible>
+			<copy src="HUDMainMenu" trait="_exploremode" />
+			<and>
+				<copy src="hudmain_magic_full" trait="width" />
+				<div>
+					<copy> 163 </copy>
+					<mul src="HUDMainMenu" trait="_currentzoom" />
+					<div> 100 </div>
+				</div>
+				<mul> 100 </mul>
+				<lte src="darnui_settings" trait="_mawtextvisible" />
+			</and>
+		</visible>
+
+		<image name="magicka_warning_image_left">
+			<x> 0 </x>
+			<y> 0 </y>
+			<width> 32 </width>
+			<height> 32 </height>
+			<filename> Menus\Icons\Small\Magic\restoration_icon02.dds </filename>
+		</image>
+
+		<image name="magicka_warning_image_right">
+			<x>
+				<copy src="parent()" trait="width" />
+				<sub src="me()" trait="width" />
+			</x>
+			<y> 0 </y>
+			<width> 32 </width>
+			<height> 32 </height>
+			<filename> Menus\Icons\Small\Magic\restoration_icon02.dds </filename>
+		</image>
+
+		<text name="magicka_low_ma_warning">
+			<depth> 0 </depth>
+			<justify> &center; </justify>
+			<font> <copy src="darnui_settings" trait="_mawtextfont" /> </font>
+			<red> <copy src="darnui_settings" trait="_mawtextred" /> </red>
+			<green> <copy src="darnui_settings" trait="_mawtextgreen" /> </green>
+			<blue> <copy src="darnui_settings" trait="_mawtextblue" /> </blue>
+			<alpha> <copy src="darnui_settings" trait="_mawtextalpha" /> </alpha>
+			<wraplines> 1 </wraplines>
+			<string> <copy src="darnui_settings" trait="_mawfronttext" /> </string>
+	        <x>
+				<copy src="parent()" trait="width" />
+				<div> 2 </div>
+			</x>
+			<y>
+				<copy src="parent()" trait="height" />
+				<sub src="me()" trait="height" />
+				<div> 2 </div>
+			</y>
+		</text>
+
+		<text name="magicka_low_ma_warning_ds">
+			<depth> -1 </depth>
+			<justify> &center; </justify>
+			<font> <copy src="sibling(magicka_low_ma_warning)" trait="font" /> </font>
+			<red> 0 </red>
+			<green> 0 </green>
+			<blue> 0 </blue>
+			<alpha> 255 </alpha>
+			<wraplines> 1 </wraplines>
+			<string> <copy src="sibling(magicka_low_ma_warning)" trait="string" /> </string>
+			<x>
+				<copy src="sibling(magicka_low_ma_warning)" trait="x" />
+				<add> 1 </add>
+			</x>
+			<y>
+				<copy src="sibling(magicka_low_ma_warning)" trait="y" />
+				<add> 1 </add>
+			</y>
+		</text>
+	</rect>
+
+	<rect name="fatigue_warning">
+		<depth> 3 </depth>
+		<x>
+			<copy src="screen()" trait="width" />
+			<sub src="me()" trait="width" />
+			<div> 2 </div>
+			<sub src="parent()" trait="x" />
+			<add src="darnui_settings" trait="_fawtextx" />
+		</x>
+		<y> <copy src="darnui_settings" trait="_fawtexty" /> </y>
+		<width>
+			<copy src="child(fatigue_warning_image_right)" trait="width" />
+			<mul> 2 </mul>
+			<add src="child(fatigue_low_fa_warning)" trait="width" />
+			<add> 30 </add> <!-- DarN 15px between text and icons -->
+		</width>
+		<height> 32 </height>
+		<locus> &true; </locus>
+		<visible>
+			<copy src="HUDMainMenu" trait="_exploremode" />
+			<and>
+				<copy src="hudmain_fatigue_full" trait="width" />
+				<div>
+					<copy> 163 </copy>
+					<mul src="HUDMainMenu" trait="_currentzoom" />
+					<div> 100 </div>
+				</div>
+				<mul> 100 </mul>
+				<lte src="darnui_settings" trait="_fawtextvisible" />
+			</and>
+		</visible>
+
+		<image name="fatigue_warning_image_left">
+			<locus> &true; </locus>
+			<x> 0 </x>
+			<y> 0 </y>
+			<width> 32 </width>
+			<height> 32 </height>
+			<filename> Menus\Icons\Small\Magic\restoration_icon00.dds </filename>
+			<image name="fatigue_warning_image_green">
+				<depth> -1 </depth>
+				<x> 0 </x>
+				<y> 0 </y>
+				<width> 32 </width>
+				<height> 32 </height>
+				<filename> Menus\Icons\icon_magic_green.dds </filename>
+			</image>
+		</image>
+
+		<image name="fatigue_warning_image_right">
+		<locus> &true; </locus>
+			<x>
+				<copy src="parent()" trait="width" />
+				<sub src="me()" trait="width" />
+			</x>
+			<y> 0 </y>
+			<width> 32 </width>
+			<height> 32 </height>
+			<filename> Menus\Icons\Small\Magic\restoration_icon00.dds </filename>
+			<image name="fatigue_warning_image_green">
+				<depth> -1 </depth>
+				<x> 0 </x>
+				<y> 0 </y>
+				<width> 32 </width>
+				<height> 32 </height>
+				<filename> Menus\Icons\icon_magic_green.dds </filename>
+			</image>
+		</image>
+
+		<text name="fatigue_low_fa_warning">
+			<depth> 0 </depth>
+			<justify> &center; </justify>
+			<font> <copy src="darnui_settings" trait="_fawtextfont" /> </font>
+			<red> <copy src="darnui_settings" trait="_fawtextred" /> </red>
+			<green> <copy src="darnui_settings" trait="_fawtextgreen" /> </green>
+			<blue> <copy src="darnui_settings" trait="_fawtextblue" /> </blue>
+			<alpha> <copy src="darnui_settings" trait="_fawtextalpha" /> </alpha>
+			<wraplines> 1 </wraplines>
+			<string> <copy src="darnui_settings" trait="_fawfronttext" /> </string>
+	        <x>
+				<copy src="parent()" trait="width" />
+				<div> 2 </div>
+			</x>
+			<y>
+				<copy src="parent()" trait="height" />
+				<sub src="me()" trait="height" />
+				<div> 2 </div>
+			</y>
+		</text>
+
+		<text name="fatigue_low_fa_warning_ds">
+			<depth> -1 </depth>
+			<justify> &center; </justify>
+			<font> <copy src="sibling(fatigue_low_fa_warning)" trait="font" /> </font>
+			<red> 0 </red>
+			<green> 0 </green>
+			<blue> 0 </blue>
+			<alpha> 255 </alpha>
+			<wraplines> 1 </wraplines>
+			<string> <copy src="sibling(fatigue_low_fa_warning)" trait="string" /> </string>
+			<x>
+				<copy src="sibling(fatigue_low_fa_warning)" trait="x" />
+				<add> 1 </add>
+			</x>
+			<y>
+				<copy src="sibling(fatigue_low_fa_warning)" trait="y" />
+				<add> 1 </add>
+			</y>
+		</text>
+	</rect>
+
+<!--
+									HP / MAGICA / FATIGUE
+-->
+
+		<rect name="hudmain_statusbars">
+			<alpha> 0 </alpha>
+			<visible>
+				<copy src="HUDMainMenu" trait="_sbv" />
+				<or>
+					<copy src="HUDMainMenu" trait="_menumode" />
+					<and><not src="HUDMainMenu" trait="_settingsmode" /></and>
+				</or>
+			</visible>
+			<locus> &true; </locus>
+			<depth>
+				<copy> 100 </copy>
+				<onlyif src="HUDMainMenu" trait="_settingsmode" />
+			</depth>
+			<height>
+				<copy> 0 </copy>
+				<add src="child(hudmain_fatigue_empty)" trait="y" />
+				<add src="child(hudmain_fatigue_empty)" trait="height" />
+			</height>
+			<width> <copy src="child(hudmain_fatigue_empty)" trait="width" /> </width>
+			<x>
+				<copy> 0 </copy>
+				<sub src="parent()" trait="x" /> <!-- DarN absolute left -->
+				<add src="HUDMainMenu" trait="_sbx" />
+				<onlyif>
+					<copy src="HUDMainMenu" trait="_exploremode" />
+					<or src="HUDMainMenu" trait="_settingsmode" />
+				</onlyif>
+				<add>
+					<copy> 3 </copy>
+					<onlyif src="HUDMainMenu" trait="_menumode" />
+					<onlyifnot src="HUDMainMenu" trait="_settingsmode" />
+				</add>
+			</x>
+			<y>
+				<copy src="screen()" trait="height" />
+				<sub src="me()" trait="height" />
+				<sub src="parent()" trait="y" /> <!-- DarN absolute bottom -->
+				<add src="HUDMainMenu" trait="_sby" />
+				<onlyif>
+					<copy src="HUDMainMenu" trait="_exploremode" />
+					<or src="HUDMainMenu" trait="_settingsmode" />
+				</onlyif>
+				<add>
+					<copy> 10 </copy>
+					<onlyif src="HUDMainMenu" trait="_menumode" />
+					<onlyifnot src="HUDMainMenu" trait="_settingsmode" />
+				</add>
+			</y>
+			<_cutoff>
+				<copy> 163 </copy>
+				<add>
+					<mul>
+						<copy src="HUDMainMenu" trait="_sbco" />
+						<sub> 100 </sub>
+					</mul>
+					<div> 100 </div>
+					<onlyif src="HUDMainMenu" trait="_af" />
+				</add>
+			</_cutoff>
+			<_divider>
+				<copy src="me()" trait="_cutoff" /> <!-- DarN 163 -->
+				<mul src="HUDMainMenu" trait="_currentzoom" />
+				<div> 100 </div>
+				<div src="HUDMainMenu" trait="_gfx_hudalpha" />
+			</_divider>
+
+			<rect name="element_backdrop">
+				<_show>
+					<copy src="HUDMainMenu" trait="_sbhover" />
+				</_show>
+				<include src="darn\settings_fader_box.xml"/>
+			</rect>
+<!--
+										HP BAR
+-->
+
+			<image name="hudmain_health_empty">
+				<filename> <copy src="darnui_settings" trait="_hudribbonhpe" /> </filename>
+				<depth> 1 </depth>
+				<width>
+					<copy> 189 </copy>
+					<mul src="HUDMainMenu" trait="_currentzoom" />
+					<div> 100 </div>
+				</width>
+				<height> <!-- DarN 100% = 16 -->
+					<copy> 16 </copy>
+					<mul src="HUDMainMenu" trait="_currentzoom" />
+					<div> 100 </div>
+				</height>
+				<locus> &true; </locus>
+				<x> 0 </x>
+				<y>
+					<copy> 3 </copy>
+					<onlyif src="HUDMainMenu" trait="_menumode" />
+				</y>
+				<zoom> <copy src="HUDMainMenu" trait="_currentzoom" />	</zoom>
+				<alpha> <copy src="child(hudmain_health_full)" trait="alpha" /> </alpha>
+
+				<image name="hudmain_health_full">
+					<ID> 2 </ID>
+					<locus> &true; </locus>
+					<filename> <copy src="darnui_settings" trait="_hudribbonhpf" /> </filename>
+					<depth> 1 </depth>
+					<visible>
+						<copy src="me()" trait="user0" />
+						<gt> 0 </gt>
+					</visible>
+					<width>
+						<copy src="me()" trait="user0" />
+						<max> 0 </max>
+						<min> 1 </min>
+						<mul>
+							<copy> 163 </copy>
+							<mul src="HUDMainMenu" trait="_currentzoom" />
+							<div> 100 </div>
+						</mul>
+					</width>
+					<alpha>
+						<!-- <copy> 255 </copy> -->
+						<copy src="HUDMainMenu" trait="_gfx_hudalpha" />
+						<sub>
+							<copy src="me()" trait="width" />
+							<div src="hudmain_statusbars" trait="_divider" />
+							<onlyif src="HUDMainMenu" trait="_af" />
+							<onlyifnot src="HUDMainMenu" trait="_menumode" />
+						</sub>
+						<max>
+							<copy> 255 </copy>
+							<onlyif src="HUDMainMenu" trait="_menumode" />
+							<onlyifnot src="HUDMainMenu" trait="_settingsmode" />
+						</max>
+					</alpha>
+					<height>
+						<copy> 11 </copy>
+						<mul src="HUDMainMenu" trait="_currentzoom" />
+						<div> 100 </div>
+					</height>
+					<x>
+						<copy> 11 </copy>
+						<mul src="HUDMainMenu" trait="_currentzoom" />
+						<div> 100 </div>
+					</x>
+					<y> 1 </y>
+					<zoom> <copy src="parent()" trait="zoom" /> </zoom>
+					<user0> 1.0 </user0>
+				</image>
+
+				<image name="hudmain_health_edge">
+					<filename> <copy src="darnui_settings" trait="_ribbonslider" /> </filename>
+					<visible> &true; </visible>
+					<zoom> <copy src="HUDMainMenu" trait="_currentzoom" /> </zoom>
+					<depth> 2 </depth>
+					<width> <!-- DarN 100% = 12 -->
+						<copy> 12 </copy>
+						<mul src="HUDMainMenu" trait="_currentzoom" />
+						<div> 100 </div>
+					</width>
+					<height> <!-- DarN 100% = 14 -->
+						<copy> 14 </copy>
+						<mul src="HUDMainMenu" trait="_currentzoom" />
+						<div> 100 </div>
+					</height>
+					<alpha> <copy src="sibling(hudmain_health_full)" trait="alpha" /> </alpha>
+					<x>
+						<copy src="hudmain_health_full" trait="x" />
+						<add src="hudmain_health_full" trait="width" />
+					</x>
+					<y> 0 </y>
+				</image>
+
+<!-- Health Status Text -->
+
+				<text name="health_text_front">
+					<depth> 4 </depth>
+					<justify> &left; </justify>
+					<font> <copy src="darnui_settings" trait="_hptextfont" /> </font>
+					<red> <copy src="darnui_settings" trait="_hptextred" /> </red>
+					<green> <copy src="darnui_settings" trait="_hptextgreen" /> </green>
+					<blue> <copy src="darnui_settings" trait="_hptextblue" /> </blue>
+					<alpha> <copy src="darnui_settings" trait="_hptextalpha" /> </alpha>
+					<visible>
+						<copy src="HUDMainMenu" trait="_exploremode" />
+						<and>
+							<copy src="darnui_settings" trait="_hptextfvisible" />
+							<eq> 2 </eq>
+						</and>
+					</visible>
+					<wrapwidth> 600 </wrapwidth>
+					<wraplines> 1 </wraplines>
+					<string> <copy src="darnui_settings" trait="_hpfronttext" /> </string>
+					<x>	<copy src="darnui_settings" trait="_hptextx" /> </x>
+					<y> <copy src="darnui_settings" trait="_hptexty" /> </y>
+					<clips> &false; </clips>
+				</text>
+
+				<text name="health_text_front_ds">
+					<depth> 3 </depth>
+					<justify> &left; </justify>
+					<font> <copy src="darnui_settings" trait="_hptextfont" /> </font>
+					<red> 0 </red>
+					<green> 0 </green>
+					<blue> 0 </blue>
+					<alpha> 255 </alpha>
+					<visible>
+						<copy src="HUDMainMenu" trait="_exploremode" />
+						<and>
+							<copy src="darnui_settings" trait="_hptextfsvisible" />
+							<eq> 2 </eq>
+						</and>
+					</visible>
+					<wrapwidth> 600 </wrapwidth>
+					<wraplines> 1 </wraplines>
+					<string> <copy src="darnui_settings" trait="_hpfronttext" /> </string>
+					<x>
+						<copy src="health_text_front" trait="x" />
+						<add> 1 </add>
+					</x>
+					<y>
+						<copy src="health_text_front" trait="y" />
+						<add> 1 </add>
+					</y>
+					<clips> &false; </clips>
+				</text>
+
+				<text name="health_text">
+					<depth> 4 </depth>
+					<justify> &left; </justify>
+					<font> <copy src="darnui_settings" trait="_hptextfont" /> </font>
+					<red> <copy src="darnui_settings" trait="_hptextred" /> </red>
+					<green> <copy src="darnui_settings" trait="_hptextgreen" /> </green>
+					<blue> <copy src="darnui_settings" trait="_hptextblue" /> </blue>
+					<alpha> <copy src="darnui_settings" trait="_hptextalpha" /> </alpha>
+					<visible>
+						<copy src="HUDMainMenu" trait="_exploremode" />
+						<and src="darnui_settings" trait="_hptextvisible" />
+					</visible>
+					<string> <!-- DarN TODO -->
+						<copy src="hudmain_health_full" trait="width" />
+						<div>
+							<copy> 163 </copy>
+							<mul src="darnui_settings" trait="_hudscale" />
+							<div> 100 </div>
+						</div>
+						<mul> 100 </mul>
+					</string>
+					<x>
+						<copy src="health_text_front" trait="x" />
+						<add src="darnui_settings" trait="_hpfrontspace" />
+					</x>
+					<y> <copy src="health_text_front" trait="y" /> </y>
+				</text>
+
+				<text name="health_text_ds">
+					<depth> 3 </depth>
+					<justify> &left; </justify>
+					<font> <copy src="darnui_settings" trait="_hptextfont" /> </font>
+					<red> 0 </red>
+					<green> 0 </green>
+					<blue> 0 </blue>
+					<alpha> 255 </alpha>
+					<visible> <copy src="sibling(health_text)" trait="visible" /> </visible>
+					<string> <copy src="sibling(health_text)" trait="string" /> </string>
+					<x>
+						<copy src="sibling(health_text)" trait="x" />
+						<add> 1 </add>
+					</x>
+					<y>
+						<copy src="sibling(health_text)" trait="y" />
+						<add> 1 </add>
+					</y>
+				</text>
+
+				<text name="health_pect">
+					<depth> 4 </depth>
+					<justify> &left; </justify>
+					<font> <copy src="darnui_settings" trait="_hptextfont" /> </font>
+					<red> <copy src="darnui_settings" trait="_hptextred" /> </red>
+					<green> <copy src="darnui_settings" trait="_hptextgreen" /> </green>
+					<blue> <copy src="darnui_settings" trait="_hptextblue" /> </blue>
+					<alpha> <copy src="darnui_settings" trait="_hptextalpha" /> </alpha>
+					<visible>
+						<copy src="HUDMainMenu" trait="_exploremode" />
+						<and src="darnui_settings" trait="_hppectvisible" />
+					</visible>
+					<string> <copy src="darnui_settings" trait="_hppecttext" /> </string>
+					<x>
+						<copy src="health_text" trait="X" />
+						<add src="health_text" trait="width" />
+						<add src="darnui_settings" trait="_hppectspace" />
+					</x>
+					<y>
+						<copy src="health_text" trait="y" />
+					</y>
+				</text>
+
+				<text name="health_pect_ds">
+					<depth> 3 </depth>
+					<justify> &left; </justify>
+					<font> <copy src="darnui_settings" trait="_hptextfont" /> </font>
+					<red> 0 </red>
+					<green> 0 </green>
+					<blue> 0 </blue>
+					<alpha> 255 </alpha>
+					<visible>
+						<copy src="HUDMainMenu" trait="_exploremode" />
+						<and src="darnui_settings" trait="_hppectsvisible" />
+					</visible>
+					<string> <copy src="darnui_settings" trait="_hppecttext" /> </string>
+					<x>
+						<copy src="health_pect" trait="x" />
+						<add> 1 </add>
+					</x>
+					<y>
+						<copy src="health_pect" trait="y" />
+						<add> 1 </add>
+					</y>
+				</text>
+			</image>
+<!--
+										MAGICA BAR
+-->
+			<image name="hudmain_magic_empty">
+				<filename> <copy src="darnui_settings" trait="_hudribbonmae" /> </filename>
+				<depth> 1 </depth>
+				<width>
+					<copy> 189 </copy>
+					<mul src="HUDMainMenu" trait="_currentzoom" />
+					<div> 100 </div>
+				</width>
+				<height> <!-- DarN 100% = 16 -->
+					<copy> 16 </copy>
+					<mul src="HUDMainMenu" trait="_currentzoom" />
+					<div> 100 </div>
+				</height>
+				<locus> &true; </locus>
+				<x> 0 </x>
+				<y>
+					<copy src="me()" trait="height" />
+					<add src="sibling(hudmain_health_empty)" trait="y" />
+					<add> 2 </add>
+				</y>
+				<zoom> <copy src="HUDMainMenu" trait="_currentzoom" />	</zoom>
+				<alpha> <copy src="child(hudmain_magic_full)" trait="alpha" /> </alpha>
+
+				<image name="hudmain_magic_full">
+					<ID> 3 </ID>
+					<filename> <copy src="darnui_settings" trait="_hudribbonmaf" /> </filename>
+					<visible>
+						<copy src="me()" trait="user0" />
+						<gt> 0 </gt>
+					</visible>
+					<depth> 1 </depth>
+					<locus> &true; </locus>
+					<width>
+						<copy src="me()" trait="user0" />
+						<max> 0 </max>
+						<min> 1 </min>
+						<mul> <!-- DarN 100% = 163 -->
+							<copy> 163 </copy>
+							<mul src="HUDMainMenu" trait="_currentzoom" />
+							<div> 100 </div>
+						</mul>
+					</width>
+					<alpha>
+						<!-- <copy> 255 </copy> -->
+						<copy src="HUDMainMenu" trait="_gfx_hudalpha" />
+						<sub>
+							<copy src="me()" trait="width" />
+							<div src="hudmain_statusbars" trait="_divider" />
+							<onlyif src="HUDMainMenu" trait="_af" />
+							<onlyifnot src="HUDMainMenu" trait="_menumode" />
+						</sub>
+						<max>
+							<copy> 255 </copy>
+							<onlyif src="HUDMainMenu" trait="_menumode" />
+							<onlyifnot src="HUDMainMenu" trait="_settingsmode" />
+						</max>
+					</alpha>
+					<height>
+						<copy> 11 </copy>
+						<mul src="HUDMainMenu" trait="_currentzoom" />
+						<div> 100 </div>
+					</height>
+					<x>
+						<copy> 11 </copy>
+						<mul src="HUDMainMenu" trait="_currentzoom" />
+						<div> 100 </div>
+					</x>
+					<y> 1 </y>
+					<zoom> <copy src="HUDMainMenu" trait="_currentzoom" />	</zoom>
+					<user1> 1.0 </user1>
+				</image>
+				<image name="hudmain_magic_edge">
+					<filename> <copy src="darnui_settings" trait="_ribbonslider" /> </filename>
+					<visible> &true; </visible>
+					<depth> 2 </depth>
+					<width> <!-- DarN 100% = 12 -->
+						<copy> 12 </copy>
+						<mul src="HUDMainMenu" trait="_currentzoom" />
+						<div> 100 </div>
+					</width>
+					<height> <!-- DarN 100% = 14 -->
+						<copy> 14 </copy>
+						<mul src="HUDMainMenu" trait="_currentzoom" />
+						<div> 100 </div>
+					</height>
+					<alpha> <copy src="sibling(hudmain_magic_full)" trait="alpha" /> </alpha>
+					<x>
+						<copy src="sibling(hudmain_magic_full)" trait="x" />
+						<add src="sibling(hudmain_magic_full)" trait="width" />
+					</x>
+					<y> 0 </y>
+					<zoom> <copy src="HUDMainMenu" trait="_currentzoom" />	</zoom>
+				</image>
+
+<!--
+									Magica Status Text
+-->
+
+				<text name="magica_text_front">
+					<depth> 4 </depth>
+					<justify> &left; </justify>
+					<font> <copy src="darnui_settings" trait="_matextfont" /> </font>
+					<red> <copy src="darnui_settings" trait="_matextred" /> </red>
+					<green> <copy src="darnui_settings" trait="_matextgreen" /> </green>
+					<blue> <copy src="darnui_settings" trait="_matextblue" /> </blue>
+					<alpha> <copy src="darnui_settings" trait="_matextalpha" /> </alpha>
+					<visible>
+						<copy src="HUDMainMenu" trait="_exploremode" />
+						<and>
+							<copy src="darnui_settings" trait="_matextfvisible" />
+							<eq> 2 </eq>
+						</and>
+					</visible>
+					<wrapwidth> 600 </wrapwidth>
+					<wraplines> 1 </wraplines>
+					<string> <copy src="darnui_settings" trait="_mafronttext" /> </string>
+					<x> <copy src="darnui_settings" trait="_matextx" /> </x>
+					<y> <copy src="darnui_settings" trait="_matexty" /> </y>
+					<clips> &false; </clips>
+				</text>
+
+				<text name="magica_text_front_ds">
+					<depth> 3 </depth>
+					<justify> &left; </justify>
+					<font> <copy src="darnui_settings" trait="_matextfont" /> </font>
+					<red> 0 </red>
+					<green> 0 </green>
+					<blue> 0 </blue>
+					<alpha> 255 </alpha>
+					<visible>
+						<copy src="HUDMainMenu" trait="_exploremode" />
+						<and>
+							<copy src="darnui_settings" trait="_matextfsvisible" />
+							<eq> 2 </eq>
+						</and>
+					</visible>
+					<wrapwidth> 600 </wrapwidth>
+					<wraplines> 1 </wraplines>
+					<string> <copy src="darnui_settings" trait="_mafronttext" /> </string>
+					<x>
+						<copy src="magica_text_front" trait="x" />
+						<add> 1 </add>
+					</x>
+					<y>
+						<copy src="magica_text_front" trait="y" />
+						<add> 1 </add>
+					</y>
+					<clips> &false; </clips>
+				</text>
+
+				<text name="magica_text">
+					<depth> 4 </depth>
+					<justify> &left; </justify>
+					<font> <copy src="darnui_settings" trait="_matextfont" /> </font>
+					<red> <copy src="darnui_settings" trait="_matextred" /> </red>
+					<green> <copy src="darnui_settings" trait="_matextgreen" /> </green>
+					<blue> <copy src="darnui_settings" trait="_matextblue" /> </blue>
+					<alpha> <copy src="darnui_settings" trait="_matextalpha" /> </alpha>
+					<visible>
+						<copy src="HUDMainMenu" trait="_exploremode" />
+						<and>
+							<copy src="darnui_settings" trait="_matextvisible" />
+							<eq> 2 </eq>
+						</and>
+					</visible>
+					<wrapwidth> 600 </wrapwidth>
+					<wraplines> 1 </wraplines>
+					<string>
+						<copy src="hudmain_magic_full" trait="width" />
+						<div>
+							<copy> 163 </copy>
+							<mul src="HUDMainMenu" trait="_currentzoom" />
+							<div> 100 </div>
+						</div>
+						<mul> 100 </mul>
+					</string>
+					<x>
+						<copy src="magica_text_front" trait="x" />
+						<add src="darnui_settings" trait="_mafrontspace" />
+					</x>
+					<y> <copy src="magica_text_front" trait="y" /> </y>
+					<clips> &false; </clips>
+				</text>
+
+				<text name="magica_text_ds">
+					<depth> 3 </depth>
+					<justify> &left; </justify>
+					<font> <copy src="darnui_settings" trait="_matextfont" /> </font>
+					<red> 0 </red>
+					<green> 0 </green>
+					<blue> 0 </blue>
+					<alpha> 255 </alpha>
+					<visible>
+						<copy src="HUDMainMenu" trait="_exploremode" />
+						<and>
+							<copy src="darnui_settings" trait="_matextsvisible" />
+							<eq> 2 </eq>
+						</and>
+					</visible>
+					<wrapwidth> 600 </wrapwidth>
+					<wraplines> 1 </wraplines>
+					<string> <copy src="magica_text" trait="string" /> </string>
+					<x>
+						<copy src="magica_text" trait="x" />
+						<add> 1 </add>
+					</x>
+					<y>
+						<copy src="magica_pect" trait="y" />
+						<add> 1 </add>
+					</y>
+					<clips> &false; </clips>
+				</text>
+
+				<text name="magica_pect">
+					<depth> 4 </depth>
+					<justify> &left; </justify>
+					<font> <copy src="darnui_settings" trait="_matextfont" /> </font>
+					<red> <copy src="darnui_settings" trait="_matextred" /> </red>
+					<green> <copy src="darnui_settings" trait="_matextgreen" /> </green>
+					<blue> <copy src="darnui_settings" trait="_matextblue" /> </blue>
+					<alpha> <copy src="darnui_settings" trait="_matextalpha" /> </alpha>
+					<visible>
+						<copy src="HUDMainMenu" trait="_exploremode" />
+						<and>
+							<copy src="darnui_settings" trait="_mapectvisible" />
+							<eq> 2 </eq>
+						</and>
+					</visible>
+					<wrapwidth> 600 </wrapwidth>
+					<wraplines> 1 </wraplines>
+					<string> <copy src="darnui_settings" trait="_mapecttext" /> </string>
+					<x>
+						<copy src="magica_text" trait="x" />
+						<add src="magica_text" trait="width" />
+						<add src="darnui_settings" trait="_mapectspace" />
+					</x>
+					<y>
+						<copy src="magica_text" trait="y" />
+					</y>
+					<clips> &false; </clips>
+				</text>
+
+				<text name="magica_pect_ds">
+					<depth> 3 </depth>
+					<justify> &left; </justify>
+					<font> <copy src="darnui_settings" trait="_matextfont" /> </font>
+					<red> 0 </red>
+					<green> 0 </green>
+					<blue> 0 </blue>
+					<alpha> 255 </alpha>
+					<visible>
+						<copy src="HUDMainMenu" trait="_exploremode" />
+						<and>
+							<copy src="darnui_settings" trait="_mapectsvisible" />
+							<eq> 2 </eq>
+						</and>
+					</visible>
+					<wrapwidth> 600 </wrapwidth>
+					<wraplines> 1 </wraplines>
+					<string> <copy src="darnui_settings" trait="_mapecttext" /> </string>
+					<x>
+						<copy src="magica_pect" trait="x" />
+						<add> 1 </add>
+					</x>
+					<y>
+						<copy src="magica_pect" trait="y" />
+						<add> 1 </add>
+					</y>
+					<clips> &false; </clips>
+				</text>
+			</image>
+
+<!--
+									FATIGUE BAR
+-->
+
+			<image name="hudmain_fatigue_empty">
+				<filename> <copy src="darnui_settings" trait="_hudribbonfae" /> </filename>
+				<depth> 1 </depth>
+				<width>
+					<copy> 189 </copy>
+					<mul src="HUDMainMenu" trait="_currentzoom" />
+					<div> 100 </div>
+				</width>
+				<height> <!-- DarN 100% = 16 -->
+					<copy> 16 </copy>
+					<mul src="HUDMainMenu" trait="_currentzoom" />
+					<div> 100 </div>
+				</height>
+				<locus> &true; </locus>
+				<x> 0 </x>
+				<y>
+					<copy src="me()" trait="height" />
+					<mul> 2 </mul>
+					<add src="sibling(hudmain_health_empty" trait="y" />
+					<add> 4 </add>
+				</y>
+				<zoom> <copy src="HUDMainMenu" trait="_currentzoom" />	</zoom>
+				<alpha> <copy src="child(hudmain_fatigue_full)" trait="alpha" /> </alpha>
+					<text name="alp"> <!-- DarN debug -->
+								<visible>1</visible>
+								<font> 2 </font>
+								<red> 255 </red>
+								<green> 255 </green>
+								<blue> 0 </blue>
+								<alpha> 255 </alpha>
+								<string> <copy src="parent()" trait="alpha" /> </string>
+								<x> <copy src="parent()" trait="x" /><add src="parent()" trait="width" /> </x>
+								<y> <copy src="me()" trait="height" /> </y>
+							</text>
+				<image name="hudmain_fatigue_full">
+					<alpha>
+						<copy src="HUDMainMenu" trait="_gfx_hudalpha" />
+						<sub>
+							<copy src="me()" trait="width" />
+							<div src="hudmain_statusbars" trait="_divider" />
+							<onlyif src="HUDMainMenu" trait="_af" />
+							<onlyifnot src="HUDMainMenu" trait="_menumode" />
+						</sub>
+						<max>
+							<copy> 255 </copy>
+							<onlyif src="HUDMainMenu" trait="_menumode" />
+							<onlyifnot src="HUDMainMenu" trait="_settingsmode" />
+						</max>
+					</alpha>
+					<id> 4 </id>
+					<filename> <copy src="darnui_settings" trait="_hudribbonfaf" /> </filename>
+					<visible>
+						<copy src="me()" trait="user0" />
+						<gt> 0 </gt>
+					</visible>
+					<locus> &true; </locus>
+					<depth> 1 </depth>
+					<width>
+						<copy src="me()" trait="user0" />
+						<max> 0 </max>
+						<min> 1 </min>
+						<mul> <!-- DarN 100% = 163 -->
+							<copy> 163 </copy>
+							<mul src="HUDMainMenu" trait="_currentzoom" />
+							<div> 100 </div>
+						</mul>
+					</width>
+					<height> <!-- DarN 100% = 11 -->
+						<copy> 11 </copy>
+						<mul src="HUDMainMenu" trait="_currentzoom" />
+						<div> 100 </div>
+					</height>
+					<x>
+						<copy> 11 </copy>
+						<mul src="HUDMainMenu" trait="_currentzoom" />
+						<div> 100 </div>
+					</x>
+					<y> 1 </y>
+					<zoom> <copy src="HUDMainMenu" trait="_currentzoom" />	</zoom>
+					<user0> 1.0 </user0>
+				</image>
+				<image name="hudmain_fatigue_edge">
+					<filename> <copy src="darnui_settings" trait="_ribbonslider" /> </filename>
+					<visible> &true; </visible>
+					<depth> 2 </depth>
+					<width> <!-- DarN 100% = 12 -->
+						<copy> 12 </copy>
+						<mul src="HUDMainMenu" trait="_currentzoom" />
+						<div> 100 </div>
+					</width>
+					<height> <!-- DarN 100% = 14 -->
+						<copy> 14 </copy>
+						<mul src="HUDMainMenu" trait="_currentzoom" />
+						<div> 100 </div>
+					</height>
+					<alpha><copy src="sibling(hudmain_fatigue_full)" trait="alpha" /></alpha>
+					<x>
+						<copy src="sibling(hudmain_fatigue_full)" trait="x" />
+						<add src="sibling(hudmain_fatigue_full)" trait="width" />
+					</x>
+					<y> 0 </y>
+					<zoom> <copy src="HUDMainMenu" trait="_currentzoom" />	</zoom>
+				</image>
+
+<!--
+								  Fatigue Status Text
+-->
+
+				<text name="fatigue_text_front">
+					<depth> 4 </depth>
+					<justify> &left; </justify>
+					<font> <copy src="darnui_settings" trait="_fatextfont" /> </font>
+					<red> <copy src="darnui_settings" trait="_fatextred" /> </red>
+					<green> <copy src="darnui_settings" trait="_fatextgreen" /> </green>
+					<blue> <copy src="darnui_settings" trait="_fatextblue" /> </blue>
+					<alpha> <copy src="darnui_settings" trait="_fatextalpha" /> </alpha>
+					<visible>
+						<copy src="HUDMainMenu" trait="_exploremode" />
+						<and>
+							<copy src="darnui_settings" trait="_fatextfvisible" />
+							<eq> 2 </eq>
+						</and>
+					</visible>
+					<wrapwidth> 600 </wrapwidth>
+					<wraplines> 1 </wraplines>
+					<string> <copy src="darnui_settings" trait="_fafronttext" /> </string>
+					<x> <copy src="darnui_settings" trait="_fatextx" /> </x>
+					<y> <copy src="darnui_settings" trait="_fatexty" /> </y>
+					<clips> &false; </clips>
+				</text>
+
+				<text name="fatigue_text_front_ds">
+					<depth> 3 </depth>
+					<justify> &left; </justify>
+					<font> <copy src="darnui_settings" trait="_fatextfont" /> </font>
+					<red> 0 </red>
+					<green> 0 </green>
+					<blue> 0 </blue>
+					<alpha> 255 </alpha>
+					<visible>
+						<copy src="HUDMainMenu" trait="_exploremode" />
+						<and>
+							<copy src="darnui_settings" trait="_fatextfsvisible" />
+							<eq> 2 </eq>
+						</and>
+					</visible>
+					<wrapwidth> 600 </wrapwidth>
+					<wraplines> 1 </wraplines>
+					<string> <copy src="fatigue_text_front" trait="string" /> </string>
+					<x>
+						<copy src="fatigue_text_front" trait="x" />
+						<add> 1 </add>
+					</x>
+					<y>
+						<copy src="fatigue_text_front" trait="y" />
+						<add> 1 </add>
+					</y>
+					<clips> &false; </clips>
+				</text>
+
+				<text name="fatigue_text">
+					<depth> 4 </depth>
+					<justify> &left; </justify>
+					<font> <copy src="darnui_settings" trait="_fatextfont" /> </font>
+					<red> <copy src="darnui_settings" trait="_fatextred" /> </red>
+					<green> <copy src="darnui_settings" trait="_fatextgreen" /> </green>
+					<blue> <copy src="darnui_settings" trait="_fatextblue" /> </blue>
+					<alpha> <copy src="darnui_settings" trait="_fatextalpha" /> </alpha>
+					<visible>
+						<copy src="HUDMainMenu" trait="_exploremode" />
+						<and>
+							<copy src="darnui_settings" trait="_fatextvisible" />
+							<eq> 2 </eq>
+						</and>
+					</visible>
+					<wrapwidth> 600 </wrapwidth>
+					<wraplines> 1 </wraplines>
+					<string>
+						<copy src="hudmain_fatigue_full" trait="width" />
+						<div>
+							<copy> 163 </copy>
+							<mul src="HUDMainMenu" trait="_currentzoom" />
+							<div> 100 </div>
+						</div>
+						<mul> 100 </mul>
+					</string>
+					<x>
+						<copy src="fatigue_text_front" trait="x" />
+						<add src="darnui_settings" trait="_fafrontspace" />
+					</x>
+					<y> <copy src="fatigue_text_front" trait="y" /> </y>
+					<clips> &false; </clips>
+				</text>
+
+				<text name="fatigue_text_ds">
+					<depth> 3 </depth>
+					<justify> &left; </justify>
+					<font> <copy src="darnui_settings" trait="_fatextfont" /> </font>
+					<red> 0 </red>
+					<green> 0 </green>
+					<blue> 0 </blue>
+					<alpha> 255 </alpha>
+					<visible>
+						<copy src="HUDMainMenu" trait="_exploremode" />
+						<and>
+							<copy src="darnui_settings" trait="_fatextsvisible" />
+							<eq> 2 </eq>
+						</and>
+					</visible>
+					<wrapwidth> 600 </wrapwidth>
+					<wraplines> 1 </wraplines>
+					<string>
+						<copy src="hudmain_fatigue_full" trait="width" />
+						<div>
+							<copy> 163 </copy>
+							<mul src="HUDMainMenu" trait="_currentzoom" />
+							<div> 100 </div>
+						</div>
+						<mul> 100 </mul>
+					</string>
+					<x>
+						<copy src="fatigue_text" trait="x" />
+						<add> 1 </add>
+					</x>
+					<y>
+						<copy src="fatigue_pect" trait="y" />
+						<add> 1 </add>
+					</y>
+					<clips> &false; </clips>
+				</text>
+
+				<text name="fatigue_pect">
+					<depth> 4 </depth>
+					<justify> &left; </justify>
+					<font> <copy src="darnui_settings" trait="_fatextfont" /> </font>
+					<red> <copy src="darnui_settings" trait="_fatextred" /> </red>
+					<green> <copy src="darnui_settings" trait="_fatextgreen" /> </green>
+					<blue> <copy src="darnui_settings" trait="_fatextblue" /> </blue>
+					<alpha> <copy src="darnui_settings" trait="_fatextalpha" /> </alpha>
+					<visible>
+						<copy src="HUDMainMenu" trait="_exploremode" />
+						<and>
+							<copy src="darnui_settings" trait="_fapectvisible" />
+							<eq> 2 </eq>
+						</and>
+					</visible>
+					<wrapwidth> 600 </wrapwidth>
+					<wraplines> 1 </wraplines>
+					<string> <copy src="darnui_settings" trait="_fapecttext" /> </string>
+					<x>
+						<copy src="fatigue_text" trait="x" />
+						<add src="fatigue_text" trait="width" />
+						<add src="darnui_settings" trait="_fapectspace" />
+					</x>
+					<y>
+						<copy src="fatigue_text" trait="y" />
+					</y>
+					<clips> &false; </clips>
+				</text>
+
+				<text name="fatigue_pect_ds">
+					<depth> 3 </depth>
+					<justify> &left; </justify>
+					<font> <copy src="darnui_settings" trait="_fatextfont" /> </font>
+					<red> 0 </red>
+					<green> 0 </green>
+					<blue> 0 </blue>
+					<alpha> 255 </alpha>
+					<visible>
+						<copy src="HUDMainMenu" trait="_exploremode" />
+						<and>
+							<copy src="darnui_settings" trait="_fapectsvisible" />
+							<eq> 2 </eq>
+						</and>
+					</visible>
+					<wrapwidth> 600 </wrapwidth>
+					<wraplines> 1 </wraplines>
+					<string> <copy src="fatigue_pect" trait="string" /> </string>
+					<x>
+						<copy src="fatigue_pect" trait="x" />
+						<add> 1 </add>
+					</x>
+					<y>
+						<copy src="fatigue_pect" trait="y" />
+						<add> 1 </add>
+					</y>
+					<clips> &false; </clips>
+				</text>
+			</image>
+
+		</rect>
+
+<!--
+								  	  Weapon Icon
+-->
+		<image name="hudmain_Weapon_Icon">
+			<id> 5 </id>
+			<visible>
+				<copy src="HUDMainMenu" trait="_wiv" />
+				<or>
+					<copy src="HUDMainMenu" trait="_menumode" />
+					<and><not src="HUDMainMenu" trait="_settingsmode" /></and>
+				</or>
+			</visible>
+			<filename> <copy src="darnui_settings" trait="_ihdw" /> </filename>
+			<locus> &true; </locus>
+			<depth>
+				<copy> 1 </copy>
+				<add>
+					<copy> 100 </copy>
+					<onlyif src="HUDMainMenu" trait="_settingsmode" />
+				</add>
+			</depth>
+			<width>
+				<copy> 64 </copy>
+				<mul src="HUDMainMenu" trait="_currentzoom" />
+				<div> 100 </div>
+			</width>
+			<height> <copy src="me()" trait="width" /> </height>
+			<x>
+				<copy> 0 </copy>
+				<sub src="parent()" trait="x" /> <!-- DarN absolute left -->
+				<add src="HUDMainMenu" trait="_wepx" />
+				<onlyif>
+					<copy src="HUDMainMenu" trait="_exploremode" />
+					<or src="HUDMainMenu" trait="_settingsmode" />
+				</onlyif>
+				<add>
+					<copy> 229 </copy>
+					<onlyif src="HUDMainMenu" trait="_menumode" />
+					<onlyifnot src="HUDMainMenu" trait="_settingsmode" />
+				</add>
+			</x>
+			<y>
+				<copy src="parent()" trait="height" />
+				<sub src="me()" trait="height" />
+				<add src="screen()" trait="cropy" />
+				<add src="screen()" trait="cropy" /> <!-- DarN absolute bottom -->
+				<add src="HUDMainMenu" trait="_wepy" /> <!-- DarN user offset -->
+				<onlyif>
+					<copy src="HUDMainMenu" trait="_exploremode" />
+					<or src="HUDMainMenu" trait="_settingsmode" />
+				</onlyif>
+				<add>
+					<copy> 5 </copy>
+					<onlyif src="HUDMainMenu" trait="_menumode" />
+					<onlyifnot src="HUDMainMenu" trait="_settingsmode" />
+				</add>
+			</y>
+			<zoom> <copy src="HUDMainMenu" trait="_currentzoom" /> </zoom>
+			<alpha>
+				<copy src="HUDMainMenu" trait="_global_alpha" />
+				<div> 2 </div>
+				<onlyif>
+					<copy src="me()" trait="user2" />
+					<gte> <copy src="darnui_settings" trait="_wepalphapre" /> </gte>	<!-- weapon health minimum before weapon icon partially alphas out -->
+				</onlyif>
+				<add>
+					<copy src="HUDMainMenu" trait="_global_alpha" />
+					<div> 2 </div>
+				</add>
+			</alpha>
+			<!-- Possible item statuses are broken, stolen, enchanted, and poisoned -->
+			<user0> 0 </user0>		<!-- status combination -->
+			<user1> </user1>			<!-- status icon filename -->
+			<user2> 1.0 </user2>	<!-- weapon health - 0-100 -->
+			<user3> 0 </user3>		<!-- ammo remaining -->
+
+			<rect name="element_backdrop">
+				<_show>
+					<copy src="toggle_weapon_control" trait="_hover" />
+					<or src="toggle_weapon_durability_control" trait="_hover" />
+					<or src="weapon_offxy_control" trait="_hover" />
+				</_show>
+				<include src="darn\settings_fader_box.xml"/>
+			</rect>
+
+			<image name="hudmain_weapon_status">
+				<filename> <copy src="parent()" trait="user1" /> </filename>
+				<!-- <filename> Menus\icons\icon_image_set_15.dds</filename> -->
+				<depth> 1 </depth>
+				<visible>
+					<copy src="parent()" trait="user0" />
+					<gt> 0 </gt>
+				</visible>
+				<x>
+					<copy> 5 </copy>
+					<onlyif src="HUDMainMenu" trait="_menumode" />
+				</x>
+				<y>
+					<copy src="parent()" trait="height" />
+					<sub src="me()" trait="height" />
+					<add> 2 </add>
+				</y>
+				<zoom> <!-- DarN 75% is plenty -->
+					<copy src="HUDMainMenu" trait="_currentzoom" />
+					<mul> 75 </mul>
+					<div> 100 </div>
+				</zoom>
+				<height>
+					<copy> 24 </copy> <!-- DarN 32 = 100% -->
+					<mul src="HUDMainMenu" trait="_currentzoom" />
+					<div> 100 </div>
+					<onlyif src="me()" trait="_handonly" />
+					<add>
+						<copy> 18 </copy> <!-- DarN 24 = 100% -->
+						<mul src="HUDMainMenu" trait="_currentzoom" />
+						<div> 100 </div>
+						<onlyifnot src="me()" trait="_handonly" />
+					</add>
+				</height>
+				<width>
+					<copy> 48 </copy> <!-- DarN 64 = 100% -->
+					<mul src="HUDMainMenu" trait="_currentzoom" />
+					<div> 100 </div>
+					<sub>
+						<copy> 24 </copy> <!-- DarN 32 = 100% -->
+						<mul src="HUDMainMenu" trait="_currentzoom" />
+						<div> 100 </div>
+						<onlyif>
+							<!-- If any of these conditions is true, we are using an original icon,
+							     rather than a "combo" dds. -->
+							<!-- "Combo" dds's are 32x64, original icons are 32x32 -->
+							<copy src="me()" trait="_handonly" />
+							<or> <copy src="parent()" trait="user0" /> <eq> 2 </eq> </or>
+							<or> <copy src="parent()" trait="user0" /> <eq> 4 </eq> </or>
+							<or> <copy src="parent()" trait="user0" /> <eq> 8 </eq> </or>
+						</onlyif>
+					</sub>
+				</width>
+				<red>
+					<copy> 47 </copy>
+					<onlyifnot src="me()" trait="_handonly" />
+					<add> 208 </add>
+				</red>
+				<green>
+					<copy> 255 </copy>
+					<onlyifnot src="me()" trait="_handonly" />
+				</green>
+				<blue>
+					<copy> 255 </copy>
+					<onlyifnot src="me()" trait="_handonly" />
+				</blue>
+				<alpha> <copy src="parent()" trait="alpha" /> </alpha>
+				<_handonly>
+					<copy src="parent()" trait="user0" />
+					<eq> 1 </eq>
+				</_handonly>
+			</image>
+
+			<text name="hudmain_weapon_ammo">
+				<visible>
+					<copy src="parent()" trait="user3" />
+					<gt> 0 </gt>
+					<and src="HUDMainMenu" trait="_exploremode" />
+				</visible>
+				<x> <copy src="darnui_settings" trait="_waox" /> </x>
+				<y> <copy src="darnui_settings" trait="_waoy" /> </y>
+				<depth> 3 </depth>
+				<justify> &right; </justify>
+				<font> <copy src="darnui_settings" trait="_waf" /> </font>
+				<red> <copy src="darnui_settings" trait="_war" /> </red>
+				<green> <copy src="darnui_settings" trait="_wag" /> </green>
+				<blue> <copy src="darnui_settings" trait="_wab" /> </blue>
+				<alpha> <copy src="HUDMainMenu" trait="_global_txt_alpha" /> </alpha>
+				<!-- <wrapwidth> 55 </wrapwidth>
+				<wraplines> 1 </wraplines> -->
+				<string> <copy src="parent()" trait="user3" /> </string>
+			</text>
+
+			<text name="hudmain_weapon_ammo_shadow">
+				<visible> <copy src="sibling(hudmain_weapon_ammo)" trait="visible" /> </visible>
+				<x>
+					<copy src="sibling(hudmain_weapon_ammo)" trait="x" />
+					<add> 1 </add>
+				</x>
+				<y>
+					<copy src="sibling(hudmain_weapon_ammo)" trait="y" />
+					<add> 1 </add>
+				</y>
+				<depth> 2 </depth>
+				<justify> &right; </justify>
+				<font> <copy src="sibling(hudmain_weapon_ammo)" trait="font" /> </font>
+				<red> 0 </red>
+				<green> 0 </green>
+				<blue> 0  </blue>
+				<alpha> <copy src="HUDMainMenu" trait="_global_txt_alpha" /> </alpha>
+				<!-- <wrapwidth> 55 </wrapwidth>
+				<wraplines> 1 </wraplines> -->
+				<string> <copy src="parent()" trait="user3" /> </string>
+			</text>
+
+<!--
+									DURABILITY BAR
+
+	BEIDER COMMENT
+		This is a completely new feature I added to the HUD. The code for the durability
+		text was already here but I decided to make a bar as well.
+	-->
+
+			<image name="hudmain_durability_empty">
+				<visible> <copy src="HUDMainMenu" trait="_wisd" /> </visible>
+				<filename> Menus\darn\hud_ribbon_weapon_empty.dds </filename>
+				<depth> 1 </depth> <!-- DarN -11 -->
+				<width>
+					<copy> 189 </copy>
+					<mul src="me()" trait="zoom" />
+					<div> 100 </div>
+				</width>
+				<height>
+					<copy> 16 </copy>
+					<mul src="me()" trait="zoom" />
+					<div> 100 </div>
+				</height>
+				<x> 0 </x>
+				<y>
+					<copy src="parent()" trait="height" />
+					<add> 5 </add>
+				</y>
+				<zoom>
+					<copy src="parent" trait="width" />
+					<mul> 33.862 </mul> <!-- DarN magic cookie :) -->
+					<div src="parent" trait="width" />
+					<mul src="HUDMainMenu" trait="_currentzoom" />
+					<div> 100 </div>
+				</zoom>
+				<alpha> <copy src="parent()" trait="alpha" /> </alpha>
+				<locus> &true; </locus>
+				<clips> &false; </clips>
+
+				<image name="hudmain_durability_full">
+					<filename> <copy src="darnui_settings" trait="_huddurabilityf" /> </filename>
+					<depth> 2 </depth>
+					<locus> &true; </locus>
+					<visible> &true; </visible>
+					<red> <copy src="darnui_settings" trait="_durbarr" /> </red>
+					<green> <copy src="darnui_settings" trait="_durbarg" /> </green>
+					<blue> <copy src="darnui_settings" trait="_durbarb" /> </blue>
+					<width>
+						<copy src="hudmain_Weapon_Icon" trait="user2" />
+						<mul>
+							<copy> 132 </copy>
+							<mul src="me()" trait="zoom" />
+							<div> 100 </div>
+						</mul>
+						<div> 100 </div>
+					</width>
+					<alpha> <copy src="parent()" trait="alpha" /> </alpha>
+					<height>
+						<copy> 11 </copy>
+						<mul src="parent()" trait="zoom" />
+						<div> 100 </div>
+					</height>
+					<x>
+						<copy> 11 </copy>
+						<mul src="parent()" trait="zoom" />
+						<div> 100 </div>
+					</x>
+					<y> 1 </y>
+					<zoom> <copy src="parent()" trait="zoom" /> </zoom>
+					<user0> 1.0 </user0>
+				</image>
+
+				<image name="hudmain_durability_edge">
+					<filename> <copy src="darnui_settings" trait="_ribbonslider" /> </filename>
+					<depth> 3 </depth>
+					<visible> &true; </visible>
+					<width> <!-- DarN 100% = 12 -->
+						<copy> 12 </copy> <!-- DarN durability multiplier -->
+						<mul src="parent()" trait="zoom" />
+						<div> 100 </div>
+					</width>
+					<height> <!-- DarN 100% = 14 -->
+						<copy> 14 </copy>
+						<mul src="parent()" trait="zoom" />
+						<!-- <mul src="HUDMainMenu" trait="_currentzoom" /> -->
+						<div> 100 </div>
+					</height>
+					<alpha> <copy src="parent()" trait="alpha" /></alpha>
+					<x>
+						<copy src="sibling(hudmain_durability_full)" trait="x" />
+						<add src="sibling(hudmain_durability_full)" trait="width" />
+						<min> <!-- DarN for items repaired beyond belief... -->
+							 <copy src="parent()" trait="width" />
+							 <sub src="me()" trait="width" />
+							 <sub src="me()" trait="width" />
+						</min>
+					</x>
+					<y> 0 </y>
+					<zoom> <copy src="parent()" trait="zoom" />	</zoom>
+				</image>
+
+<!-- DarN DEBUG -->
+<!--			<text name="darn_debug_text">
+					<depth> 4 </depth>
+					<justify> &left; </justify>
+					<font> 5 </font>
+					<red> 255 </red>
+					<green> 50 </green>
+					<blue> 255 </blue>
+					<alpha> 255 </alpha>
+					<visible> &true; </visible>
+					<string>
+						<copy src="hudmain_Weapon_Icon" trait="user2" />
+					</string>
+					<x>	<copy src="hudmain_durability_empty" trait="x" /> </x>
+					<y>
+						<copy src="hudmain_durability_empty" trait="y" />
+						<add> 10 </add>
+					</y>
+					<clips> &false; </clips>
+				</text>
+-->
+<!--
+									Durability Text
+-->
+
+
+				<text name="durability_text_front">
+					<depth> 4 </depth>
+					<justify> &left; </justify>
+					<font> <copy src="darnui_settings" trait="_durtextfont" /> </font>
+					<red> <copy src="darnui_settings" trait="_durtextred" /> </red>
+					<green> <copy src="darnui_settings" trait="_durtextgreen" /> </green>
+					<blue> <copy src="darnui_settings" trait="_durtextblue" /> </blue>
+					<alpha> <copy src="darnui_settings" trait="_durtextalpha" /> </alpha>
+					<visible> <copy src="darnui_settings" trait="_durtextfvisible" /> </visible>
+					<wrapwidth> 600 </wrapwidth>
+					<wraplines> 1 </wraplines>
+					<string> <copy src="darnui_settings" trait="_durfronttext" /> </string>
+					<x>	<copy src="darnui_settings" trait="_durtextx" /> </x>
+					<y> <copy src="darnui_settings" trait="_durtexty" /> </y>
+					<clips> &false; </clips>
+				</text>
+
+				<text name="durability_text_front_ds">
+					<depth> 3 </depth>
+					<justify> &left; </justify>
+					<font> <copy src="darnui_settings" trait="_durtextfont" /> </font>
+					<red> 0 </red>
+					<green> 0 </green>
+					<blue> 0 </blue>
+					<alpha> 255 </alpha>
+					<visible> <copy src="darnui_settings" trait="_durtextfsvisible" /> </visible>
+					<wrapwidth> 600 </wrapwidth>
+					<wraplines> 1 </wraplines>
+					<string> <copy src="darnui_settings" trait="_durfronttext" /> </string>
+					<x>
+						<copy src="durability_text_front" trait="x" />
+						<add> 1 </add>
+					</x>
+					<y>
+						<copy src="durability_text_front" trait="y" />
+						<add> 1 </add>
+					</y>
+					<clips> &false; </clips>
+				</text>
+
+				<text name="durability_text">
+					<depth> 4 </depth>
+					<justify> &left; </justify>
+					<font> <copy src="darnui_settings" trait="_durtextfont" /> </font>
+					<red> <copy src="darnui_settings" trait="_durtextred" /> </red>
+					<green> <copy src="darnui_settings" trait="_durtextgreen" /> </green>
+					<blue> <copy src="darnui_settings" trait="_durtextblue" /> </blue>
+					<alpha> <copy src="darnui_settings" trait="_durtextalpha" /> </alpha>
+					<visible> <copy src="darnui_settings" trait="_durtextvisible" /> </visible>
+					<wrapwidth> 600 </wrapwidth>
+					<wraplines> 1 </wraplines>
+					<string> <copy src="hudmain_Weapon_Icon" trait="user2" /> </string>
+					<x>
+						<copy src="durability_text_front" trait="x" />
+						<add src="darnui_settings" trait="_durfrontspace" />
+					</x>
+					<y> <copy src="durability_text_front" trait="y" /> </y>
+					<clips> &false; </clips>
+				</text>
+
+				<text name="durability_text_ds">
+					<depth> 3 </depth>
+					<justify> &left; </justify>
+					<font> <copy src="darnui_settings" trait="_durtextfont" /> </font>
+					<red> 0 </red>
+					<green> 0 </green>
+					<blue> 0 </blue>
+					<alpha> 255 </alpha>
+					<visible> <copy src="darnui_settings" trait="_durtextsvisible" /> </visible>
+					<wrapwidth> 600 </wrapwidth>
+					<wraplines> 1 </wraplines>
+					<string> <copy src="hudmain_Weapon_Icon" trait="user2" /> </string>
+					<x>
+						<copy src="durability_text" trait="x" />
+						<add> 1 </add>
+					</x>
+					<y>
+						<copy src="durability_text" trait="y" />
+						<add> 1 </add>
+					</y>
+					<clips> &false; </clips>
+				</text>
+
+				<text name="durability_pect">
+					<depth> 4 </depth>
+					<justify> &left; </justify>
+					<font> <copy src="darnui_settings" trait="_durtextfont" /> </font>
+					<red> <copy src="darnui_settings" trait="_durtextred" /> </red>
+					<green> <copy src="darnui_settings" trait="_durtextgreen" /> </green>
+					<blue> <copy src="darnui_settings" trait="_durtextblue" /> </blue>
+					<alpha> <copy src="darnui_settings" trait="_durtextalpha" /> </alpha>
+					<visible> <copy src="darnui_settings" trait="_durpectvisible" /> </visible>
+					<wrapwidth> 600 </wrapwidth>
+					<wraplines> 1 </wraplines>
+					<string> <copy src="darnui_settings" trait="_durpecttext" /> </string>
+					<x>
+						<copy src="durability_text" trait="X" />
+						<add src="durability_text" trait="width" />
+						<add src="darnui_settings" trait="_durpectspace" />
+					</x>
+					<y>
+						<copy src="durability_text" trait="y" />
+					</y>
+					<clips> &false; </clips>
+				</text>
+
+				<text name="durability_pect_ds">
+					<depth> 3 </depth>
+					<justify> &left; </justify>
+					<font> <copy src="darnui_settings" trait="_durtextfont" /> </font>
+					<red> 0 </red>
+					<green> 0 </green>
+					<blue> 0 </blue>
+					<alpha> 255 </alpha>
+					<visible> <copy src="darnui_settings" trait="_durpectsvisible" /> </visible>
+					<wrapwidth> 600 </wrapwidth>
+					<wraplines> 1 </wraplines>
+					<string> <copy src="darnui_settings" trait="_durpecttext" /> </string>
+					<x>
+						<copy src="durability_pect" trait="x" />
+						<add> 1 </add>
+					</x>
+					<y>
+						<copy src="durability_pect" trait="y" />
+						<add> 1 </add>
+					</y>
+					<clips> &false; </clips>
+				</text>
+			</image>
+		</image>
+
+<!--
+								  	  Magic Icon
+-->
+
+		<image name="hudmain_Magic_Icon">
+			<id> 6 </id>
+			<visible>
+				<copy src="HUDMainMenu" trait="_siv" />
+				<or>
+					<copy src="HUDMainMenu" trait="_menumode" />
+					<and><not src="HUDMainMenu" trait="_settingsmode" /></and>
+				</or>
+			</visible>
+			<filename> <copy src="darnui_settings" trait="_ihdm" /> </filename>
+			<repeatvertical> &true; </repeatvertical>
+			<depth>
+				<copy> 1 </copy>
+				<add>
+					<copy> 100 </copy>
+					<onlyif src="HUDMainMenu" trait="_settingsmode" />
+				</add>
+			</depth>
+			<locus> &true; </locus>
+			<width>
+				<copy> 64 </copy>
+				<mul src="HUDMainMenu" trait="_currentzoom" />
+				<div> 100 </div>
+			</width>
+			<height> <copy src="me()" trait="width" /> </height>
+			<x>
+				<copy> 0 </copy>
+				<sub src="parent()" trait="x" /> <!-- DarN absolute left -->
+				<add src="HUDMainMenu" trait="_spx" />
+				<onlyif>
+					<copy src="HUDMainMenu" trait="_exploremode" />
+					<or src="HUDMainMenu" trait="_settingsmode" />
+				</onlyif>
+				<add>
+					<copy> 324 </copy>
+					<onlyif src="HUDMainMenu" trait="_menumode" />
+					<onlyifnot src="HUDMainMenu" trait="_settingsmode" />
+				</add>
+			</x>
+			<y>
+				<copy src="parent()" trait="height" />
+				<sub src="me()" trait="height" />
+				<add src="screen()" trait="cropy" />
+				<add src="screen()" trait="cropy" /> <!-- DarN absolute bottom -->
+				<!-- <sub> 25 </sub> -->
+				<add src="HUDMainMenu" trait="_spy" /> <!-- DarN user offset -->
+				<onlyif>
+					<copy src="HUDMainMenu" trait="_exploremode" />
+					<or src="HUDMainMenu" trait="_settingsmode" />
+				</onlyif>
+				<add>
+					<copy> 5 </copy>
+					<onlyif src="HUDMainMenu" trait="_menumode" />
+					<onlyifnot src="HUDMainMenu" trait="_settingsmode" />
+				</add>
+			</y>
+			<zoom>
+				<copy src="HUDMainMenu" trait="_currentzoom" />
+			</zoom>
+			<alpha>
+				<copy src="HUDMainMenu" trait="_global_alpha" />
+				<div> 2 </div>
+				<onlyif src="me()" trait="user2" />
+				<add>
+					<copy src="HUDMainMenu" trait="_global_alpha" />
+					<div> 2 </div>
+				</add>
+			</alpha>
+			<user2> &true; </user2>		<!-- can cast -->
+
+			<rect name="element_backdrop">
+				<_show>
+					<copy src="toggle_spell_control" trait="_hover" />
+					<or src="spell_offxy_control" trait="_hover" />
+				</_show>
+				<include src="darn\settings_fader_box.xml"/>
+			</rect>
+		</image>
+
+<!--
+								  	  Compass
+-->
+
+		<rect name="hudmain_compass_layout">
+			<width> 320 </width>
+			<height> 32 </height>
+			<depth>
+				<copy> 100 </copy>
+				<onlyif src="HUDMainMenu" trait="_settingsmode" />
+			</depth>
+			<visible>
+				<copy src="HUDMainMenu" trait="_ce" />
+				<or>
+					<copy src="HUDMainMenu" trait="_menumode" />
+					<and><not src="HUDMainMenu" trait="_settingsmode" /></and>
+				</or>
+			</visible>
+			<x>
+				<copy src="screen()" trait="width" />
+				<sub src="me()" trait="width" />
+				<div> 2 </div>
+				<sub src="parent()" trait="x" />
+				<add> 11 </add> <!-- DarN where does this originate? -->
+				<add src="HUDMainMenu" trait="_cx" />
+				<onlyif>
+					<copy src="HUDMainMenu" trait="_exploremode" />
+					<or src="HUDMainMenu" trait="_settingsmode" />
+				</onlyif>
+				<add>
+					<copy> 380 </copy>
+					<onlyif src="HUDMainMenu" trait="_menumode" />
+					<onlyifnot src="HUDMainMenu" trait="_settingsmode" />
+				</add>
+			</x>
+			<y>
+				<copy> 74 </copy>
+				<add src="HUDMainMenu" trait="_cy" />
+				<onlyif>
+					<copy src="HUDMainMenu" trait="_exploremode" />
+					<or src="HUDMainMenu" trait="_settingsmode" />
+				</onlyif>
+				<add>
+					<copy> 27 </copy>
+					<onlyif src="HUDMainMenu" trait="_menumode" />
+					<onlyifnot src="HUDMainMenu" trait="_settingsmode" />
+				</add>
+			</y>
+			<locus> &true; </locus>
+			<rect name="element_backdrop">
+				<_show>
+					<copy src="HUDMainMenu" trait="_compasshover" />
+				</_show>
+				<include src="darn\settings_fader_box.xml"/>
+				<x> -10 </x>
+			</rect>
+
+			<image name="hudmain_compass_frame">
+				<filename> <copy src="darnui_settings" trait="_hcf" /> </filename>
+				<visible>
+					<copy src="HUDMainMenu" trait="_cf" />
+				</visible>
+				<depth>
+					<copy src="hudmain_compass_heading" trait="user1" />
+					<add> 5 </add>
+				</depth>
+				<width> 320 </width>
+				<height> 42 </height>
+				<alpha>
+					<copy src="HUDMainMenu" trait="_gfx_hudalpha" />
+					<onlyif>
+						<copy src="HUDMainMenu" trait="_exploremode" />
+						<or src="HUDMainMenu" trait="_settingsmode" />
+						<and src="HUDMainMenu" trait="_cf" />
+					</onlyif>
+				</alpha>
+				<x> -10 </x>
+				<y> -6 </y>
+			</image>
+
+			<image name="hudmain_compass_needle">
+				<filename> Menus\Dialog\dialog_scrollbar_line.dds </filename>
+				<depth> 2 </depth>
+				<width> 3 </width>
+				<red> 255 </red>
+				<green> 255 </green>
+				<blue> 255 </blue>
+				<height> 31 </height>
+				<!-- <alpha>	<copy src="HUDMainMenu" trait="_ca" /> </alpha> -->
+				<alpha> <copy src="HUDMainMenu" trait="_global_alpha" /> </alpha>
+				<x> 148	</x>
+				<y> 0 </y> <!-- DarN -410 to center manually -->
+				<zoom> 26 </zoom>
+			</image>
+
+			<image name="hudmain_compass_back">
+				<filename> <copy src="darnui_settings" trait="_darnback" /> </filename>
+				<depth> 1 </depth>
+				<width> 310 </width> <!-- 308 -->
+				<red> 0 </red>
+				<green> 0 </green>
+				<blue> 0 </blue>
+				<height> 36 </height> <!-- 34 -->
+				<alpha> <copy src="darnui_settings" trait="_c_backgroundalpha" /> </alpha> <!-- 35% / 90-->
+				<visible>
+					<copy src="HUDMainMenu" trait="_exploremode" />
+					<and src="HUDMainMenu" trait="_cf" />
+				</visible>
+				<x> -5 </x>
+				<y> -2 </y>
+			</image>
+
+			<rect name="hudmain_compass_window">
+				<id> 7 </id>
+				<alpha> 0 </alpha>
+				<depth> 1 </depth>
+				<locus> &true; </locus>
+				<width>
+					<copy src="HUDMainMenu" trait="_cw" /> <!-- DarN 300 -->
+					<onlyif>
+						<copy src="HUDMainMenu" trait="_exploremode" />
+						<or src="HUDMainMenu" trait="_settingsmode" />
+					</onlyif>
+					<add>
+						<copy> 200 </copy>
+						<onlyif src="HUDMainMenu" trait="_menumode" />
+						<onlyifnot src="HUDMainMenu" trait="_settingsmode" />
+					</add>
+				</width>
+				<height> 42 </height> <!-- 87 DARN CHECK-->
+				<locus> &true; </locus>
+				<x>
+					<copy src="parent()" trait="width" />
+					<sub src="me()" trait="width" />
+					<div> 2 </div>
+					<sub> 10 </sub>
+					<onlyif>
+						<copy src="HUDMainMenu" trait="_exploremode" />
+						<or src="HUDMainMenu" trait="_settingsmode" />
+					</onlyif>
+					<add>
+						<copy> 50 </copy>
+						<onlyif src="HUDMainMenu" trait="_menumode" />
+						<onlyifnot src="HUDMainMenu" trait="_settingsmode" />
+					</add>
+				</x>
+				<y> 0 </y>
+				<clipwindow> &true; </clipwindow>
+				<user0> 0 </user0>		<!-- set by code - heading in degrees, N is 0/360 -->
+				<user3>					<!-- conversion of degrees to pixels -->
+					<copy> 384 </copy>
+					<div> 360 </div>
+				</user3>
+				<user4>					<!-- heading in pixels -->
+					<copy src="me()" trait="user0" />	<!-- heading in degrees -->
+					<mul src="me()" trait="user3" />		<!-- convert to pixels -->
+				</user4>
+				<user5>					<!-- offset heading in pixels -->
+					<copy src="me()" trait="user4" />	<!-- heading in pixels -->
+					<add> 384 </add>
+				</user5>
+
+				<image name="hudmain_compass_heading">
+					<id> 14 </id>
+					<alpha> <copy src="HUDMainMenu" trait="_global_alpha" /> </alpha>
+					<filename> <copy src="darnui_settings" trait="_hcfa" /> </filename>
+					<depth> 3 </depth>
+					<width> 1024 </width>
+					<height> 31 </height>
+					<zoom> 50 </zoom>
+					<clips> &true; </clips>
+					<locus> &true; </locus>
+					<visible> &true; </visible>
+					<x>
+						<copy src="parent()" trait="user5" />	<!-- heading in pixels -->
+						<sub>
+							<copy src="parent()" trait="width" />
+							<div> 2 </div>
+						</sub>
+						<mul> -1 </mul>
+					</x>
+					<y> 1 </y>
+					<user1> 0 </user1>	<!-- max icon depth -->
+					<user2> 0 </user2>	<!-- set by code - min reveal distance -->
+					<user3> 0 </user3>	<!-- set by code - max visible distance -->
+
+					<_filename_1> <copy src="darnui_settings" trait="_mia" /> </_filename_1> <!-- DarN locations -->
+					<_filename_2> <copy src="darnui_settings" trait="_hcg" /> </_filename_2> <!-- DarN goal -->
+					<_filename_3> <copy src="darnui_settings" trait="_hcg" /> </_filename_3> <!-- marker icon -->
+					<_filename_4> <copy src="darnui_settings" trait="_wmai" /> </_filename_4> <!-- you are here icon -->
+					<_filename_5> Menus\shared\shared_empty.dds </_filename_5>
+
+
+					<template name="hudmain_compass_icon">
+						<image name="hudmain_compass_icon">
+							<_isgoal>
+								<copy src="me()" trait="user5" />
+								<eq> 99 </eq>
+							</_isgoal>
+							<_isdiscovered>
+								<copy src="me()" trait="cropy" />
+								<gt> 0 </gt>
+							</_isdiscovered>
+							<_isknown>
+								<copy src="me()" trait="user5" />
+								<lt> 90 </lt>
+								<and><not src="me()" trait="user6" /></and>
+							</_isknown>
+							<_showd>
+								<copy src="me()" trait="_isdiscovered" />
+								<and src="HUDMainMenu" trait="_dl" />
+							</_showd>
+							<_showk>
+								<copy src="me()" trait="_isknown" />
+								<and src="HUDMainMenu" trait="_kl" />
+							</_showk>
+							<_show_pm>
+								<copy src="me()" trait="_isgoal" />
+								<and src="me()" trait="user12" />
+								<and src="HUDMainMenu" trait="_pm" />
+							</_show_pm>
+							<_show_qm>
+								<copy src="me()" trait="_isgoal" />
+								<and src="me()" trait="user11" />
+								<and><not src="me()" trait="user12" /></and>
+								<and src="HUDMainMenu" trait="_qm" />
+							</_show_qm>
+							<filename>
+								<copy src="me()" trait="user6" />
+								<onlyif>
+									<copy src="me()" trait="user5" />
+									<eq> 99 </eq>
+								</onlyif>
+								<add>
+									<copy> 3 </copy>
+									<onlyif>
+										<copy src="me()" trait="user5" />
+										<eq> 98 </eq>
+									</onlyif>
+								</add>
+								<max>
+									<copy> 4 </copy>
+									<onlyifnot src="me()" trait="_show_pm" />
+									<onlyifnot src="me()" trait="_show_qm" />
+									<onlyifnot src="me()" trait="_showd" />
+									<onlyifnot src="me()" trait="_showk" />
+								</max>
+								<add> 1 </add>
+								<copy src="parent()" trait="_filename_" />
+							</filename>
+							<zoom> 50 </zoom>
+							<cropx>
+								<copy src="me()" trait="user5" />
+								<sub> 1 </sub>
+								<mul> 16 </mul> <!-- 32 -->
+								<onlyif>
+									<copy src="me()" trait="user5" />
+									<lt> 90 </lt>
+								</onlyif>
+							</cropx>
+							<cropy>
+								<copy src="me()" trait="user6" />
+								<sub> 1 </sub>
+								<mul> 16 </mul> <!-- 32 -->
+								<onlyif>
+									<copy src="me()" trait="user5" />
+									<lt> 90 </lt>
+								</onlyif>
+							</cropy>
+							<depth> 1 </depth>
+							<alpha>
+								<copy src="HUDMainMenu" trait="_global_alpha" />
+								<mul src="me()" trait="_distance" />
+								<onlyif src="me()" trait="user9" />
+								<add>
+									<copy src="HUDMainMenu" trait="_global_alpha" />
+									<onlyifnot src="me()" trait="user9" />
+								</add>
+							</alpha>
+							<clips> &true; </clips>
+							<width>
+								<copy> 14 </copy>
+								<add>
+									<copy> 2 </copy> <!-- 4 -->
+									<onlyif src="me()" trait="user9" />
+								</add>
+							</width>
+							<height>
+								<copy> 16 </copy>
+								<add>
+									<copy> 5 </copy> <!-- 10 -->
+									<onlyifnot src="me()" trait="user9" />
+								</add>
+							</height>
+							<red>
+								<copy> 0 </copy>
+								<add>
+									<add> 255 </add>
+									<onlyif src="me()" trait="user11" />
+									<onlyif src="me()" trait="user10" />
+								</add>
+								<add>
+									<add> 255 </add>
+									<onlyifnot src="me()" trait="user11" />
+									<onlyifnot src="me()" trait="user12" />
+								</add>
+							</red>
+							<green>
+								<copy> 0 </copy>
+								<add>
+									<add> 255 </add>
+									<onlyif src="me()" trait="user11" />
+									<onlyifnot src="me()" trait="user10" />
+								</add>
+								<add>
+									<add> 255 </add>
+									<onlyifnot src="me()" trait="user11" />
+									<onlyifnot src="me()" trait="user12" />
+								</add>
+							</green>
+							<blue>
+								<copy> 0 </copy>
+								<add>
+									<add> 255 </add>
+									<onlyifnot src="me()" trait="user11" />
+								</add>
+							</blue>
+							<y>
+								<copy> 1 </copy>
+								<onlyifnot src="me()" trait="user9" />
+							</y>
+							<x>
+								<copy src="me()" trait="_pos_raw" />
+								<add>
+									<copy> 384 </copy>
+									<onlyif>
+										<copy src="me()" trait="_pos_raw" />
+										<sub src="hudmain_compass_window" trait="user5" />
+										<lt> -192 </lt>
+									</onlyif>
+								</add>
+								<add>
+									<copy> 384 </copy>
+									<onlyif>
+										<copy src="me()" trait="_pos_raw" />
+										<sub src="hudmain_compass_window" trait="user5" />
+										<lt> -576 </lt> <!-- -1152 -->
+									</onlyif>
+								</add>
+								<min>
+									<copy src="hudmain_compass_window" trait="width" />
+									<sub src="parent()" trait="x" />
+									<sub> 6 </sub>
+									<add src="me()" trait="_icon_offset" />
+								</min>
+								<max>
+									<copy> 4 </copy>
+									<sub src="parent()" trait="x" />
+									<sub src="me()" trait="_icon_offset" />
+								</max>
+								<sub>
+									<copy src="me()" trait="width" />
+									<div> 2 </div>
+								</sub>
+							</x>
+							<_icon_offset>
+								<copy> 1000 </copy> <!-- 2000 -->
+								<onlyif>
+									<copy src="me()" trait="user5" />
+									<lt> 90 </lt>
+								</onlyif>
+							</_icon_offset>
+							<_pos_raw>
+								<copy> 384 </copy>
+								<div> 360 </div>
+								<mul src="me()" trait="user0" />
+							</_pos_raw>
+							<_distance>
+								<copy> 1 </copy>
+								<sub>
+									<copy src="me()" trait="user1" />
+									<sub src="parent()" trait="user2" />		<!-- min reveal distance -->
+									<!-- <div src="parent()" trait="user3" /> -->		<!-- max visible distance -->
+									<div src="HUDMainMenu" trait="_poidist" />
+									<min> 1.0 </min>
+								</sub>
+							</_distance>
+							<user0> 0 </user0>			<!-- heading to icon (0-360) -->
+							<user1> 30 </user1>			<!-- distance to icon in feet -->
+							<user2> &true; </user2>		<!-- unused if true -->
+							<user5> 0 </user5>			<!-- location type -->
+							<user6> &false; </user6>		<!-- fast travel enabled -->
+							<user9> &true; </user9>
+							<user10> &false; </user10>	<!-- is through load door -->
+							<user11> &false; </user11>  <!-- is a quest target -->
+							<user12> &false; </user12>  <!-- is the player marker -->
+							<text name="loc_type"> <!-- DarN debug -->
+								<visible>1</visible>
+								<font> 2 </font>
+								<red> 255 </red>
+								<green> 255 </green>
+								<blue> 0 </blue>
+								<alpha> 255 </alpha>
+								<string> <copy src="parent()" trait="cropy" /> </string>
+								<x> <copy src="parent()" trait="x" /> </x>
+								<y> <copy src="me()" trait="height" /> </y>
+							</text>
+						</image>
+					</template>
+				</image>
+			</rect>
+		</rect>
+
+		<image name="hudmain_Levelup_Icon">
+			<id> 18 </id>
+			<filename> <copy src="darnui_settings" trait="_ilu" /> </filename>
+			<depth> -10 </depth>
+			<locus> &true; </locus>
+			<width>
+				<copy> 64 </copy>
+				<mul src="HUDMainMenu" trait="_currentzoom" />
+				<div> 100 </div>
+			</width>
+			<height> <copy src="me()" trait="width" /> </height>
+			<zoom> <copy src="HUDMainMenu" trait="_zoom" /> </zoom>
+			<visible> 1 </visible>
+			<alpha>
+				<copy src="HUDMainMenu" trait="_gfx_hudalpha" />
+				<onlyif src="HUDMainMenu" trait="_liv" />
+			</alpha>
+			<x> <copy src="sibling(lvlup_clone)" trait="x" /> </x>
+			<y> <copy src="sibling(lvlup_clone)" trait="y" /> </y>
+		</image>
+
+		<image name="lvlup_clone">
+			<locus> &true; </locus>
+			<depth> 100 </depth>
+			<alpha> <copy src="HUDMainMenu" trait="_gfx_hudalpha" /> </alpha>
+			<x>
+				<copy> 0 </copy>
+				<sub src="parent()" trait="x" /> <!-- DarN absolute left -->
+				<add src="HUDMainMenu" trait="_lix" />
+			</x>
+			<y>
+				<copy src="parent()" trait="height" />
+				<sub src="me()" trait="height" />
+				<add src="screen()" trait="cropy" />
+				<add src="screen()" trait="cropy" /> <!-- DarN absolute bottom -->
+				<add src="HUDMainMenu" trait="_liy" />
+			</y>
+			<width> <copy src="sibling(hudmain_Levelup_Icon)" trait="width" /> </width>
+			<height> <copy src="sibling(hudmain_Levelup_Icon)" trait="height" /> </height>
+			<zoom> <copy src="sibling(hudmain_Levelup_Icon)" trait="zoom" /> </zoom>
+			<filename> <copy src="darnui_settings" trait="_ilu" /> </filename>
+			<visible>
+				<copy src="HUDMainMenu" trait="_settingsmode" />
+				<and src="HUDMainMenu" trait="_liv" />
+			</visible>
+
+			<rect name="element_backdrop">
+				<_show>
+					<copy src="toggle_lvl_control" trait="_hover" />
+					<or src="lvl_offxy_control" trait="_hover" />
+				</_show>
+				<include src="darn\settings_fader_box.xml"/>
+			</rect>
+		</image>
+
+		<nif name="hudmain_brackets">
+			<id> 20 </id>
+			<filename> hud_brackets\A_B_C_D_seq.NIF </filename>
+			<depth> 21 </depth> <!-- DarN 37 -->
+			<locus> &true; </locus>
+			<alpha> 255 </alpha>
+			<x> -20 </x>
+			<y> -12 </y>
+			<user1> 1 </user1>
+			<user2>-1.0</user2>
+			<visible> <copy src="HUDMainMenu" trait="_menumode" /> </visible>
+			<animation>
+				<copy src="HUDMainMenu" trait="user5" />		<!-- get the last mode -->
+				<mul> 10 </mul>						<!-- make it the tens digit -->
+				<add src="HUDMainMenu" trait="user4" />			<!-- make the current mode the ones digit -->
+				<copy src="me()" trait="_animation_" />	<!-- use animation trait that ends in that number -->
+			</animation>
+			<_animation_12> A_B </_animation_12>
+			<_animation_13> A_C </_animation_13>
+			<_animation_14> A_D </_animation_14>
+			<_animation_21> B_A </_animation_21>
+			<_animation_23> B_C </_animation_23>
+			<_animation_24> B_D </_animation_24>
+			<_animation_31> C_A </_animation_31>
+			<_animation_32> C_B </_animation_32>
+			<_animation_34> C_D </_animation_34>
+			<_animation_41> D_A </_animation_41>
+			<_animation_42> D_B </_animation_42>
+			<_animation_43> D_C </_animation_43>
+		</nif>
+	</image>
+
+</menu>

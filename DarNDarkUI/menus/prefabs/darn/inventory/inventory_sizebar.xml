@@ -1,0 +1,216 @@
+<!-- horiz_floating_scroll.xml -->
+<!-- modified by wz -->
+
+<!-- rect name="inv_sizebar" -->
+	<id> 101 </id>
+	<depth> 5 </depth>
+	<locus> &true; </locus>
+	<width> 0 </width>
+	<height> 0 </height>
+	<alpha>
+		<copy> 128 </copy>
+		<onlyif src="me()" trait="user13"/>
+		<add> 127 </add>
+	</alpha>
+	<clips> &false; </clips>
+	<user1>
+		<copy src="InventoryMenu" trait="_minCols"/>
+		<sub src="InventoryMenu" trait="_iGridNumColumns"/>
+	</user1>				<!-- minimum range value -->
+	<user2>
+		<copy src="screen()" trait="width"/>
+		<sub>
+			<copy src="inv_background" trait="x"/>
+			<mul> 2 </mul>
+			<sub src="InventoryMenu" trait="_iHudVSpace"/>
+		</sub>
+		<sub src="inv_background" trait="width"/>
+		<add src="inv_window" trait="width"/>
+		<div>
+			<copy src="InventoryMenu" trait="_iGridItemSize"/>
+			<add> 4 </add>
+		</div>
+		<floor> 0 </floor>
+		<sub src="InventoryMenu" trait="_iGridNumColumns"/>
+	</user2>				<!-- maximum range value -->
+	<user3>					<!-- step distance -->
+		<copy> 4 </copy>
+		<onlyif> &xbox; </onlyif>
+		<add> 1 </add>
+	</user3>
+	<user4> 1 </user4>			<!-- jump distance -->
+	<user5> 0 </user5>				<!-- starting value -->
+	<user6> 102 </user6>			<!-- marker's id - must change to enable dragging -->
+	<user7>					<!-- current value as ineger between min and max -->
+		<copy src="child(horizontal_scroll_marker)" trait="_value_scrolled_to"/>
+	</user7>
+	<user8> &false; </user8>		<!-- is text value field visible -->
+	<user9>					<!-- current value as percentage -->
+		<copy src="child(horizontal_scroll_marker)" trait="_value_scrolled_to"/>
+		<sub src="me()" trait="user1"/>
+		<div src="me()" trait="user2"/>
+	</user9>
+	<user10> 120 </user10>			<!-- red component of quantity text color -->
+	<user11> 34 </user11>			<!-- green component of quantity text color -->
+	<user12> 0 </user12>			<!-- blue component of quantity text color -->
+	<user13> &true; </user13>		<!-- true if enabled, false if disabled -->
+	<_scrollable_range>
+		<copy src="me()" trait="user2"/>
+		<sub src="me()" trait="user1"/>
+	</_scrollable_range>
+	<_mouseover_any>
+		<copy src="child(horizontal_scroll_leftside)" trait="mouseover"/>
+		<add src="child(horizontal_scroll_rightside)" trait="mouseover"/>
+		<add src="child(horizontal_scroll_left)" trait="mouseover"/>
+		<add src="child(horizontal_scroll_right)" trait="mouseover"/>
+		<add src="child(horizontal_scroll_marker)" trait="mouseover"/>
+		<gt> 0 </gt>
+		<sub> 1 </sub>
+	</_mouseover_any>
+	
+	
+	<text name="quantity_display_text">
+		<visible> <copy src="parent()" trait="user8"/> </visible>
+		<depth> 1 </depth>
+		<string> <copy src="sibling(horizontal_scroll_marker)" trait="_value_scrolled_to"/> </string>
+		<justify> &right; </justify>
+		<red>
+			<copy src="parent()" trait="user10"/>
+		</red>
+		<green>
+			<copy src="parent()" trait="user11"/>
+		</green>
+		<blue>
+			<copy src="parent()" trait="user12"/>
+		</blue>
+		<alpha> 200 </alpha>
+		<x> -48 </x>
+		<y> 8 </y>
+		<clips> <copy src="parent()" trait="clips"/> </clips>
+	</text>
+	
+
+	<rect name="horizontal_scroll_leftside">
+		<id> &generic; </id>
+		<depth> 3 </depth>
+		<visible> &false; </visible>
+		<alpha> 0 </alpha>
+		<width> 1 </width>
+		<height> 1 </height>
+		<x> 0 </x>
+		<y> 0 </y>
+		<clips> <copy src="parent()" trait="clips"/> </clips>
+		<clicksound> 3 </clicksound>
+	</rect>
+	<rect name="horizontal_scroll_rightside">
+		<id> &generic; </id>
+		<depth> 2 </depth>
+		<visible> &false; </visible>
+		<alpha> 0 </alpha>
+		<width> 1 </width>
+		<height> 1 </height>
+		<x> 0 </x>
+		<y> 0 </y>
+		<clips> <copy src="parent()" trait="clips"/> </clips>
+		<clicksound> 3 </clicksound>
+	</rect>
+	<image name="horizontal_scroll_left">
+		<id> &generic; </id>
+		<target> <copy src="parent()" trait="user13"/> </target>
+		<depth> 4 </depth>
+		<filename> Shared\horizontal_scrollbar_parts.dds </filename>
+		<cropx> 0 </cropx>
+		<cropy> 0 </cropy>
+		<width> 32 </width>
+		<height> 24 </height>
+		<zoom> 64 </zoom>
+		<x> -32 </x>
+		<y> -12 </y>
+		<alpha>
+			<copy> 64 </copy>
+			<onlyif src="parent()" trait="user13"/>
+			<add> 64 </add>
+			<add>
+				<copy> 128 </copy>
+				<onlyif>
+					<copy src="me()" trait="mouseover"/>
+					<gt> 0 </gt>
+					<and src="InventoryMenu" trait="_bEnableGrid"/>
+				</onlyif>
+			</add>
+		</alpha>
+		<clips> <copy src="parent()" trait="clips"/> </clips>
+		<clicksound>
+			<copy> 3 </copy>
+			<onlyifnot> &xbox; </onlyifnot>
+		</clicksound>
+	</image>
+	<image name="horizontal_scroll_right">
+		<id> &generic; </id>
+		<target> <copy src="parent()" trait="user13"/> </target>
+		<depth> 4 </depth>
+		<filename> Shared\horizontal_scrollbar_parts.dds </filename>
+		<cropx> 82 </cropx>
+		<cropy> 0 </cropy>
+		<width> 32 </width>
+		<height> 24 </height>
+		<zoom> 64 </zoom>
+		<x> <copy src="parent()" trait="width"/> </x>
+		<y> -12 </y>
+		<alpha>
+			<copy> 64 </copy>
+			<onlyif src="parent()" trait="user13"/>
+			<add> 64 </add>
+			<add>
+				<copy> 128 </copy>
+				<onlyif>
+					<copy src="me()" trait="mouseover"/>
+					<gt> 0 </gt>
+					<and src="InventoryMenu" trait="_bEnableGrid"/>
+				</onlyif>
+			</add>
+		</alpha>
+		<clips> <copy src="parent()" trait="clips"/> </clips>
+		<clicksound>
+			<copy> 3 </copy>
+			<onlyifnot> &xbox; </onlyifnot>
+		</clicksound>
+	</image>
+	<rect name="horizontal_scroll_marker">
+		<id> <copy src="parent()" trait="user6"/> </id>
+		<visible> &false; </visible>
+		<depth> 6 </depth>
+		<width> 1 </width>
+		<height> 1 </height>
+		<x> 0 </x>
+		<y> 0 </y>
+		<clips> <copy src="parent()" trait="clips"/> </clips>
+		<_value_scrolled_to>
+			<!-- copy old value -->
+			<sub>
+				<copy src="sibling(horizontal_scroll_left)" trait="clicked"/>
+				<mul src="parent()" trait="user3"/>
+			</sub>
+			<add>
+				<copy src="sibling(horizontal_scroll_right)" trait="clicked"/>
+				<mul src="parent()" trait="user3"/>
+			</add>
+			<add>
+				<copy src="sibling(horizontal_scroll_rightside)" trait="clicked"/>
+				<sub src="sibling(horizontal_scroll_leftside)" trait="clicked"/>
+				<mul src="parent()" trait="user4"/>	<!-- jump distance -->
+			</add>
+			<add src="me()" trait="user9"/>
+			<add src="parent()" trait="user5"/>
+			<max src="parent()" trait="user1"/>
+			<min src="parent()" trait="user2"/>
+		</_value_scrolled_to>
+		<user8>	<!-- for dragging - drag interval -->
+			<copy src="parent()" trait="width"/>
+			<sub src="me()" trait="width"/>
+			<div src="parent()" trait="_scrollable_range"/>
+		</user8>
+		<user9> 0 </user9>	<!-- for dragging - lines dragged -->
+		<clicksound> 3 </clicksound>
+	</rect>
+<!-- /rect -->

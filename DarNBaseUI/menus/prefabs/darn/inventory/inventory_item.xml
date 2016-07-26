@@ -1,0 +1,509 @@
+<!-- created by wz -->
+
+<!-- rect name="inv_item" -->
+
+	<_is3>
+		<copy src="me()" trait="listindex" />
+		<gt src="InventoryMenu" trait="_no3" />
+		<and>
+			<copy src="me()" trait="listindex" />
+			<lt src="InventoryMenu" trait="_no4" />
+		</and>
+	</_is3>
+	<_is5>
+		<copy src="me()" trait="listindex" />
+		<gt src="InventoryMenu" trait="_no5" />
+		<and>
+			<copy src="me()" trait="listindex" />
+		<!-- DarN CHECK needs lte or gets assigned 4 -->
+			<lte src="InventoryMenu" trait="_no6" />
+		</and>
+	</_is5>
+	<_is6>
+		<copy src="me()" trait="listindex" />
+		<gt src="InventoryMenu" trait="_no6" />
+		<and>
+			<copy src="me()" trait="listindex" />
+			<lt src="InventoryMenu" trait="_no7" />
+		</and>
+	</_is6>
+	<_is7>
+		<copy src="me()" trait="listindex" />
+		<gt src="InventoryMenu" trait="_no7" />
+		<and>
+			<copy src="me()" trait="listindex" />
+			<lt src="InventoryMenu" trait="_no8" />
+		</and>
+	</_is7>
+	<_is9>
+		<copy src="me()" trait="listindex" />
+		<gt src="InventoryMenu" trait="_no9" />
+	</_is9>
+
+	<_category>
+	<!-- DarN - user9 will be 1, 2, 4 or 8,
+		so we handle cases for 5, 6, 7 and 9. -->
+		<copy src="me()" trait="user9" />
+		<sub>
+			<copy> 1 </copy>
+			<onlyif src="me()" trait="_is3" />
+		</sub>
+		<add>
+			<copy> 1 </copy>
+			<onlyif src="me()" trait="_is5" />
+		</add>
+		<sub>
+			<copy> 2 </copy>
+			<onlyif src="me()" trait="_is6" />
+		</sub>
+		<sub>
+			<copy> 1 </copy>
+			<onlyif src="me()" trait="_is7" />
+		</sub>
+		<add>
+			<copy> 1 </copy>
+			<onlyif src="me()" trait="_is9" />
+		</add>
+	</_category>
+
+	<_idx>
+		<copy src="me()" trait="listindex" />
+		<sub>
+			<copy src="me()" trait="_category" />
+			<copy src="inv_category_toggle" trait="_off_" /> <!-- DarN _off_9 - misc -->
+		</sub>
+	</_idx>
+
+	<_col>
+		<copy src="me()" trait="_idx" />
+		<mod src="InventoryMenu" trait="_perLine" />
+	</_col>
+
+	<_row>
+		<copy src="me()" trait="_idx" />
+		<div src="InventoryMenu" trait="_perLine" />
+		<floor> 0 </floor>
+	</_row>
+
+	<_active>
+		<copy src="InventoryMenu" trait="_bSelection" />
+		<and>
+			<copy src="InventoryMenu" trait="_iSelectionCol" />
+			<eq src="me()" trait="_col" />
+		</and>
+		<and>
+			<copy src="InventoryMenu" trait="_iSelectionRow" />
+			<eq src="me()" trait="_row" />
+		</and>
+	</_active>
+
+	<x>
+		<copy src="me()" trait="width" />
+		<add> 4 </add>
+		<mul src="me()" trait="_col" />
+	</x>
+	<y>
+		<copy src="me()" trait="height" />
+		<add> 1 </add> <!-- DarN 4 -->
+		<add>
+			<copy> 3 </copy>
+			<onlyif src="InventoryMenu" trait="_bEnableGrid" />
+		</add>
+		<mul src="me()" trait="_row" />
+	</y>
+
+	<width> <copy src="InventoryMenu" trait="_iItemWidth" /> </width>
+	<height> <copy src="InventoryMenu" trait="_iItemSize" /> </height>
+
+	<visible>
+		<copy src="me()" trait="user8" />
+		<and>
+			<copy src="me()" trait="_category" />
+			<copy src="inv_category_toggle" trait="_show_" />
+		</and>
+	</visible>
+
+	<listclip>
+		<copy src="me()" trait="_row" />
+		<gte>
+			<copy src="inv_scroll_bar" trait="_scroll" />
+			<add src="InventoryMenu" trait="_perPage" />
+		</gte>
+		<or>
+			<copy src="me()" trait="_row" />
+			<add> 1 </add>
+			<lt src="inv_scroll_bar" trait="_scroll" />
+		</or>
+	</listclip>
+
+	<depth> <!-- DarN 10/20 -->
+		<copy src="me()" trait="_active" />
+		<mul> 10 </mul>
+	</depth>
+	<target> &true; </target>
+	<clips> &true; </clips>
+	<focusinset> 8 </focusinset>
+	<locus> &true; </locus>
+	<alpha> 0 </alpha>
+
+	<listindex> 0 </listindex>
+	<user1> Item Name </user1>
+	<user2> First Value </user2>
+	<user3> Second Value </user3>
+	<user4> Third Value </user4>
+	<user5> Fourth Value </user5>
+	<user6> icon/pathname.dds </user6>
+	<user7> 1M </user7>
+	<user8> &true; </user8>
+	<user9> type </user9>
+	<user10> &false; </user10> <!-- DarN equipped? -->
+	<user11> 0 </user11>
+	<user12> 0 </user12>
+	<user13> </user13>
+
+	<xdefault> &false; </xdefault>
+	<xlist> &xitem; </xlist>
+	<xup> &prev; </xup>
+	<xdown> &next; </xdown>
+	<xleft> &prev; </xleft>
+	<xright> &next; </xright>
+	<xscroll>
+		<copy src="me()" trait="_idx" />
+		<sub> 499 </sub>
+	</xscroll>
+	 <!-- <add> 1 </add> -->
+
+	<image name="inv_equiped_marker">
+		<depth> <copy src="parent()" trait="depth" /> <add> 3 </add> </depth>
+		<visible> <copy src="parent()" trait="user10" /> </visible>
+		<filename> <copy src="InventoryMenu" trait="_sMarkerFile" /> </filename>
+		<alpha> <copy src="InventoryMenu" trait="_iMarkerAlpha" /> </alpha>
+		<zoom> -1 </zoom>
+		<width> <copy src="InventoryMenu" trait="_iMarkerWidth" /> </width>
+		<height> <copy src="InventoryMenu" trait="_iItemSize" /> </height>
+		<x> <copy src="InventoryMenu" trait="_iMarkerX" /> </x>
+		<y> <copy src="InventoryMenu" trait="_iMarkerY" /> </y>
+		<clips> &true; </clips>
+	</image>
+
+	<image name="inv_item_icon">
+		<depth> <copy src="parent()" trait="depth" /> <add> 4 </add> </depth>
+		<filename> <copy src="parent()" trait="user6" /> </filename>
+		<width> <copy src="InventoryMenu" trait="_iIconSize" /> </width>
+		<height> <copy src="InventoryMenu" trait="_iIconSize" /> </height>
+		<zoom> <copy src="InventoryMenu" trait="_iIconZoom" /> </zoom>
+		<x> <copy src="InventoryMenu" trait="_iIconX" /> </x>
+		<y> <copy src="InventoryMenu" trait="_iIconY" /> </y>
+		<clips> &true; </clips>
+	</image>
+
+	<text name="inv_item_name">
+		<y>
+			<copy src="InventoryMenu" trait="_iNameYBase" />
+			<sub src="me()" trait="height" />
+			<div> 2 </div>
+		</y>
+		<x>
+			<copy src="InventoryMenu" trait="_iNameX" />
+			<sub> <!-- DarN add -->
+				<copy src="me()" trait="width" />
+				<onlyif src="InventoryMenu" trait="_leftPopup" />
+			</sub>
+		</x>
+		<depth>
+			<copy src="parent()" trait="depth" />
+			<add> 5 </add>
+		</depth>
+		<font>
+			<copy> 2 </copy>
+			<add>
+				<copy> 1 </copy>
+				<onlyif src="InventoryMenu" trait="_bEnableGrid" />
+			</add>
+		</font> <!-- DarN 3 -->
+		<red> 0 </red> <!-- DarN 117 -->
+		<green> 0 </green> <!-- DarN 59 -->
+		<blue> 0 </blue> <!-- DarN 33 -->
+		<alpha> 255 </alpha> <!-- DarN 255 -->
+		<string> <copy src="parent()" trait="user1" /> </string>
+		<wrapwidth> <copy src="InventoryMenu" trait="_iNameWidth" /> </wrapwidth>
+		<wraplines> <copy src="InventoryMenu" trait="_iNameLines" /> </wraplines>
+		<visible>
+			<copy src="parent()" trait="_active" />
+			<and src="InventoryMenu" trait="_bEnableGrid" />
+			<or src="InventoryMenu" trait="_bNotEnableGrid" />
+		</visible>
+		<clips> <copy src="InventoryMenu" trait="_bNotEnableGrid" /> </clips>
+	</text>
+
+	<image name="inv_item_sep_line"> <!-- DarN add -->
+		<x>
+			<copy src="sibling(inv_item_name)" trait="x" />
+			<sub> 15 </sub>
+			<sub>
+				<copy src="me()" trait="width" />
+				<sub src="sibling(inv_item_name)" trait="width" />
+				<sub> 15 </sub>
+				<onlyif src="InventoryMenu" trait="_leftPopup" />
+			</sub>
+		</x>
+		<y>
+			<copy src="sibling(inv_item_name)" trait="y" />
+			<add src="sibling(inv_item_name)" trait="height" />
+			<add> 4 </add>
+		</y>
+		<width>
+			<copy src="InventoryMenu" trait="_iPopupWidth" />
+			<sub src="sibling(inv_item_icon)" trait="width" />
+			<sub> 30 </sub>
+		</width>
+		<height> 4 </height>
+		<filename> Shared\shared_border_horizontal_1.dds </filename>
+		<visible>
+			<copy src="parent()" trait="_active" />
+			<and src="InventoryMenu" trait="_bEnableGrid" />
+		</visible>
+		<depth> <copy src="sibling(inv_item_name)" trait="depth" /> </depth>
+		<zoom> 75 </zoom> <!-- DarN add -->
+	</image>
+
+	<text name="inv_item_count">
+		<depth> <copy src="parent()" trait="depth" /> <add> 6 </add> </depth>
+		<justify> &right; </justify>
+		<font> 2 </font>
+		<red> 117 </red>
+		<green> 59 </green>
+		<blue> 33 </blue>
+		<alpha> 255 </alpha>
+		<wrapwidth> 60 </wrapwidth>
+		<wraplines> 1 </wraplines>
+		<string> <copy src="parent()" trait="user7" /> </string>
+		<x> <copy src="InventoryMenu" trait="_iCountX" /> </x>
+		<y> <copy src="InventoryMenu" trait="_iCountY" /> </y>
+		<clips> &true; </clips>
+	</text>
+
+	<text name="inv_item_cost">
+		<depth> <copy src="parent()" trait="depth" /> <add> 5 </add> </depth>
+		<justify> <copy src="InventoryMenu" trait="_aDescAlign" /> </justify>
+		<font> 2 </font>
+		<red> 117 </red>
+		<green> 59 </green>
+		<blue> 33 </blue>
+		<alpha> 255 </alpha>
+		<string> <copy src="parent()" trait="user2" /> </string>
+		<wrapwidth> <copy src="InventoryMenu" trait="_iDescWidth" /> </wrapwidth>
+		<wraplines> 1 </wraplines>
+		<x> <copy src="InventoryMenu" trait="_iCostX" /> </x>
+		<y>
+			<copy src="InventoryMenu" trait="_iDescY" />
+			<add>
+				<copy> 8 </copy>
+				<onlyif src="InventoryMenu" trait="_bEnableGrid" />
+			</add>
+		</y>
+		<visible> <copy src="sibling(inv_item_name)" trait="visible" /> </visible>
+		<clips> <copy src="InventoryMenu" trait="_bNotEnableGrid" /> </clips>
+	</text>
+
+	<text name="inv_item_weight">
+		<depth> <copy src="parent()" trait="depth" /> <add> 5 </add> </depth>
+		<justify> <copy src="InventoryMenu" trait="_aDescAlign" /> </justify>
+		<font> 2 </font>
+		<red> 117 </red>
+		<green> 59 </green>
+		<blue> 33 </blue>
+		<alpha> 255 </alpha>
+		<string> <copy src="parent()" trait="user3" /> </string>
+		<wrapwidth> <copy src="InventoryMenu" trait="_iDescWidth" /> </wrapwidth>
+		<wraplines> 1 </wraplines>
+		<x> <copy src="InventoryMenu" trait="_iWeightX" /> </x>
+		<y> <copy src="sibling(inv_item_cost)" trait="y" /> </y>
+		<visible> <copy src="sibling(inv_item_name)" trait="visible" /> </visible>
+		<clips> <copy src="InventoryMenu" trait="_bNotEnableGrid" /> </clips>
+	</text>
+
+	<text name="inv_item_damage">
+		<depth> <copy src="parent()" trait="depth" /> <add> 5 </add> </depth>
+		<justify> <copy src="InventoryMenu" trait="_aDescAlign" /> </justify>
+		<font> 2 </font>
+		<red> 117 </red>
+		<green> 59 </green>
+		<blue> 33 </blue>
+		<alpha> 255 </alpha>
+		<string> <copy src="parent()" trait="user4" /> </string>
+		<wrapwidth> <copy src="InventoryMenu" trait="_iDescWidth" /> </wrapwidth>
+		<wraplines> 1 </wraplines>
+		<x> <copy src="InventoryMenu" trait="_iDamageX" /> </x>
+		<y> <copy src="sibling(inv_item_cost)" trait="y" /> </y>
+		<visible> <copy src="sibling(inv_item_name)" trait="visible" /> </visible>
+		<clips> <copy src="InventoryMenu" trait="_bNotEnableGrid" /> </clips>
+	</text>
+
+	<image name="inv_damage_armor_quality_img">
+		<depth> <copy src="parent()" trait="depth" /> <add> 5 </add> </depth>
+		<filename> Shared\all_small_icons.dds </filename>
+		<cropx>
+			<copy> 144 </copy> <!-- DarN 120 + 24 -->
+			<sub>
+				<copy> 24 </copy>
+				<mul src="parent()" trait="_category" />
+			</sub>
+		</cropx>
+		<x>
+			<copy src="sibling(inv_item_damage)" trait="x" />
+			<sub> 30 </sub>
+		</x>
+		<y>
+			<copy src="sibling(inv_item_damage)" trait="y" />
+			<sub> 10 </sub>
+		</y>
+		<width> 24 </width>
+		<height> 24 </height>
+		<visible>
+			<copy src="InventoryMenu" trait="_bEnableGrid" />
+			<and src="parent()" trait="_active" />
+			<and>
+				<copy src="sibling(inv_item_damage)" trait="width" />
+				<neq> 6 </neq> <!-- DarN HACK 6 = nothing -->
+			</and>
+		</visible>
+		<alpha> 255 </alpha>
+		<zoom> 75 </zoom> <!-- DarN add -->
+	</image>
+
+	<text name="inv_item_health">
+		<depth> <copy src="parent()" trait="depth" /> <add> 5 </add> </depth>
+		<justify> <copy src="InventoryMenu" trait="_aDescAlign" /> </justify>
+		<font> 2 </font>
+		<red> 117 </red>
+		<green> 59 </green>
+		<blue> 33 </blue>
+		<alpha> 255 </alpha>
+		<string> <copy src="parent()" trait="user5" /> </string>
+		<wrapwidth> <copy src="InventoryMenu" trait="_iDescWidth" /> </wrapwidth>
+		<wraplines> 1 </wraplines>
+		<x> <copy src="InventoryMenu" trait="_iHealthX" /> </x>
+		<y> <copy src="sibling(inv_item_cost)" trait="y" /> </y>
+		<visible> <copy src="sibling(inv_item_name)" trait="visible" /> </visible>
+		<clips> <copy src="InventoryMenu" trait="_bNotEnableGrid" /> </clips>
+	</text>
+
+	<image name="inv_desc_health_img">
+		<depth> <copy src="parent()" trait="depth" /> <add> 5 </add> </depth>
+		<filename> Shared\all_small_icons.dds </filename>
+		<cropx> 192 </cropx> <!-- DarN 256 -->
+		<x>
+			<copy src="sibling(inv_item_health)" trait="x" />
+			<sub> 30 </sub>
+		</x>
+		<y>
+			<copy src="sibling(inv_item_health)" trait="y" />
+			<sub> 10 </sub>
+		</y>
+		<width> 24 </width>
+		<height> 24 </height>
+		<visible>
+			<copy src="InventoryMenu" trait="_bEnableGrid" />
+			<and src="parent()" trait="_active" />
+			<and>
+				<copy src="sibling(inv_item_health)" trait="width" />
+				<neq> 6 </neq> <!-- DarN HACK 6 = nothing -->
+			</and>
+		</visible>
+		<alpha> 255 </alpha>
+		<zoom> 75 </zoom> <!-- DarN add -->
+	</image>
+
+	<image name="inv_item_status">
+		<visible> <copy src="parent()" trait="user12" /> <gt> 0 </gt> </visible>
+		<filename> <copy src="parent()" trait="user13" /> </filename>
+		<depth> <copy src="sibling(inv_item_icon)" trait="depth" /> <add> 1 </add> </depth>
+		<zoom> 40 </zoom> <!-- DarN 50 -->
+		<x>
+			<copy src="sibling(inv_item_icon)" trait="x" />
+			<add>
+				<copy src="sibling(inv_item_icon)" trait="width" />
+				<sub src="me()" trait="width" />
+				<onlyif src="InventoryMenu" trait="_bEnableGrid" />
+			</add>
+		</x>
+		<y>
+			<copy src="sibling(inv_item_icon)" trait="y" />
+			<add>
+				<copy src="sibling(inv_item_icon)" trait="height" />
+				<sub src="me()" trait="height" />
+				<onlyifnot src="InventoryMenu" trait="_bEnableGrid" />
+			</add>
+		</y>
+		<height>
+			<copy> 12.8 </copy> <!-- DarN 16 -->
+			<onlyif src="me()" trait="_handonly" />
+			<add>
+				<copy> 9.6 </copy> <!-- DarN 12 -->
+				<onlyifnot src="me()" trait="_handonly" />
+			</add>
+		</height>
+		<width>
+			<copy> 25.6 </copy> <!-- DarN 32 -->
+			<sub>
+				<copy> 12.8 </copy> <!-- DarN 16 -->
+				<onlyif>
+					<!-- If any of these conditions is true, we are using an original icon,
+						rather than a "combo" dds. -->
+					<!-- "Combo" dds's are 32x64, original icons are 32x32 -->
+					<copy src="me()" trait="_handonly" />
+					<or>
+						<copy src="parent()" trait="user12" />
+						<eq> 2 </eq>
+					</or>
+					<or>
+						<copy src="parent()" trait="user12" />
+						<eq> 4 </eq>
+					</or>
+					<or>
+						<copy src="parent()" trait="user12" />
+						<eq> 8 </eq>
+					</or>
+				</onlyif>
+			</sub>
+		</width>
+		<clips> &true; </clips>
+		<red>
+			<copy> 208 </copy>
+			<!-- <onlyif src="me()" trait="_handonly" /> -->
+			<add>
+				<!-- <copy> 255 </copy> -->
+				<copy> 47 </copy>
+				<onlyifnot src="me()" trait="_handonly" />
+			</add>
+		</red>
+		<green>
+			<copy> 255 </copy>
+			<onlyifnot src="me()" trait="_handonly" />
+		</green>
+		<blue>
+			<copy> 255 </copy>
+			<onlyifnot src="me()" trait="_handonly" />
+		</blue>
+		<!-- <green>
+			<copy> 0 </copy>
+			<onlyif src="me()" trait="_handonly" />
+			<add>
+				<copy> 255 </copy>
+				<onlyifnot src="me()" trait="_handonly" />
+			</add>
+		</green>
+		<blue>
+			<copy> 0 </copy>
+			<onlyif src="me()" trait="_handonly" />
+			<add>
+				<copy> 255 </copy>
+				<onlyifnot src="me()" trait="_handonly" />
+			</add>
+		</blue> -->
+
+		<_handonly> <copy src="parent()" trait="user12" /> <eq> 1 </eq> </_handonly>
+	</image>
+
+	<!-- /rect> inv_item -->

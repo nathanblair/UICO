@@ -1,0 +1,127 @@
+<!-- horiz_floating_scroll.xml -->
+<!-- modified by wz -->
+
+<!-- image name="inv_toggle_grid" -->
+	<depth> 9 </depth> <!-- DarN 5 -->
+	<locus> &true; </locus>
+	<width> 24 </width>
+	<height> 24 </height>
+	<clips> &false; </clips>
+	<user1> &true; </user1>			<!-- maximum range value -->
+	<user2>					<!-- current value as integer between min and max -->
+		<copy src="child(horizontal_scroll_marker)" trait="_value_scrolled_to" />
+	</user2>
+	<user3> &false; </user3>		<!-- is text value field visible -->
+	<user10> 120 </user10>			<!-- red component of quantity text color -->
+	<user11> 34 </user11>			<!-- green component of quantity text color -->
+	<user12> 0 </user12>			<!-- blue component of quantity text color -->
+	<user13> &true; </user13>		<!-- true if enabled, false if disabled -->
+	<zoom> 75 </zoom> <!-- DarN add -->
+	<x> <!-- DarN 0 -->
+		<copy> 0 </copy>
+		<add>
+			<copy> 18 </copy>
+			<onlyif>
+				<copy src="me()" trait="user2" />
+				<lt> 2 </lt>
+			</onlyif>
+		</add>
+	</x>
+	<y>
+		<copy src="parent()" trait="height" />
+		<sub src="me()" trait="height" />
+		<div> 2 </div>
+	</y>
+
+	<_filename_1> Shared\all_small_icons.dds </_filename_1>
+	<_filename_2> Shared\all_small_activate_icons.dds </_filename_2>
+
+	<_crop_1> 72 </_crop_1> <!-- DarN 96 -->
+	<_crop_2> 128 </_crop_2> <!-- DarN 171 -->
+
+	<image name="tg_hoverbox"> <!-- DarN add -->
+		<include src="darn\focus_box.xml" />
+		<depth> -1 </depth>
+		<x>
+			<copy src="parent()" trait="width" />
+			<sub src="me()" trait="width" />
+			<div> 2 </div>
+		</x>
+		<y>
+			<copy src="parent()" trait="height" />
+			<sub src="me()" trait="height" />
+			<div> 2 </div>
+		</y>
+		<width> 24 </width>
+		<height> 24 </height>
+		<visible> <copy src="parent()" trait="_mouseover_any" /> </visible>
+	</image>
+
+	<filename>
+		<copy src="me()" trait="user2" />
+		<copy src="me()" trait="_filename_" />
+	</filename>
+	<cropx>
+		<copy src="me()" trait="user2" />
+		<copy src="me()" trait="_crop_" />
+	</cropx>
+
+	<_mouseover_any>
+		<copy src="child(horizontal_scroll_right)" trait="mouseover" />
+		<add src="child(horizontal_scroll_marker)" trait="mouseover" />
+		<gt> 0 </gt>
+	</_mouseover_any>
+	
+	<alpha> 255 </alpha>	
+
+	<text name="quantity_display_text">
+		<visible> <copy src="parent()" trait="user3" /> </visible>
+		<depth> 1 </depth>
+		<string> <copy src="sibling(horizontal_scroll_marker)" trait="_value_scrolled_to" /> </string>
+		<justify> &right; </justify>
+		<red>
+			<copy src="parent()" trait="user10" />
+		</red>
+		<green>
+			<copy src="parent()" trait="user11" />
+		</green>
+		<blue>
+			<copy src="parent()" trait="user12" />
+		</blue>
+		<alpha> 200 </alpha>
+		<x> -48 </x>
+		<y> 8 </y>
+		<clips> <copy src="parent()" trait="clips" /> </clips>
+	</text>
+	
+	<rect name="horizontal_scroll_right">
+		<id> &generic; </id>
+		<target> <copy src="parent()" trait="user13" /> </target>
+		<clicksound> 3 </clicksound>
+		<depth> 6 </depth>
+		<width> 24 </width>
+		<height> 24 </height>
+		<x> 0 </x>
+		<y> 0 </y>
+	</rect>
+	<rect name="horizontal_scroll_marker">
+		<id> &generic; </id>
+		<visible> &false; </visible>
+		<depth> 6 </depth>
+		<width> 1 </width>
+		<height> 1 </height>
+		<x> 0 </x>
+		<y> 0 </y>
+		<clips> <copy src="parent()" trait="clips" /> </clips>
+		<_value_scrolled_to>
+			<!-- copy old value -->
+			<add src="sibling(horizontal_scroll_right)" trait="clicked" />
+			<mod> 2 </mod>
+			<add> 1 </add>
+			<eq src="parent()" trait="user1" />
+		</_value_scrolled_to>
+		<user8>	0 </user8>
+		<user9> 0 </user9>
+		<clicksound> 3 </clicksound>
+	</rect>
+<!-- /image -->

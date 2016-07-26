@@ -1,0 +1,185 @@
+<!-- created by wz -->
+
+	<depth> 7 </depth> <!-- DarN 6 -->
+	<locus> &true; </locus>
+	<x> <copy src="inv_window" trait="x" /> </x>
+	<y>
+		<copy src="parent()" trait="height" />
+		<sub src="me()" trait="height" />
+		<!-- <add> 2 </add> --> <!-- DarN 10 -->
+	</y>
+	<width> <copy src="inv_window" trait="width" /> </width>
+	<height> 30 </height> <!-- DarN 48 -->
+
+	<!-- rect name="inv_extra_data" -->
+		<image name="inv_encumberance_icon">
+			<filename> Menus\Shared\all_small_icons.dds </filename>
+			<cropx> 24 </cropx> <!-- DarN 32 -->
+			<zoom> 75 </zoom> <!-- DarN add -->
+			<width> 24 </width> <!-- DarN 32 -->
+			<height> 24 </height> <!-- DarN 32 -->
+			<x> 0 </x>
+			<y>
+				<copy src="parent()" trait="height" />
+				<sub src="me()" trait="height" />
+				<div> 2 </div>
+			</y>
+		</image>
+
+		<text name="inv_encumberance_text">
+			<string> <copy src="InventoryMenu" trait="user6" /> </string> <!-- Encumberance - 6 -->
+			<justify> &left; </justify>
+			<font> 3 </font> <!-- DarN add -->
+			<red>
+				<copy> 117 </copy>
+				<onlyif>
+					<copy src="InventoryMenu" trait="user6" />
+					<lte src="InventoryMenu" trait="user7" />
+				</onlyif>
+				<add>
+					<copy> 200 </copy>
+					<onlyif>
+						<copy src="InventoryMenu" trait="user6" />
+						<gt src="InventoryMenu" trait="user7" />
+					</onlyif>
+				</add>
+			</red>
+			<green>
+				<copy> 59 </copy>
+				<onlyif>
+					<copy src="InventoryMenu" trait="user6" />
+					<lte src="InventoryMenu" trait="user7" />
+				</onlyif>
+			</green>
+			<blue>
+				<copy> 33 </copy>
+				<onlyif>
+					<copy src="InventoryMenu" trait="user6" />
+					<lte src="InventoryMenu" trait="user7" />
+				</onlyif>
+			</blue>
+			<alpha> 255 </alpha>
+			<x> 30 </x> <!-- DarN 40 -->
+			<y>
+				<copy src="sibling(inv_encumberance_icon)" trait="y" />
+				<add>
+					<copy src="sibling(inv_encumberance_icon)" trait="height" />
+					<sub src="me()" trait="height" />
+					<div> 2 </div>
+				</add>
+			</y>
+		</text>
+
+		<text name="inv_encumberance_slash">
+			<font> 3 </font> <!-- DarN add -->
+			<red> 117 </red>
+			<green> 59 </green>
+			<blue> 33 </blue>
+			<alpha> 255 </alpha>
+			<x>
+				<copy src="sibling(inv_encumberance_text)" trait="x" />
+				<add src="sibling(inv_encumberance_text)" trait="width" />
+				<add> 1 </add>
+			</x>
+			<y> <copy src="sibling(inv_encumberance_text)" trait="y" /> </y>
+			<string>/</string>
+		</text>
+
+		<text name="inv_encumberance_max">
+			<string> <copy src="InventoryMenu" trait="user7" /> </string> <!-- Encumberance - 7 -->
+			<font> 3 </font> <!-- DarN add -->
+			<red> 117 </red>
+			<green> 59 </green>
+			<blue> 33 </blue>
+			<alpha> 255 </alpha>
+			<x>
+				<copy src="sibling(inv_encumberance_slash)" trait="x" />
+				<add src="sibling(inv_encumberance_slash)" trait="width" />
+				<add> 1 </add>
+			</x>
+			<y> <copy src="sibling(inv_encumberance_text)" trait="y" /> </y>
+		</text>
+
+		<image name="inv_armor_icon">
+			<filename> Menus\Shared\all_small_icons.dds </filename>
+			<cropx> 96 </cropx> <!-- DarN 128 -->
+			<width> 24 </width> <!-- DarN 32 -->
+			<height> 24 </height> <!-- DarN 32 -->
+			<zoom> 75 </zoom> <!-- DarN add -->
+			<x>
+				<copy src="parent()" trait="width" />
+				<sub src="sibling(inv_armor_text)" trait="width" />
+				<sub> 30 </sub> <!-- DarN 40 -->
+				<div> 2 </div>
+				<floor> 0 </floor>
+			</x>
+			<y>
+				<copy src="parent()" trait="height" />
+				<sub src="me()" trait="height" />
+				<div> 2 </div>
+			</y>
+		</image>
+
+		<text name="inv_armor_text">
+			<font> 3 </font> <!-- DarN add -->
+			<string> <copy src="InventoryMenu" trait="user8" /> </string> <!-- Armor - 8 -->
+			<justify> &left; </justify>
+			<red> 117 </red>
+			<green> 59 </green>
+			<blue> 33  </blue>
+			<alpha> 255 </alpha>
+			<x>
+				<copy src="sibling(inv_armor_icon)" trait="x" />
+				<add> 30 </add> <!-- DarN 40 -->
+			</x>
+			<y>
+				<copy src="sibling(inv_armor_icon)" trait="y" />
+				<add>
+					<copy src="sibling(inv_armor_icon)" trait="height" />
+					<sub src="me()" trait="height" />
+					<div> 2 </div>
+				</add>
+			</y>
+		</text>
+
+		<image name="inv_money_icon">
+			<filename> Menus\Shared\all_small_icons.dds </filename>
+			<cropx> 168 </cropx> <!-- DarN 224 -->
+			<width> 24 </width> <!-- DarN 32 -->
+			<height> 24 </height> <!-- DarN 32 -->
+			<zoom> 75 </zoom> <!-- DarN add -->
+			<depth> 1 </depth>
+			<x>
+				<copy src="parent()" trait="width" />
+				<sub src="sibling(inv_money_text)" trait="width" />
+				<sub> 30 </sub> <!-- DarN 40 -->
+			</x>
+			<y>
+				<copy src="parent()" trait="height" />
+				<sub src="me()" trait="height" />
+				<div> 2 </div>
+			</y>
+		</image>
+
+		<text name="inv_money_text">
+			<font> 3 </font> <!-- DarN add -->
+			<string> <copy src="InventoryMenu" trait="user9" /> </string> <!-- Gold - 9 -->
+			<justify> &left; </justify>
+			<red> 117 </red>
+			<green> 59 </green>
+			<blue> 33  </blue>
+			<alpha> 255 </alpha>
+			<x>
+				<copy src="sibling(inv_money_icon)" trait="x" />
+				<add> 30 </add> <!-- DarN 40 -->
+			</x>
+			<y>
+				<copy src="sibling(inv_money_icon)" trait="y" />
+				<add>
+					<copy src="sibling(inv_money_icon)" trait="height" />
+					<sub src="me()" trait="height" />
+					<div> 2 </div>
+				</add>
+			</y>
+		</text>
+	<!-- /rect -->

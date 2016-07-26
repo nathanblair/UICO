@@ -1,0 +1,112 @@
+<!-- created by wz -->
+
+<!--
+	Theme can be either "inventory\theme_container.xml"
+	or "inventory\theme_journal.xml". This has to be set in
+	the "menus\main\inventory_menu.xml" file.
+
+	Iconsize should be lower than itemsize, perfect value is
+	itemsize - 16 leaving a frame of 8 for the focus box.
+
+	The HorGrid setting forces the inventory to scroll left or
+	right instead of up and down.
+
+	When using the "journal" theme, columns*(itemsize+4) has to be
+	lower than 640, and rows*(itemsize+4) lower than 480 in order
+	to keep the grid inside the journal dimensions.
+
+	When changing the GridFile, remember to leave the path intact.
+
+	The HudHeight setting applies to the "container" theme,
+	it moves the inventory up to leave space for the hud elements.
+	Adjust when using a modified hud.
+
+	The PopupAlignRight option, when set to true, puts the name
+	next to the icon when popup is left of item.
+-->
+
+	<!-- >
+	  The main settings for the item grid
+	<- -->
+		<_iGridNumColumns> 9 </_iGridNumColumns>
+		<_iGridNumRows> 9 </_iGridNumRows> <!-- DarN 7 -->
+		<_iGridItemSize> 64 </_iGridItemSize> <!-- DarN 64 -->
+		<_iGridIconSize> 48 </_iGridIconSize> <!-- DarN 48 -->
+		<!-- Set _sGridFile to nothing to hide the grid -->
+		<_sGridFile> Menus\darn\Inventory\Grids\paper_plain.dds </_sGridFile>
+		<!-- <_sGridFile> Menus\darn\Inventory\Grids\lines.dds </_sGridFile> -->
+		<_iGridAlpha> 192 </_iGridAlpha>
+		<_sSeparatorFile> Menus\darn\Inventory\Separators\blue_dots.dds </_sSeparatorFile>
+		<_iSeparatorAlpha> 255 </_iSeparatorAlpha>
+		<!-- Start each category on a new line? -->
+		<_bGridSepNewline> &false; </_bGridSepNewline>
+
+
+	<!-- >
+	  The main settings for the item list
+	<- -->
+		<_iListNumRows> 20 </_iListNumRows> <!-- DarN 9 -->
+		<_iListItemSize> 30 </_iListItemSize> <!-- DarN 48 -->
+		<_iListIconSize> 23 </_iListIconSize> <!-- DarN 32 -->
+
+
+	<!-- >
+	  Settings for the header bar
+	<- -->
+		<_posHeaderText> 1 </_posHeaderText>
+
+
+	<!-- >
+	  HUD Settings
+	<- -->
+		<_iHudHSpace> 0 </_iHudHSpace>
+		<_iHudVSpace> 0 </_iHudVSpace>
+
+
+	<!-- >
+	  These settings only apply to the "container" theme
+	<- -->
+		<_iInventoryAlpha> 230 </_iInventoryAlpha>
+
+
+	<!-- >
+	  Settings to tweak the inventory popup
+	<- -->
+		<_iPopupWidth> 360 </_iPopupWidth> <!-- DarN 450 -->
+		<_iPopupAddHeight> 44 </_iPopupAddHeight>
+		<_iPopupAlpha> 240 </_iPopupAlpha> <!-- DarN 192 -->
+		<_bPopupAlignRight> &true; </_bPopupAlignRight>
+
+
+	<!-- >
+	  Should the magic popup float with the inventory
+	  popup, or stay put to the right?
+	  Does not apply to "container" theme
+	<- -->
+		<_bFloatMagic> &true; </_bFloatMagic>
+
+
+	<!-- Enable grid view for the specified tab -->
+		<!-- Show grid in "ShowAll" tab -->
+		<_bGrid_All> &false; </_bGrid_All>
+		<!-- Show grid in "Weapons" tab -->
+		<_bGrid_Weapons> &false; </_bGrid_Weapons>
+		<!-- Show grid in "Apparel" tab -->
+		<_bGrid_Apparel> &false; </_bGrid_Apparel>
+		<!-- Show grid in "Alchemy" tab -->
+		<_bGrid_Alchemy> &false; </_bGrid_Alchemy>
+		<!-- Show grid in "Misc" tab -->
+		<_bGrid_Misc> &false; </_bGrid_Misc>
+
+
+	<!-- Toggle separators by default -->
+
+	<_bToggle_Weapons> &true; </_bToggle_Weapons>
+	<_bToggle_Apparel> &true; </_bToggle_Apparel>
+	<_bToggle_Apparatus> &true; </_bToggle_Apparatus>
+	<_bToggle_Potions> &true; </_bToggle_Potions>
+	<_bToggle_Ingr> &true; </_bToggle_Ingr>
+	<_bToggle_Book> &true; </_bToggle_Book>
+	<_bToggle_Keys> &false; </_bToggle_Keys>
+	<_bToggle_Stones> &true; </_bToggle_Stones>
+	<_bToggle_Misc> &true; </_bToggle_Misc>

@@ -1,0 +1,1181 @@
+﻿<!-- Settings -->
+	<_debug> 1 </_debug>
+
+	<_reveal> <copy src="darnui_settings" trait="_reveal" /> </_reveal>
+
+	<_exploremode>
+		<copy src="me()" trait="user3" />
+		<eq> 1 </eq>
+	</_exploremode>
+	<_menumode>
+		<copy src="me()" trait="user3" />
+		<eq> 0 </eq>
+	</_menumode>
+	<_settingsmode>
+		<copy src="stat_p0" trait="visible" />
+		<and src="stat_p0" trait="_mouseover_any" />
+	</_settingsmode>
+
+	<_sneakhover>
+		<copy src="toggle_se_control" trait="_hover" />
+		<or src="se_offxy_control" trait="_hover" />
+	</_sneakhover>
+	<_chhover>
+		<copy src="toggle_ch_control" trait="_hover" />
+		<or src="toggle_3ch_control" trait="_hover" />
+		<or src="toggle_ehb_control" trait="_hover" />
+	</_chhover>
+	<_compasshover>
+		<copy src="compass_subheader" trait="_hover" />
+		<or src="compass_offxy_control" trait="_hover" />
+		<or src="compass_width_control" trait="_hover" />
+		<or src="toggle_compass_frame_control" trait="_hover" />
+		<or src="poi_reveal_control" trait="_hover" />
+		<or src="toggle_qm_control" trait="_hover" />
+		<or src="toggle_pm_control" trait="_hover" />
+		<or src="toggle_discovered_control" trait="_hover" />
+		<or src="toggle_known_control" trait="_hover" />
+	</_compasshover>
+	<_locationhover>
+		<copy src="location_subheader" trait="_hover" />
+		<or src="location_offxy_control" trait="_hover" />
+		<or src="toggle_location_frame_control" trait="_hover" />
+	</_locationhover>
+	<_msghover>
+		<copy src="messages_subheader" trait="_hover" />
+		<or src="messages_offxy_control" trait="_hover" />
+		<or src="toggle_generic_icon_control" trait="_hover" />
+		<or src="toggle_msg_ca" trait="_hover" />
+	</_msghover>
+	<_mehover>
+		<copy src="magic_effects_subheader" trait="_hover" />
+		<or src="magic_effects_offxy_control" trait="_hover" />
+		<or src="magic_effects_perrow" trait="_hover" />
+		<or src="toggle_at_control" trait="_hover" />
+		<or src="toggle_tt_control" trait="_hover" />
+	</_mehover>
+	<_sbhover>
+		<copy src="toggle_sb_control" trait="_hover" />
+		<or src="sb_offxy_control" trait="_hover" />
+		<or src="toggle_sb_fade_control" trait="_hover" />
+		<or src="sb_cutoff_control" trait="_hover" />
+	</_sbhover>
+
+	<_currentzoom>
+		<copy src="me()" trait="_zoom" />
+		<min> 100 </min> <!-- DarN cap at 100 for now -->
+		<max>
+			<copy> 100 </copy>
+			<onlyif src="me()" trait="_menumode" />
+			<onlyifnot src="me()" trait="_settingsmode" />
+		</max>
+	</_currentzoom>
+
+	<_zoom> <copy src="hudscale_control" trait="user7" /> </_zoom>
+	<_gfx_hudalpha> <copy src="hudalpha_gfx_control" trait="user7" /> </_gfx_hudalpha>
+	<_txt_hudalpha> <copy src="hudalpha_txt_control" trait="user7" /> </_txt_hudalpha>
+	<_poidist> <copy src="poi_reveal_control" trait="user7" /> </_poidist>
+	<_pm> <copy src="toggle_pm_control" trait="user7" /> </_pm>
+	<_qm> <copy src="toggle_qm_control" trait="user7" /> </_qm>
+	<_kl> <copy src="toggle_known_control" trait="user7" /> </_kl>
+	<_dl> <copy src="toggle_discovered_control" trait="user7" /> </_dl>
+	<_ce> <copy src="compass_subheader" trait="user7" /> </_ce>
+	<_cx> <copy src="compass_offxy_control" trait="user7" /> </_cx>
+	<_cy> <copy src="compass_offxy_control" trait="user16" /> </_cy>
+	<_cw> <copy src="compass_width_control" trait="user7" /> </_cw>
+	<_cf> <copy src="toggle_compass_frame_control" trait="user7" /> </_cf>
+	<_sbv> <copy src="toggle_sb_control" trait="user7" /> </_sbv>
+	<_sbx> <copy src="sb_offxy_control" trait="user7" /> </_sbx>
+	<_sby> <copy src="sb_offxy_control" trait="user16" /> </_sby>
+	<_af> <copy src="toggle_sb_fade_control" trait="user7" /> </_af>
+	<_sbco> <copy src="sb_cutoff_control" trait="user7" /> </_sbco>
+	<_wiv> <copy src="toggle_weapon_control" trait="user7" /> </_wiv>
+	<_wisd> <copy src="toggle_weapon_durability_control" trait="user7" /> </_wisd>
+	<_wepx> <copy src="weapon_offxy_control" trait="user7" /> </_wepx>
+	<_wepy> <copy src="weapon_offxy_control" trait="user16" /> </_wepy>
+	<_siv> <copy src="toggle_spell_control" trait="user7" /> </_siv>
+	<_spx> <copy src="spell_offxy_control" trait="user7" /> </_spx>
+	<_spy> <copy src="spell_offxy_control" trait="user16" /> </_spy>
+	<_liv> <copy src="toggle_lvl_control" trait="user7" /> </_liv>
+	<_lix> <copy src="lvl_offxy_control" trait="user7" /> </_lix>
+	<_liy> <copy src="lvl_offxy_control" trait="user16" /> </_liy>
+	<_sev> <copy src="toggle_se_control" trait="user7" /> </_sev>
+	<_sex> <copy src="se_offxy_control" trait="user7" /> </_sex>
+	<_sey> <copy src="se_offxy_control" trait="user16" /> </_sey>
+	<_chv> <copy src="toggle_ch_control" trait="user7" /> </_chv>
+	<_3chv> <copy src="toggle_3ch_control" trait="user7" /> </_3chv>
+	<_ehbv> <copy src="toggle_ehb_control" trait="user7" /> </_ehbv>
+	<_he> <copy src="toggle_he_control" trait="user7" /> </_he>
+	<_etv> <copy src="magic_effects_subheader" trait="user7" /> </_etv>
+	<_mex> <copy src="magic_effects_offxy_control" trait="user7" /> </_mex>
+	<_mey> <copy src="magic_effects_offxy_control" trait="user16" /> </_mey>
+	<_atv> <copy src="toggle_at_control" trait="user7" /> </_atv>
+	<_ttv> <copy src="toggle_tt_control" trait="user7" /> </_ttv>
+	<_mepr> <copy src="magic_effects_perrow" trait="user7" /> </_mepr>
+	<_lo> <copy src="location_subheader" trait="user7" /> </_lo>
+	<_lx> <copy src="location_offxy_control" trait="user7" /> </_lx>
+	<_ly> <copy src="location_offxy_control" trait="user16" /> </_ly>
+	<_lf> <copy src="toggle_location_frame_control" trait="user7" /> </_lf>
+	<_msg> <copy src="messages_subheader" trait="user7" /> </_msg>
+	<_msg_x> <copy src="messages_offxy_control" trait="user7" /> </_msg_x>
+	<_msg_y> <copy src="messages_offxy_control" trait="user16" /> </_msg_y>
+	<_msg_ca> <copy src="toggle_msg_ca" trait="user7" /> </_msg_ca>
+	<_msg_gi> <copy src="toggle_generic_icon_control" trait="user7" /> </_msg_gi>
+	<_step> <copy src="step_control" trait="user7" /> </_step>
+
+	<_global_alpha>
+		<copy src="me()" trait="_gfx_hudalpha" />
+		<max>
+			<copy> 255 </copy>
+			<onlyif src="me()" trait="_menumode" />
+			<onlyifnot src="me()" trait="_settingsmode" />
+		</max>
+	</_global_alpha>
+
+	<_global_txt_alpha>
+		<copy src="me()" trait="_txt_hudalpha" />
+		<max>
+			<copy> 255 </copy>
+			<onlyif src="me()" trait="_menumode" />
+			<onlyifnot src="me()" trait="_settingsmode" />
+		</max>
+	</_global_txt_alpha>
+
+<!-- /Settings -->
+
+	<rect name="stat_p0">
+		<visible>
+			<copy src="parent()" trait="user3" />
+			<eq> 0 </eq>
+			<and>
+				<copy src="parent()" trait="user4" />
+				<eq> 1 </eq>
+			</and>
+		</visible>
+		<locus> &true; </locus>
+		<depth> 51 </depth>
+		<width> 730 </width>
+		<height> 650 </height>
+		<x>
+			<copy src="screen()" trait="cropx"/>
+			<add src="screen()" trait="cropx"/>
+			<sub> 60 </sub>
+			<max src="screen()" trait="cropx"/>
+			<add> 7 </add>
+		</x>
+		<y>
+			<copy src="screen()" trait="height"/>
+			<sub src="screen()" trait="cropy"/>
+			<sub src="screen()" trait="cropy"/>
+			<sub> 849 </sub> <!-- DarN 786 -->
+		</y>
+		<_mouseover_any>
+			<copy src="child(controls_layout)" trait="mouseover" />
+			<add src="hudalpha_gfx_control" trait="_hover" />
+			<add src="hudalpha_txt_control" trait="_hover" />
+			<add src="HUDMainMenu" trait="_compasshover" />
+			<add src="HUDMainMenu" trait="_mehover" />
+			<add src="hudscale_control" trait="_hover" />
+			<!-- <add src="toggle_sb_control" trait="_hover" />
+			<add src="toggle_sb_fade_control" trait="_hover" />
+			<add src="sb_offxy_control" trait="_hover" /> -->
+			<add src="HUDMainMenu" trait="_sbhover" />
+			<add src="toggle_weapon_control" trait="_hover" />
+			<add src="weapon_offxy_control" trait="_hover" />
+			<add src="toggle_weapon_durability_control" trait="_hover" />
+			<add src="toggle_spell_control" trait="_hover" />
+			<add src="spell_offxy_control" trait="_hover" />
+			<add src="toggle_lvl_control" trait="_hover" />
+			<add src="lvl_offxy_control" trait="_hover" />
+			<add src="toggle_se_control" trait="_hover" />
+			<add src="se_offxy_control" trait="_hover" />
+			<add src="toggle_ch_control" trait="_hover" />
+			<add src="toggle_3ch_control" trait="_hover" />
+			<add src="toggle_ehb_control" trait="_hover" />
+			<add src="location_subheader" trait="_hover" />
+			<add src="location_offxy_control" trait="_hover" />
+			<add src="toggle_location_frame_control" trait="_hover" />
+			<add src="toggle_he_control" trait="_hover" />
+			<add src="HUDMainMenu" trait="_msghover" />
+			<add src="step_control" trait="_hover" />
+			<gt> 24 </gt>
+		</_mouseover_any>
+
+		<image name="ui_settings_title_left">
+			<filename> Menus\Shared\shared_decor_blue_left.dds </filename>
+			<width> 35 </width>
+			<height> 17 </height>
+			<alpha> 255 </alpha>
+			<x>
+				<copy src="ui_settings_title_text" trait="x" />
+				<sub>
+					<copy src="ui_settings_title_text" trait="width" />
+					<div> 2 </div>
+				</sub>
+				<sub> 55 </sub>
+			</x>
+			<y> -6 </y> <!-- DarN -63 -->
+		</image>
+		<image name="ui_settings_title_right">
+			<filename> Menus\Shared\shared_decor_blue_right.dds </filename>
+			<width> 35 </width>
+			<height> 17 </height>
+			<alpha> 255 </alpha>
+			<x>
+				<copy src="ui_settings_title_text" trait="width" />
+				<div> 2 </div>
+				<add src="ui_settings_title_text" trait="x" />
+				<add> 20 </add>
+			</x>
+			<y> -6 </y> <!-- DarN -63 -->
+		</image>
+		<text name="ui_settings_title_text">
+			<justify> &center; </justify>
+			<red> 51 </red>
+			<green> 79 </green>
+			<blue> 142 </blue>
+			<alpha> 255 </alpha>
+			<font> 3 </font>
+			<x> 370 </x>
+			<y> -11 </y> <!-- DarN -68 -->
+			<string> DarNified Settings </string>
+		</text>
+
+		<rect name="controls_layout">
+			<alpha> 0 </alpha>
+			<locus> &true; </locus>
+			<target> &true; </target>
+			<x> 50 </x>
+			<y> 16 </y> <!-- DarN 42 -->
+			<width> 636 </width>
+			<height> 580 </height> <!-- DarN 554 -->
+
+			<rect name="controls_left_side">
+				<x> 0 </x>
+				<y> 0 </y>
+				<width> 310 </width>
+				<height> <copy src="parent()" trait="height" /> </height>
+				<locus> &true; </locus>
+
+				<rect name="hud_subheader">
+					<include src="darn\settings_sub_header.xml" />
+					<_label> <copy src="darnui_strings" trait="_sl_hud_sh" /> </_label>
+				</rect>
+
+				<rect name="hudscale_control">
+					<x> 0 </x>
+					<y> 26 </y>
+					<_min> 10 </_min>
+					<_max> 100 </_max>
+					<_step> 5 </_step>
+					<_value> <copy src="HUDMainMenu" trait="_zoom" /> </_value>
+					<_label> <copy src="darnui_strings" trait="_sl_hud_scale" /> </_label>
+					<include src="darn\spin_control.xml" />
+					<_start> <copy src="darnui_settings" trait="_hudscale" /> </_start>
+				</rect>
+
+				<rect name="hudalpha_gfx_control">
+					<x> 0 </x>
+					<y> 52 </y>
+					<_min> 5 </_min>
+					<_max> 255 </_max>
+					<_step> 5 </_step>
+					<_value> <copy src="HUDMainMenu" trait="_gfx_hudalpha" /> </_value>
+					<_label> <copy src="darnui_strings" trait="_sl_hud_gfx_alpha" /> </_label>
+					<include src="darn\spin_control.xml" />
+					<_start> <copy src="darnui_settings" trait="_gfx_hudalpha" /> </_start>
+				</rect>
+
+				<rect name="hudalpha_txt_control">
+					<x> 0 </x>
+					<y> 78 </y>
+					<_min> 5 </_min>
+					<_max> 255 </_max>
+					<_step> 5 </_step>
+					<_value> <copy src="HUDMainMenu" trait="_txt_hudalpha" /> </_value>
+					<_label> <copy src="darnui_strings" trait="_sl_hud_txt_alpha" /> </_label>
+					<include src="darn\spin_control.xml" />
+					<_start> <copy src="darnui_settings" trait="_txt_hudalpha" /> </_start>
+				</rect>
+
+				<rect name="toggle_sb_control">
+					<x> 0 </x>
+					<y> 104 </y>
+					<_icon>  </_icon>
+					<_value> <copy src="HUDMainMenu" trait="_sbv" /> </_value>
+					<_label> <copy src="darnui_strings" trait="_sl_sb" /> </_label>
+					<_start> <copy src="darnui_settings" trait="_sbvisible" /> </_start>
+					<include src="darn\toggle_control.xml" />
+				</rect>
+
+				<rect name="sb_offxy_control">
+					<x> 0 </x>
+					<y> 130 </y>
+					<_value> <copy src="HUDMainMenu" trait="_sbx" /> </_value>
+					<_value2> <copy src="HUDMainMenu" trait="_sby" /> </_value2>
+					<_label> <copy src="darnui_strings" trait="_sl_sb_pos" /> </_label>
+					<_start> <copy src="darnui_settings" trait="_statusallx" /> </_start>
+					<_start2> <copy src="darnui_settings" trait="_statusally" /> </_start2>
+					<include src="darn\offset_control.xml" />
+					<_xmin> 0 </_xmin>
+					<_xmax> <copy src="screen()" trait="width" /> </_xmax>
+					<_ymin>
+						<copy> 0 </copy>
+						<sub src="screen()" trait="height" />
+					</_ymin>
+					<_ymax> 0 </_ymax>
+					<_dim> <copy src="HUDMainMenu" trait="_sbv" /> </_dim>
+				</rect>
+
+				<rect name="toggle_sb_fade_control">
+					<x> 0 </x>
+					<y> 156 </y>
+					<_icon>  </_icon>
+					<_value> <copy src="HUDMainMenu" trait="_af" /> </_value>
+					<_label> <copy src="darnui_strings" trait="_sl_sb_fade" /> </_label>
+					<_start> <copy src="darnui_settings" trait="_status_autofade" /> </_start>
+					<include src="darn\toggle_control.xml" />
+					<_dim> <copy src="HUDMainMenu" trait="_sbv" /> </_dim>
+				</rect>
+
+				<rect name="sb_cutoff_control">
+					<x> 0 </x>
+					<y> 182 </y>
+					<_min> 10 </_min>
+					<_max> 190 </_max>
+					<_step> 10 </_step>
+					<_value> <copy src="HUDMainMenu" trait="_sbco" /> </_value>
+					<_label> <copy src="darnui_strings" trait="_sl_sb_cutoff" /> </_label>
+					<include src="darn\spin_control.xml" />
+					<_start> <copy src="darnui_settings" trait="_sbco" /> </_start>
+					<_dim>
+						<copy src="HUDMainMenu" trait="_sbv" />
+						<and src="HUDMainMenu" trait="_af" />
+					</_dim>
+				</rect>
+
+				<rect name="toggle_weapon_control">
+					<x> 0 </x>
+					<y> 208 </y>
+					<_icon> Icons\icon_hud_default_weapon.dds </_icon>
+					<_value> <copy src="HUDMainMenu" trait="_wiv" /> </_value>
+					<_label> <copy src="darnui_strings" trait="_sl_wi" /> </_label>
+					<_start> <copy src="darnui_settings" trait="_wep_visible" /> </_start>
+					<include src="darn\toggle_control.xml" />
+				</rect>
+
+				<rect name="weapon_offxy_control">
+					<x> 0 </x>
+					<y> 234 </y>
+					<_value> <copy src="HUDMainMenu" trait="_wepx" /> </_value>
+					<_value2> <copy src="HUDMainMenu" trait="_wepy" /> </_value2>
+					<_label> <copy src="darnui_strings" trait="_sl_wi_pos" /> </_label>
+					<_start> <copy src="darnui_settings" trait="_wepx" /> </_start>
+					<_start2> <copy src="darnui_settings" trait="_wepy" /></_start2>
+					<include src="darn\offset_control.xml" />
+					<_xmin> 0 </_xmin>
+					<_xmax> <copy src="screen()" trait="width" /> </_xmax>
+					<_ymin>
+						<copy> 0 </copy>
+						<sub src="screen()" trait="height" />
+					</_ymin>
+					<_ymax> 0 </_ymax>
+					<_dim> <copy src="HUDMainMenu" trait="_wiv" /> </_dim>
+				</rect>
+
+				<rect name="toggle_weapon_durability_control">
+					<x> 0 </x>
+					<y> 260 </y>
+					<_icon>  </_icon>
+					<_value> <copy src="HUDMainMenu" trait="_wisd" /> </_value>
+					<_label> <copy src="darnui_strings" trait="_sl_durability" /> </_label>
+					<_start> <copy src="darnui_settings" trait="_durbarvisible" /> </_start>
+					<include src="darn\toggle_control.xml" />
+					<_dim> <copy src="HUDMainMenu" trait="_wiv" /> </_dim>
+				</rect>
+
+				<rect name="toggle_spell_control">
+					<x> 0 </x>
+					<y> 286 </y>
+					<_icon> Icons\icon_hud_default_magic.dds </_icon>
+					<_value> <copy src="HUDMainMenu" trait="_siv" /> </_value>
+					<_label> <copy src="darnui_strings" trait="_sl_si" /> </_label>
+					<_start> <copy src="darnui_settings" trait="_miv" /> </_start>
+					<include src="darn\toggle_control.xml" />
+				</rect>
+
+				<rect name="spell_offxy_control">
+					<x> 0 </x>
+					<y> 312 </y>
+					<_value> <copy src="HUDMainMenu" trait="_spx" /> </_value>
+					<_value2> <copy src="HUDMainMenu" trait="_spy" /> </_value2>
+					<_label> <copy src="darnui_strings" trait="_sl_si_pos" /> </_label>
+					<_start> <copy src="darnui_settings" trait="_mix" /> </_start>
+					<_start2> <copy src="darnui_settings" trait="_miy" /></_start2>
+					<include src="darn\offset_control.xml" />
+					<_xmin> 0 </_xmin>
+					<_xmax> <copy src="screen()" trait="width" /> </_xmax>
+					<_ymin>
+						<copy> 0 </copy>
+						<sub src="screen()" trait="height" />
+					</_ymin>
+					<_ymax> 0 </_ymax>
+					<_dim> <copy src="HUDMainMenu" trait="_siv" /> </_dim>
+				</rect>
+
+				<rect name="toggle_lvl_control">
+					<x> 0 </x>
+					<y> 338 </y>
+					<_icon> Icons\icon_level_up.dds </_icon>
+					<_value> <copy src="HUDMainMenu" trait="_liv" /> </_value>
+					<_label> <copy src="darnui_strings" trait="_sl_level" /> </_label>
+					<_start> <copy src="darnui_settings" trait="_liv" /> </_start>
+					<include src="darn\toggle_control.xml" />
+				</rect>
+
+				<rect name="lvl_offxy_control">
+					<x> 0 </x>
+					<y> 364 </y>
+					<_xmin> 0 </_xmin>
+					<_xmax> 2560 </_xmax>
+					<_ymin> -1600 </_ymin>
+					<_ymax> 0 </_ymax>
+					<_value> <copy src="HUDMainMenu" trait="_lix" /> </_value>
+					<_value2> <copy src="HUDMainMenu" trait="_liy" /> </_value2>
+					<_label> <copy src="darnui_strings" trait="_sl_level_pos" /> </_label>
+					<_start> <copy src="darnui_settings" trait="_lix" /> </_start>
+					<_start2> <copy src="darnui_settings" trait="_liy" /></_start2>
+					<include src="darn\offset_control.xml" />
+					<_dim> <copy src="HUDMainMenu" trait="_liv" /> </_dim>
+				</rect>
+
+				<rect name="toggle_se_control">
+					<x> 0 </x>
+					<y> 390 </y>
+					<_icon> Icons\icon_small_eye.dds </_icon>
+					<_value> <copy src="HUDMainMenu" trait="_sev" /> </_value>
+					<_label> <copy src="darnui_strings" trait="_sl_se" /> </_label>
+					<_start> <copy src="darnui_settings" trait="_sivisible" /> </_start>
+					<include src="darn\toggle_control.xml" />
+				</rect>
+
+				<rect name="se_offxy_control">
+					<x> 0 </x>
+					<y> 416 </y>
+					<_xmin> -1280 </_xmin>
+					<_xmax> 1280 </_xmax>
+					<_ymin> -800 </_ymin>
+					<_ymax> 800 </_ymax>
+					<_value> <copy src="HUDMainMenu" trait="_sex" /> </_value>
+					<_value2> <copy src="HUDMainMenu" trait="_sey" /> </_value2>
+					<_label> <copy src="darnui_strings" trait="_sl_se_pos" /> </_label>
+					<_start> <copy src="darnui_settings" trait="_sneak_x" /> </_start>
+					<_start2> <copy src="darnui_settings" trait="_sneak_y" /></_start2>
+					<include src="darn\offset_control.xml" />
+					<_dim> <copy src="HUDMainMenu" trait="_sev" /> </_dim>
+				</rect>
+
+				<rect name="toggle_ch_control">
+					<x> 0 </x>
+					<y> 442 </y>
+					<_icon> misc\hud_reticle.dds </_icon>
+					<_forcezoom> 40 </_forcezoom>
+					<_value> <copy src="HUDMainMenu" trait="_chv" /> </_value>
+					<_label> <copy src="darnui_strings" trait="_sl_ch" /> </_label>
+					<_start> <copy src="darnui_settings" trait="_chvisible" /> </_start>
+					<include src="darn\toggle_control.xml" />
+				</rect>
+
+				<rect name="toggle_3ch_control">
+					<x> 0 </x>
+					<y> 468 </y>
+					<_icon> misc\hud_reticle.dds </_icon>
+					<_forcezoom> 40 </_forcezoom>
+					<_value> <copy src="HUDMainMenu" trait="_3chv" /> </_value>
+					<_label> <copy src="darnui_strings" trait="_sl_3pch" /> </_label>
+					<_start> <copy src="darnui_settings" trait="_ch3rdperson" /> </_start>
+					<include src="darn\toggle_control.xml" />
+					<_dim> <copy src="HUDMainMenu" trait="_chv" /> </_dim>
+				</rect>
+
+				<rect name="toggle_ehb_control">
+					<x> 0 </x>
+					<y> 494 </y>
+					<!-- <_icon> Menus\misc\sequence_dds\000001.dds </_icon> -->
+					<_icon> Menus\darn\arc.dds </_icon>
+					<!-- <_forcezoom> 25 </_forcezoom> -->
+					<_value> <copy src="HUDMainMenu" trait="_ehbv" /> </_value>
+					<_label> <copy src="darnui_strings" trait="_sl_ehb" /> </_label>
+					<_start> <copy src="darnui_settings" trait="_ehbvisible" /> </_start>
+					<include src="darn\toggle_control.xml" />
+				</rect>
+
+				<rect name="toggle_he_control">
+					<x> 0 </x>
+					<y> 520 </y>
+					<_icon> icons\icon_small_crown.dds </_icon>
+					<_value> <copy src="HUDMainMenu" trait="_he" /> </_value>
+					<_label> <copy src="darnui_strings" trait="_sl_he" /> </_label>
+					<_start> <copy src="darnui_settings" trait="_hide_essential" /> </_start>
+					<include src="darn\toggle_control.xml" />
+				</rect>
+
+			</rect> <!-- DarN left side -->
+
+			<rect name="controls_right_side">
+				<!-- <x> 323 </x> -->
+				<x>
+					<copy src="parent()" trait="width" />
+					<sub src="me()" trait="width" />
+				</x>
+				<y> 0 </y>
+				<width> 310 </width>
+				<height> <copy src="parent()" trait="height" /> </height>
+				<locus> &true; </locus>
+
+				<rect name="compass_subheader">
+					<_icon> map\map_icon_tab_local_map.dds </_icon>
+					<_value> <copy src="HUDMainMenu" trait="_ce" /> </_value>
+					<_label> <copy src="darnui_strings" trait="_sl_compass_sh" /> </_label>
+					<_start> <copy src="darnui_settings" trait="_cv" /> </_start>
+					<include src="darn\settings_sub_header_toggle.xml" />
+				</rect>
+
+				<rect name="compass_offxy_control">
+					<x> 0 </x>
+					<y> 26 </y>
+					<_value> <copy src="HUDMainMenu" trait="_cx" /> </_value>
+					<_value2> <copy src="HUDMainMenu" trait="_cy" /> </_value2>
+					<_label> <copy src="darnui_strings" trait="_sl_compass_pos" /> </_label>
+					<_start> <copy src="darnui_settings" trait="_cx" /> </_start>
+					<_start2> <copy src="darnui_settings" trait="_cy" /></_start2>
+					<include src="darn\offset_control.xml" />
+					<_dim> <copy src="HUDMainMenu" trait="_ce" /> </_dim>
+					<_xmin>
+						<copy src="screen()" trait="width" />
+						<div> 2 </div>
+						<mul> -1 </mul>
+					</_xmin>
+					<_ymax> 0 </_ymax>
+					<_xmax>
+						<copy src="screen()" trait="width" />
+						<div> 2 </div>
+					</_xmax>
+					<_ymin>
+						<copy> 0 </copy>
+						<sub src="screen()" trait="height" />
+					</_ymin>
+				</rect>
+
+				<rect name="compass_width_control">
+					<x> 0 </x>
+					<y> 52 </y>
+					<_min> 50 </_min>
+					<_max> 300 </_max>
+					<_step> 10 </_step>
+					<_value> <copy src="HUDMainMenu" trait="_cw" /> </_value>
+					<_label> <copy src="darnui_strings" trait="_sl_compass_width" /> </_label>
+					<include src="darn\spin_control.xml" />
+					<_start> <copy src="darnui_settings" trait="_cw" /> </_start>
+					<_dim> <copy src="HUDMainMenu" trait="_ce" /> </_dim>
+				</rect>
+
+				<rect name="toggle_compass_frame_control">
+					<x> 0 </x>
+					<y> 78 </y>
+					<_icon> hud\hud_compass_frame.dds </_icon>
+					<_value> <copy src="HUDMainMenu" trait="_cf" /> </_value>
+					<_label> <copy src="darnui_strings" trait="_sl_compass_frame" /> </_label>
+					<_start> <copy src="darnui_settings" trait="_cshow_frame" /> </_start>
+					<include src="darn\toggle_control.xml" />
+					<_dim> <copy src="HUDMainMenu" trait="_ce" /> </_dim>
+				</rect>
+
+				<rect name="poi_reveal_control">
+					<x> 0 </x>
+					<y> 104 </y>
+					<_min> 1900 </_min> <!-- DarN 1800 -->
+					<_max> 12000 </_max> <!-- DarN 12000 -->
+					<_step> 100 </_step>
+					<_value> <copy src="HUDMainMenu" trait="_poidist" /> </_value>
+					<_label> <copy src="darnui_strings" trait="_sl_poi_reveal" /> </_label>
+					<include src="darn\spin_control.xml" />
+					<_start> <copy src="darnui_settings" trait="_reveal" /> </_start>
+					<_dim> <copy src="HUDMainMenu" trait="_ce" /> </_dim>
+				</rect>
+
+				<rect name="toggle_qm_control">
+					<x> 0 </x>
+					<y> 130 </y>
+					<_icon> map\world\world_map_marker_red_flag.dds </_icon>
+					<_forcezoom> 56 </_forcezoom>
+					<_value> <copy src="HUDMainMenu" trait="_qm" /> </_value>
+					<_label> <copy src="darnui_strings" trait="_sl_qm" /> </_label>
+					<_start> <copy src="darnui_settings" trait="_cshow_questtarget" /> </_start>
+					<include src="darn\toggle_control.xml" />
+					<_dim> <copy src="HUDMainMenu" trait="_ce" /> </_dim>
+				</rect>
+
+				<rect name="toggle_pm_control">
+					<x> 0 </x>
+					<y> 156 </y>
+					<_icon> darn\player_marker.dds </_icon>
+					<_forcezoom> 56 </_forcezoom>
+					<_value> <copy src="HUDMainMenu" trait="_pm" /> </_value>
+					<_label> <copy src="darnui_strings" trait="_sl_pm" /> </_label>
+					<_start> <copy src="darnui_settings" trait="_cshow_playermarker" /> </_start>
+					<include src="darn\toggle_control.xml" />
+					<_dim> <copy src="HUDMainMenu" trait="_ce" /> </_dim>
+				</rect>
+
+				<rect name="toggle_discovered_control">
+					<x> 0 </x>
+					<y> 182 </y>
+					<_icon> map\world\world_map_icon_cave.dds </_icon>
+					<_value> <copy src="HUDMainMenu" trait="_dl" /> </_value>
+					<_label> <copy src="darnui_strings" trait="_sl_dl" /> </_label>
+					<_start> <copy src="darnui_settings" trait="_cshow_discovered" /> </_start>
+					<include src="darn\toggle_control.xml" />
+					<_dim> <copy src="HUDMainMenu" trait="_ce" /> </_dim>
+				</rect>
+
+				<rect name="toggle_known_control">
+					<x> 0 </x>
+					<y> 208 </y>
+					<_icon> map\world\world_map_icon_cave_inactive.dds </_icon>
+					<_value> <copy src="HUDMainMenu" trait="_kl" /> </_value>
+					<_label> <copy src="darnui_strings" trait="_sl_kl" /> </_label>
+					<_start> <copy src="darnui_settings" trait="_cshow_known" /> </_start>
+					<include src="darn\toggle_control.xml" />
+					<_dim> <copy src="HUDMainMenu" trait="_ce" /> </_dim>
+				</rect>
+
+				<rect name="magic_effects_subheader">
+					<x> 0 </x>
+					<y> 234 </y>
+					<_icon> Menus50\magic\magic_icon_tab_affect.dds </_icon>
+					<_value> <copy src="HUDMainMenu" trait="_etv" /> </_value>
+					<_label> <copy src="darnui_strings" trait="_sl_me" /> </_label>
+					<_start> <copy src="darnui_settings" trait="_etvisible" /> </_start>
+					<include src="darn\settings_sub_header_toggle.xml" />
+				</rect>
+
+				<rect name="magic_effects_offxy_control">
+					<x> 0 </x>
+					<y> 260 </y>
+					<_value> <copy src="HUDMainMenu" trait="_mex" /> </_value>
+					<_value2> <copy src="HUDMainMenu" trait="_mey" /> </_value2>
+					<_label> <copy src="darnui_strings" trait="_sl_me_pos" /> </_label>
+					<_start> <copy src="darnui_settings" trait="_aex" /> </_start>
+					<_start2> <copy src="darnui_settings" trait="_aey" /></_start2>
+					<include src="darn\offset_control.xml" />
+					<_dim> <copy src="HUDMainMenu" trait="_etv" /> </_dim>
+					<_xmin>
+						<copy src="screen()" trait="width" />
+						<mul> -1 </mul>
+					</_xmin>
+					<_ymax>
+						<copy src="screen()" trait="height" />
+					</_ymax>
+					<_xmax> <copy src="screen()" trait="width" /> </_xmax>
+					<_ymin> 0 </_ymin>
+				</rect>
+
+				<rect name="magic_effects_perrow">
+					<x> 0 </x>
+					<y> 286 </y>
+					<_min> 1 </_min>
+					<_max> 8 </_max>
+					<_step> 1 </_step>
+					<_value> <copy src="HUDMainMenu" trait="_mepr" /> </_value>
+					<_label> <copy src="darnui_strings" trait="_sl_perrow" /> </_label>
+					<include src="darn\spin_control.xml" />
+					<_start> <copy src="darnui_settings" trait="_aeipr" /> </_start>
+					<_dim> <copy src="HUDMainMenu" trait="_etv" /> </_dim>
+				</rect>
+
+				<rect name="toggle_at_control">
+					<x> 0 </x>
+					<y> 312 </y>
+					<_icon> Menus\darn\arc.dds </_icon>
+					<_value> <copy src="HUDMainMenu" trait="_atv" /> </_value>
+					<_label> <copy src="darnui_strings" trait="_sl_at" /> </_label>
+					<_start> <copy src="darnui_settings" trait="_arctimer" /> </_start>
+					<include src="darn\toggle_control.xml" />
+					<_dim> <copy src="HUDMainMenu" trait="_etv" /> </_dim>
+				</rect>
+
+				<rect name="toggle_tt_control">
+					<x> 0 </x>
+					<y> 338 </y>
+					<_icon>  </_icon>
+					<_value> <copy src="HUDMainMenu" trait="_ttv" /> </_value>
+					<_label> <copy src="darnui_strings" trait="_sl_tt" /> </_label>
+					<_start> <copy src="darnui_settings" trait="_showcdtext" /> </_start>
+					<include src="darn\toggle_control.xml" />
+					<_dim> <copy src="HUDMainMenu" trait="_etv" /> </_dim>
+				</rect>
+
+				<rect name="location_subheader">
+					<y> 364 </y>
+					<_icon> icons\icon_small_activate_pull_push.dds </_icon>
+					<_value> <copy src="HUDMainMenu" trait="_lo" /> </_value>
+					<_label> <copy src="darnui_strings" trait="_sl_li" /> </_label>
+					<_start> <copy src="darnui_settings" trait="_showlocinfo" /> </_start>
+					<include src="darn\settings_sub_header_toggle.xml" />
+				</rect>
+
+				<rect name="location_offxy_control">
+					<x> 0 </x>
+					<y> 390 </y>
+					<_value> <copy src="HUDMainMenu" trait="_lx" /> </_value>
+					<_value2> <copy src="HUDMainMenu" trait="_ly" /> </_value2>
+					<_label> <copy src="darnui_strings" trait="_sl_li_pos" /> </_label>
+					<_start> <copy src="darnui_settings" trait="_lx" /> </_start>
+					<_start2> <copy src="darnui_settings" trait="_ly" /></_start2>
+					<include src="darn\offset_control.xml" />
+					<_dim> <copy src="HUDMainMenu" trait="_lo" /> </_dim>
+					<_xmin>
+						<copy src="screen()" trait="width" />
+						<mul> -1 </mul>
+					</_xmin>
+					<_ymax> 0 </_ymax>
+					<_xmax>	0 </_xmax>
+					<_ymin>
+						<copy> 0 </copy>
+						<sub src="screen()" trait="height" />
+					</_ymin>
+				</rect>
+
+				<rect name="toggle_location_frame_control">
+					<x> 0 </x>
+					<y> 416 </y>
+					<_icon> hud\hud_compass_frame.dds </_icon>
+					<_value> <copy src="HUDMainMenu" trait="_lf" /> </_value>
+					<_label> <copy src="darnui_strings" trait="_sl_li_frame" /> </_label>
+					<_start> <copy src="darnui_settings" trait="_showlocframe" /> </_start>
+					<include src="darn\toggle_control.xml" />
+					<_dim> <copy src="HUDMainMenu" trait="_lo" /> </_dim>
+				</rect>
+
+				<rect name="messages_subheader">
+					<y> 442 </y>
+					<_icon> icons\icon_small_activate_pull_push.dds </_icon>
+					<_value> <copy src="HUDMainMenu" trait="_msg" /> </_value>
+					<_label> <copy src="darnui_strings" trait="_sl_msg" /> </_label>
+					<_start> <copy src="darnui_settings" trait="_msg" /> </_start>
+					<include src="darn\settings_sub_header_toggle.xml" />
+				</rect>
+
+				<rect name="messages_offxy_control">
+					<x> 0 </x>
+					<y> 468 </y>
+					<_value> <copy src="HUDMainMenu" trait="_msg_x" /> </_value>
+					<_value2> <copy src="HUDMainMenu" trait="_msg_y" /> </_value2>
+					<_label> <copy src="darnui_strings" trait="_sl_msg_pos" /> </_label>
+					<_start> <copy src="darnui_settings" trait="_msg_x" /> </_start>
+					<_start2> <copy src="darnui_settings" trait="_msg_y" /></_start2>
+					<include src="darn\offset_control.xml" />
+					<_dim> <copy src="HUDMainMenu" trait="_msg" /> </_dim>
+					<_xmin> 0 </_xmin>
+					<_ymax> <copy src="screen()" trait="height" /> </_ymax>
+					<_xmax>	<copy src="screen()" trait="width" /> </_xmax>
+					<_ymin>	0 </_ymin>
+				</rect>
+
+				<rect name="toggle_msg_ca">
+					<x> 0 </x>
+					<y> 494 </y>
+					<_icon>  </_icon>
+					<_value> <copy src="HUDMainMenu" trait="_msg_ca" /> </_value>
+					<_label> <copy src="darnui_strings" trait="_sl_msg_ca" /> </_label>
+					<_start> <copy src="darnui_settings" trait="_msg_ca" /> </_start>
+					<include src="darn\toggle_control.xml" />
+					<_dim> <copy src="HUDMainMenu" trait="_msg" /> </_dim>
+				</rect>
+
+				<rect name="toggle_generic_icon_control">
+					<x> 0 </x>
+					<y> 520 </y>
+					<_icon> Menus\darn\omg.dds </_icon>
+					<_value> <copy src="HUDMainMenu" trait="_msg_gi" /> </_value>
+					<_label> <copy src="darnui_strings" trait="_sl_msg_gi" /> </_label>
+					<_start> <copy src="darnui_settings" trait="_msg_gi" /> </_start>
+					<include src="darn\toggle_control.xml" />
+					<_dim> <copy src="HUDMainMenu" trait="_msg" /> </_dim>
+				</rect>
+
+			</rect> <!-- DarN right side -->
+
+			<image name="bottom_line">
+				<x> 0 </x>
+				<y>
+					<copy src="sibling(step_control)" trait="y" />
+					<sub> 4 </sub>
+				</y>
+				<filename> Stats\stat_border_horizontal_1.dds </filename>
+				<width> <copy src="parent()" trait="width" /> </width>
+				<height> 3 </height>
+			</image>
+
+			<rect name="step_control">
+				<x> 0 </x>
+				<y>
+					<copy src="parent()" trait="height" />
+					<sub src="me()" trait="height" />
+				</y>
+				<_min> 1 </_min>
+				<_max> 100 </_max> <!-- DarN 12000 -->
+				<_step> 1 </_step>
+				<_value> <copy src="HUDMainMenu" trait="_step" /> </_value>
+				<_label> <copy src="darnui_strings" trait="_sl_step" /> </_label>
+				<include src="darn\spin_control.xml" />
+				<_start> 15 </_start>
+				<_dim>  </_dim>
+			</rect>
+
+			<image name="bottom_line2">
+				<x> 0 </x>
+				<y> <copy src="parent()" trait="height" /> </y>
+				<filename> Stats\stat_border_horizontal_1.dds </filename>
+				<width> <copy src="parent()" trait="width" /> </width>
+				<height> 3 </height>
+			</image>
+		</rect> <!-- DarN controls_layout -->
+
+		<text name="help_text">
+			<_string_1> <copy src="darnui_strings" trait="_hlp_intro" /> </_string_1>
+			<_string_2> <copy src="darnui_strings" trait="_hlp_poi_reveal" /> </_string_2>
+			<_string_3> <copy src="darnui_strings" trait="_hlp_qm" /> </_string_3>
+			<_string_4> <copy src="darnui_strings" trait="_hlp_pm" /> </_string_4>
+			<_string_5> <copy src="darnui_strings" trait="_hlp_dl" /> </_string_5>
+			<_string_6> <copy src="darnui_strings" trait="_hlp_kl" /> </_string_6>
+			<_string_7> <copy src="darnui_strings" trait="_hlp_compass" /> </_string_7>
+			<_string_8> <copy src="darnui_strings" trait="_hlp_compass_frame" /> </_string_8>
+			<_string_9> <copy src="darnui_strings" trait="_hlp_me" /> </_string_9>
+			<_string_10> <copy src="darnui_strings" trait="_hlp_sb_fade" /> </_string_10>
+			<_string_11> <copy src="darnui_strings" trait="_hlp_hudscale" /> </_string_11>
+			<_string_12> <copy src="darnui_strings" trait="_hlp_compass_pos" /> </_string_12>
+			<_string_13> <copy src="darnui_strings" trait="_hlp_perrow" /> </_string_13>
+			<_string_14> <copy src="darnui_strings" trait="_hlp_at" /> </_string_14>
+			<_string_15> <copy src="darnui_strings" trait="_hlp_tt" /> </_string_15>
+			<_string_16> <copy src="darnui_strings" trait="_hlp_li" /> </_string_16>
+			<_string_17> <copy src="darnui_strings" trait="_hlp_li_pos" /> </_string_17>
+			<_string_18> <copy src="darnui_strings" trait="_hlp_li_frame" /> </_string_18>
+			<_string_19> <copy src="darnui_strings" trait="_hlp_sb" /> </_string_19>
+			<_string_20> <copy src="darnui_strings" trait="_hlp_sb_pos" /> </_string_20>
+			<_string_21> <copy src="darnui_strings" trait="_hlp_wi" /> </_string_21>
+			<_string_22> <copy src="darnui_strings" trait="_hlp_wi_pos" /> </_string_22>
+			<_string_23> <copy src="darnui_strings" trait="_hlp_durability" /> </_string_23>
+			<_string_24> <copy src="darnui_strings" trait="_hlp_si" /> </_string_24>
+			<_string_25> <copy src="darnui_strings" trait="_hlp_si_pos" /> </_string_25>
+			<_string_26> <copy src="darnui_strings" trait="_hlp_level" /> </_string_26>
+			<_string_27> <copy src="darnui_strings" trait="_hlp_level_pos" /> </_string_27>
+			<_string_28> <copy src="darnui_strings" trait="_hlp_se" /> </_string_28>
+			<_string_29> <copy src="darnui_strings" trait="_hlp_se_pos" /> </_string_29>
+			<_string_30> <copy src="darnui_strings" trait="_hlp_ch" /> </_string_30>
+			<_string_31> <copy src="darnui_strings" trait="_hlp_3pch" /> </_string_31>
+			<_string_32> <copy src="darnui_strings" trait="_hlp_ehb" /> </_string_32>
+			<_string_33> <copy src="darnui_strings" trait="_hlp_he" /> </_string_33>
+			<_string_34> <copy src="darnui_strings" trait="_hlp_msg" /> </_string_34>
+			<_string_35> <copy src="darnui_strings" trait="_hlp_msg_pos" /> </_string_35>
+			<_string_36> <copy src="darnui_strings" trait="_hlp_msg_ca" /> </_string_36>
+			<_string_37> <copy src="darnui_strings" trait="_hlp_msg_gi" /> </_string_37>
+			<_string_38> <copy src="darnui_strings" trait="_hlp_step" /> </_string_38>
+			<_string_39> <copy src="darnui_strings" trait="_hlp_gfx_hudalpha" /> </_string_39>
+			<_string_40> <copy src="darnui_strings" trait="_hlp_txt_hudalpha" /> </_string_40>
+			<_string_41> <copy src="darnui_strings" trait="_hlp_me_pos" /> </_string_41>
+			<_string_42> <copy src="darnui_strings" trait="_hlp_sb_co" /> </_string_42>
+			<_string_43> <copy src="darnui_strings" trait="_hlp_compass_width" /> </_string_43>
+
+			<string>
+				<copy> 1 </copy>
+				<add>
+					<copy> 1 </copy>
+					<onlyif src="poi_reveal_control" trait="_hover" />
+				</add>
+				<add>
+					<copy> 2 </copy>
+					<onlyif src="toggle_qm_control" trait="_hover" />
+				</add>
+				<add>
+					<copy> 3 </copy>
+					<onlyif src="toggle_pm_control" trait="_hover" />
+				</add>
+				<add>
+					<copy> 4 </copy>
+					<onlyif src="toggle_discovered_control" trait="_hover" />
+				</add>
+				<add>
+					<copy> 5 </copy>
+					<onlyif src="toggle_known_control" trait="_hover" />
+				</add>
+				<add>
+					<copy> 6 </copy>
+					<onlyif src="compass_subheader" trait="_hover" />
+				</add>
+				<add>
+					<copy> 7 </copy>
+					<onlyif src="toggle_compass_frame_control" trait="_hover" />
+				</add>
+				<add>
+					<copy> 8 </copy>
+					<onlyif src="magic_effects_subheader" trait="_hover" />
+				</add>
+				<add>
+					<copy> 9 </copy>
+					<onlyif src="toggle_sb_fade_control" trait="_hover" />
+				</add>
+				<add>
+					<copy> 10 </copy>
+					<onlyif src="hudscale_control" trait="_hover" />
+				</add>
+				<add>
+					<copy> 11 </copy>
+					<onlyif src="compass_offxy_control" trait="_hover" />
+				</add>
+				<add>
+					<copy> 12 </copy>
+					<onlyif src="magic_effects_perrow" trait="_hover" />
+				</add>
+				<add>
+					<copy> 13 </copy>
+					<onlyif src="toggle_at_control" trait="_hover" />
+				</add>
+				<add>
+					<copy> 14 </copy>
+					<onlyif src="toggle_tt_control" trait="_hover" />
+				</add>
+				<add>
+					<copy> 15 </copy>
+					<onlyif src="location_subheader" trait="_hover" />
+				</add>
+				<add>
+					<copy> 16 </copy>
+					<onlyif src="location_offxy_control" trait="_hover" />
+				</add>
+				<add>
+					<copy> 17 </copy>
+					<onlyif src="toggle_location_frame_control" trait="_hover" />
+				</add>
+				<add>
+					<copy> 18 </copy>
+					<onlyif src="toggle_sb_control" trait="_hover" />
+				</add>
+				<add>
+					<copy> 19 </copy>
+					<onlyif src="sb_offxy_control" trait="_hover" />
+				</add>
+				<add>
+					<copy> 20 </copy>
+					<onlyif src="toggle_weapon_control" trait="_hover" />
+				</add>
+				<add>
+					<copy> 21 </copy>
+					<onlyif src="weapon_offxy_control" trait="_hover" />
+				</add>
+				<add>
+					<copy> 22 </copy>
+					<onlyif src="toggle_weapon_durability_control" trait="_hover" />
+				</add>
+				<add>
+					<copy> 23 </copy>
+					<onlyif src="toggle_spell_control" trait="_hover" />
+				</add>
+				<add>
+					<copy> 24 </copy>
+					<onlyif src="spell_offxy_control" trait="_hover" />
+				</add>
+				<add>
+					<copy> 25 </copy>
+					<onlyif src="toggle_lvl_control" trait="_hover" />
+				</add>
+				<add>
+					<copy> 26 </copy>
+					<onlyif src="lvl_offxy_control" trait="_hover" />
+				</add>
+				<add>
+					<copy> 27 </copy>
+					<onlyif src="toggle_se_control" trait="_hover" />
+				</add>
+				<add>
+					<copy> 28 </copy>
+					<onlyif src="se_offxy_control" trait="_hover" />
+				</add>
+				<add>
+					<copy> 29 </copy>
+					<onlyif src="toggle_ch_control" trait="_hover" />
+				</add>
+				<add>
+					<copy> 30 </copy>
+					<onlyif src="toggle_3ch_control" trait="_hover" />
+				</add>
+				<add>
+					<copy> 31 </copy>
+					<onlyif src="toggle_ehb_control" trait="_hover" />
+				</add>
+				<add>
+					<copy> 32 </copy>
+					<onlyif src="toggle_he_control" trait="_hover" />
+				</add>
+				<add>
+					<copy> 33 </copy>
+					<onlyif src="messages_subheader" trait="_hover" />
+				</add>
+				<add>
+					<copy> 34 </copy>
+					<onlyif src="messages_offxy_control" trait="_hover" />
+				</add>
+				<add>
+					<copy> 35 </copy>
+					<onlyif src="toggle_msg_ca" trait="_hover" />
+				</add>
+				<add>
+					<copy> 36 </copy>
+					<onlyif src="toggle_generic_icon_control" trait="_hover" />
+				</add>
+				<add>
+					<copy> 37 </copy>
+					<onlyif src="step_control" trait="_hover" />
+				</add>
+				<add>
+					<copy> 38 </copy>
+					<onlyif src="hudalpha_gfx_control" trait="_hover" />
+				</add>
+				<add>
+					<copy> 39 </copy>
+					<onlyif src="hudalpha_txt_control" trait="_hover" />
+				</add>
+				<add>
+					<copy> 40 </copy>
+					<onlyif src="magic_effects_offxy_control" trait="_hover" />
+				</add>
+				<add>
+					<copy> 41 </copy>
+					<onlyif src="sb_cutoff_control" trait="_hover" />
+				</add>
+				<add>
+					<copy> 42 </copy>
+					<onlyif src="compass_width_control" trait="_hover" />
+				</add>
+				<copy src="me()" trait="_string_" />
+			</string>
+			<x>
+				<copy src="parent()" trait="width" />
+				<sub src="me()" trait="width" />
+				<div> 2 </div>
+			</x>
+			<y> 615 </y>
+			<depth> 2 </depth>
+			<wrapwidth> 610 </wrapwidth>
+			<font> 2 </font>
+			<red> 0 </red>
+			<green> 0 </green>
+			<blue> 0 </blue>
+			<alpha> 200 </alpha>
+		</text>
+
+	</rect>
+
+	<image name="dummy_icon">
+		<depth> 100 </depth>
+		<visible>
+			<copy src="sibling(dummy_notice)" trait="visible" />
+			<and src="HUDMainMenu" trait="_msg_gi" />
+		</visible>
+		<alpha> <copy src="sibling(dummy_notice)" trait="alpha"/> </alpha>
+		<filename> Menus\darn\omg.dds </filename>
+		<width> 32 </width>
+		<height> 32 </height>
+		<x>
+			<copy src="sibling(dummy_notice)" trait="x" />
+			<sub src="me()" trait="width" />
+			<sub> 8 </sub>
+		</x>
+		<y>
+			<copy src="HUDMainMenu" trait="_msg_y" />
+			<sub> 1 </sub>
+		</y>
+	</image>
+	<text name="dummy_notice">
+		<depth> 100 </depth>
+		<string> <copy src="strings()" trait="_dummynotice"/> </string>
+		<visible>
+			<copy src="HUDMainMenu" trait="_settingsmode" />
+			<and src="HUDMainMenu" trait="_msg" />
+		</visible>
+		<font> 3 </font>
+		<red> 254 </red>
+		<green> 244 </green>
+		<blue> 183 </blue>
+		<alpha> <copy src="HUDMainMenu" trait="_txt_hudalpha" /> </alpha>
+		<x>
+			<copy src="HUDMainMenu" trait="_msg_x" />
+			<add> 7 </add>
+			<add>
+				<copy src="sibling(dummy_icon)" trait="width"/>
+				<onlyif src="HUDMainMenu" trait="_msg_gi"/>
+			</add>
+			<sub>
+				<copy src="me()" trait="width" />
+				<add> 8 </add>
+				<add>
+					<copy src="sibling(dummy_icon)" trait="width"/>
+					<onlyif src="HUDMainMenu" trait="_msg_gi"/>
+				</add>
+				<onlyif>
+					<copy src="HUDMainMenu" trait="_msg_x" />
+					<gt>
+						<copy src="screen()" trait="width" />
+						<div> 2 </div>
+					</gt>
+				</onlyif>
+				<onlyifnot src="HUDMainMenu" trait="_msg_ca" />
+			</sub>
+			<sub>
+				<copy src="me()" trait="width" />
+				<div> 2 </div>
+				<onlyif src="HUDMainMenu" trait="_msg_ca" />
+			</sub>
+		</x>
+		<y> <copy src="sibling(dummy_icon)" trait="y"/> </y>
+	</text>
+	<text name="dummy_notice_s">
+		<depth> 99 </depth>
+		<string> <copy src="sibling(dummy_notice)" trait="string" /> </string>
+		<visible> <copy src="sibling(dummy_notice)" trait="visible" /> </visible>
+		<font> <copy src="sibling(dummy_notice)" trait="font" /> </font>
+		<red> 0 </red>
+		<green> 0 </green>
+		<blue> 0 </blue>
+		<alpha> <copy src="sibling(dummy_notice)" trait="alpha" /> </alpha>
+		<x>
+			<copy src="sibling(dummy_notice)" trait="x" />
+			<add> 1 </add>
+		</x>
+		<y>
+			<copy src="sibling(dummy_notice)" trait="y" />
+			<add> 1 </add>
+		</y>
+	</text>
+	<rect name="wrapper">
+		<locus> &true; </locus>
+		<width>
+			<copy src="sibling(dummy_icon)" trait="width" />
+			<add> 16 </add>
+			<add src="sibling(dummy_notice)" trait="width" />
+		</width>
+		<height> <copy src="sibling(dummy_icon)" trait="height" /> </height>
+		<x>	<copy src="sibling(dummy_icon)" trait="x" /> </x>
+		<y> <copy src="sibling(dummy_icon)" trait="y" /> </y>
+
+		<rect name="element_backdrop">
+			<_show> <copy src="HUDMainMenu" trait="_msghover" /> </_show>
+			<include src="darn\settings_fader_box.xml"/>
+			<depth> 98 </depth>
+			<visible>
+				<copy src="HUDMainMenu" trait="_msg" />
+				<and src="HUDMainMenu" trait="_settingsmode" />
+			</visible>
+		</rect>
+	</rect>

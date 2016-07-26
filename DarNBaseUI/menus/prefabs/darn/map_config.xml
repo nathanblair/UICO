@@ -1,0 +1,96 @@
+<!-- DarN Version 1.3 -->
+
+<rect name="darnui_settings">
+	 <!-- Map scale. [40 - 100]. (def. 60) -->
+	<_mapscale> 60 </_mapscale>
+
+	<!-- Icon filters. 1 = show, 0 = hide. (def. all 1) -->
+	<_show_camps> 1 </_show_camps>
+	<_show_caves> 1 </_show_caves>
+	<_show_towns> 1 </_show_towns>
+	<_show_ruins> 1 </_show_ruins>
+	<_show_forts> 1 </_show_forts>
+	<_show_mines> 1 </_show_mines>
+	<_show_landmarks> 1 </_show_landmarks>
+	<_show_inns> 1 </_show_inns>
+	<_show_settlements> 1 </_show_settlements>
+	<_show_shrines> 1 </_show_shrines>
+	<_show_gates> 1 </_show_gates>
+	<_show_qm> 1 </_show_qm> <!-- quest marker(s) -->
+	<_show_pm> 1 </_show_pm> <!-- player marker -->
+	<_show_pp> 1 </_show_pp> <!-- player position (arrow) -->
+	<_show_discovered> 1 </_show_discovered>
+	<_show_known> 1 </_show_known>
+
+	<!-- Quest Fade makes inactive quests fade (def. -100)
+		- 0 = no fade
+		- -255 = invisible (minus 255)
+	-->
+	<_questfade> -100 </_questfade>
+
+
+	<!-- TEXTURES
+		- This is to allow skinning of the menu screens
+	-->
+
+	<_sharedmainback1> Menus\darn\shared_main_background_1_notile_map.dds </_sharedmainback1>
+	<_sharedmainback2> Shared\shared_main_background_2.dds </_sharedmainback2>
+
+	<_sharedtab1> Shared\shared_01_tab.dds </_sharedtab1>
+	<_sharedtab2> Menus\darn\shared_02_tab_noline.dds </_sharedtab2>
+	<_sharedtab3> Shared\shared_03_tab.dds </_sharedtab3>
+	<_sharedtab4> Shared\shared_04_tab.dds </_sharedtab4>
+	<_sharedtab5> Shared\shared_05_tab.dds </_sharedtab5>
+
+	<_mapiconsall> Icons\Map\map_icons_all.dds </_mapiconsall>
+	<_hudcompassgoal> HUD\hud_compass_goal.dds </_hudcompassgoal>
+	<_worldmaparrowicon> Map\world_map_arrow_icon.dds </_worldmaparrowicon>
+
+	<_worldmappaper> Map\world\world_map_paper.dds </_worldmappaper>
+	<_worldmappaperend> Map\world\world_map_paper_end.dds </_worldmappaperend>
+
+	<_sharedpagetabs> Shared\shared_page_tabs.dds </_sharedpagetabs>
+	<_alltabsicons> Shared\all_tabs_icons.dds </_alltabsicons>
+
+	<_generaltaboff> Shared\general_tab_selection_off.dds </_generaltaboff>
+	<_generaltabon> Shared\general_tab_selection_on.dds </_generaltabon>
+
+	<_pageextention> Menus\darn\page_extention_untile_yescrease.dds </_pageextention>
+
+	<_statborderhorizontal1> Stats\stat_border_horizontal_1.dds </_statborderhorizontal1>
+	<_statborderhorizontal2> Stats\stat_border_horizontal_2.dds </_statborderhorizontal2>
+
+	<_iconinvarmor1> Icons\icon_inv_armor_1.dds </_iconinvarmor1>
+	<_cursor> Misc\cursor.dds </_cursor>
+
+	<_mapbordertop> Map\map_border_top.dds </_mapbordertop>
+	<_mapborderbottom> Map\map_border_bottom.dds </_mapborderbottom>
+	<_mapborderleft> Map\map_border_left.dds </_mapborderleft>
+	<_mapborderright> Map\map_border_right.dds </_mapborderright>
+
+	<_shareddecorblueleft> Shared\shared_decor_blue_left.dds </_shareddecorblueleft>
+	<_shareddecorblueright> Shared\shared_decor_blue_right.dds </_shareddecorblueright>
+
+	<_pre01> Icons\Quest\icon_amulet_of_king.dds </_pre01>
+	<_pre02> Icons\Quest\icon_arena.dds </_pre02>
+	<_pre03> Icons\Quest\icon_bruma.dds </_pre03>
+	<_pre04> Icons\Quest\icon_daedra.dds </_pre04>
+	<_pre05> Icons\Quest\icon_dark_brotherhood.dds </_pre05>
+	<_pre06> Icons\Quest\icon_dragonfires.dds </_pre06>
+	<_pre07> Icons\Quest\icon_fighters_guild.dds </_pre07>
+	<_pre08> Icons\Quest\icon_imperial_city.dds </_pre08>
+	<_pre09> Icons\Quest\icon_kvatch.dds </_pre09>
+	<_pre10> Icons\Quest\icon_leyawiin.dds </_pre10>
+	<_pre11> Icons\Quest\icon_mages_guild.dds </_pre11>
+	<_pre12> Icons\Quest\icon_master_trainer.dds </_pre12>
+	<_pre13> Icons\Quest\icon_miscarcand.dds </_pre13>
+	<_pre14> Icons\Quest\icon_miscellaneous.dds </_pre14>
+	<_pre15> Icons\Quest\icon_mythic_dawn.dds </_pre15>
+	<_pre16> Icons\Quest\icon_oblivion_gate.dds </_pre16>
+	<_pre17> Icons\Quest\icon_paradise.dds </_pre17>
+	<_pre18> Icons\Quest\icon_settlements_quest_icon.dds </_pre18>
+	<_pre19> Icons\Quest\icon_thieves_guild.dds </_pre19>
+	<_pre20> Icons\Quest\icon_tiber_septim's_armor.dds </_pre20>
+	<_pre21> Icons\Quest\icon_weynon_priory.dds </_pre21>
+
+</rect>

@@ -1,0 +1,203 @@
+<!-- inventory_background.xml -->
+<!-- rect name="inv_background" -->
+
+	<_border_thickness> 24 </_border_thickness>		<!-- thickness of border elements -->
+	<_filename> Menus\GenericBackground\center_background.dds </_filename>
+	<alpha> 255 </alpha>
+
+	<_distMult>
+		<copy> 64 </copy>
+		<div> 44 </div>
+	</_distMult>
+
+
+	<image name="Background_TopLeft">
+		<filename>Menus\GenericBackground\top_left_corner.dds</filename>
+		<cropx> 0 </cropx>
+		<cropy> 0 </cropy>
+		<x>
+			<copy> 0 </copy>
+			<sub src="me()" trait="width" />
+			<div src="parent()" trait="_distMult"/>
+		</x>
+		<y>
+			<copy> 0 </copy>
+			<sub src="me()" trait="height" />
+			<div src="parent()" trait="_distMult"/>
+		</y>
+		<width>
+			<copy src="parent()" trait="_border_thickness" />
+			<mul src="parent()" trait="_distMult"/>
+		</width>
+		<height>
+			<copy src="parent()" trait="_border_thickness" />
+			<mul src="parent()" trait="_distMult"/>
+		</height>
+		<zoom> -1 </zoom>
+		<alpha> <copy src="parent()" trait="alpha"/> </alpha>
+	</image>
+
+	<image name="Background_Top">
+		<filename>Menus\GenericBackground\edge_top.dds</filename>
+		<cropx> 0 </cropx>
+		<cropy> 0 </cropy>
+		<x> 0 </x>
+		<y>
+			<copy> 0 </copy>
+			<sub src="me()" trait="height" />
+			<div src="parent()" trait="_distMult"/>
+		</y>
+		<width>
+			<copy src="parent()" trait="width" />
+		</width>
+		<height>
+			<copy src="parent()" trait="_border_thickness" />
+			<mul src="parent()" trait="_distMult"/>
+		</height>
+		<zoom> -1 </zoom>
+		<alpha> <copy src="parent()" trait="alpha"/> </alpha>
+	</image>
+
+	<image name="Background_TopRight">
+		<filename>Menus\GenericBackground\top_right_corner.dds</filename>
+		<cropx> 0 </cropx>
+		<cropy> 0 </cropy>
+		<x>
+			<copy src="parent()" trait="width" />
+		</x>
+		<y>
+			<copy> 0 </copy>
+			<sub src="me()" trait="height" />
+			<div src="parent()" trait="_distMult"/>
+		</y>
+		<width>
+			<copy src="parent()" trait="_border_thickness" />
+			<mul src="parent()" trait="_distMult"/>
+		</width>
+		<height>
+			<copy src="parent()" trait="_border_thickness" />
+			<mul src="parent()" trait="_distMult"/>
+		</height>
+		<zoom> -1 </zoom>
+		<alpha> <copy src="parent()" trait="alpha"/> </alpha>
+	</image>
+
+	<image name="Background_LeftCenter">
+		<filename>Menus\GenericBackground\edge_left.dds</filename>
+		<cropx> 0 </cropx>
+		<cropy> 0 </cropy>
+		<x>
+			<copy> 0 </copy>
+			<sub src="me()" trait="width" />
+			<div src="parent()" trait="_distMult"/>
+		</x>
+		<y> 0 </y>
+		<width>
+			<copy src="parent()" trait="_border_thickness" />
+			<mul src="parent()" trait="_distMult"/>
+		</width>
+		<height>
+			<copy src="parent()" trait="height" />
+		</height>
+		<zoom> -1 </zoom>
+		<alpha> <copy src="parent()" trait="alpha"/> </alpha>
+	</image>
+
+	<image name="Background_Center">
+		<filename> <copy src="parent()" trait="_filename" /> </filename>
+		<x> 0 </x>
+		<y> 0 </y>
+		<width>
+			<copy src="parent()" trait="width" />
+		</width>
+		<height>
+			<copy src="parent()" trait="height" />
+		</height>
+		<zoom> -1 </zoom>
+		<depth> <copy src="parent()" trait="depth"/><add> 1 </add> </depth>
+		<alpha> <copy src="parent()" trait="alpha"/> </alpha>
+	</image>
+
+	<image name="Background_RightCenter">
+		<filename>Menus\GenericBackground\edge_right.dds</filename>
+		<cropx> 0 </cropx>
+		<cropy> 0 </cropy>
+		<x>
+			<copy src="parent()" trait="width" />
+		</x>
+		<y> 0 </y>
+		<width>
+			<copy src="parent()" trait="_border_thickness" />
+			<mul src="parent()" trait="_distMult"/>
+		</width>
+		<height>
+			<copy src="parent()" trait="height" />
+		</height>
+		<zoom> -1 </zoom>
+		<alpha> <copy src="parent()" trait="alpha"/> </alpha>
+	</image>
+
+	<image name="Background_BottomLeft">
+		<filename>Menus\GenericBackground\bottom_left_corner.dds</filename>
+		<cropx> 0 </cropx>
+		<cropy> 0 </cropy>
+		<x>
+			<copy> 0 </copy>
+			<sub src="me()" trait="width" />
+			<div src="parent()" trait="_distMult"/>
+		</x>
+		<y>
+			<copy src="parent()" trait="height" />
+		</y>
+		<width>
+			<copy src="parent()" trait="_border_thickness" />
+			<mul src="parent()" trait="_distMult"/>
+		</width>
+		<height>
+			<copy src="parent()" trait="_border_thickness" />
+			<mul src="parent()" trait="_distMult"/>
+		</height>
+		<zoom> -1 </zoom>
+		<alpha> <copy src="parent()" trait="alpha"/> </alpha>
+	</image>
+	<image name="Background_Bottom">
+		<filename>Menus\GenericBackground\edge_bottom.dds</filename>
+		<cropx> 0 </cropx>
+		<cropy> 0 </cropy>
+		<x> 0 </x>
+		<y>
+			<copy src="parent()" trait="height" />
+		</y>
+		<width>
+			<copy src="parent()" trait="width" />
+		</width>
+		<height>
+			<copy src="parent()" trait="_border_thickness" />
+			<mul src="parent()" trait="_distMult"/>
+		</height>
+		<zoom> -1 </zoom>
+		<alpha> <copy src="parent()" trait="alpha"/> </alpha>
+	</image>
+	<image name="Background_BottomRight">
+		<filename>Menus\GenericBackground\bottom_right_corner.dds</filename>
+		<cropx> 0 </cropx>
+		<cropy> 0 </cropy>
+		<x>
+			<copy src="parent()" trait="width" />
+		</x>
+		<y>
+			<copy src="parent()" trait="height" />
+		</y>
+		<width>
+			<copy src="parent()" trait="_border_thickness" />
+			<mul src="parent()" trait="_distMult"/>
+		</width>
+		<height>
+			<copy src="parent()" trait="_border_thickness" />
+			<mul src="parent()" trait="_distMult"/>
+		</height>
+		<zoom> -1 </zoom>
+		<alpha> <copy src="parent()" trait="alpha"/> </alpha>
+	</image>
+
+<!-- /rect -->

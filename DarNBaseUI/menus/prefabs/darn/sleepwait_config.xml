@@ -1,0 +1,21 @@
+
+<!--	DARNIFIED SLEEP/WAIT CONFIG 1.0
+-->
+<rect name="darnui_settings">
+	<_configversion> 1.0 </_configversion>
+
+	<!-- Title text "How long..." (def. 3,0,0,0,255) -->
+	<_swtfont>3</_swtfont>
+	<_swtred>0</_swtred>
+	<_swtgreen>0</_swtgreen>
+	<_swtblue>0</_swtblue>
+	<_swtalpha>255</_swtalpha>
+
+	<!-- Date text (def. 2,0,0,0,200) -->
+	<_swdfont>2</_swdfont>
+	<_swdred>0</_swdred>
+	<_swdgreen>0</_swdgreen>
+	<_swdblue>0</_swdblue>
+	<_swdalpha>200</_swdalpha>
+
+</rect>

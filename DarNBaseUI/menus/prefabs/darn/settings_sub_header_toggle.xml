@@ -1,0 +1,162 @@
+﻿<!-- settings_sub_header_toggle.xml -->
+ <!-- DarN Version 1.0 -->
+
+<!-- rect name="sub_header_toggle -->
+	<locus> &true; </locus>
+	<target> &true; </target>
+
+	<_hover><copy src="child(focus_box)" trait="visible" /></_hover>
+
+	<height> 26 </height>
+	<width> 310 </width>
+
+	<rect name="focus_box">
+		<include src="darn\focus_box_small.xml"/>
+		<depth> -1 </depth>
+		<width> <copy src="parent()" trait="width" /> </width>
+		<height> <copy src="parent()" trait="height" /> </height>
+		<visible> <copy src="parent()" trait="_mouseover_any" /> </visible>
+	</rect>
+
+	<!-- minimum range value -->
+	<user1>
+		<copy src="me()" trait="user2" />
+		<sub> 1 </sub>
+	</user1>
+	<!-- maximum range value -->
+	<user2>
+		<copy> 2 </copy>
+		<sub src="me()" trait="_start" />
+	</user2>
+	
+	<user3> 1 </user3> <!-- step distance -->
+	<user7>					<!-- current value as integer between min and max -->
+		<copy src="child(marker)" trait="_value_scrolled_to"/>
+		<add src="me()" trait="_start" />
+	</user7>
+
+	<user10> 0 </user10>			<!-- red component of quantity text color -->
+	<user11> 0 </user11>			<!-- green component of quantity text color -->
+	<user12> 0 </user12>			<!-- blue component of quantity text color -->
+	<user13> &true; </user13>		<!-- true if enabled, false if disabled -->
+
+	<_scrollable_range>
+		<copy src="me()" trait="user2"/>
+		<sub src="me()" trait="user1"/>
+	</_scrollable_range>
+
+	<_mouseover_any>
+		<copy src="child(toggle_off)" trait="mouseover"/>
+		<add src="child(toggle_on)" trait="mouseover"/>
+		<gt> 0 </gt>
+	</_mouseover_any>
+
+	<image name="button_image">
+		<visible> &true; </visible>
+		<cropx> 0 </cropx>
+		<cropy> 0 </cropy>
+		<zoom>
+			<copy> -2 </copy>
+			<add src="parent()" trait="_forcezoom" />
+			<add> 1 </add>
+		</zoom>
+		<filename> <copy src="parent()" trait="_icon" /> </filename>
+		<depth> 0 </depth>
+		<width> 18 </width>
+		<height> 18 </height>
+		<x>
+			<copy src="parent()" trait="width" />
+			<sub src="me()" trait="width" />
+			<sub> 15 </sub>
+		</x>
+		<y> 2 </y>
+		<red>
+			<copy> 255 </copy>
+			<onlyif src="sibling(toggle_off)" trait="visible" />
+		</red>
+		<green>
+			<copy> 255 </copy>
+			<onlyif src="sibling(toggle_off)" trait="visible" />
+		</green>
+		<blue>
+			<copy> 255 </copy>
+			<onlyif src="sibling(toggle_off)" trait="visible" />
+		</blue>
+		<alpha>
+			<copy> 155 </copy>
+			<add>
+				<copy> 100 </copy>
+				<onlyif src="parent()" trait="_mouseover_any" />
+			</add>
+		</alpha>
+	</image>
+
+	<text name="label">
+		<depth> 1 </depth>
+		<x> 15 </x>
+		<y> 10 </y>
+		<red> 0 </red>
+		<green> 0 </green>
+		<blue> 0 </blue>
+		<alpha>
+			<copy> 255 </copy>
+			<sub>
+				<copy> 128 </copy>
+				<onlyif src="sibling(toggle_on)" trait="visible" />
+			</sub>
+		</alpha>
+		<visible> 2 </visible>
+		<font> 2 </font>
+		<string> <copy src="parent()" trait="_label" /> </string>
+	</text>
+
+	<rect name="toggle_off">
+		<id> &generic; </id>
+		<target> <copy src="parent()" trait="user13"/> </target>
+		<depth> 1 </depth>
+		<visible> <copy src="parent()" trait="_value" /> </visible>
+		<width> <copy src="parent()" trait="width"/> </width>
+		<height> <copy src="parent()" trait="height"/> </height>
+		<clicksound> 2 </clicksound>
+	</rect>
+	<rect name="toggle_on">
+		<id> &generic; </id>
+		<target> <copy src="parent()" trait="user13"/> </target>
+		<depth> 1 </depth>
+		<visible><not src="parent()" trait="_value" /></visible>
+		<width> <copy src="parent()" trait="width"/> </width>
+		<height> <copy src="parent()" trait="height"/> </height>
+		<clicksound> 3 </clicksound>
+	</rect>
+	<rect name="marker">
+		<id> &generic; </id>
+		<visible> &false; </visible>
+		<width> 1 </width>
+		<height> 1 </height>
+		<x> 0 </x>
+		<y> 0 </y>
+		<_value_scrolled_to>
+			<!-- copy old value -->
+			<sub>
+				<copy src="sibling(toggle_off)" trait="clicked"/>
+				<mul src="parent()" trait="user3"/>
+			</sub>
+			<add>
+				<copy src="sibling(toggle_on)" trait="clicked"/>
+				<mul src="parent()" trait="user3"/>
+			</add>
+			<max src="parent()" trait="user1"/>
+			<min src="parent()" trait="user2"/>
+		</_value_scrolled_to>
+	</rect>
+<image name="line">
+	<x> -10 </x>
+	<y>
+		<copy src="parent()" trait="height" />
+		<sub> 4 </sub>
+	</y>
+	<filename> Menus\Stats\stat_border_horizontal_1.dds </filename>
+	<zoom> 60 </zoom>
+	<width> 310 </width>
+	<height> 4 </height>
+</image>

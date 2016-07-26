@@ -1,0 +1,90 @@
+
+<!--	DARNIFIED CHARGEN CONFIG 1.0
+-->
+<rect name="darnui_settings">
+	<_configversion> 1.0 </_configversion>
+
+<!-- *********** RaceSex Menu specific ********** -->
+
+	<!-- Label text (controls) (def. 2,0,0,0,200) -->
+	<_lblfont> 2 </_lblfont>
+	<_lblred> 0 </_lblred>
+	<_lblgreen> 0 </_lblgreen>
+	<_lblblue> 0 </_lblblue>
+	<_lblalpha> 200 </_lblalpha>
+
+<!-- ************ Class Menu specific *********** -->
+
+	<!-- Sub header text "Favored Attributes, etc" (def. 3,0,0,0,200) -->
+	<_shfont> 3 </_shfont>
+	<_shred> 0 </_shred>
+	<_shgreen> 0 </_shgreen>
+	<_shblue> 0 </_shblue>
+	<_shalpha> 200 </_shalpha>
+
+	<!-- Sub header 2 text "Stealth, Speed, Sneak" (def. 2,117,59,33,200) -->
+	<_sasfont> 2 </_sasfont>
+	<_sasred> 117 </_sasred>
+	<_sasgreen> 59 </_sasgreen>
+	<_sasblue> 33 </_sasblue>
+	<_sasalpha> 200 </_sasalpha>
+
+	<!-- Header offsets (def. 2,10,36) -->
+	<_minho> 2 </_minho> <!-- DarN between sh2 labels -->
+	<_medho> 10 </_medho> <!-- DarN between sh1 and sh2 labels -->
+	<_majho> 36 </_majho> <!-- DarN between groups -->
+
+<!-- ****************** Shared ****************** -->
+
+	<!-- Player Name/Header text (def. 3,0,0,0,255,0,0) -->
+	<_pnhfont> 3 </_pnhfont>
+	<_pnhred> 0 </_pnhred>
+	<_pnhgreen> 0 </_pnhgreen>
+	<_pnhblue> 0 </_pnhblue>
+	<_pnhalpha> 255 </_pnhalpha>
+	<_pnhxoffset> 0 </_pnhxoffset>
+	<_pnhyoffset> 0 </_pnhyoffset>
+
+	<!-- Description text (def. 2,0,0,0,200) -->
+	<_descfont> 2 </_descfont>
+	<_descred> 0 </_descred>
+	<_descgreen> 0 </_descgreen>
+	<_descblue> 0 </_descblue>
+	<_descalpha> 200 </_descalpha>
+
+	<!-- List text (def. 3,117,59,33,255,0,0) -->
+	<_ltfont> 3 </_ltfont>
+	<_ltred> 117 </_ltred>
+	<_ltgreen> 59 </_ltgreen>
+	<_ltblue> 33 </_ltblue>
+	<_ltalpha> 255 </_ltalpha>
+	<_ltxoffset> 0 </_ltxoffset>
+	<_ltyoffset> 0 </_ltyoffset>
+
+	<!-- TEXTURES -->
+	<_t_eqipedmarker> Menus\Inventory\inv_equiped_marker_1.dds </_t_eqipedmarker>
+	<_t_mousemarker1> Menus\dialog\dialog_selection_full.dds </_t_mousemarker1>
+	<_t_mousemarker2> dialog\dialog_selection_cut.dds </_t_mousemarker2>
+	<_t_titleleft> Menus\Stats\stat_title_left.dds </_t_titleleft>
+	<_t_titleright> Menus\Stats\stat_title_right.dds </_t_titleright>
+	<_t_horizborder> Menus\Stats\stat_border_horizontal_1.dds </_t_horizborder>
+	<_t_arrowleft> Menus\Shared\shared_arrow_left.dds </_t_arrowleft>
+	<_t_arrowright> Menus\Shared\shared_arrow_right.dds </_t_arrowright>
+	
+</rect>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,107 @@
+<!-- fader_box.xml -->
+ <!-- DarN Version 1.0 -->
+<!-- rect name="FaderBox" -->
+	<locus> &true; </locus>
+	<user0> 800 </user0>	<!-- menu width -->
+	<user1> 100 </user1>	<!-- menu height -->
+	
+	<width> <copy src="me()" trait="_rounded_width" /> </width>
+	<height> <copy src="me()" trait="_rounded_height" /> </height>
+
+	<_rounded_width>
+		<copy src="me()" trait="user0" />
+		<div> 1 </div>
+		<ceil> 0 </ceil>
+		<mul> 1 </mul>
+	</_rounded_width>
+
+	<_rounded_height>
+		<copy src="me()" trait="user1" />
+		<div> 1 </div>
+		<ceil> 0 </ceil>
+		<mul> 1 </mul>
+	</_rounded_height>
+	
+	<image name="fader_center">
+		<alpha> <copy src="parent()" trait="alpha" /> </alpha>
+		<filename> Menus\Faders\black.dds </filename>
+		<x> 0 </x>
+		<y> 0 </y>
+		<width> <copy src="parent()" trait="_rounded_width" /> </width>
+		<height> <copy src="parent()" trait="_rounded_height" /> </height>
+	</image>
+
+	<image name="fader_top">
+		<alpha> <copy src="parent()" trait="alpha" /> </alpha>
+		<filename> Menus\darn\fb\fader_top.dds </filename>
+		<x>	0 </x>
+		<y> -16 </y>
+		<width> <copy src="parent()" trait="_rounded_width"/> </width>
+		<height> 16 </height>
+	</image>
+
+	<image name="fader_bottom">
+		<alpha> <copy src="parent()" trait="alpha" /> </alpha>
+		<filename> Menus\darn\fb\fader_bottom.dds </filename>
+		<x> 0 </x>
+		<y> <copy src="parent()" trait="_rounded_height" /> </y>
+		<width> <copy src="parent()" trait="_rounded_width" /> </width>
+		<height> 16 </height>
+	</image>
+
+ 	<image name="fader_left">
+		<alpha> <copy src="parent()" trait="alpha" /> </alpha>
+		<filename> Menus\darn\fb\fader_left.dds </filename>
+		<x> -16 </x>
+		<y> 0 </y>
+		<width> 16 </width>
+		<height> <copy src="parent()" trait="_rounded_height" /> </height>
+	</image>
+
+	<image name="fader_right">
+		<alpha> <copy src="parent()" trait="alpha" /> </alpha>
+		<filename> Menus\darn\fb\fader_right.dds </filename>
+		<x> <copy src="parent()" trait="_rounded_width" /> </x>
+		<y> 0 </y>
+		<width> 16 </width>
+		<height> <copy src="parent()" trait="_rounded_height" /> </height>
+	</image>
+
+
+	<image name="fader_top_left">
+		<alpha> <copy src="parent()" trait="alpha" /> </alpha>
+		<filename> Menus\darn\fb\fader_tl.dds </filename>
+		<x> -16 </x>
+		<y> -16 </y>
+		<width> 16 </width>
+		<height> 16 </height>
+	</image>
+
+ 	<image name="fader_top_right">
+		<alpha> <copy src="parent()" trait="alpha" /> </alpha>
+		<filename> Menus\darn\fb\fader_tr.dds </filename>
+		<x> <copy src="parent()" trait="_rounded_width" /> </x>
+		<y> -16 </y>
+		<width> 16 </width>
+		<height> 16 </height>
+	</image>
+
+	<image name="fader_bottom_right">
+		<alpha> <copy src="parent()" trait="alpha" /> </alpha>
+		<filename> Menus\darn\fb\fader_br.dds </filename>
+		<x> <copy src="parent()" trait="_rounded_width" /> </x>
+		<y> <copy src="parent()" trait="_rounded_height" /> </y>
+		<width> 16 </width>
+		<height> 16 </height>
+	</image>
+
+	<image name="fader_bottom_left">
+		<alpha> <copy src="parent()" trait="alpha" /> </alpha>
+		<filename> Menus\darn\fb\fader_bl.dds </filename>
+		<x> -16 </x>
+		<y> <copy src="parent()" trait="_rounded_height" /> </y>
+		<width> 16 </width>
+		<height> 16 </height>
+	</image>
+
+<!-- /rect -->

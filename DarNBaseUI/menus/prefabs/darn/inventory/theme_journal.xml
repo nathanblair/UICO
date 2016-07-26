@@ -1,0 +1,567 @@
+<!-- "journal" inventory by wz -->
+
+	<image name="inv_background">
+		<id> &generic; </id>
+		<target> &true; </target>
+		<filename> Menus\darn\shared_main_background_1_notile.dds </filename>
+		<depth> 1 </depth>
+		<width> 745 </width>
+		<height> 792 </height>
+		<x>
+			<copy src="screen()" trait="cropx" />
+			<add src="screen()" trait="cropx" />
+			<sub> 60 </sub>
+			<max src="screen()" trait="cropx" />
+			<add> 7 </add>
+			<add src="InventoryMenu" trait="_iHudHSpace" />
+		</x>
+		<y>
+			<copy src="screen()" trait="height" />
+			<sub src="screen()" trait="cropy" />
+			<sub src="screen()" trait="cropy" />
+			<sub src="me()" trait="height" />
+			<add> 3 </add>
+			<sub src="InventoryMenu" trait="_iHudVSpace" />
+		</y>
+		<locus> &true; </locus>
+	   
+	   <image name="inv_background_2">
+			<filename> Menus\darn\shared_main_background_1_notile.dds </filename>
+			<depth> 1 </depth>
+			<width> 745 </width>
+			<height> 792 </height>
+			<cropy> -300 </cropy>
+			<x> 0 </x>
+			<y> -430 </y>
+		</image>
+		
+		<image name="inv_background_Right2">
+			<filename> Shared\shared_main_background_2.dds </filename>
+			<depth> -14 </depth>
+			<width> 54 </width>
+			<height> 792 </height>
+			<cropy> -300 </cropy>
+			<x> 700 </x>
+			<y> -430 </y>
+		</image>
+		
+		<image name="inv_background_Right">
+			<filename> Shared\shared_main_background_2.dds </filename>
+			<depth> -15 </depth>
+			<width> 54 </width>
+			<height> 792 </height>
+			<x> 700 </x>
+			<y> 0 </y>
+		</image>
+
+
+		<!-- PAGES ============================================================== -->
+		<image name="inv_p1">
+			<visible> <copy src="InventoryMenu" trait="user0" /> <eq> 1 </eq> </visible>	<!-- current visible tab page = me -->
+			<filename> Shared\shared_01_tab.dds </filename>
+			<width> 791 </width>
+			<height> 176 </height>
+			<x> 23 </x>
+			<y> 542 </y>
+			<depth> 2 </depth>
+		</image>
+
+		<image name="inv_p2">
+			<visible> <copy src="InventoryMenu" trait="user0" /> <eq> 2 </eq> </visible>	<!-- current visible tab page = me -->
+			<filename> Menus\darn\shared_02_tab_noline.dds </filename>
+			<width> 791 </width>
+			<height> 176 </height>
+			<x> 23 </x>
+			<y> 542 </y>
+			<depth> 2 </depth>
+		</image>
+		
+		<image name="inv_p3">
+			<visible> <copy src="InventoryMenu" trait="user0" /> <eq> 3 </eq> </visible>	<!-- current visible tab page = me -->
+			<filename> Shared\shared_03_tab.dds </filename>
+			<width> 791 </width>
+			<height> 176 </height>
+			<x> 23 </x>
+			<y> 542 </y>
+			<depth> 2 </depth>
+		</image>
+		
+		<image name="inv_p4">
+			<visible> <copy src="InventoryMenu" trait="user0" /> <eq> 4 </eq> </visible>	<!-- current visible tab page = me -->
+			<filename> Shared\shared_04_tab.dds </filename>
+			<width> 791 </width>
+			<height> 176 </height>
+			<x> 23 </x>
+			<y> 542 </y>
+			<depth> 2 </depth>
+		</image>
+
+		<image name="inv_p5">
+			<visible> <copy src="InventoryMenu" trait="user0" /> <eq> 5 </eq> </visible>	<!-- current visible tab page = me -->
+			<filename> Shared\shared_05_tab.dds </filename>
+			<width> 791 </width>
+			<height> 176 </height>
+			<x> 23 </x>
+			<y> 542 </y>
+			<depth> 2 </depth>
+		</image>
+  
+
+		<!-- LINES ============================================================== -->
+		<rect name="inv_lines">
+<include src="darn\inventory\inventory_lines.xml" />
+		</rect>
+
+		<rect name="inv_list_lines">
+<include src="darn\inventory\inventory_listlines.xml" />
+		</rect>
+
+
+		<!-- EXTRAS ============================================================== -->
+		<rect name="inv_extra_data">
+<include src="darn\inventory\inventory_extradata.xml" />
+			<depth> 6 </depth>
+			<x> 0 </x>
+			<y> 585 </y> <!-- DarN 580 -->
+			<height> 32 </height>
+			<locus> &true; </locus>
+		</rect>
+
+
+		<!-- TABS ============================================================== -->
+		<rect name="inv_tabs">
+			<locus> &true; </locus>
+			<depth> 1 </depth>
+			<width> 730 </width>
+			<height> 128 </height>
+			<x> 0 </x>
+			<y> 594 </y>
+				
+			<rect name="inv_tabs_prev">
+				<id> 7 </id>
+				<target> &true; </target>
+				<width> 1 </width>
+				<height> 1 </height>
+				<x> -1 </x>
+				<y> -1 </y>
+				<clicksound> 5 </clicksound>
+			</rect>
+			
+			<rect name="inv_tabs_next">
+				<id> 8 </id>
+				<target> &true; </target>
+				<width> 1 </width>
+				<height> 1 </height>
+				<x> -1 </x>
+				<y> -1 </y>
+				<clicksound> 5 </clicksound>
+			</rect>
+			
+			<rect name="inv_tabs_p1">
+				<id> 1 </id>
+				<target> <copy src="inv_p1" trait="visible" /> <eq> &false; </eq> </target>
+				<depth> 7 </depth>
+				<width> 135 </width>
+				<height> 85 </height>
+				<x> 28 </x>
+				<y> 37 </y>
+				<locus> &true; </locus>
+				<clicksound> 5 </clicksound>
+
+				<image name="inv_tabs_p1_icon">
+					<filename> Shared\all_tabs_icons.dds </filename>
+					<cropx> 0 </cropx>
+					<cropy> 0 </cropy> <!-- DarN 128 -->
+					<width> <!-- DarN 64 -->
+						<copy> 64 </copy>
+						<mul src="me()" trait="zoom" />
+						<div> 100 </div>
+					</width>
+					<height> <copy src="me()" trait="width" /> </height> <!-- DarN 64 -->
+					<!-- <x> 45 </x> --> <!-- DarN 37 -->
+					<x>
+						<copy src="parent()" trait="width" />
+						<sub src="me()" trait="width" />
+						<div> 2 </div>
+					</x>
+					<y>
+						<copy src="parent()" trait="height" />
+						<sub src="me()" trait="height" />
+						<div> 2 </div>
+					</y> <!-- DarN 8 -->
+					<zoom>
+						<copy> 75 </copy>
+						<add>
+							<copy> 15 </copy>
+							<onlyif>
+								<copy src="parent()" trait="mouseover" />
+								<eq> 1 </eq>
+								<or> <not src="parent()" trait="target" /> </or>
+							</onlyif>
+						</add>
+					</zoom> <!-- DarN add -->
+				</image>
+
+				<image name="inv_tabs_p1_selection_off">
+					<filename> Shared\general_tab_selection_off.dds </filename>
+					<visible> <copy src="parent()" trait="target" /> <eq> &true; </eq> </visible>
+					<width> 136 </width>
+					<height> 36 </height>
+					<x> 0 </x>
+					<y> 24 </y>
+				</image>
+				<image name="inv_tabs_p1_selection_on">
+					<filename> Shared\general_tab_selection_on.dds </filename>
+					<visible> <copy src="parent()" trait="target" /> <eq> &false; </eq> </visible>
+					<width> 136 </width>
+					<height> 36 </height>
+					<x> 0 </x>
+					<y> 24 </y>
+				</image>
+			</rect>
+			
+			<rect name="inv_tabs_p2">
+				<id> 2 </id>
+				<target> <copy src="inv_p2" trait="visible" /> <eq> &false; </eq> </target>
+				<depth> 7 </depth>
+				<width> 135 </width>
+				<height> 85 </height>
+				<x> 165 </x>
+				<y> 37 </y>
+				<locus> &true; </locus>
+				<clicksound> 5 </clicksound>
+				<image name="inv_tabs_p2_icon">
+					<filename> Shared\all_tabs_icons.dds </filename>
+					<cropx>
+						<copy> 64 </copy>
+						<mul src="me()" trait="zoom" />
+						<div> 100 </div>
+					</cropx>
+					<cropy> 0 </cropy> <!-- DarN 128 -->
+					<width> <!-- DarN 64 -->
+						<copy> 64 </copy>
+						<mul src="me()" trait="zoom" />
+						<div> 100 </div>
+					</width>
+					<height> <copy src="me()" trait="width" /> </height> <!-- DarN 64 -->
+					<!-- <x> 45 </x> --> <!-- DarN 37 -->
+					<x>
+						<copy src="parent()" trait="width" />
+						<sub src="me()" trait="width" />
+						<div> 2 </div>
+					</x>
+					<y>
+						<copy src="parent()" trait="height" />
+						<sub src="me()" trait="height" />
+						<div> 2 </div>
+					</y> <!-- DarN 8 -->
+					<zoom>
+						<copy> 75 </copy>
+						<add>
+							<copy> 15 </copy>
+							<onlyif>
+								<copy src="parent()" trait="mouseover" />
+								<eq> 1 </eq>
+								<or> <not src="parent()" trait="target" /> </or>
+							</onlyif>
+						</add>
+					</zoom> <!-- DarN add -->
+				</image>
+				<image name="inv_tabs_p2_selection_off">
+					<filename> Shared\general_tab_selection_off.dds </filename>
+					<visible> <copy src="parent()" trait="target" /> <eq> &true; </eq> </visible>
+					<width> 136 </width>
+					<height> 36 </height>
+					<x> 0 </x>
+					<y> 24 </y>
+				</image>
+				<image name="inv_tabs_p2_selection_on">
+					<filename> Shared\general_tab_selection_on.dds </filename>
+					<visible> <copy src="parent()" trait="target" /> <eq> &false; </eq> </visible>
+					<width> 136 </width>
+					<height> 36 </height>
+					<x> 0 </x>
+					<y> 24 </y>
+				</image>
+			</rect>
+			
+			<rect name="inv_tabs_p3">
+				<id> 3 </id>
+				<target> <copy src="inv_p3" trait="visible" /> <eq> &false; </eq> </target>
+				<depth> 7 </depth>
+				<width> 134 </width>
+				<height> 85 </height>
+				<x> 304 </x>
+				<y> 37 </y>
+				<locus> &true; </locus>
+				<clicksound> 5 </clicksound>
+				<image name="inv_tabs_p3_icon">
+					<filename> Shared\all_tabs_icons.dds </filename>
+					<cropx>
+						<copy> 128 </copy>
+						<mul src="me()" trait="zoom" />
+						<div> 100 </div>
+					</cropx>
+					<cropy> 0 </cropy> <!-- DarN 128 -->
+					<width> <!-- DarN 64 -->
+						<copy> 64 </copy>
+						<mul src="me()" trait="zoom" />
+						<div> 100 </div>
+					</width>
+					<height> <copy src="me()" trait="width" /> </height> <!-- DarN 64 -->
+					<!-- <x> 45 </x> --> <!-- DarN 37 -->
+					<x>
+						<copy src="parent()" trait="width" />
+						<sub src="me()" trait="width" />
+						<div> 2 </div>
+					</x>
+					<y>
+						<copy src="parent()" trait="height" />
+						<sub src="me()" trait="height" />
+						<div> 2 </div>
+					</y> <!-- DarN 8 -->
+					<zoom>
+						<copy> 75 </copy>
+						<add>
+							<copy> 15 </copy>
+							<onlyif>
+								<copy src="parent()" trait="mouseover" />
+								<eq> 1 </eq>
+								<or> <not src="parent()" trait="target" /> </or>
+							</onlyif>
+						</add>
+					</zoom> <!-- DarN add -->
+				</image>
+				<image name="inv_tabs_p3_selection_off">
+					<filename> Shared\general_tab_selection_off.dds </filename>
+					<visible> <copy src="parent()" trait="target" /> <eq> &true; </eq> </visible>
+					<width> 136 </width>
+					<height> 36 </height>
+					<x> 0 </x>
+					<y> 24 </y>
+				</image>
+				<image name="inv_tabs_p3_selection_on">
+					<filename> Shared\general_tab_selection_on.dds </filename>
+					<visible> <copy src="parent()" trait="target" /> <eq> &false; </eq> </visible>
+					<width> 136 </width>
+					<height> 36 </height>
+					<x> 0 </x>
+					<y> 24 </y>
+				</image>
+			</rect>
+			
+			<rect name="inv_tabs_p4">
+				<id> 4 </id>
+				<target> <copy src="inv_p4" trait="visible" /> <eq> &false; </eq> </target>
+				<depth> 7 </depth>
+				<width> 135 </width>
+				<height> 85 </height>
+				<x> 443 </x>
+				<y> 37 </y>
+				<locus> &true; </locus>
+				<clicksound> 5 </clicksound>
+				<image name="inv_tabs_p4_icon">
+					<filename> Shared\all_tabs_icons.dds </filename>
+					<depth> -1 </depth>
+					<cropx>
+						<copy> 192 </copy>
+						<mul src="me()" trait="zoom" />
+						<div> 100 </div>
+					</cropx>
+					<cropy> 0 </cropy> <!-- DarN 128 -->
+					<width> <!-- DarN 64 -->
+						<copy> 64 </copy>
+						<mul src="me()" trait="zoom" />
+						<div> 100 </div>
+					</width>
+					<height> <copy src="me()" trait="width" /> </height> <!-- DarN 64 -->
+					<!-- <x> 45 </x> --> <!-- DarN 37 -->
+					<x>
+						<copy src="parent()" trait="width" />
+						<sub src="me()" trait="width" />
+						<div> 2 </div>
+					</x>
+					<y>
+						<copy src="parent()" trait="height" />
+						<sub src="me()" trait="height" />
+						<div> 2 </div>
+					</y> <!-- DarN 8 -->
+					<zoom>
+						<copy> 75 </copy>
+						<add>
+							<copy> 15 </copy>
+							<onlyif>
+								<copy src="parent()" trait="mouseover" />
+								<eq> 1 </eq>
+								<or> <not src="parent()" trait="target" /> </or>
+							</onlyif>
+						</add>
+					</zoom> <!-- DarN add -->
+				</image>
+				<image name="inv_tabs_p4_selection_off">
+					<filename> Shared\general_tab_selection_off.dds </filename>
+					<depth> -3 </depth>
+					<visible> <copy src="parent()" trait="target" /> <eq> &true; </eq> </visible>
+					<width> 136 </width>
+					<height> 36 </height>
+					<x> 0 </x>
+					<y> 24 </y>
+				</image>
+				<image name="inv_tabs_p4_selection_on">
+					<filename> Shared\general_tab_selection_on.dds </filename>
+					<visible> <copy src="parent()" trait="target" /> <eq> &false; </eq> </visible>
+					<width> 136 </width>
+					<height> 36 </height>
+					<x> 0 </x>
+					<y> 24 </y>
+				</image>
+			</rect>
+			
+			<rect name="inv_tabs_p5">
+				<id> 5 </id>
+				<target> <copy src="inv_p5" trait="visible" /> <eq> &false; </eq> </target>
+				<depth> 7 </depth>
+				<width> 135 </width>
+				<height> 85 </height>
+				<x> 578 </x>
+				<y> 37 </y>
+				<locus> &true; </locus>
+				<clicksound> 5 </clicksound>
+				<image name="inv_tabs_p5_icon">
+					<filename> Shared\all_tabs_icons.dds </filename>
+					<cropx>
+						<copy> 256 </copy>
+						<mul src="me()" trait="zoom" />
+						<div> 100 </div>
+					</cropx>
+					<cropy> 0 </cropy> <!-- DarN 128 -->
+					<width> <!-- DarN 64 -->
+						<copy> 64 </copy>
+						<mul src="me()" trait="zoom" />
+						<div> 100 </div>
+					</width>
+					<height> <copy src="me()" trait="width" /> </height> <!-- DarN 64 -->
+					<!-- <x> 45 </x> --> <!-- DarN 37 -->
+					<x>
+						<copy src="parent()" trait="width" />
+						<sub src="me()" trait="width" />
+						<div> 2 </div>
+					</x>
+					<y>
+						<copy src="parent()" trait="height" />
+						<sub src="me()" trait="height" />
+						<div> 2 </div>
+					</y> <!-- DarN 8 -->
+					<zoom>
+						<copy> 75 </copy>
+						<add>
+							<copy> 15 </copy>
+							<onlyif>
+								<copy src="parent()" trait="mouseover" />
+								<eq> 1 </eq>
+								<or> <not src="parent()" trait="target" /> </or>
+							</onlyif>
+						</add>
+					</zoom> <!-- DarN add -->
+				</image>
+				<image name="inv_tabs_p5_selection_off">
+					<filename> Shared\general_tab_selection_off.dds </filename>
+					<visible> <copy src="parent()" trait="target" /> <eq> &true; </eq> </visible>
+					<width> 136 </width>
+					<height> 36 </height>
+					<x> 0 </x>
+					<y> 24 </y>
+				</image>
+				<image name="inv_tabs_p5_selection_on">
+					<filename> Shared\general_tab_selection_on.dds </filename>
+					<visible> <copy src="parent()" trait="target" /> <eq> &false; </eq> </visible>
+					<width> 136 </width>
+					<height> 36 </height>
+					<x> 0 </x>
+					<y> 24 </y>
+				</image>
+			</rect>
+		</rect>
+
+
+		<!-- TOP HEADERS ============================================================== -->
+		<rect name="inv_headers_top">
+			<include src="darn\inventory\inventory_header.xml" />
+		</rect> <!-- inv_headers_top -->
+
+
+
+		<!-- SCROLL ============================================================== -->
+		<rect name="inv_scroll_bar">
+			<include src="darn\inventory\inventory_scrollbar.xml" />
+		</rect>
+
+
+		
+		<!-- WINDOW ============================================================== -->
+		<rect name="inv_window">
+			<depth> 10 </depth>
+			<locus> &true; </locus>
+			<clipwindow> &false; </clipwindow> <!-- DarN &true; -->
+			<width>
+				<copy src="InventoryMenu" trait="_iItemSize" />
+				<add> 4 </add>
+				<mul src="InventoryMenu" trait="_iScrColumns" />
+				<sub> 4 </sub>
+				<onlyif src="InventoryMenu" trait="_bEnableGrid" />
+				<add>
+					<copy> 645 </copy>
+					<onlyifnot src="InventoryMenu" trait="_bEnableGrid" />
+				</add>
+			</width>
+			<height>
+				<copy src="InventoryMenu" trait="_iItemSize" />
+				<add> 1 </add> <!-- DarN 4 -->
+				<add>
+					<copy> 3 </copy>
+					<onlyif src="InventoryMenu" trait="_bEnableGrid" />
+				</add>
+				<mul src="InventoryMenu" trait="_iNumRows" />
+				<sub> 4 </sub>
+			</height>
+			<x>
+				<copy> 40 </copy>
+				<add>
+					<copy> 10 </copy>
+					<onlyif>
+						<copy src="InventoryMenu" trait="_bEnableHGrid" />
+						<and src="inv_scroll_bar" trait="visible" />
+					</onlyif>
+				</add>
+				<add>
+					<copy> 645 </copy>
+					<sub src="me()" trait="width" />
+					<div> 2 </div>
+					<floor> 0 </floor>
+				</add>
+			</x>
+			<y>
+				<copy> -35 </copy> <!-- DarN 85 -->
+				<!-- <add>
+					<copy> 486 </copy>
+					<sub src="me()" trait="height" />
+					<sub>
+						<copy src="inv_scroll_bar" trait="height" />
+						<sub> 16 </sub>
+						<onlyif>
+							<copy src="InventoryMenu" trait="_bEnableHGrid" />
+							<and src="inv_scroll_bar" trait="visible" />
+						</onlyif>
+					</sub>
+					<div> 2 </div>
+					<floor> 0 </floor>
+				</add> -->
+			</y>
+					
+					
+			<rect name="inv_pane">
+				<include src="darn\inventory\inventory_pane.xml" />
+			</rect>	<!-- inv_pane -->
+		</rect>	<!-- inv_window -->
+		
+	</image> <!-- inv_background -->

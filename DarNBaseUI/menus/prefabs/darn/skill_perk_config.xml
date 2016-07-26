@@ -1,0 +1,17 @@
+
+<!--	DARNIFIED SKILL PERK CONFIG 1.0
+-->
+<rect name="darnui_settings">
+	<_configversion> 1.0 </_configversion>
+
+	<!-- Skill picture -->
+	<_spzoom>60</_spzoom>
+
+	<!-- Description text (def. 2,0,0,0,255) -->
+	<_descfont>2</_descfont>
+	<_descred>0</_descred>
+	<_descgreen>0</_descgreen>
+	<_descblue>0</_descblue>
+	<_descalpha>200</_descalpha>
+
+</rect>

@@ -1,0 +1,57 @@
+
+<!--	DARNIFIED DIALOG CONFIG 1.1
+-->
+<rect name="darnui_settings">
+	<_configversion> 1.0 </_configversion>
+
+	<!-- Cinematic adds black bars to the top & bottom of the screen,
+	giving a movie like appearance (def. &false;, 12, 240)-->
+	<_cinematic> &false; </_cinematic>
+	<_heightperc> 12 </_heightperc> <!-- bar height - percentage of screen height -->
+	<_cinealpha> 240 </_cinealpha>
+
+	<!-- NPC name text (def. 3,254,244,183,255,0,0 -->
+	<_npcfont> 3 </_npcfont>
+	<_npcred> 254 </_npcred>
+	<_npcgreen> 244 </_npcgreen>
+	<_npcblue> 183 </_npcblue>
+	<_npcalpha> 255 </_npcalpha>
+	<_npcxoffset> 0 </_npcxoffset>
+	<_npcyoffset> 0 </_npcyoffset>
+
+	<!-- Dialog text (def. 3,242,238,225,255,0,0,&true;,120 -->
+	<_dlgfont> 3 </_dlgfont>
+	<_dlgred> 242 </_dlgred>
+	<_dlggreen> 238 </_dlggreen>
+	<_dlgblue> 225 </_dlgblue>
+	<_dlgalpha> 255 </_dlgalpha>
+	<_dlgxoffset> 0 </_dlgxoffset>
+	<_dlgyoffset> 0 </_dlgyoffset>
+	<_dlgbackground> &true; </_dlgbackground>
+	<_dlgbackgroundalpha> 120 </_dlgbackgroundalpha>
+
+	<!-- Topic list text (def. 3,255,0,0 -->
+	<_tlfont> 3 </_tlfont>
+	<_tlalpha> 255 </_tlalpha>
+	<_tlxoffset> 0 </_tlxoffset>
+	<_tlyoffset> 0 </_tlyoffset>
+
+	<!-- TEXTURES -->
+	<_t_persuade> Menus\Dialog\dialog_button_persuasion.dds </_t_persuade>
+	<_t_persuade_o> Menus\Dialog\dialog_button_persuasion_hit.dds </_t_persuade_o>
+	<_t_barter> Menus\Dialog\dialog_button_barter.dds </_t_barter>
+	<_t_barter_o> Menus\Dialog\dialog_button_barter_hit.dds </_t_barter_o>
+	<_t_spellbuy> Menus\Dialog\dialog_button_spell_bartering.dds </_t_spellbuy>
+	<_t_spellbuy_o> Menus\Dialog\dialog_button_spell_bartering_hit.dds </_t_spellbuy_o>
+	<_t_repair> Menus\Dialog\dialog_button_repairing.dds </_t_repair>
+	<_t_repair_o> Menus\Dialog\dialog_button_repairing_hit.dds </_t_repair_o>
+	<_t_train> Menus\Dialog\dialog_button_training.dds </_t_train>
+	<_t_train_o> Menus\Dialog\dialog_button_training_hit.dds </_t_train_o>
+	<_t_recharge> Menus\Dialog\dialog_button_recharging.dds </_t_recharge>
+	<_t_recharge_o> Menus\Dialog\dialog_button_recharging_hit.dds </_t_recharge_o>
+	<_t_goodbye> Menus\Dialog\dialog_button_goodbye.dds </_t_goodbye>
+	<_t_goodbye_o> Menus\Dialog\dialog_button_goodbye_hit.dds </_t_goodbye_o>
+	<_t_select1> Menus\Dialog\dialog_selection_full.dds </_t_select1>
+	<_t_select2> Menus\Dialog\dialog_selection_cut.dds </_t_select2>
+	
+</rect>

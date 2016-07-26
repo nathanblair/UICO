@@ -1,0 +1,52 @@
+
+<!--	DARNIFIED BARTER CONFIG 1.0
+-->
+<rect name="darnui_settings">
+	<_configversion> 1.0 </_configversion>
+
+<!-- *** Haggle menu *** -->
+
+	<!-- Name text (def. 3,0,0,0,255) -->
+	<_nfont>3</_nfont>
+	<_nred>0</_nred>
+	<_ngreen>0</_ngreen>
+	<_nblue>0</_nblue>
+	<_nalpha>255</_nalpha>
+	<!-- Skill text (def. 2,0,0,0,200) -->
+	<_sfont>2</_sfont>
+	<_sred>0</_sred>
+	<_sgreen>0</_sgreen>
+	<_sblue>0</_sblue>
+	<_salpha>200</_salpha>
+	<!-- Disposition text (def. 2,0,0,0,200) -->
+	<_dfont>2</_dfont>
+	<_dred>0</_dred>
+	<_dgreen>0</_dgreen>
+	<_dblue>0</_dblue>
+	<_dalpha>200</_dalpha>
+	<!-- Difficulty text (def. 2,117,59,33,200,0,2) -->
+	<_difont>2</_difont>
+	<_dired>117</_dired>
+	<_digreen>59</_digreen>
+	<_diblue>33</_diblue>
+	<_dialpha>200</_dialpha>
+	<_dixoffset>0</_dixoffset>
+	<_diyoffset>2</_diyoffset>
+	<!-- Info text ie. "Buy at.." (def. 2,0,0,0,200) -->
+	<_ifont>2</_ifont>
+	<_ired>0</_ired>
+	<_igreen>0</_igreen>
+	<_iblue>0</_iblue>
+	<_ialpha>200</_ialpha>
+
+	
+<!-- *** Quantity menu *** -->
+
+	<!-- Title text ie. "How Many?" (def. 3,0,0,0,180) -->
+	<_tfont>3</_tfont>
+	<_tred>0</_tred>
+	<_tgreen>0</_tgreen>
+	<_tblue>0</_tblue>
+	<_talpha>180</_talpha>
+
+</rect>

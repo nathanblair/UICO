@@ -1,0 +1,53 @@
+<!-- created by wz -->
+
+	<x>
+		<copy src="inv_window" trait="x"/>
+		<add> 66 </add>
+	</x>
+	<y>
+		<copy src="inv_window" trait="y"/>
+		<sub> 24 </sub>
+	</y>
+	<depth> 6 </depth>
+	<width>
+		<copy src="inv_window" trait="width"/>
+	</width>
+	<height>
+		<copy src="inv_window" trait="height"/>
+		<add> 76 </add>
+	</height>
+	<locus> &true; </locus>
+	<visible> <not src="InventoryMenu" trait="_bEnableGrid"/> </visible>
+	
+	<image name="inv_border_top">
+		<filename> Inventory\inv_border_top.dds </filename>
+		<width> 596 </width>
+		<height> 160 </height>
+		<x> 0 </x>
+		<y> 0 </y>
+	</image>
+	<image name="inv_border_middle">
+		<filename> Inventory\inv_border_middle.dds </filename>
+		<zoom> -1 </zoom>
+		<width> 1024 </width>
+		<height>
+			<copy src="parent()" trait="height"/>
+			<sub src="sibling(inv_border_top)" trait="height"/>
+			<sub src="sibling(inv_border_bottom)" trait="height"/>
+		</height>
+		<x> 0 </x>
+		<y>
+			<copy src="sibling(inv_border_top)" trait="x"/>
+			<add src="sibling(inv_border_top)" trait="height"/>
+		</y>
+	</image>
+	<image name="inv_border_bottom">
+		<filename> Inventory\inv_border_bottom.dds </filename>
+		<width> 628 </width>
+		<height> 160 </height>
+		<x> -57 </x>
+		<y>
+			<copy src="parent()" trait="height"/>
+			<sub src="me()" trait="height"/>
+		</y>
+	</image>

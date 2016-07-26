@@ -1,0 +1,588 @@
+<!-- DarN Version 1.2 -->
+
+<!-- template for map icons -->
+<template name="map_world_icon">
+	<image name="map_world_icon">
+		<id> 43 </id>
+		<_isplayermarker>
+			<copy src="me()" trait="user5" />
+			<eq> 99 </eq>
+			<and> <not src="me()" trait="user11"/> </and>
+		</_isplayermarker>
+		<_isquestmarker>
+			<copy src="me()" trait="user5" />
+			<eq> 99 </eq>
+			<and src="me()" trait="user11"/>
+		</_isquestmarker>
+		<_islocation>
+			<copy src="me()" trait="user5"/>
+			<lt> 90 </lt>
+		</_islocation>
+		<target>
+			<copy src="me()" trait="_islocation" />
+			<and src="me()" trait="user8"/>
+		</target>
+		<filename>
+			<copy src="me()" trait="user6"/>
+			<onlyif>
+				<copy src="me()" trait="user5"/>
+				<eq> 99 </eq>
+			</onlyif>
+			<add>
+				<copy> 3 </copy>
+				<onlyif>
+					<copy src="me()" trait="user5"/>
+					<eq> 98 </eq>
+				</onlyif>
+			</add>
+			<add> 1 </add>
+			<copy src="parent()" trait="_filename_"/>
+		</filename>
+		<cropx>
+			<copy src="me()" trait="user5"/>
+			<sub> 1 </sub>
+			<mul>
+				<copy> 32 </copy>
+				<mul src="me()" trait="zoom" />
+				<div> 100 </div>
+			</mul>
+			<onlyif src="me()" trait="_islocation" />
+		</cropx>
+		<cropy>
+			<copy src="me()" trait="user6"/>
+			<sub> 1 </sub>
+			<mul>
+				<copy> 32 </copy>
+				<mul src="me()" trait="zoom" />
+				<div> 100 </div>
+			</mul>
+			<onlyif>
+				<copy src="me()" trait="user5"/>
+				<lt> 90 </lt>
+			</onlyif>
+		</cropy>
+		<red>
+			<copy> 0 </copy>
+			<add>
+				<copy> 255 </copy>
+				<onlyif src="me()" trait="user11"/>
+				<onlyif src="me()" trait="user10"/>
+			</add>
+			<add>
+				<add> 255 </add>
+				<onlyifnot src="me()" trait="user11"/>
+				<onlyifnot src="me()" trait="user12"/>
+			</add>
+			<!-- DarN pink player marker at sub 100% scale -->
+			<!-- <add>
+				<copy> 255 </copy>
+				<onlyif>
+					<not src="me()" trait="user11"/>
+					<and>
+						<copy src="MapMenu" trait="_mapzoom" />
+						<neq> 200 </neq>
+					</and>
+				</onlyif>
+			</add> -->
+		</red>
+		<green>
+			<copy> 0 </copy>
+			<add>
+				<add> 255 </add>
+				<onlyif src="me()" trait="user11"/>
+				<onlyifnot src="me()" trait="user10"/>
+			</add>
+			<add>
+				<add> 255 </add>
+				<onlyifnot src="me()" trait="user11"/>
+				<onlyifnot src="me()" trait="user12"/>
+			</add>
+		</green>
+		<blue>
+			<copy> 0 </copy>
+			<add>
+				<add> 255 </add>
+				<onlyifnot src="me()" trait="user11"/>
+			</add>
+		</blue>
+		<depth>
+			<copy src="me()" trait="_random_depth"/>
+			<max>
+				<copy> 90 </copy>
+				<onlyif>
+					<copy src="me()" trait="user5"/>
+					<gt> 90 </gt>
+				</onlyif>
+			</max>
+			<max src="me()" trait="user7"/>
+			<add> 3 </add> <!-- DarN 1 -->
+		</depth>
+		<width>
+			<!-- DarN def. obliviob = -4 -->
+			<copy src="parent()" trait="_large_icon_width_adj"/>
+			<mul src="me()" trait="zoom" />
+			<div> 100 </div>
+			<onlyif>
+				<copy src="me()" trait="user5"/>
+				<gt> 90 </gt>
+			</onlyif>
+			<add> <!--_mapiconwidth DarN 24 -->
+				<copy> 32 </copy>
+				<mul src="me()" trait="zoom" />
+				<div> 100 </div>
+			</add>
+			<onlyif>
+				<copy src="me()" trait="user5"/>
+				<neq> 98 </neq>
+			</onlyif>
+			<add>
+				<copy> 64 </copy> <!-- DarN 48 -->
+				<mul src="me()" trait="zoom" />
+				<div> 100 </div>
+				<onlyif>
+					<copy src="me()" trait="user5"/>
+					<eq> 98 </eq>
+				</onlyif>
+			</add>
+		</width>
+		<height>
+			<copy src="parent()" trait="_large_icon_height_adj"/> <!-- DarN def. obliviob = 10 -->
+			<mul src="me()" trait="zoom" />
+			<div> 100 </div>
+			<onlyif>
+				<copy src="me()" trait="user5"/>
+				<gt> 90 </gt>
+			</onlyif>
+			<add> <!--_mapiconheight DarN 24 -->
+				<copy> 32 </copy>
+				<mul src="me()" trait="zoom" />
+				<div> 100 </div>
+			</add>
+			<onlyif>
+				<copy src="me()" trait="user5"/>
+				<neq> 98 </neq>
+			</onlyif>
+			<add>
+				<copy> 64 </copy> <!-- DarN user5=98 = player arrow -->
+				<mul src="me()" trait="zoom" />
+				<div> 100 </div>
+				<onlyif>
+					<copy src="me()" trait="user5"/>
+					<eq> 98 </eq>
+				</onlyif>
+			</add>
+		</height>
+		<x>
+			<copy src="me()" trait="user1"/>
+			<sub>
+				<copy> 17 </copy> <!-- DarN 17 -->
+				<mul src="me()" trait="zoom" />
+				<div> 100 </div>
+				<onlyifnot>
+					<copy src="me()" trait="user5"/>
+					<eq> 98 </eq>
+				</onlyifnot>
+			</sub>
+			<!-- DarN hack -->
+			<sub>
+				<copy> 4 </copy>
+				<onlyif>
+					<copy src="me()" trait="user5"/>
+					<eq> 98 </eq>
+					<and>
+						<copy src="darnui_settings" trait="_mapscale" />
+						<gt> 80 </gt>
+					</and>
+				</onlyif>
+			</sub>
+		</x>
+		<y>
+			<copy src="me()" trait="user2"/>
+			<!-- <sub> 17 </sub> -->
+			<sub>
+				<copy src="me()" trait="height" />
+				<div> 2 </div>
+			</sub>
+			<sub>
+				<copy src="me()" trait="height" />
+				<div> 2 </div>
+				<onlyifnot src="me()" trait="_islocation"/>
+				<onlyifnot>
+					<copy src="me()" trait="user5"/>
+					<eq> 98 </eq>
+				</onlyifnot>
+			</sub>
+		</y>
+		<zoom>
+			<copy src="darnui_settings" trait="_mapscale" />
+			<max>
+				<copy> 75 </copy>
+				<onlyif>
+					<copy src="me()" trait="mouseover" />
+					<gt> 0 </gt>
+				</onlyif>
+				<onlyif>
+					<copy src="me()" trait="user5"/>
+					<lte> 90 </lte>
+				</onlyif>
+			</max>
+			<min> 75 </min>
+		</zoom>
+		<clips> &true; </clips>
+		<locus> &true; </locus> <!-- needs to be a locus in case it needs to be rotated -->
+		<visible>
+			<copy> 2 </copy>
+			<sub>
+				<copy> 1 </copy>
+				<onlyif>
+					<not src="MapMenu" trait="_discovered"/> <!-- discovered locations -->
+					<and src="me()" trait="_islocation" />
+					<and src="me()" trait="user6"/>
+					<or>
+						<not src="MapMenu" trait="_known"/> <!-- undiscovered locations -->
+						<and src="me()" trait="_islocation" />
+						<and> <not src="me()" trait="user6"/> </and>
+					</or>
+					<or>
+						<not src="MapMenu" trait="_qm"/> <!-- quest markers -->
+						<and src="me()" trait="_isquestmarker"/>
+					</or>
+					<or>
+						<not src="MapMenu" trait="_pm"/> <!-- player marker -->
+						<and src="me()" trait="_isplayermarker"/>
+					</or>
+					<or>
+						<copy src="me()" trait="user5"/>
+						<eq> 98 </eq> <!-- you are here -->
+						<and> <not src="MapMenu" trait="_pp"/> </and>
+					</or>
+					<or>
+						<copy src="me()" trait="user5"/>
+						<eq> 3 </eq> <!-- town gate -->
+						<and> <not src="MapMenu" trait="_towns"/> </and>
+					</or>
+					<or>
+						<copy src="me()" trait="user5"/>
+						<eq> 9 </eq> <!-- village -->
+						<and> <not src="MapMenu" trait="_settlements"/> </and>
+					</or>
+					<or>
+						<copy src="me()" trait="user5"/>
+						<eq> 8 </eq> <!-- tavern -->
+						<and> <not src="MapMenu" trait="_inns"/> </and>
+					</or>
+					<or>
+						<copy src="me()" trait="user5"/>
+						<eq> 1 </eq> <!-- camp -->
+						<and> <not src="MapMenu" trait="_camps"/> </and>
+					</or>
+					<or>
+						<copy src="me()" trait="user5"/>
+						<eq> 6 </eq> <!-- mine entrance -->
+						<and> <not src="MapMenu" trait="_mines"/> </and>
+					</or>
+					<or>
+						<copy src="me()" trait="user5"/>
+						<eq> 2 </eq> <!-- cave entrance -->
+						<and> <not src="MapMenu" trait="_caves"/> </and>
+					</or>
+					<or>
+						<copy src="me()" trait="user5"/>
+						<eq> 5 </eq> <!-- stronghold ruin -->
+						<and> <not src="MapMenu" trait="_forts"/> </and>
+					</or>
+					<or>
+						<copy src="me()" trait="user5"/>
+						<eq> 4 </eq> <!-- ayleid ruin -->
+						<and> <not src="MapMenu" trait="_ruins"/> </and>
+					</or>
+					<or>
+						<copy src="me()" trait="user5"/>
+						<eq> 7 </eq> <!-- special place -->
+						<and> <not src="MapMenu" trait="_landmarks"/> </and>
+					</or>
+					<or>
+						<copy src="me()" trait="user5"/>
+						<eq> 10 </eq> <!-- daedra shrine -->
+						<and> <not src="MapMenu" trait="_shrines"/> </and>
+					</or>
+					<or>
+						<copy src="me()" trait="user5"/>
+						<eq> 11 </eq> <!-- oblivion gate -->
+						<and> <not src="MapMenu" trait="_gates"/> </and>
+					</or>
+				</onlyif>
+			</sub>
+		</visible>
+
+		<user0> &true; </user0>		<!-- set by code - is visible -->
+		<user1> 0 </user1>			<!-- set by code - x position on map -->
+		<user2> 0 </user2>			<!-- set by code - y position on map -->
+		<user4>  </user4>			<!-- set by code - location name -->
+		<user5> 0 </user5>			<!-- set by code - location type -->
+		<user6> &false; </user6>	<!-- set by code - fast travel enabled -->
+		<user7> 0 </user7>			<!-- set by code - depth adjustment -->
+		<user8> &false; </user8>	<!-- set by code - is targetable? -->
+
+		<_random_depth> <rand> 80 </rand> </_random_depth>
+	</image>
+</template>
+
+
+<!-- template for local map icons -->
+<template name="map_local_icon">
+	<image name="map_local_icon">
+		<id> 49 </id>
+		<!-- <visible> &true; </visible> -->
+		<_isplayermarker>
+			<copy src="me()" trait="user5" />
+			<eq> 99 </eq>
+			<and> <not src="me()" trait="user11"/> </and>
+		</_isplayermarker>
+		<_isquestmarker>
+			<copy src="me()" trait="user5" />
+			<eq> 99 </eq>
+			<and src="me()" trait="user11"/>
+		</_isquestmarker>
+		<_islocation>
+			<copy src="me()" trait="user5"/>
+			<lt> 90 </lt>
+		</_islocation>
+		<target>
+			<copy src="me()" trait="_islocation" />
+			<and src="me()" trait="user8"/>
+		</target>
+		<filename>
+			<copy src="me()" trait="user6"/>
+			<onlyif>
+				<copy src="me()" trait="user5"/>
+				<eq> 99 </eq>
+			</onlyif>
+			<add>
+				<copy> 3 </copy>
+				<onlyif>
+					<copy src="me()" trait="user5"/>
+					<eq> 98 </eq>
+				</onlyif>
+			</add>
+			<add> 1 </add>
+			<copy src="parent()" trait="_filename_"/>
+		</filename>
+		<cropx>
+			<copy src="me()" trait="user5"/>
+			<sub> 1 </sub>
+			<mul> 32 </mul>
+			<onlyif>
+				<copy src="me()" trait="user5"/>
+				<lt> 90 </lt>
+			</onlyif>
+			<div> <!--_mapicondiv-->1.33 </div>
+		</cropx>
+		<cropy>
+			<copy src="me()" trait="user6"/>
+			<sub> 1 </sub>
+			<mul> 32 </mul>
+			<onlyif>
+				<copy src="me()" trait="user5"/>
+				<lt> 90 </lt>
+			</onlyif>
+			<div> <!--_mapicondiv-->1.33 </div>
+		</cropy>
+		<depth>
+			<copy src="me()" trait="_random_depth"/>
+			<max>
+				<copy> 90 </copy>
+				<onlyif>
+					<copy src="me()" trait="user5"/>
+					<gt> 90 </gt>
+				</onlyif>
+			</max>
+			<max src="me()" trait="user7"/>
+			<add> 1 </add>
+		</depth>
+		<red>
+			<copy> 0 </copy>
+			<add>
+				<add> 255 </add>
+				<onlyif src="me()" trait="user11"/>
+				<onlyif src="me()" trait="user10"/>
+			</add>
+			<add>
+				<add> 255 </add>
+				<onlyifnot src="me()" trait="user11"/>
+				<onlyifnot src="me()" trait="user12"/>
+			</add>
+		</red>
+		<green>
+			<copy> 0 </copy>
+			<add>
+				<add> 255 </add>
+				<onlyif src="me()" trait="user11"/>
+				<onlyifnot src="me()" trait="user10"/>
+			</add>
+			<add>
+				<add> 255 </add>
+				<onlyifnot src="me()" trait="user11"/>
+				<onlyifnot src="me()" trait="user12"/>
+			</add>
+		</green>
+		<blue>
+			<copy> 0 </copy>
+			<add>
+				<add> 255 </add>
+				<onlyifnot src="me()" trait="user11"/>
+			</add>
+		</blue>
+		<width>
+			<copy src="parent()" trait="_large_icon_width_adj"/>
+			<onlyif>
+				<copy src="me()" trait="user5"/>
+				<gt> 90 </gt>
+			</onlyif>
+			<add> <!--_mapiconwidth-->24 </add>
+			<onlyif>
+				<copy src="me()" trait="user5"/>
+				<neq> 98 </neq>
+			</onlyif>
+			<add>
+				<copy> 48 </copy> <!-- DarN 64 -->
+				<onlyif>
+					<copy src="me()" trait="user5"/>
+					<eq> 98 </eq>
+				</onlyif>
+			</add>
+		</width>
+
+		<height>
+			<copy src="parent()" trait="_large_icon_height_adj"/>
+			<onlyif>
+				<copy src="me()" trait="user5"/>
+				<gt> 90 </gt>
+			</onlyif>
+			<add> <!--_mapiconheight-->24 </add>
+			<onlyif>
+				<copy src="me()" trait="user5"/>
+				<neq> 98 </neq>
+			</onlyif>
+			<add> <!-- DarN user5=98 = player arrow -->
+				<copy> 48 </copy> <!-- DarN 64 -->
+				<onlyif>
+					<copy src="me()" trait="user5"/>
+					<eq> 98 </eq>
+				</onlyif>
+			</add>
+		</height>
+		<zoom> <!--_mapiconzoom-->75 </zoom>
+		<x>
+			<copy src="me()" trait="user1"/>
+			<sub>
+				<copy src="me()" trait="width"/>
+				<div> 2 </div> <!-- DarN 2 -->
+			</sub>
+		</x>
+		<y>
+			<copy src="me()" trait="user2"/>
+			<sub>
+				<copy src="me()" trait="height"/>
+				<div> 2 </div>
+			</sub>
+		</y>
+		<clips> &true; </clips>
+		<visible>
+			<copy> 2 </copy>
+			<sub>
+				<copy> 1 </copy>
+				<onlyif>
+					<not src="MapMenu" trait="_discovered"/> <!-- discovered locations -->
+					<and src="me()" trait="_islocation" />
+					<and src="me()" trait="user6"/>
+					<or>
+						<not src="MapMenu" trait="_known"/> <!-- undiscovered locations -->
+						<and src="me()" trait="_islocation" />
+						<and> <not src="me()" trait="user6"/> </and>
+					</or>
+					<or>
+						<not src="MapMenu" trait="_qm"/> <!-- quest markers -->
+						<and src="me()" trait="_isquestmarker"/>
+					</or>
+					<or>
+						<not src="MapMenu" trait="_pm"/> <!-- player marker -->
+						<and src="me()" trait="_isplayermarker"/>
+					</or>
+					<or>
+						<copy src="me()" trait="user5"/>
+						<eq> 98 </eq> <!-- you are here -->
+						<and> <not src="MapMenu" trait="_pp"/> </and>
+					</or>
+					<or>
+						<copy src="me()" trait="user5"/>
+						<eq> 3 </eq> <!-- town gate -->
+						<and> <not src="MapMenu" trait="_towns"/> </and>
+					</or>
+					<or>
+						<copy src="me()" trait="user5"/>
+						<eq> 9 </eq> <!-- village -->
+						<and> <not src="MapMenu" trait="_settlements"/> </and>
+					</or>
+					<or>
+						<copy src="me()" trait="user5"/>
+						<eq> 8 </eq> <!-- tavern -->
+						<and> <not src="MapMenu" trait="_inns"/> </and>
+					</or>
+					<or>
+						<copy src="me()" trait="user5"/>
+						<eq> 1 </eq> <!-- camp -->
+						<and> <not src="MapMenu" trait="_camps"/> </and>
+					</or>
+					<or>
+						<copy src="me()" trait="user5"/>
+						<eq> 6 </eq> <!-- mine entrance -->
+						<and> <not src="MapMenu" trait="_mines"/> </and>
+					</or>
+					<or>
+						<copy src="me()" trait="user5"/>
+						<eq> 2 </eq> <!-- cave entrance -->
+						<and> <not src="MapMenu" trait="_caves"/> </and>
+					</or>
+					<or>
+						<copy src="me()" trait="user5"/>
+						<eq> 5 </eq> <!-- stronghold ruin -->
+						<and> <not src="MapMenu" trait="_forts"/> </and>
+					</or>
+					<or>
+						<copy src="me()" trait="user5"/>
+						<eq> 4 </eq> <!-- ayleid ruin -->
+						<and> <not src="MapMenu" trait="_ruins"/> </and>
+					</or>
+					<or>
+						<copy src="me()" trait="user5"/>
+						<eq> 7 </eq> <!-- special place -->
+						<and> <not src="MapMenu" trait="_landmarks"/> </and>
+					</or>
+					<or>
+						<copy src="me()" trait="user5"/>
+						<eq> 10 </eq> <!-- daedra shrine -->
+						<and> <not src="MapMenu" trait="_shrines"/> </and>
+					</or>
+					<or>
+						<copy src="me()" trait="user5"/>
+						<eq> 11 </eq> <!-- oblivion gate -->
+						<and> <not src="MapMenu" trait="_gates"/> </and>
+					</or>
+				</onlyif>
+			</sub>
+		</visible>
+
+		<user0> &true; </user0>		<!-- set by code - is visible -->
+		<user1> 0 </user1>			<!-- set by code - x position on map -->
+		<user2> 0 </user2>			<!-- set by code - y position on map -->
+		<user4> xxxx </user4>		<!-- set by code - location name -->
+		<user5> 99 </user5>			<!-- set by code - location type -->
+		<user6> &true; </user6>		<!-- set by code - fast travel enabled -->
+		<user7> 0 </user7>			<!-- set by code - depth adjustment -->
+		<user8> &false; </user8>	<!-- set by code - is targetable? -->
+		<locus> &true; </locus>		<!-- needs to be a locus in case it needs to be rotated -->
+
+		<_random_depth> <rand> 80 </rand> </_random_depth>
+	</image>
+</template>

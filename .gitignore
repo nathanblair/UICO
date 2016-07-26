@@ -5,3 +5,6 @@
 /meshes
 meta.ini
 /textures
+
+# Ignore VSCode files
+/.vscode

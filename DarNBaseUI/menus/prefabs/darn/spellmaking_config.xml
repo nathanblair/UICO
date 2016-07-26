@@ -1,0 +1,47 @@
+
+<!--	DARNIFIED SPELLMAKING CONFIG 1.0
+-->
+<rect name="darnui_settings">
+
+	<_configversion> 1.0 </_configversion>
+
+	<!-- Spell name (def. 3,41,43,92) -->
+	<_snfont> 3 </_snfont>
+	<_snred> 41 </_snred>
+	<_sngreen> 43 </_sngreen>
+	<_snblue> 92 </_snblue>
+
+	<!-- Known effects list (def. 10,2,0,0,0,40) -->
+	<_l1itemcount> 10 </_l1itemcount>
+	<_l1font> 2 </_l1font>
+	<_l1red> 0 </_l1red>
+	<_l1green> 0 </_l1green>
+	<_l1blue> 0 </_l1blue>
+	<_l1iconzoom> 40 </_l1iconzoom>
+
+	<!-- Added effects list (def. 8,2,0,0,0,40) -->
+	<_l2itemcount> 8 </_l2itemcount>
+	<_l2font> 2 </_l2font>
+	<_l2red> 0 </_l2red>
+	<_l2green> 0 </_l2green>
+	<_l2blue> 0 </_l2blue>
+	<_l2iconzoom> 40 </_l2iconzoom>
+
+	<!-- Headers (def. 3,117,59,33) -->
+	<_hfont> 3 </_hfont>
+	<_hred> 117 </_hred>
+	<_hgreen> 59 </_hgreen>
+	<_hblue> 33 </_hblue>
+
+	<!-- Info group ie. spell cost, etc. (def. 2,117,59,33) -->
+	<_igfont> 2 </_igfont>
+	<_igred> 117 </_igred>
+	<_iggreen> 59 </_iggreen>
+	<_igblue> 33 </_igblue>
+
+	<!-- Required skill text (def. 3,0,0,0) -->
+	<_rsfont> 3 </_rsfont>
+	<_rsred> 0 </_rsred>
+	<_rsgreen> 0 </_rsgreen>
+	<_rsblue> 0 </_rsblue>
+</rect>

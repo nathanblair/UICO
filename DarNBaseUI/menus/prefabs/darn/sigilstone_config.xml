@@ -1,0 +1,56 @@
+
+<!--	DARNIFIED SIGILSTONE CONFIG 1.0
+-->
+<rect name="darnui_settings">
+
+	<_configversion> 1.0 </_configversion>
+
+	<!-- Info group ie. spell cost, etc. (def. 2,117,59,33) -->
+	<_igfont> 2 </_igfont>
+	<_igred> 117 </_igred>
+	<_iggreen> 59 </_iggreen>
+	<_igblue> 33 </_igblue>
+
+	<!-- Enchantment name (def. 3,33,59,117) -->
+	<_enfont> 3 </_enfont>
+	<_enred> 33 </_enred>
+	<_engreen> 59 </_engreen>
+	<_enblue> 117 </_enblue>
+	
+	<!-- Item to be enchanted (def. 75,3,117,59,33) -->
+	<_iiconzoom> 75 </_iiconzoom>
+	<_ifont> 3 </_ifont>
+	<_ired> 117 </_ired>
+	<_igreen> 59 </_igreen>
+	<_iblue> 33 </_iblue>
+
+	<!-- Soul gem to be used (def. 75,3,117,59,33) -->
+	<_sgiconzoom> 75 </_sgiconzoom>
+	<_sgfont> 3 </_sgfont>
+	<_sgred> 117 </_sgred>
+	<_sggreen> 59 </_sggreen>
+	<_sgblue> 33 </_sgblue>
+
+	<!-- Headers (def. 3,33,59,117) -->
+	<_hfont> 3 </_hfont>
+	<_hred> 33 </_hred>
+	<_hgreen> 59 </_hgreen>
+	<_hblue> 117 </_hblue>
+
+	<!-- Applicable effects list (def. 10,2,0,0,0,42) -->
+	<_l1itemcount> 10 </_l1itemcount>
+	<_l1font> 2 </_l1font>
+	<_l1red> 0 </_l1red>
+	<_l1green> 0 </_l1green>
+	<_l1blue> 0 </_l1blue>
+	<_l1iconzoom> 42 </_l1iconzoom>
+
+	<!-- Added effects list (def. 8,2,0,0,0,42) -->
+	<_l2itemcount> 8 </_l2itemcount>
+	<_l2font> 2 </_l2font>
+	<_l2red> 0 </_l2red>
+	<_l2green> 0 </_l2green>
+	<_l2blue> 0 </_l2blue>
+	<_l2iconzoom> 42 </_l2iconzoom>
+
+</rect>

@@ -1,0 +1,392 @@
+<!-- DarN Version 1.0 -->
+<!--
+	STATS CONFIG
+	CONFIG VERSION : Default
+	
+	CONFIG FOR BTMOD BY : Beider & Tikigod
+	CONFIG BY : Beider
+	
+	If you are make changes and want to test them without restarting the game then
+	open your console by hitting the tilde key (key left of the 1 key). Then type,
+		
+		reload statsmenu
+		
+	Then hit the Tilde key again to exit the console.
+
+-->
+
+<!--
+									STAT NUMBERS
+
+	BEIDER COMMENT
+		These next values are for the stat text, it will display in a different color
+		and/or alpha depending on if the stat is buffed, debuffed or normal.
+
+	ORIGINAL COMMENT
+		These are the colors that the attributes should appear based
+		on whether the value is over, under, or even with base value
+
+-->
+	
+<_red_under>   208 </_red_under>	<!-- DEFAULT : 208 -->
+<_green_under>   0 </_green_under>	<!-- DEFAULT : 0 -->
+<_blue_under>    0 </_blue_under>	<!-- DEFAULT : 0 -->
+<_alpha_under> 255 </_alpha_under>	<!-- DEFAULT : 255 -->
+
+<_red_even>     51 </_red_even>		<!-- DEFAULT : 51 -->
+<_green_even>   79 </_green_even>	<!-- DEFAULT : 79 -->
+<_blue_even>   142 </_blue_even>	<!-- DEFAULT : 142 -->
+<_alpha_even>  255 </_alpha_even>	<!-- DEFAULT : 255 -->
+
+<_red_over>      0 </_red_over>		<!-- DEFAULT : 0 -->
+<_green_over>  128 </_green_over>	<!-- DEFAULT : 128 -->
+<_blue_over>     0 </_blue_over>	<!-- DEFAULT : 0 -->
+<_alpha_over>  255 </_alpha_over>	<!-- DEFAULT : 255 -->
+	
+<rect name="darnui_stats_settings">
+
+<!--
+									PAGE ONE
+
+	BEIDER COMMENT
+		This font is for the stuff at the first screen,
+		
+	 _______________________________________________
+	|			   		s1							|
+	|_______________________________________________|
+	|	s1l				|	s1r						|
+	|___________________|___________________________|
+	|					|							|
+	|	Race			|	Player Race				|
+	|	Birthsign		|	Player Birthsign		|
+	|	Class			|	Player Class			|
+	|	Level			|	Player Level			|
+	|	Health 			|	Current HP / Max HP	(F)	|
+	|	Magica			|	Current MA / Max MA	(F)	|
+	|	Fatigue			|	Current FA / Max FA	(F)	|
+	|_______________________________________________|
+	
+	
+	In the table above you can see what applies to what. Stuff starting with s1
+	applies to everything. s1l applies to stuff in the left colum. s1r applies to
+	things in the right colum.
+	
+	Things marked with (F) means only font applies nothing else.
+-->
+
+	<!-- Font -->
+	<_s1f>  3   </_s1f>			<!-- DEFAULT : 1 -->
+	
+	<!-- Red / Green / Blue / Alpha (L) -->
+	<_s1lr> 0 </_s1lr>		<!-- DEFAULT : 117 -->
+	<_s1lg> 0 </_s1lg>		<!-- DEFAULT : 59 -->
+	<_s1lb> 0  </_s1lb>		<!-- DEFAULT : 33 -->
+	<_s1la> 200 </_s1la>		<!-- DEFAULT : 255 -->
+	
+	<!-- Red / Green / Blue / Alpha (R) -->
+	<_s1rr> 51  </_s1rr>		<!-- DEFAULT : 51 -->
+	<_s1rg> 79  </_s1rg>		<!-- DEFAULT : 79 -->
+	<_s1rb> 142 </_s1rb>		<!-- DEFAULT : 142 -->
+	<_s1ra> 255 </_s1ra>		<!-- DEFAULT : 255 -->
+
+
+	<!-- Header settings (Player name) -->
+
+	<_s1hf> 3   </_s1hf>		<!-- DEFAULT : 1 -->
+	<_s1hr> 51  </_s1hr>		<!-- DEFAULT : 51 -->
+	<_s1hg> 79  </_s1hg>		<!-- DEFAULT : 79 -->
+	<_s1hb> 142 </_s1hb>		<!-- DEFAULT : 142 -->
+	<_s1ha> 255 </_s1ha>		<!-- DEFAULT : 255 -->
+	
+	<!-- Header Border Y -->
+	<_s1hby> 60 </_s1hby>		<!-- DEFAULT : 60 -->
+
+	
+<!--
+									PAGE TWO
+
+	BEIDER COMMENT
+		Font applies to everyting on page 2 while the colors only apply to the names in
+		the left menu.
+	-->
+	<!-- Font -->
+	<_s2f>  3   </_s2f>			<!-- DEFAULT : 1 -->
+	
+	<!-- Red / Green / Blue / Alpha (L) -->
+	<_s2lr> 117 </_s2lr>		<!-- DEFAULT : 117 -->
+	<_s2lg> 59  </_s2lg>		<!-- DEFAULT : 59 -->
+	<_s2lb> 33   </_s2lb>		<!-- DEFAULT : 33 -->
+	<_s2la> 255 </_s2la>		<!-- DEFAULT : 255 -->
+	
+	
+<!--
+									PAGE THREE
+
+	BEIDER COMMENT
+		This is for your skills list. Colors of the numbers are adjusted higher up.
+		
+		This section can adjust colors to the left in the list and the new % values feature.
+	-->
+	
+	<!-- Setting KCAS to true removes the "Progress to next level" meter -->
+	<_KCAS> &false; </_KCAS>
+	
+	<!-- Header settings -->
+	
+	<!-- Font / Red / Green / Blue / Alpha -->
+	<_s3hf> 3   </_s3hf>		<!-- DEFAULT : 3 -->
+	<_s3hr> 51  </_s3hr>		<!-- DEFAULT : 51 -->
+	<_s3hg> 79  </_s3hg>		<!-- DEFAULT : 79 -->
+	<_s3hb> 142 </_s3hb>		<!-- DEFAULT : 142 -->
+	<_s3ha> 255 </_s3ha>		<!-- DEFAULT : 255 -->
+	
+	<!-- Header Text Y Offset -->
+	<_s3htoy> 2 </_s3htoy>		<!-- DEFAULT : 0 -->
+	
+	<!-- Header Border Y Offset -->
+	<_s3hboy> 2 </_s3hboy>		<!-- DEFAULT : 0 -->
+
+	<!-- Font -->
+	<_s3f>  2   </_s3f>			<!-- DEFAULT : 3 -->
+	
+	<!-- Red / Green / Blue / Alpha (L) -->
+	<_s3lr> 117 </_s3lr>		<!-- DEFAULT : 117 -->
+	<_s3lg> 59  </_s3lg>		<!-- DEFAULT : 59 -->
+	<_s3lb> 33  </_s3lb>		<!-- DEFAULT : 33 -->
+	<_s3la> 255 </_s3la>		<!-- DEFAULT : 255 -->
+	
+	
+	<!-- Progress percentage settings -->
+	
+	<!-- ON / OFF -->
+	<_ppv> &true; </_ppv>	<!-- DEFAULT : &false; -->
+	
+	<!-- Shadow ON / OFF -->
+	<_ppsv> &false; </_ppsv>	<!-- DEFAULT : &false; -->
+	
+	<!-- Font -->
+	<_ppf> 2   </_ppf>		<!-- DEFAULT : 3   -->
+	
+	<!-- Text Settings -->
+	<_ppr> 51 </_ppr>		<!-- DEFAULT : 255 -->
+	<_ppg> 79 </_ppg>		<!-- DEFAULT : 255 -->
+	<_ppb> 142 </_ppb>		<!-- DEFAULT : 255 -->
+	<_ppa> 255 </_ppa>		<!-- DEFAULT : 255 -->
+	
+	<!-- Shadow Settings -->
+	<_ppsr> 0   </_ppsr>	<!-- DEFAULT : 0 -->
+	<_ppsg> 0   </_ppsg>	<!-- DEFAULT : 0 -->
+	<_ppsb> 0   </_ppsb>	<!-- DEFAULT : 0 -->
+	<_ppsa> 250 </_ppsa>	<!-- DEFAULT : 255 -->
+	
+	<!-- X / Y Offset for the Next Level Percent -->
+	<_ppnlox> 145 </_ppnlox>	<!-- DEFAULT : 0/135/155 -->
+	<_ppnloy> -2 </_ppnloy>	<!-- DEFAULT : 0 -->
+	
+	<!-- X / Y Offset for the Next Level Percent Shadow -->
+	<_ppnlsox> 1 </_ppnlsox>	<!-- DEFAULT : 2 -->
+	<_ppnlsoy> 1 </_ppnlsoy>	<!-- DEFAULT : 2 -->
+	
+	<!-- X / Y Offset for the Skill Percent -->
+	<_ppsox> -10 </_ppsox>	<!-- DEFAULT : 0 DarN -135 -->
+	<_ppsoy> 11 </_ppsoy>	<!-- DEFAULT : 0 -->
+	
+	<!-- X / Y Offset for the Skill Percent Shadow -->
+	<_ppssox> 2 </_ppssox>	<!-- DEFAULT : 2 -->
+	<_ppssoy> 1 </_ppssoy>	<!-- DEFAULT : 2 -->
+	
+	<!-- Min width before adding extra spacing
+	
+		BEIDER COMMENT
+			This thing is used to add some extra spacing betwen the number and
+			the % if the number width is below X. As in for numbers 1-9 you need
+			some extra spacing. If you adjust the font to a larger font this need
+			to be higher, if you adjust it to a smaller font this needs to be lower.
+	-->
+	<_ppmws> 15 </_ppmws>	<!-- DEFAULT : 15 -->
+
+
+<!--
+									PAGE FOUR
+
+	BEIDER COMMENT
+		This is for changing fonts and colors on the Faction page.
+		
+		You have three fonts/colors you can	adjust here.
+		
+		To figure out fast and easy what a value is for just look at the tag, below is a
+		list of what the start of the tags mean. The last letter is what it affects.
+		
+		r = Red, g = Green, b = Blue, f = font, a = Alpha, v = Visible, y = Y-axis, x = X-axis, etc..
+		
+		
+		WHAT					START TAG
+		_________________________________
+		Header 					_s4h
+		Faction Name 			_s4fa
+		Faction Rank 			_s4fr
+		Faction Next Rank 		_s4fnr
+		
+	-->
+	
+	<!-- Header settings -->
+	
+	<!-- Font / Red / Green / Blue / Alpha -->
+	<_s4hf> 3   </_s4hf>		<!-- DEFAULT : 3 -->
+	<_s4hr> 51  </_s4hr>		<!-- DEFAULT : 51 -->
+	<_s4hg> 79  </_s4hg>		<!-- DEFAULT : 79 -->
+	<_s4hb> 142 </_s4hb>		<!-- DEFAULT : 142 -->
+	<_s4ha> 255 </_s4ha>		<!-- DEFAULT : 255 -->
+	
+	<!-- Header Text Y Offset -->
+	<_s4htoy> 0 </_s4htoy>		<!-- DEFAULT : 0 -->
+	
+	<!-- Header Border Y Offset -->
+	<_s4hboy> -2 </_s4hboy>		<!-- DEFAULT : 0 -->
+	
+	
+	<!-- Faction Name -->
+	
+	<!-- Font -->
+	<_s4faf> 3 </_s4faf>		<!-- DEFAULT : 3 -->
+	
+	<!-- Red / Green / Blue / Alpha -->
+	<_s4far> 51  </_s4far>		<!-- DEFAULT : 51  -->
+	<_s4fag> 79  </_s4fag>		<!-- DEFAULT : 79  -->
+	<_s4fab> 142 </_s4fab>		<!-- DEFAULT : 142 -->
+	<_s4faa> 255 </_s4faa>		<!-- DEFAULT : 255 -->
+	
+	<!-- X / Y -->
+	<_s4fax> 155 </_s4fax>		<!-- DEFAULT : 155 -->
+	<_s4fay> 7 </_s4fay>		<!-- DEFAULT : 7   -->
+	
+	
+	<!-- Faction Rank -->
+	
+	<!-- Font -->
+	<_s4frf> 2 </_s4frf>		<!-- DEFAULT : 3 -->
+	
+	<!-- Red / Green / Blue / Alpha -->
+	<_s4frr> 117  </_s4frr>		<!-- DEFAULT : 117  -->
+	<_s4frg> 59   </_s4frg>		<!-- DEFAULT : 59  -->
+	<_s4frb> 33   </_s4frb>		<!-- DEFAULT : 33 -->
+	<_s4fra> 255  </_s4fra>		<!-- DEFAULT : 255 -->
+	
+	<!-- X / Y -->
+	<_s4frx> 155 </_s4frx>		<!-- DEFAULT : 155 -->
+	<_s4fry> 39 </_s4fry>		<!-- DEFAULT : 39  -->
+	
+	
+	<!-- Next Faction Rank -->
+	
+	<!-- Next Rank Visible -->
+	<_s4fnrv> &true; </_s4fnrv>	<!-- DEFAULT : &false; -->
+	
+	<!-- Font -->
+	<_s4fnrf> 2 </_s4fnrf>			<!-- DEFAULT : 3 -->
+	
+	<!-- Text -->
+	<_s4fnrt> <copy src="strings()" trait="_nextrank"/> </_s4fnrt>
+	<!-- DEFAULT : <copy src="strings()" trait="_nextrank"/> -->
+	
+	<!-- Red / Green / Blue / Alpha -->
+	<_s4fnrr> 117  </_s4fnrr>		<!-- DEFAULT : 117  -->
+	<_s4fnrg> 59   </_s4fnrg>		<!-- DEFAULT : 59  -->
+	<_s4fnrb> 33   </_s4fnrb>		<!-- DEFAULT : 33 -->
+	<_s4fnra> 255  </_s4fnra>		<!-- DEFAULT : 255 -->
+	
+	<!-- X / Y Offset -->
+	<_s4fnrx> 350 </_s4fnrx>		<!-- DEFAULT : 155 -->
+	<_s4fnry> 10  </_s4fnry>		<!-- DEFAULT : 39 (7) -->
+	
+	<!-- Spacing between text and rank -->
+	<_s4fnrs> 10  </_s4fnrs>		<!-- DEFAULT : 10 -->
+	
+	
+<!--
+									PAGE FIVE
+
+	BEIDER COMMENT
+		This is for changing fonts and colors on the Accomplishments page.
+		
+		You have three fonts/colors you can	adjust here.
+		
+		To figure out fast and easy what a value is for just look at the tag, below is a
+		list of what the start of the tags mean. The last letter is what it affects.
+		
+		r = Red, g = Green, b = Blue, f = font, a = Alpha, v = Visible, y = Y-axis, x = X-axis, etc..
+		
+		
+		WHAT					START TAG
+		_________________________________
+		Header 					_s5h
+		Text					_s5t
+		
+	-->
+	
+	<!-- Header settings -->
+	
+	<!-- Font / Red / Green / Blue / Alpha -->
+	<_s5hf> 3   </_s5hf>		<!-- DEFAULT : 3 -->
+	<_s5hr> 51  </_s5hr>		<!-- DEFAULT : 51 -->
+	<_s5hg> 79  </_s5hg>		<!-- DEFAULT : 79 -->
+	<_s5hb> 142 </_s5hb>		<!-- DEFAULT : 142 -->
+	<_s5ha> 255 </_s5ha>		<!-- DEFAULT : 255 -->
+	
+	
+	<!-- Text settings -->
+	
+	<!-- Font / Red / Green / Blue / Alpha -->
+	<_s5tf> 2   </_s5tf>		<!-- DEFAULT : 3 -->
+	<_s5tr> 0 </_s5tr>		<!-- DEFAULT : 117 -->
+	<_s5tg> 0  </_s5tg>		<!-- DEFAULT : 59 -->
+	<_s5tb> 0  </_s5tb>		<!-- DEFAULT : 33 -->
+	<_s5ta> 255 </_s5ta>		<!-- DEFAULT : 255 -->
+	
+	<!-- Alternate background color for odd list entries -->
+	<_s5_alternate> &false; </_s5_alternate>
+	
+
+<!--
+									TEXTURES
+	
+	BEIDER COMMENT
+		Made for easy skinning!
+-->
+
+	<_smb1> Menus\darn\shared_main_background_1_notile.dds </_smb1>
+	<_smb2> Menus\Shared\shared_main_background_2.dds </_smb2>
+	<_s01t> Menus\Shared\shared_01_tab.dds </_s01t>
+	<_s02t> Menus\darn\shared_02_tab_noline.dds </_s02t>
+	<_s03t> Menus\Shared\shared_03_tab.dds </_s03t>
+	<_s04t> Menus\Shared\shared_04_tab.dds </_s04t>
+	<_s05t> Menus\Shared\shared_05_tab.dds </_s05t>
+	<_sdbl> Menus\Shared\shared_decor_blue_left.dds </_sdbl>
+	<_sdbr> Menus\Shared\shared_decor_blue_right.dds </_sdbr>
+	
+	<_gtso> Menus\Shared\general_tab_selection_off.dds </_gtso>
+	<_gtson> Menus\Shared\general_tab_selection_on.dds </_gtson>
+	
+	<_ati> Menus\Shared\all_tabs_icons.dds </_ati>
+	
+	<_mpb> Menus\Magic\magic_popup_background.dds </_mpb>
+	<_mpbc> Menus\Magic\magic_popup_border_corner.dds </_mpbc>
+	<_mpbeh> Menus\Magic\magic_popup_border_edge_horizontal.dds </_mpbeh>
+	<_mpbev> Menus\Magic\magic_popup_border_edge_vertical.dds </_mpbev>
+	
+	<_spl> Menus\Stats\stat_player_lines.dds </_spl>
+	<_spi> Menus\Stats\stat_player_icons.dds </_spi>
+	<_sal> Menus\Stats\stat_attr_lines.dds </_sal>
+	<_sai> Menus\Stats\stat_attr_icons.dds </_sai>
+	
+	<_sbh1> Menus\Stats\stat_border_horizontal_1.dds </_sbh1>
+	<_sbh2> Menus\Stats\stat_border_horizontal_2.dds </_sbh2>
+	<_sbh3> Menus\Stats\stat_border_horizontal_3.dds </_sbh3>
+	<_sbv2> Menus\Stats\stat_border_vertical_2.dds </_sbv2>
+	
+	<_sslre> Menus\Stats\stat_skill_level_ribbon_empty.dds </_sslre>
+	<_sslrf> Menus\Stats\stat_skill_level_ribbon_full.dds </_sslrf>
+	<_sslrs> Menus\Stats\stat_skill_level_ribbon_slider.dds </_sslrs>
+	
+	
+</rect>

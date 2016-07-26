@@ -1,0 +1,31 @@
+
+<!--	DARNIFIED ECHANTMENTSETTING CONFIG 1.0
+-->
+<rect name="darnui_settings">
+	<_configversion> 1.0 </_configversion>
+
+	<!-- Header text ie. "Fire Damage" (def. 3,0,0,0,255,0,0) -->
+	<_eshtfont> 3 </_eshtfont>
+	<_eshtred> 0 </_eshtred>
+	<_eshtgreen> 0 </_eshtgreen>
+	<_eshtblue> 0 </_eshtblue>
+	<_eshtalpha> 255 </_eshtalpha>
+	<_eshtxoffset> 0 </_eshtxoffset>
+	<_eshtyoffset> 0 </_eshtyoffset>
+
+	<!-- Labels (def. 3,0,0,0,200,0,0) -->
+	<_eslblfont> 3 </_eslblfont>
+	<_eslblred> 0 </_eslblred>
+	<_eslblgreen> 0 </_eslblgreen>
+	<_eslblblue> 0 </_eslblblue>
+	<_eslblalpha> 200 </_eslblalpha>
+	<_eslblxoffset> 0 </_eslblxoffset>
+	<_eslblyoffset> 0 </_eslblyoffset>
+	
+	<!-- Enchantment limits (def.100,100,120) -->
+	<!-- If you've been using "Raised Spellmaking Enhancements Limits", it's values are 300,300,360. -->
+	<_esmagnitudelimit> 100 </_esmagnitudelimit>
+	<_esarealimit> 100 </_esarealimit>
+	<_esdurationlimit> 120 </_esdurationlimit>
+
+</rect>

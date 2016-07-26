@@ -1,0 +1,323 @@
+﻿<!-- spin_control.xml -->
+ <!-- DarN Version 1.0 -->
+
+<!-- rect name="spin_control -->
+	<locus> &true; </locus>
+	<target> &true; </target>
+	<depth> 1 </depth>
+	<height> 26 </height>
+	<width> 310 </width>
+	<_hover><copy src="child(focus_box)" trait="visible" /></_hover>
+	
+	<alpha>
+		<copy> 128 </copy>
+		<onlyif src="me()" trait="user13"/>
+		<add> 127 </add>
+	</alpha>
+	<user1> <!-- minimum range value -->
+		<copy src="me()" trait="user2" />
+		<sub>
+			<copy src="me()" trait="_xmax" />
+			<sub src="me()" trait="_xmin" />
+		</sub>
+	</user1>
+	<user2> <!-- maximum range value -->
+		<copy src="me()" trait="_xmax" />
+		<sub src="me()" trait="_start" />
+	</user2>
+	
+	<user3> <copy src="HUDMainMenu" trait="_step" /> </user3>
+	<user4> 1000 </user4>				<!-- jump distance -->
+	<user5> 0 </user5>				<!-- starting value -->
+	<user7>					<!-- current value as integer between min and max -->
+		<copy src="child(marker)" trait="_value_scrolled_to"/>
+		<add src="me()" trait="_start" />
+	</user7>
+	<user9>					<!-- current value as percentage -->
+		<copy src="child(marker)" trait="_value_scrolled_to"/>
+		<sub src="me()" trait="user1"/>
+		<div src="me()" trait="user2"/>
+	</user9>
+	<user10> 0 </user10>			<!-- red component of quantity text color -->
+	<user11> 0 </user11>			<!-- green component of quantity text color -->
+	<user12> 0 </user12>			<!-- blue component of quantity text color -->
+	<user13> &true; </user13>		<!-- true if enabled, false if disabled -->
+	
+	<user14> <!-- minimum range value -->
+		<copy src="me()" trait="user15" />
+		<sub>
+			<copy src="me()" trait="_ymax" />
+			<sub src="me()" trait="_ymin" />
+		</sub>
+	</user14>
+	<user15> <!-- maximum range value -->
+		<copy src="me()" trait="_ymax" />
+		<sub src="me()" trait="_start2" />
+	</user15>
+	<user16>					<!-- current value as integer between min and max -->
+		<copy src="child(marker2)" trait="_value_scrolled_to"/>
+		<add src="me()" trait="_start2" />
+	</user16>
+	<_scrollable_range>
+		<copy src="me()" trait="user2"/>
+		<sub src="me()" trait="user1"/>
+	</_scrollable_range>
+	<_scrollable_range2>
+		<copy src="me()" trait="user15"/>
+		<sub src="me()" trait="user14"/>
+	</_scrollable_range2>
+	<_mouseover_any>
+		<copy src="me()" trait="mouseover"/>
+		<add src="child(decrease)" trait="mouseover"/>
+		<add src="child(increase)" trait="mouseover"/>
+		<add src="child(decrease2)" trait="mouseover"/>
+		<add src="child(increase2)" trait="mouseover"/>
+		<gt> 0 </gt>
+	</_mouseover_any>
+	<text name="size_dummy">
+		<font> 2 </font>
+		<string>DARNA</string>
+		<x> 0 </x>
+		<y> 0 </y>
+		<visible>1</visible>
+		<_size><copy src="me()" trait="width" /><add>8</add></_size>
+	</text>
+	<text name="label">
+		<string><copy src="parent()" trait="_label" /></string>
+		<font> 2 </font>
+		<justify> &right; </justify>
+		<red> 0 </red>
+		<green> 0 </green>
+		<blue> 0 </blue>
+		<alpha>
+			<copy> 200 </copy>
+			<sub>
+				<copy> 72 </copy>
+				<onlyifnot src="parent()" trait="_dim" />
+			</sub>
+		</alpha>
+		<x>
+			<!-- <copy src="sibling(value_x)" trait="x" />
+			<sub src="sibling(size_dummy)" trait="_size" />
+			<sub> 9 </sub> -->162
+		</x>
+		<y> 9 </y>
+	</text>
+	
+	<text name="value_x">
+		<string><copy src="parent()" trait="_value" /></string>
+		<font> 2 </font>
+		<justify> &right; </justify>
+		<red> 0 </red>
+		<green> 0 </green>
+		<blue> 0 </blue>
+		<alpha> <copy src="sibling(label)" trait="alpha"/> </alpha>
+		<x> <!-- DarN center between arrows -->
+			<copy src="sibling(increase)" trait="x" />
+			<sub> 4 </sub>
+		</x>
+		<y> 9 </y>
+	</text>
+	
+	<text name="value_y">
+		<string><copy src="parent()" trait="_value2" /></string>
+		<font> 2 </font>
+		<justify> &right; </justify>
+		<red> 0 </red>
+		<green> 0 </green>
+		<blue> 0 </blue>
+		<alpha> <copy src="sibling(label)" trait="alpha"/> </alpha>
+		<x> <!-- DarN center between arrows -->
+			<copy src="sibling(increase2)" trait="x" />
+			<sub> 4 </sub>
+		</x>
+		<y>	9 </y>
+	</text>
+
+	<image name="decrease">
+		<id> &generic; </id>
+		<locus> &true; </locus>
+		<target> <copy src="parent()" trait="user13"/> </target>
+		<depth> 1 </depth>
+		<width> 14 </width>
+		<height> 13 </height>
+		<x> <copy src="sibling(increase)" trait="x" /> </x>
+		<y> <copy src="sibling(decrease2)" trait="y" /> </y>
+		<clips> <copy src="parent()" trait="clips"/> </clips>
+		<clicksound> 3 </clicksound>
+		<filename> Menus\Faders\black.dds </filename>
+		<alpha>
+			<copy> 30 </copy>
+			<onlyif>
+				 <copy src="me()" trait="mouseover" />
+				 <gt> 0 </gt>
+			</onlyif>
+		</alpha>
+		
+		<text name="dec1_char">
+			<x> 6 </x>
+			<y> -7 </y>
+			<justify> &center; </justify>
+			<font> 2 </font>
+			<string>_</string>
+			<red>0</red>
+			<green>0</green>
+			<blue>0</blue>
+		</text>
+	</image>
+	<image name="increase">
+		<id> &generic; </id>
+		<locus> &true; </locus>
+		<target> <copy src="parent()" trait="user13"/> </target>
+		<depth> 1 </depth>
+		<filename> Menus\Faders\black.dds </filename>
+		<alpha>
+			<copy> 30 </copy>
+			<onlyif>
+				 <copy src="me()" trait="mouseover" />
+				 <gt> 0 </gt>
+			</onlyif>
+		</alpha>
+		<width> 14 </width>
+		<height> 13  </height>
+		<x>
+			<copy src="sibling(value_y)" trait="x" />
+			<sub src="sibling(size_dummy)" trait="_size" />
+		</x>
+		<y> 0 </y>
+		<clicksound> 3  </clicksound>
+		<text name="inc1_char">
+			<x> 7 </x>
+			<y> 4 </y>
+			<justify> &center; </justify>
+			<font> 2 </font>
+			<string>+</string>
+			<red>0</red>
+			<green>0</green>
+			<blue>0</blue>
+		</text>
+	</image>
+
+	<rect name="marker">
+		<id> &generic; </id>
+		<visible> &false; </visible>
+		<width> 1 </width>
+		<height> 1 </height>
+		<x> 0 </x>
+		<y> 0 </y>
+		<_value_scrolled_to>
+			<!-- copy old value -->
+			<sub>
+				<copy src="sibling(decrease)" trait="clicked"/>
+				<mul src="parent()" trait="user3"/>
+			</sub>
+			<add>
+				<copy src="sibling(increase)" trait="clicked"/>
+				<mul src="parent()" trait="user3"/>
+			</add>
+			<add src="parent()" trait="user5"/>
+			<max src="parent()" trait="user1"/>
+			<min src="parent()" trait="user2"/>
+		</_value_scrolled_to>
+		<clicksound> 3 </clicksound>
+	</rect>
+	
+	<image name="decrease2">
+		<id> &generic; </id>
+		<locus> &true; </locus>
+		<target> <copy src="parent()" trait="user13"/> </target>
+		<depth> 1 </depth>
+		<width> 14 </width>
+		<height> 13 </height>
+		<x> <copy src="sibling(increase2)" trait="x" /> </x>
+		<y>
+			<copy src="parent()" trait="height" />
+			<sub src="me()" trait="height" />
+		</y>
+		<clicksound> 3 </clicksound>
+		<filename> Menus\Faders\black.dds </filename>
+		<alpha>
+			<copy> 30 </copy>
+			<onlyif>
+				 <copy src="me()" trait="mouseover" />
+				 <gt> 0 </gt>
+			</onlyif>
+		</alpha>
+		
+		<text name="dec2_char">
+			<x> 6 </x>
+			<y> -7 </y>
+			<justify> &center; </justify>
+			<font> 2 </font>
+			<string>_</string>
+			<red>0</red>
+			<green>0</green>
+			<blue>0</blue>
+		</text>
+	</image>
+	<image name="increase2">
+		<id> &generic; </id>
+		<locus> &true; </locus>
+		<target> <copy src="parent()" trait="user13"/> </target>
+		<depth> 1 </depth>
+		<width> 14 </width>
+		<height> 13 </height>
+		<x>
+			<copy src="parent()" trait="width" />
+			<sub src="me()" trait="width" />
+			<sub> 10 </sub>
+		</x>
+		<y> 0 </y>
+		<clicksound> 3  </clicksound>
+		<filename> Menus\Faders\black.dds </filename>
+		<alpha>
+			<copy> 30 </copy>
+			<onlyif>
+				 <copy src="me()" trait="mouseover" />
+				 <gt> 0 </gt>
+			</onlyif>
+		</alpha>
+		
+		<text name="inc2_char">
+			<x> 7 </x>
+			<y> 4 </y>
+			<justify> &center; </justify>
+			<font> 2 </font>
+			<string>+</string>
+			<red>0</red>
+			<green>0</green>
+			<blue>0</blue>
+		</text>
+	</image>
+	<rect name="marker2">
+		<id> &generic; </id>
+		<visible> &false; </visible>
+		<width> 1 </width>
+		<height> 1 </height>
+		<x> 0 </x>
+		<y> 0 </y>
+		<_value_scrolled_to>
+			<!-- copy old value -->
+			<sub>
+				<copy src="sibling(decrease2)" trait="clicked"/>
+				<mul src="parent()" trait="user3"/>
+			</sub>
+			<add>
+				<copy src="sibling(increase2)" trait="clicked"/>
+				<mul src="parent()" trait="user3"/>
+			</add>
+			<add src="parent()" trait="user5"/>
+			<max src="parent()" trait="user14"/>
+			<min src="parent()" trait="user15"/>
+		</_value_scrolled_to>
+		<clicksound> 3 </clicksound>
+	</rect>
+	
+	<rect name="focus_box">
+		<include src="darn\focus_box_small.xml"/>
+		<depth> -1 </depth>
+		<width> <copy src="parent()" trait="width"/> </width>
+		<height> <copy src="parent()" trait="height"/> </height>
+		<visible> <copy src="parent()" trait="_mouseover_any" /> </visible>
+	</rect>
+<!-- /rect -->

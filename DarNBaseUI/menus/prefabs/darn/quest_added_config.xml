@@ -1,0 +1,41 @@
+<!--	DARNIFIED QUEST ADDED CONFIG 1.0
+-->
+<rect name="darnui_settings">
+	<_configversion> 1.0 </_configversion>
+
+	<!-- Title "Quest added" (def. 3,0,0,0,255) -->
+	<_qtfont>3</_qtfont>
+	<_qtred>0</_qtred>
+	<_qtgreen>0</_qtgreen>
+	<_qtblue>0</_qtblue>
+	<_qtalpha>255</_qtalpha>
+
+	<!-- Quest Name text "Seeking your roots" (def. 3,41,43,92,255,-6) -->
+	<_qnfont>3</_qnfont>
+	<_qnred>41</_qnred>
+	<_qngreen>43</_qngreen>
+	<_qnblue>92</_qnblue>
+	<_qnalpha>255</_qnalpha>
+	<_qnyoffset>-6</_qnyoffset>
+
+	<!-- Quest Date text (def. 2,182,40,28,255,4) -->
+	<_qdfont>2</_qdfont>
+	<_qdred>182</_qdred>
+	<_qdgreen>40</_qdgreen>
+	<_qdblue>28</_qdblue>
+	<_qdalpha>255</_qdalpha>
+	<_qdyoffset>4</_qdyoffset>
+
+	<!-- Quest Body text (def. 2,0,0,0,200,30) -->
+	<_qbfont>2</_qbfont>
+	<_qbred>0</_qbred>
+	<_qbgreen>0</_qbgreen>
+	<_qbblue>0</_qbblue>
+	<_qbalpha>200</_qbalpha>
+	<_qbyoffset>30</_qbyoffset>
+
+	<!-- Quest Icon zoom (def. 75) -->
+	<!-- You may wish to change this if you've changed Quest Name text font and/or Quest Date text above -->
+	<_qizoom>75</_qizoom>
+
+</rect>

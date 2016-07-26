@@ -1,0 +1,94 @@
+<!-- horiz_floating_scroll.xml -->
+<!-- modified by wz -->
+
+<!-- image name="inv_toggle_sep" -->
+	<user2>							<!-- current value as integer between min and max -->
+		<copy src="child(horizontal_scroll_marker)" trait="_value_scrolled_to"/>
+		<eq src="me()" trait="user1"/>
+		<or>
+			<copy src="InventoryMenu" trait="user0"/>
+			<eq src="me()" trait="user4"/>
+		</or>
+	</user2>
+	<user4> -1 </user4>		        <!-- toggle-on for this menu tab -->
+	<user10> 120 </user10>			<!-- red component of quantity text color -->
+	<user11> 34 </user11>			<!-- green component of quantity text color -->
+	<user12> 0 </user12>			<!-- blue component of quantity text color -->
+	<user13> &true; </user13>		<!-- true if enabled, false if disabled -->
+	
+	<locus> &true; </locus>
+
+	<_mouseover_any>
+		<copy src="child(horizontal_scroll_right)" trait="mouseover"/>
+		<gt> 0 </gt>
+	</_mouseover_any>
+	
+	<rect name="horizontal_scroll_right">
+		<id> &generic; </id>
+		<target> <copy src="parent()" trait="user13"/> </target>
+		<depth>
+			<copy src="parent()" trait="depth"/>
+			<add> 1 </add>
+		</depth>
+		<width>
+			<copy src="parent()" trait="width"/>
+		</width>
+		<height>
+			<copy src="parent()" trait="height"/>
+		</height>
+		<x> 0 </x>
+		<y> 0 </y>
+		<clicksound> 3 </clicksound>
+	</rect>
+	<rect name="horizontal_scroll_marker">
+		<id> &generic; </id>
+		<visible> &false; </visible>
+		<depth> 6 </depth>
+		<width> 1 </width>
+		<height> 1 </height>
+		<x> 0 </x>
+		<y> 0 </y>
+		<clips> <copy src="parent()" trait="clips"/> </clips>
+		<_value_scrolled_to>
+			<!-- copy old value -->
+			<add src="sibling(horizontal_scroll_right)" trait="clicked"/>
+			<mod> 2 </mod>
+			<eq> 0 </eq>
+		</_value_scrolled_to>
+		<user8>	0 </user8>
+		<user9> 0 </user9>
+		<clicksound> 3 </clicksound>
+	</rect>
+	<image name="hoverbox"> <!-- DarN add -->
+		<include src="darn\focus_box.xml" />
+		<depth> -10 </depth>
+		<x>
+			<copy src="parent()" trait="x" />
+			<sub>
+				<copy src="parent()" trait="x" />
+				<onlyifnot src="InventoryMenu" trait="_bEnableGrid" />
+			</sub>
+		</x>
+		<y> 0 </y>
+		<width> <copy src="parent()" trait="width" /> </width>
+		<height> <copy src="parent()" trait="height" /> </height>
+		<visible>
+			<copy src="sibling(horizontal_scroll_right)" trait="mouseover" />
+			<gt> 0 </gt>
+		</visible>
+	</image>
+	<text name="back"> <!-- DarN add -->
+		<depth> -10 </depth>
+		<visible> 1 </visible>
+		<font> 2 </font>
+		<red> 0 </red>
+		<green> 0 </green>
+		<blue> 0 </blue>
+		<string><copy src="inv_list_contents" trait="xscroll" /></string>
+		<x>
+			<copy src="parent()" trait="x" />
+		</x>
+		<y> 0 </y>
+		<alpha> 200 </alpha>
+	</text>
+<!-- /image -->

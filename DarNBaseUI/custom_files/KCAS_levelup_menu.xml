@@ -1,0 +1,190 @@
+<!-- levelup_menu.xml KCAS Version -->
+ <!-- DarN Version 1.1 -->
+<menu name="LevelUpMenu">
+	<class> &LevelUpMenu; </class>
+	<stackingtype> &no_click_past; </stackingtype>
+	<alpha>	0 </alpha>
+	<x> 0 </x>
+	<y> 0 </y>
+	<locus> &true; </locus>
+	<menufade> 0.25 </menufade>
+	
+	<user1>&true;</user1>	<!-- Exit button enabled? --> 
+	
+	<user2></user2>		<!-- Descriptive text -->
+	<user3></user3>		<!-- "You have ascended to level x" -->
+	<user4></user4>		<!-- Filename for picture -->
+	<user5></user5>		<!-- Attribute description -->
+	
+	<xbuttonb> <ref src="levelup_exit_button" trait="clicked"/> </xbuttonb>
+
+<include src="darn\levelup_config.xml"/>
+	
+	<rect name="levelup_background">
+<include src="darn\generic_background75.xml"/>
+		<depth> 1 </depth>
+		<user0> 490 </user0> <!-- DarN width 1000/690 -->
+		<user1> <!-- DarN height -->
+			<copy src="levelup_pane" trait="y" />
+			<add src="levelup_pane" trait="height" />
+			<add> 20 </add>
+		</user1>
+		<x>
+			<copy src="screen()" trait="width" />
+			<sub src="me()" trait="width" />
+			<div> 2 </div>
+		</x>
+		<y>
+			<copy src="screen()" trait="height" />
+			<sub src="me()" trait="height" />
+			<div> 2 </div>
+		</y>
+		<locus> &true; </locus>
+		
+		
+		<!-- TITLE MESSAGE ===========================================================-->
+		<text name="levelup_title">
+			<string> <copy src="LevelUpMenu" trait="user3"/> </string>
+			<justify> &center; </justify> <!-- DarN &left; -->
+			<font> <copy src="darnui_settings" trait="_lutfont" /> </font><!-- DarN add -->
+			<red> <copy src="darnui_settings" trait="_lutred" /> </red> <!-- DarN 33 -->
+			<green> <copy src="darnui_settings" trait="_lutgreen" /> </green> <!-- DarN 59 -->
+			<blue> <copy src="darnui_settings" trait="_lutblue" /> </blue> <!-- DarN 117 -->
+			<alpha> <copy src="darnui_settings" trait="_lutalpha" /> </alpha> <!-- DarN 255 -->
+			<wrapwidth> 590 </wrapwidth> <!-- DarN 900 -->
+			<x>
+				<copy src="parent()" trait="width" />
+				<div> 2 </div>
+			</x>
+			<y> 20 </y>
+			<depth> 4 </depth>
+		</text>
+		
+		<image name="levelup_divider">
+			<depth> 3 </depth>
+			<filename>Menus\Shared\shared_border_horizontal_1.dds</filename>
+			<x>
+				<copy src="parent()" trait="width" />
+				<div> 2 </div>
+				<sub>
+					<copy src="me()" trait="width" />
+					<div> 2 </div>
+				</sub>
+			</x> <!-- DarN 334 -->
+			<y>
+				<copy src="levelup_title" trait="y"/>
+				<add src="levelup_title" trait="height"/>
+				<add> 4 </add> <!-- DarN 40 -->
+			</y>
+			<width>
+				<copy src="parent()" trait="width"/>
+				<sub> 50 </sub>
+			</width>
+			<height> 4 </height>
+		</image>
+
+		<image name="level_up_picture">
+			<filename> Menus\Icons\icon_level_up.dds </filename>
+			<depth> 10 </depth>
+			<width> 64 </width>
+			<height> 64 </height>
+			<x> <!-- DarN 620 -->
+				25
+			</x>
+			<y> <copy src="levelup_description" trait="y" /> </y>
+		</image>
+
+		<!-- DESCRIPTIVE MESSAGE ===========================================================-->
+		<text name="levelup_description">
+			<string> <copy src="LevelUpMenu" trait="user2"/> </string>
+			<justify> &left; </justify>
+ 			<font> <copy src="darnui_settings" trait="_ludfont" /> </font><!-- DarN add -->
+			<red> <copy src="darnui_settings" trait="_ludred" /> </red> <!-- DarN 117 -->
+			<green> <copy src="darnui_settings" trait="_ludgreen" /> </green> <!-- DarN 59 -->
+			<blue> <copy src="darnui_settings" trait="_ludblue" /> </blue> <!-- DarN 33 -->
+			<alpha> <copy src="darnui_settings" trait="_ludalpha" /> </alpha> <!-- DarN 255 -->
+			<wrapwidth>
+				<copy src="parent()" trait="width" />
+				<sub src="me()" trait="x" />
+				<sub> 30 </sub>
+			</wrapwidth>
+			<x>
+				<!-- <copy src="parent()" trait="width" />
+				<sub src="me()" trait="width" />
+				<div> 2 </div> -->
+				<copy src="level_up_picture" trait="x" />
+				<add src="level_up_picture" trait="width" />
+				<add> 15 </add>
+			</x>
+			<y>
+				<copy src="levelup_divider" trait="y" />
+				<add src="levelup_divider" trait="height" />
+				<add> 25 </add>
+			</y>
+			<depth> 4 </depth>
+		</text>
+
+		<!-- LIST OF ATTRIBUTES ======================================================================-->
+		<rect name="levelup_pane">
+			<id> 2 </id>
+			<width> 330 </width> <!-- DarN 540 -->
+			<height>
+				<copy src="levelup_description" trait="y" />
+				<add src="levelup_description" trait="height" />
+				<add> 50 </add>
+			</height> <!-- DarN 536/422 -->
+			<x> 15 </x> <!-- DarN 30 -->
+			<y>
+				<copy src="levelup_instructions" trait="y" />
+				<add src="levelup_instructions" trait="height" />
+				<add> 5 </add> <!-- DarN 20 -->
+			</y>
+			<depth> 5 </depth>
+			<locus> &true; </locus>
+						
+			<!-- This is a list pane, and is not a focus itself, but when the child elements don't know how to handle
+				an input command, they defer to their parent. The following directions are for those times. -->
+			<target> &false; </target>
+			<xdefault> &false; </xdefault>
+			<xlist> &xlist; </xlist>
+			<!--xleft> <ref src="levelup_exit_button" trait="mouseover" /> </xleft-->
+			<xright> <ref src="levelup_exit_button" trait="mouseover" /> </xright>
+			<!--xup> &last; </xup>
+			<xdown> &first; </xdown-->
+			
+			<!-- template items go here, set by code -->
+			
+		</rect>
+		
+		
+		<!-- DONE BUTTON ======================================================================-->
+		<image name="levelup_exit_button">
+<include src="darn\button_long.xml"/>
+			<id> 1 </id>
+			<target> <copy src="LevelUpMenu" trait="user1"/> </target>
+			<depth> 6 </depth>
+			<x>
+				<copy src="parent()" trait="width" />
+				<sub src="me()" trait="width" />
+				<sub> 15 </sub>
+			</x>
+			<y>
+				<copy src="parent()" trait="height" />
+				<sub src="me()" trait="height" />
+				<sub> 15 </sub>
+			</y>
+			<user0> <copy src="strings()" trait="_ok"/> </user0>
+			<user1> <copy src="LevelUpMenu" trait="user1"/> </user1>
+			
+			<user20>&xbuttonb;</user20>
+			
+			<xdefault> &xboxhint; </xdefault>
+			<xleft> <ref src="levelup_pane" trait="mouseover"/> </xleft>
+			<!--xright> <ref src="levelup_pane" trait="mouseover"/> </xright>
+			<xup> <ref src="levelup_pane" trait="mouseover"/> </xup>
+			<xdown> <ref src="levelup_pane" trait="mouseover"/> </xdown-->
+		</image>
+		
+	</rect>
+
+</menu>

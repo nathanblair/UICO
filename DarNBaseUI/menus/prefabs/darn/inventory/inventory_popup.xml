@@ -1,0 +1,186 @@
+<!-- created by wz -->
+
+	<x> <copy src="InventoryMenu" trait="_iPopupX" /> </x>
+	<y> -8 </y>
+	<width> <copy src="InventoryMenu" trait="_iPopupWidth" /> </width>
+	<height> <copy src="InventoryMenu" trait="_iPopupHeight" /> </height>
+	<depth> 18 </depth> <!-- DarN 18 -->
+	<locus> &true; </locus>
+	<visible>
+		<copy src="InventoryMenu" trait="_bEnableGrid" />
+		<and src="InventoryMenu" trait="_bSelection" />
+	</visible>
+
+	<image name="inv_desc_cost_img">
+		<depth> 12 </depth>
+		<filename> Shared\all_small_icons.dds </filename>
+		<cropx> 168 </cropx> <!-- DarN 224 -->
+		<x> 0 </x>
+		<y>
+			<copy src="InventoryMenu" trait="_iDescY" />
+			<sub> 2 </sub>
+		</y>
+		<width> 24 </width> <!-- DarN 32 -->
+		<height> 24 </height> <!-- DarN 32 -->
+		<alpha> 255 </alpha>
+		<zoom> 75 </zoom> <!-- DarN add -->
+	</image>
+
+	<image name="inv_desc_weight_img">
+		<depth> 12 </depth>
+		<filename> Shared\all_small_icons.dds </filename>
+		<cropx> 24 </cropx>
+		<x>
+			<copy src="parent()" trait="width" />
+			<mul> 0.25 </mul>
+		</x>
+		<y> <copy src="sibling(inv_desc_cost_img)" trait="y" /> </y>
+		<width> 24 </width>
+		<height> 24 </height>
+		<alpha> 255 </alpha>
+		<zoom> 75 </zoom> <!-- DarN add -->
+	</image>
+
+ <!-- DarN inv_desc_health_img and inv_desc_dmg_img moved to item code -->
+
+	<!-- Border -->
+
+	<image name="inv_popup_frame">
+		<x> -15 </x>
+		<y> -15 </y>
+		<width>
+			<copy src="parent()" trait="width" />
+			<add>
+				<copy src="me()" trait="x" />
+				<mul> -2 </mul>
+			</add>
+		</width>
+		<height>
+			<copy src="parent()" trait="height" />
+			<add>
+				<copy src="me()" trait="y" />
+				<mul> -2 </mul>
+			</add>
+		</height>
+		<locus> &true; </locus>
+
+		<filename> Magic\magic_popup_background.dds </filename>
+		<zoom> -1 </zoom>
+		<alpha> <copy src="InventoryMenu" trait="_iPopupAlpha" /> </alpha>
+
+		<image name="ipf_UL">
+			<depth> 1 </depth>
+			<filename> Magic\magic_popup_border_corner.dds </filename>
+			<x> 0 </x>
+			<y> 0 </y>
+			<width> 10 </width>
+			<height> 10 </height>
+		</image>
+
+		<image name="ipf_top">
+			<depth> 1 </depth>
+			<filename> Magic\magic_popup_border_edge_horizontal.dds </filename>
+			<x>
+				<copy src="sibling(ipf_UL)" trait="x" />
+				<add src="sibling(ipf_UL)" trait="width" />
+			</x>
+			<y> <copy src="sibling(ipf_UL)" trait="y" /> </y>
+			<width>
+				<copy src="sibling(ipf_UR)" trait="x" />
+				<sub src="sibling(ipf_UL)" trait="x" />
+				<sub src="sibling(ipf_UL)" trait="width" />
+			</width>
+			<height> 11 </height>
+		</image>
+
+		<image name="ipf_UR">
+			<depth> 1 </depth>
+			<filename> Magic\magic_popup_border_corner.dds </filename>
+			<x>
+				<copy src="parent()" trait="width" />
+				<sub src="me()" trait="width" />
+				<add> 2 </add>
+			</x>
+			<y> 0 </y>
+			<width> <copy src="sibling(ipf_UL)" trait="width" /> </width>
+			<height> <copy src="sibling(ipf_UL)" trait="height" /> </height>
+		</image>
+
+		<image name="ipf_left">
+			<depth> 1 </depth>
+			<filename> Magic\magic_popup_border_edge_vertical.dds </filename>
+			<x> <copy src="sibling(ipf_UL)" trait="x" /> </x>
+			<y>
+				<copy src="sibling(ipf_UL)" trait="y" />
+				<add src="sibling(ipf_UL)" trait="height" />
+			</y>
+			<width> 11 </width>
+			<height>
+				<copy src="sibling(ipf_LL)" trait="y" />
+				<sub src="sibling(ipf_UL)" trait="y" />
+				<sub src="sibling(ipf_UL)" trait="height" />
+			</height>
+		</image>
+
+		<image name="ipf_LL">
+			<depth> 1 </depth>
+			<filename> Magic\magic_popup_border_corner.dds </filename>
+			<x> 0 </x>
+			<y>
+				<copy src="parent()" trait="height" />
+				<sub src="me()" trait="height" />
+				<add> 2 </add>
+			</y>
+			<width> 10 </width>
+			<height> 10 </height>
+		</image>
+
+		<image name="ipf_bottom">
+			<depth> 1 </depth>
+			<filename> Magic\magic_popup_border_edge_horizontal.dds </filename>
+			<x>
+				<copy src="sibling(ipf_LL)" trait="x" />
+				<add src="sibling(ipf_LL)" trait="width" />
+			</x>
+			<y> <copy src="sibling(ipf_LL)" trait="y" /> </y>
+			<width>
+				<copy src="sibling(ipf_LR)" trait="x" />
+				<sub src="sibling(ipf_LL)" trait="x" />
+				<sub src="sibling(ipf_LL)" trait="width" />
+			</width>
+			<height> 11 </height>
+		</image>
+
+		<image name="ipf_LR">
+			<depth> 1 </depth>
+			<filename> Magic\magic_popup_border_corner.dds </filename>
+			<x>
+				<copy src="parent()" trait="width" />
+				<sub src="me()" trait="width" />
+				<add> 2 </add>
+			</x>
+			<y>
+				<copy src="parent()" trait="height" />
+				<sub src="me()" trait="height" />
+				<add> 2 </add>
+			</y>
+			<width> <copy src="sibling(ipf_UL)" trait="width" /> </width>
+			<height> <copy src="sibling(ipf_UL)" trait="height" /> </height>
+		</image>
+
+		<image name="ipf_right">
+			<depth> 1 </depth>
+			<filename> Magic\magic_popup_border_edge_vertical.dds </filename>
+			<x> <copy src="sibling(ipf_UR)" trait="x" /> </x>
+			<y>
+				<copy src="sibling(ipf_UR)" trait="y" />
+				<add src="sibling(ipf_UR)" trait="height" />
+			</y>
+			<width> 11 </width>
+			<height>
+				<copy src="sibling(ipf_LR)" trait="y" />
+				<sub src="sibling(ipf_UR)" trait="y" />
+				<sub src="sibling(ipf_UR)" trait="height" />
+			</height>
+		</image>
+	</image>

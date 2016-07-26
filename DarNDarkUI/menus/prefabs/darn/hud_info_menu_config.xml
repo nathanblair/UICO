@@ -1,0 +1,29 @@
+
+<!--	DARNIFIED INFO MENU CONFIG 1.1
+-->
+<rect name="darnui_settings">
+	<_configversion> 1.1 </_configversion>
+
+	<!-- Global X/Y Offsets to move the entire info around (def. 0,40) -->
+	<_xoffset> 0 </_xoffset>
+	<_yoffset> 40 </_yoffset>
+
+	<!-- Alternate offsets for 3rd person mode - added to above offsets (def. 0,0) -->
+	<_3PXOffset> 0 </_3PXOffset>
+	<_3PYOffset> 0 </_3PYOffset>
+
+	<!-- Name, destination and info text (def. 3,254,244,183,255) -->
+	<_ndfont> 3 </_ndfont>
+	<_ndred> 254 </_ndred>
+	<_ndgreen> 244 </_ndgreen>
+	<_ndblue> 183 </_ndblue>
+	<_ndalpha> 255 </_ndalpha>
+
+	<!-- Info icons (def. 12) -->
+	<!-- _iconoffset is the distance in pixels from the destination/name text to the icons -->
+	<_iconoffset> 12 </_iconoffset>
+
+	<!-- TEXTURES -->
+	<_t_smallicons> Menus\Shared\all_small_icons.dds </_t_smallicons>
+
+</rect>

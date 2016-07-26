@@ -1,0 +1,492 @@
+<!-- created by wz -->
+
+	<!-- test text to get height of 1 row of text w/ font 3 -->
+	<text name="_tText3_1">
+		<font> 2 </font> <!-- DarN 3 -->
+		<x> -1000 </x>
+		<y> -1000 </y>
+		<string> Test </string>
+		<wrapwidth> 20 </wrapwidth>
+		<wraplines> 1 </wraplines>
+		<visible> &false; </visible>
+	</text>
+
+	<!-- test text to get height of 2 rows of text w/ font 3 -->
+	<text name="_tText3_2">
+		<font> 2 </font>
+		<x> -1000 </x>
+		<y> -1000 </y>
+		<wrapwidth> 20 </wrapwidth>
+		<wraplines> 2 </wraplines>
+		<string> Test Test </string>
+		<visible> &false; </visible>
+	</text>
+
+	<_itemX>
+		<copy src="inv_FocusBox" trait="x" />
+		<sub> 8 </sub>
+	</_itemX>
+	<_itemY>
+		<copy src="inv_FocusBox" trait="y" />
+		<sub> 8 </sub>
+	</_itemY>
+
+	<_leftPopup>
+		<copy src="me()" trait="_itemX" />
+		<add src="me()" trait="_iPopupWidth" />
+		<add> 15 </add>
+		<gt src="screen()" trait="width" />
+	</_leftPopup>
+
+	<_bEnableGrid>
+		<copy src="me()" trait="user0" />
+		<eq> 1 </eq>
+		<and src="inv_toggle_grid_1" trait="user2" />
+		<or>
+			<copy src="me()" trait="user0" />
+			<eq> 2 </eq>
+			<and src="inv_toggle_grid_2" trait="user2" />
+		</or>
+		<or>
+			<copy src="me()" trait="user0" />
+			<eq> 3 </eq>
+			<and src="inv_toggle_grid_3" trait="user2" />
+		</or>
+		<or>
+			<copy src="me()" trait="user0" />
+			<eq> 4 </eq>
+			<and src="inv_toggle_grid_4" trait="user2" />
+		</or>
+		<or>
+			<copy src="me()" trait="user0" />
+			<eq> 5 </eq>
+			<and src="inv_toggle_grid_5" trait="user2" />
+		</or>
+	</_bEnableGrid>
+
+	<_bNotEnableGrid> <not src="me()" trait="_bEnableGrid" /> </_bNotEnableGrid>
+
+	<_bEnableHGrid> &false; </_bEnableHGrid>
+	<_bNotEnableHGrid> <not src="me()" trait="_bEnableHGrid" /> </_bNotEnableHGrid>
+
+
+	<_iNumColumns>
+		<copy src="me()" trait="_iGridNumColumns" />
+		<onlyif src="me()" trait="_bEnableGrid" />
+		<add>
+			<copy> 1 </copy>
+			<onlyifnot src="me()" trait="_bEnableGrid" />
+		</add>
+	</_iNumColumns>
+
+	<_iNumRows>
+		<copy src="me()" trait="_iGridNumRows" />
+		<onlyif src="me()" trait="_bEnableGrid" />
+		<add>
+			<copy src="me()" trait="_iListNumRows" />
+			<onlyifnot src="me()" trait="_bEnableGrid" />
+		</add>
+	</_iNumRows>
+
+	<_iScrColumns>
+		<copy src="me()" trait="_iNumColumns" />
+		<onlyif src="me()" trait="_bEnableGrid" />
+		<add>
+			<copy> 1 </copy>
+			<onlyifnot src="me()" trait="_bEnableGrid" />
+		</add>
+	</_iScrColumns>
+
+
+	<_iItemSize>
+		<copy src="me()" trait="_iGridItemSize" />
+		<onlyif src="me()" trait="_bEnableGrid" />
+		<add>
+			<copy src="me()" trait="_iListItemSize" />
+			<onlyifnot src="me()" trait="_bEnableGrid" />
+		</add>
+	</_iItemSize>
+
+	<_iItemWidth>
+		<copy src="me()" trait="_iItemSize" />
+		<onlyif src="me()" trait="_bEnableGrid" />
+		<add>
+			<copy src="inv_window" trait="width" />
+			<onlyifnot src="me()" trait="_bEnableGrid" />
+		</add>
+	</_iItemWidth>
+
+
+	<_iMarkerWidth>
+		<copy src="me()" trait="_iItemSize" />
+		<onlyif src="me()" trait="_bEnableGrid" />
+		<add>
+			<copy src="me()" trait="_iItemWidth" />
+			<sub> 8 </sub>
+			<mul> 1.5753 </mul>
+			<onlyifnot src="me()" trait="_bEnableGrid" />
+		</add>
+	</_iMarkerWidth>
+
+	<_sMFile_1> Inventory\inv_equiped_marker_1.dds </_sMFile_1>
+	<_sMFile_2> Menus\darn\Inventory\inv_grid_eqmarker.dds </_sMFile_2>
+	<_sMarkerFile>
+		<copy src="me()" trait="_bEnableGrid" />
+		<copy src="me()" trait="_sMFile_" />
+	</_sMarkerFile>
+
+	<_iMarkerAlpha>
+		<copy> 128 </copy>
+		<add>
+			<copy> 64 </copy>
+			<onlyif src="me()" trait="_bEnableGrid" />
+		</add>
+	</_iMarkerAlpha>
+
+	<_iMarkerX>
+		<copy src="me()" trait="_iItemWidth" />
+		<sub src="me()" trait="_iMarkerWidth" />
+		<div> 2 </div>
+		<onlyif src="me()" trait="_bEnableGrid" />
+		<add>
+			<copy> 4 </copy>
+			<onlyifnot src="me()" trait="_bEnableGrid" />
+		</add>
+	</_iMarkerX>
+
+	<_iMarkerY> 0 </_iMarkerY>
+
+	<_iIconSize>
+		<copy src="me()" trait="_iGridIconSize" />
+		<onlyif src="me()" trait="_bEnableGrid" />
+		<add>
+			<copy src="me()" trait="_iListIconSize" />
+			<onlyifnot src="me()" trait="_bEnableGrid" />
+		</add>
+	</_iIconSize>
+
+	<_iIconZoom>
+		<copy src="me()" trait="_iIconSize" />
+		<div> 64 </div>
+		<mul> 100 </mul>
+	</_iIconZoom>
+
+	<_iIconX>
+		<copy src="me()" trait="_iItemSize" />
+		<onlyif src="me()" trait="_bEnableGrid" />
+		<add>
+			<copy> 48 </copy> <!-- DarN 64 -->
+			<onlyifnot src="me()" trait="_bEnableGrid" />
+		</add>
+		<sub src="me()" trait="_iIconSize" />
+		<div> 2 </div>
+	</_iIconX>
+
+	<_iIconY>
+		<copy src="me()" trait="_iItemSize" />
+		<sub src="me()" trait="_iIconSize" />
+		<div> 2 </div>
+	</_iIconY>
+
+
+	<_iCountX>
+		<copy src="me()" trait="_iIconX" />
+		<add src="me()" trait="_iIconSize" />
+		<add> 4 </add>
+		<add>
+			<copy> 10 </copy>
+			<onlyif src="InventoryMenu" trait="_bNotEnableGrid" />
+		</add>
+	</_iCountX>
+
+	<_iCountY>
+		<copy src="me()" trait="_iItemSize" />
+		<sub src="_tText3_1" trait="height" />
+		<!-- <sub> 4 </sub> -->
+		<add> 6 </add>
+	</_iCountY>
+
+
+	<_iPopupX>
+		<copy> -8 </copy>
+		<sub>
+			<copy src="me()" trait="_iPopupWidth" />
+			<sub src="me()" trait="_iItemWidth" />
+			<onlyif src="me()" trait="_leftPopup" />
+		</sub>
+	</_iPopupX>
+
+	<_iPopupHeight>
+		<copy src="me()" trait="_iItemSize" />
+		<add src="me()" trait="_iPopupAddHeight" />
+	</_iPopupHeight>
+
+	<_bPopupIsRight>
+		<copy src="me()" trait="_leftPopup" />
+		<and src="me()" trait="_bPopupAlignRight" />
+	</_bPopupIsRight>
+
+
+	<_iNameWidth>
+		<copy src="me()" trait="_iPopupWidth" />
+		<sub src="me()" trait="_iPopupX" />
+		<onlyif src="me()" trait="_bEnableGrid" />
+		<add>
+			<copy> 280 </copy>
+			<onlyifnot src="me()" trait="_bEnableGrid" />
+		</add>
+	</_iNameWidth>
+
+	<_iNameLines> 2 </_iNameLines>
+
+	<_iNameX>
+		<copy> 8 </copy>
+		<add>
+			<copy src="me()" trait="_iItemWidth" />
+			<onlyifnot src="me()" trait="_leftPopup" />
+		</add>
+		<sub>
+			<copy> 16 </copy>
+			<onlyif src="me()" trait="_bPopupIsRight" />
+		</sub>
+		<!-- <mul>
+			<copy> -1 </copy>
+			<onlyif src="me()" trait="_bPopupIsRight" />
+			<add>
+				<copy> 1 </copy>
+				<onlyifnot src="me()" trait="_leftPopup" />
+			</add>
+		</mul> -->
+		<onlyif src="me()" trait="_bEnableGrid" />
+		<add>
+			<copy> 74 </copy> <!-- DarN 80 -->
+			<onlyif src="me()" trait="_bNotEnableGrid" />
+		</add>
+	</_iNameX>
+
+	<_iNameYBase>
+		<copy> 10 </copy> <!-- DarN 0 -->
+		<add src="me()" trait="_iItemSize" />
+		<!-- <add>
+			<copy src="me()" trait="_iItemSize" />
+			<onlyif src="me()" trait="_bEnableGrid" />
+		</add>
+		<add>
+			<copy src="me()" trait="_iItemSize" />
+			<onlyifnot src="me()" trait="_bEnableGrid" />
+		</add> -->
+	</_iNameYBase>
+
+
+	<_aDescAlign>
+		<copy> &left; </copy>
+		<onlyif src="me()" trait="_bEnableGrid" />
+		<add>
+			<copy> &center; </copy>
+			<onlyifnot src="me()" trait="_bEnableGrid" />
+		</add>
+	</_aDescAlign>
+
+	<_iDescWidth>
+		<copy src="parent()" trait="width" />
+		<sub> 160 </sub>
+		<div> 4 </div>
+		<onlyif src="me()" trait="_bEnableGrid" />
+		<add>
+			<copy> 100 </copy>
+			<onlyifnot src="me()" trait="_bEnableGrid" />
+		</add>
+	</_iDescWidth>
+
+	<_iDescY>
+		<copy src="me()" trait="_iPopupHeight" />
+		<add src="me()" trait="_iItemSize" />
+		<sub src="_tText3_1" trait="height" />
+		<div> 2 </div>
+		<floor> 0 </floor>
+		<onlyif src="me()" trait="_bEnableGrid" />
+		<add>
+			<copy src="me()" trait="_iItemSize" />
+			<sub src="_tText3_1" trait="height" />
+			<div> 2 </div>
+			<onlyifnot src="me()" trait="_bEnableGrid" />
+		</add>
+		<add> 5 </add> <!-- DarN add -->
+	</_iDescY>
+
+	<_iCostX>
+		<copy> 30 </copy> <!-- DarN 40 -->
+		<onlyif src="me()" trait="_bEnableGrid" />
+		<add>
+			<copy src="inv_headers_top" trait="x" />
+			<add src="inv_p123_header_img1" trait="x" />
+			<sub src="inv_window" trait="x" />
+			<add> 12 </add> <!-- DarN 16 -->
+			<onlyifnot src="me()" trait="_bEnableGrid" />
+		</add>
+		<add> <!-- DarN add -->
+			<copy src="InventoryMenu" trait="_iPopupX" />
+			<add src="inv_desc_cost_img" trait="x" />
+			<add> 10 </add>
+			<onlyif src="InventoryMenu" trait="_leftPopup" />
+		</add>
+	</_iCostX>
+
+	<_iWeightX>
+		<copy src="me()" trait="_iPopupWidth" />
+		<mul> 0.25 </mul>
+		<add> 30 </add> <!-- DarN 40 -->
+		<onlyif src="me()" trait="_bEnableGrid" />
+		<sub> <!-- DarN add -->
+			<copy src="me()" trait="_iPopupWidth" />
+			<sub src="me()" trait="_iItemWidth" />
+			<onlyif src="InventoryMenu" trait="_leftPopup" />
+		</sub>
+		<add>
+			<copy src="inv_headers_top" trait="x" />
+			<add src="inv_p123_header_img2" trait="x" />
+			<sub src="inv_window" trait="x" />
+			<add> 12 </add> <!-- DarN 16 -->
+			<onlyifnot src="me()" trait="_bEnableGrid" />
+		</add>
+	</_iWeightX>
+
+	<_iDamageX>
+		<copy src="me()" trait="_iPopupWidth" />
+		<mul> 0.50 </mul>
+		<add> 30 </add> <!-- DarN 40 -->
+		<onlyif src="me()" trait="_bEnableGrid" />
+		<add>
+			<copy src="inv_headers_top" trait="x" />
+			<add src="inv_p123_header_img3a" trait="x" />
+			<sub src="inv_window" trait="x" />
+			<add> 12 </add> <!-- DarN 16 -->
+			<onlyifnot src="me()" trait="_bEnableGrid" />
+		</add>
+		<add> <!-- DarN add -->
+			<copy src="InventoryMenu" trait="_iPopupX" />
+			<add src="inv_desc_dmg_img" trait="x" />
+			<add> 10 </add>
+			<onlyif src="InventoryMenu" trait="_leftPopup" />
+		</add>
+	</_iDamageX>
+
+	<_iHealthX>
+		<copy src="me()" trait="_iPopupWidth" />
+		<mul> 0.75 </mul>
+		<add> 30 </add> <!-- DarN 40 -->
+		<onlyif src="me()" trait="_bEnableGrid" />
+		<sub> <!-- DarN add -->
+			<copy src="me()" trait="_iPopupWidth" />
+			<sub src="me()" trait="_iItemWidth" />
+			<onlyif src="InventoryMenu" trait="_leftPopup" />
+		</sub>
+		<add>
+			<copy src="inv_headers_top" trait="x" />
+			<add src="inv_p123_header_img4" trait="x" />
+			<sub src="inv_window" trait="x" />
+			<add> 12 </add> <!-- DarN 16 -->
+			<onlyifnot src="me()" trait="_bEnableGrid" />
+		</add>
+	</_iHealthX>
+
+
+	<_iSpellPopupWidth>
+		<copy src="me()" trait="_iPopupWidth" />
+		<add> 30 </add>
+	</_iSpellPopupWidth>
+
+	<_iSpellPopupX>
+		<copy src="inv_FocusBox" trait="x" />
+		<!-- <sub> 8 </sub>
+		<sub> 15 </sub> -->
+		<sub> 23 </sub>
+		<sub>
+			<copy src="me()" trait="_iSpellPopupWidth" />
+			<sub src="me()" trait="_iItemSize" />
+			<sub> 30 </sub>
+			<onlyif src="me()" trait="_leftPopup" />
+		</sub>
+	</_iSpellPopupX>
+
+	<_iSpellPopupY>
+		<copy src="inv_FocusBox" trait="y" />
+		<sub> 8 </sub>
+		<add src="me()" trait="_iItemSize" />
+		<add src="me()" trait="_iPopupAddHeight" />
+		<add> 6 </add>
+	</_iSpellPopupY>
+
+
+	<_iSelectionX>
+		<copy src="inv_FocusBox" trait="x" />
+		<sub> 8 </sub>
+		<sub src="inv_background" trait="x"/>
+		<sub src="inv_window" trait="x"/>
+		<onlyif src="inv_FocusBox" trait="visible" />
+	</_iSelectionX>
+
+	<_iSelectionY>
+		<copy src="inv_FocusBox" trait="y" />
+		<sub> 8 </sub>
+		<sub src="inv_background" trait="y"/>
+		<sub src="inv_window" trait="y"/>
+		<onlyif src="inv_FocusBox" trait="visible" />
+	</_iSelectionY>
+
+	<_bSelection>
+		<copy src="inv_FocusBox" trait="visible" />
+		<and>
+			<copy src="me()" trait="_iSelectionX" />
+			<gte> 0 </gte>
+		</and>
+		<and>
+			<copy src="me()" trait="_iSelectionY" />
+			<gte> 0 </gte>
+		</and>
+		<and>
+			<copy src="me()" trait="_iSelectionX" />
+			<lt src="inv_window" trait="width" />
+		</and>
+		<and>
+			<copy src="me()" trait="_iSelectionY" />
+			<lt src="inv_window" trait="height" />
+		</and>
+	</_bSelection>
+
+	<_iSelectionCol>
+		<copy> 0 </copy>
+		<add>
+			<copy src="me()" trait="_iSelectionX" />
+			<div src="inv_window" trait="width" />
+			<mul src="me()" trait="_perLine" />
+			<floor> 0 </floor>
+			<onlyif src="me()" trait="_bSelection" />
+		</add>
+	</_iSelectionCol>
+
+	<_iSelectionRow>
+		<copy> 0 </copy>
+		<add>
+			<copy src="me()" trait="_iSelectionY" />
+			<sub src="inv_pane" trait="y" />
+			<div src="inv_window" trait="height" />
+			<mul src="me()" trait="_perPage" />
+			<floor> 0 </floor>
+			<onlyif src="me()" trait="_bSelection" />
+		</add>
+	</_iSelectionRow>
+
+
+	<_perLine>
+		<copy src="me()" trait="_iScrColumns" />
+		<onlyif src="me()" trait="_bEnableGrid" />
+		<add>
+			<copy> 1 </copy>
+			<onlyifnot src="me()" trait="_bEnableGrid" />
+		</add>
+	</_perLine>
+
+	<_perPage>
+		<copy src="me()" trait="_iNumRows" />
+	</_perPage>

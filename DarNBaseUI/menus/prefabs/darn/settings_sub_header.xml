@@ -1,0 +1,30 @@
+﻿<!-- settings_sub_header.xml -->
+ <!-- DarN Version 1.0 -->
+
+<!-- rect name="sub_header -->
+<locus> &true; </locus>
+	<height> 26 </height>
+	<width> 310 </width>
+<text name="title">
+	<x> 15 </x>
+	<y> 10 </y>
+	<font> 2 </font>
+	<red> 0 </red>
+	<green> 0 </green>
+	<blue> 0 </blue>
+	<alpha> 255 </alpha>
+	<string> <copy src="parent()" trait="_label" /> </string>
+</text>
+
+<image name="line">
+	<x> -10 </x>
+	<y>
+		<copy src="sibling(title)" trait="y" />
+		<add src="sibling(title)" trait="height" />
+		<sub> 6 </sub>
+	</y>
+	<filename> Menus\Stats\stat_border_horizontal_1.dds </filename>
+	<zoom> 60 </zoom>
+	<width> 310 </width>
+	<height> 3 </height>
+</image>

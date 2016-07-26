@@ -1,0 +1,445 @@
+<!-- levelup_menu.xml -->
+ <!-- DarN Version 1.0 -->
+<menu name="LevelUpMenu">
+	<class> &LevelUpMenu; </class>
+	<stackingtype> &no_click_past; </stackingtype>
+	<alpha>	0 </alpha>
+	<x> 0 </x>
+	<y> 0 </y>
+	<locus> &true; </locus>
+	<menufade> 0.25 </menufade>
+	
+	<user1>&false;</user1>	<!-- Exit button enabled? --> 
+	
+	<user2></user2>		<!-- Descriptive text -->
+	<user3></user3>		<!-- "You have ascended to level x" -->
+	<user4></user4>		<!-- Filename for picture -->
+	<user5></user5>		<!-- Attribute description -->
+	
+	<xbuttonb> <ref src="levelup_exit_button" trait="clicked"/> </xbuttonb>
+
+<include src="darn\levelup_config.xml"/>
+	
+	<rect name="levelup_background">
+<include src="darn\generic_background75.xml"/>
+		<depth> 1 </depth>
+		<user0> 690 </user0> <!-- DarN width 1000 -->
+		<user1> <!-- DarN height -->
+			<copy src="levelup_pane" trait="y" />
+			<add src="levelup_pane" trait="height" />
+			<add> 20 </add>
+		</user1>
+		<x>
+			<copy src="screen()" trait="width" />
+			<sub src="me()" trait="width" />
+			<div> 2 </div>
+		</x>
+		<y>
+			<copy src="screen()" trait="height" />
+			<sub src="me()" trait="height" />
+			<div> 2 </div>
+		</y>
+		<locus> &true; </locus>
+		
+		
+		<!-- TITLE MESSAGE ===========================================================-->
+		<text name="levelup_title">
+			<string> <copy src="LevelUpMenu" trait="user3"/> </string>
+			<justify> &center; </justify> <!-- DarN &left; -->
+			<font> <copy src="darnui_settings" trait="_lutfont" /> </font><!-- DarN add -->
+			<red> <copy src="darnui_settings" trait="_lutred" /> </red> <!-- DarN 33 -->
+			<green> <copy src="darnui_settings" trait="_lutgreen" /> </green> <!-- DarN 59 -->
+			<blue> <copy src="darnui_settings" trait="_lutblue" /> </blue> <!-- DarN 117 -->
+			<alpha> <copy src="darnui_settings" trait="_lutalpha" /> </alpha> <!-- DarN 255 -->
+			<wrapwidth> 900 </wrapwidth>
+			<x>
+				<copy src="parent()" trait="width" />
+				<!-- <sub src="me()" trait="width" /> -->
+				<div> 2 </div>
+			</x>
+			<y> 20 </y>
+			<depth> 4 </depth>
+		</text>
+		
+		<image name="levelup_divider">
+			<depth> 3 </depth>
+			<filename>Menus\Shared\shared_border_horizontal_1.dds</filename>
+			<x>
+				<copy src="parent()" trait="width" />
+				<div> 2 </div>
+				<sub>
+					<copy src="me()" trait="width" />
+					<div> 2 </div>
+				</sub>
+			</x> <!-- DarN 334 -->
+			<y>
+				<copy src="levelup_title" trait="y"/>
+				<add src="levelup_title" trait="height"/>
+				<add> 4 </add> <!-- DarN 40 -->
+			</y>
+			<width>
+				<copy src="parent()" trait="width"/>
+				<sub> 50 </sub>
+			</width>
+			<height> 4 </height>
+		</image>
+		
+		<!-- DESCRIPTIVE MESSAGE ===========================================================-->
+		<text name="levelup_description">
+			<string> <copy src="LevelUpMenu" trait="user2"/> </string>
+			<justify> &left; </justify>
+ 			<font> <copy src="darnui_settings" trait="_ludfont" /> </font><!-- DarN add -->
+			<red> <copy src="darnui_settings" trait="_ludred" /> </red> <!-- DarN 117 -->
+			<green> <copy src="darnui_settings" trait="_ludgreen" /> </green> <!-- DarN 59 -->
+			<blue> <copy src="darnui_settings" trait="_ludblue" /> </blue> <!-- DarN 33 -->
+			<alpha> <copy src="darnui_settings" trait="_ludalpha" /> </alpha> <!-- DarN 255 -->
+			<wrapwidth>
+				<copy src="parent()" trait="width" />
+				<sub> 50 </sub>
+			</wrapwidth>
+			<x>
+				<copy src="parent()" trait="width" />
+				<sub src="me()" trait="width" />
+				<div> 2 </div>
+			</x>
+			<y>
+				<copy src="levelup_divider" trait="y" />
+				<add src="levelup_divider" trait="height" />
+				<add> 20 </add>
+			</y>
+			<depth> 4 </depth>
+		</text>
+		
+		
+		<!-- INSTRUCTIONAL MESSAGE =========================================================-->
+		<text name="levelup_instructions">
+			<string> <copy src="strings()" trait="_threeattributes"/> </string>
+			<justify> &left; </justify>
+			<font> <copy src="darnui_settings" trait="_luifont" /> </font><!-- DarN add -->
+			<red> <copy src="darnui_settings" trait="_luired" /> </red> <!-- DarN 33 -->
+			<green> <copy src="darnui_settings" trait="_luigreen" /> </green> <!-- DarN 59 -->
+			<blue> <copy src="darnui_settings" trait="_luiblue" /> </blue> <!-- DarN 117 -->
+			<alpha> <copy src="darnui_settings" trait="_luialpha" /> </alpha> <!-- DarN 255 -->
+			<wrapwidth> 900 </wrapwidth>
+			<x>
+				<copy src="levelup_pane" trait="width" />
+				<sub src="me()" trait="width" />
+				<div> 2 </div>
+			</x>
+			<y>
+				<copy src="levelup_description" trait="y" />
+				<add src="levelup_description" trait="height" />
+				<add> 30 </add>
+			</y>
+			<depth> 4 </depth>
+		</text>
+		
+		
+		<!-- IMAGE/ATTRIBUTE TEXT =======================================================-->
+		<image name="level_up_picture">
+			<zoom> 75 </zoom> <!-- DarN add -->
+			<filename> <copy src="LevelUpMenu" trait="user4"/> </filename>
+			<depth> 10 </depth>
+			<width> 192 </width> <!-- DarN 256 -->
+			<height> 192 </height> <!-- DarN 256 -->
+			<x> <!-- DarN 620 -->
+				<copy src="levelup_pane" trait="x"/>
+				<add src="levelup_pane" trait="width"/>
+				<add src="sibling(levelup_attribute_description)" trait="_extend_text"/>
+				<add> 25 </add>
+			</x>
+			<y> <copy src="levelup_pane" trait="y"/> </y>
+		</image>
+		<text name="levelup_attribute_description">
+			<string> <copy src="LevelUpMenu" trait="user5"/> </string>
+ 			<font> <copy src="darnui_settings" trait="_luadfont" /> </font><!-- DarN add -->
+			<red> <copy src="darnui_settings" trait="_luadred" /> </red> <!-- DarN 33 -->
+			<green> <copy src="darnui_settings" trait="_luadgreen" /> </green> <!-- DarN 59 -->
+			<blue> <copy src="darnui_settings" trait="_luadblue" /> </blue> <!-- DarN 117 -->
+			<alpha> <copy src="darnui_settings" trait="_luadalpha" /> </alpha> <!-- DarN 255 -->
+			<wrapwidth>
+				<copy src="level_up_picture" trait="width"/>
+				<add src="me()" trait="_extend_text"/>
+				<add src="me()" trait="_extend_text"/>
+			</wrapwidth>
+			<x>
+				<copy src="level_up_picture" trait="x" />
+				<sub src="me()" trait="_extend_text" />
+			</x>
+			<y>
+				<copy src="level_up_picture" trait="y" />
+				<add src="level_up_picture" trait="height" />
+				<add> 20 </add>
+			</y>
+			<depth> 4 </depth>
+			<_extend_text> 50 </_extend_text> <!-- DarN 60 -->
+		</text>
+		
+		<!-- LIST OF ATTRIBUTES ======================================================================-->
+		<rect name="levelup_pane">
+			<id> 2 </id>
+			<width> 330 </width> <!-- DarN 540 -->
+			<height> 422 </height> <!-- DarN 536 -->
+			<x> 15 </x> <!-- DarN 30 -->
+			<y>
+				<copy src="levelup_instructions" trait="y" />
+				<add src="levelup_instructions" trait="height" />
+				<add> 5 </add> <!-- DarN 20 -->
+			</y>
+			<depth> 5 </depth>
+			<locus> &true; </locus>
+						
+			<!-- This is a list pane, and is not a focus itself, but when the child elements don't know how to handle
+				an input command, they defer to their parent. The following directions are for those times. -->
+			<target> &false; </target>
+			<xdefault> &false; </xdefault>
+			<xlist> &xlist; </xlist>
+			<!--xleft> <ref src="levelup_exit_button" trait="mouseover" /> </xleft-->
+			<xright> <ref src="levelup_exit_button" trait="mouseover" /> </xright>
+			<!--xup> &last; </xup>
+			<xdown> &first; </xdown-->
+			
+			<!-- template items go here, set by code -->
+			
+		</rect>
+		
+		
+		<!-- DONE BUTTON ======================================================================-->
+		<image name="levelup_exit_button">
+<include src="darn\button_long.xml"/>
+			<id> 1 </id>
+			<target> <copy src="LevelUpMenu" trait="user1"/> </target>
+			<depth> 6 </depth>
+			<x>
+				<copy src="parent()" trait="width" />
+				<sub src="me()" trait="width" />
+				<sub> 30 </sub>
+			</x>
+			<y>
+				<copy src="parent()" trait="height" />
+				<sub src="me()" trait="height" />
+				<sub> 20 </sub>
+			</y>
+			<user0> <copy src="strings()" trait="_exit"/> </user0>
+			<user1> <copy src="LevelUpMenu" trait="user1"/> </user1>
+			
+			<user20>&xbuttonb;</user20>
+			
+			<xdefault> &xboxhint; </xdefault>
+			<xleft> <ref src="levelup_pane" trait="mouseover"/> </xleft>
+			<!--xright> <ref src="levelup_pane" trait="mouseover"/> </xright>
+			<xup> <ref src="levelup_pane" trait="mouseover"/> </xup>
+			<xdown> <ref src="levelup_pane" trait="mouseover"/> </xdown-->
+		</image>
+		
+	</rect>
+	
+	
+	
+	<!-- TEMPLATE ======================================================================-->
+	<template name="levelup_template">
+		<rect name="levelup_item">
+			<alpha> 0 </alpha>
+			<id> 3 </id>
+			<visible> &true; </visible>
+			<locus> &true; </locus>
+			<target>
+				<copy src="me()" trait="user6"/>
+				<or src="me()" trait="user0"/>
+			</target>
+			<focusinset> 8 </focusinset>
+			<height> 51 </height> <!-- DarN 67 -->
+			<width> 300 </width> <!-- DarN 450/338 -->
+			<x> 0 </x>
+			<y>
+				<copy src="me()" trait="listindex" />
+				<mul> 51 </mul> <!-- DarN 67 -->
+			</y>
+			<depth> 1 </depth>
+			<listindex> 0 </listindex>
+
+			<user0> &false; </user0>	<!-- is attribute selected by player for level-up? -->
+			<user1> &false; </user1>	<!-- is multiplier text visible? -->
+			<user2> x </user2>			<!-- multiplier text -->
+			<user3> 0 </user3>			<!-- attribute value -->
+			<user4> x </user4>			<!-- item name text -->
+			<user5> x </user5>			<!-- item icon pathname -->
+			<user6> &true; </user6>		<!-- is enabled -->
+			
+			<_enabled_alpha>
+				<copy src="me()" trait="user6"/>
+				<or src="me()" trait="user0"/>
+				<sub> 1 </sub>
+				<mul> 127 </mul>
+				<add> 128 </add>
+			</_enabled_alpha>
+			
+			<!-- This element is a list item. If it gets an input command it doesn't know how to handle
+			     it will defer the command to its parent. The xlist trait set to xitem triggers this. -->
+			<xdefault> &false; </xdefault>
+			<xlist> &xitem; </xlist>
+			<xup> &prev; </xup>
+			<xdown> &next; </xdown>
+
+			<image name="levelup_item_coin">
+				<zoom> 75 </zoom> <!-- DarN add -->
+				<visible> <copy src="parent()" trait="user0" /> </visible>
+				<filename> Menus\Shared\all_small_icons.dds </filename>
+				<cropx> 168 </cropx> <!-- DarN 224 -->
+				<width> 24 </width> <!-- DarN 32 -->
+				<height> 24 </height> <!-- DarN 32 -->
+				<x> -10 </x>
+				<y>
+					<copy src="parent()" trait="height" />
+					<sub src="me()" trait="height" />
+					<div> 2 </div>
+				</y>
+				<depth> 4 </depth>
+				<locus> &true; </locus>
+			</image>
+			
+			<image name="levelup_item_icon">
+				<zoom> 75 </zoom> <!-- DarN add -->
+				<filename> <copy src="parent()" trait="user5" /> </filename>
+				<width> 48 </width> <!-- DarN 64 -->
+				<height> 48 </height> <!-- DarN 64 -->
+				<x> 20 </x> <!-- DarN 40 -->
+				<y>
+					<copy src="parent()" trait="height" />
+					<sub src="me()" trait="height" />
+					<div> 2 </div>
+				</y>
+				<depth> 4 </depth>
+				<alpha> <copy src="parent()" trait="_enabled_alpha"/> </alpha>
+			</image>
+			
+			<text name="levelup_item_text">
+				<string> <copy src="parent()" trait="user4" /> </string>
+				<justify> &left; </justify>
+				<font> <copy src="darnui_settings" trait="_luaifont" /> </font><!-- DarN add -->
+				<red> <copy src="darnui_settings" trait="_luaired" /> </red> <!-- DarN 117 -->
+				<green> <copy src="darnui_settings" trait="_luaigreen" /> </green> <!-- DarN 59 -->
+				<blue> <copy src="darnui_settings" trait="_luaiblue" /> </blue> <!-- DarN 33 -->
+				<alpha> 255 </alpha>
+				<wrapwidth> 300 </wrapwidth>
+				<x> 90 </x> <!-- DarN 130 -->
+				<y>
+					<copy src="parent()" trait="height" />
+					<sub src="me()" trait="height" />
+					<div> 2 </div>
+				</y>
+				<depth> 4 </depth>
+				<alpha> <copy src="parent()" trait="_enabled_alpha"/> </alpha>
+			</text>
+			
+			<text name="levelup_item_value">
+				<string> <copy src="parent()" trait="user3" /> </string>
+				<justify> &left; </justify>
+				<font> <copy src="darnui_settings" trait="_luclfont" /> </font><!-- DarN add -->
+				<red> <copy src="darnui_settings" trait="_luclred" /> </red> <!-- DarN 33 -->
+				<green> <copy src="darnui_settings" trait="_luclgreen" /> </green> <!-- DarN 59 -->
+				<blue> <copy src="darnui_settings" trait="_luclblue" /> </blue> <!-- DarN 117 -->
+				<alpha> 255 </alpha>
+				<x> <!-- DarN 380 -->
+					<copy src="parent()" trait="width" />
+					<sub src="me()" trait="width" />
+					<!-- <sub src="sibling(levelup_item_multiplier)" trait="width" /> -->
+					<sub> 26 </sub>
+				</x>
+				<y>
+					<copy src="parent()" trait="height" />
+					<sub src="me()" trait="height" />
+					<div> 2 </div>
+				</y>
+				<depth> 4 </depth>
+				<alpha> <copy src="parent()" trait="_enabled_alpha"/> </alpha>
+			</text>
+			
+			<text name="levelup_item_multiplier">
+				<string> <copy src="parent()" trait="user2" /> </string>
+				<visible> <copy src="parent()" trait="user1" /> </visible>
+				<justify> &right; </justify>
+				<font> <copy src="darnui_settings" trait="_lumfont" /> </font><!-- DarN add -->
+				<red> <copy src="darnui_settings" trait="_lumred" /> </red> <!-- DarN 117 -->
+				<green> <copy src="darnui_settings" trait="_lumgreen" /> </green> <!-- DarN 59 -->
+				<blue> <copy src="darnui_settings" trait="_lumblue" /> </blue> <!-- DarN 31 -->
+				<alpha> 255 </alpha> <!-- DarN 255 -->
+				<wrapwidth> 300 </wrapwidth>
+				<x> <!-- DarN 480 -->
+					<copy src="parent()" trait="width" />
+					<add src="parent()" trait="x" />
+					<!-- <sub src="me()" trait="width" /> -->
+					<sub> 5 </sub>
+				</x>
+				<y>
+					<copy src="parent()" trait="height" />
+					<sub src="me()" trait="height" />
+					<div> 2 </div>
+				</y>
+				<depth> 4 </depth>
+				<alpha> <copy src="parent()" trait="_enabled_alpha"/> </alpha>
+			</text>
+			
+			<image name="levelup_item_selected">
+				<clips> &true; </clips>
+				<zoom> 75 </zoom> <!-- DarN add -->
+				<visible> <copy src="parent()" trait="user0" /> </visible>
+				<filename> Menus\Inventory\inv_equiped_marker_1.dds </filename>
+				<width>
+					<copy src="parent()" trait="width" />
+					<sub> 64 </sub> <!-- DarN 70 -->
+				</width>
+				<height> 48 </height> <!-- DarN 64 -->
+				<x>  <!-- DarN 115 -->
+					<copy src="sibling(levelup_item_icon)" trait="x" />
+					<add src="sibling(levelup_item_icon)" trait="width" />
+					<add> 10 </add>
+				</x>
+				<y>
+					<copy src="parent()" trait="height" />
+					<sub src="me()" trait="height" />
+					<div> 2 </div>
+					<add> 1 </add>
+				</y>
+				<depth> 1 </depth>
+			</image>
+			
+			<image name="levelup_item_mouseover_marker">
+				<zoom> 75 </zoom> <!-- DarN add -->
+				<filename> Menus\dialog\dialog_selection_full.dds </filename>
+				<alpha>
+					<copy> 255 </copy>
+					<mul src="parent()" trait="mouseover" />
+				</alpha>
+				<width>
+					<copy src="parent()" trait="width"/>
+					<sub> 68 </sub> <!-- DarN 90 -->
+				</width>
+				<height> 48 </height> <!-- DarN 64 -->
+				<x> <!-- DarN 115 -->
+					<copy src="sibling(levelup_item_selected)" trait="x" />
+				</x>
+				<y> 5 </y>
+				<depth> 2 </depth>
+			</image>
+			
+			<image name="levelup_item_mouseover_marker_2">
+				<zoom> 75 </zoom> <!-- DarN add -->
+				<filename> dialog\dialog_selection_cut.dds </filename>
+				<alpha>
+					<copy> 255 </copy>
+					<mul src="parent()" trait="mouseover" />
+				</alpha>
+				<width> 78 </width> <!-- DarN 104 -->
+				<height> 48 </height> <!-- DarN 64 -->
+				<x>
+					<copy src="parent()" trait="width" />
+					<add> 20 </add> <!-- DarN 55 -->
+					<sub src="me()" trait="width" />
+				</x>
+				<y> 5 </y>
+				<depth> 3 </depth>
+			</image>
+		</rect>
+	</template>
+</menu>

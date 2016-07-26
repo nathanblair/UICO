@@ -1,0 +1,75 @@
+<!-- button_floating.xml -->
+<!-- DarN Version 1.3 -->
+<!-- rect name="button_floating" -->
+	<target> &true; </target>
+	<string> </string>
+	<width>
+		<!-- <copy src="child(button_text)" trait="width"/>
+		<add> 40 </add> -->
+		<!-- 150 -->
+		<copy src="MainMenu" trait="_buttonwidth" />
+	</width>
+	<height> 64 </height>
+	<depth> 5 </depth>
+	<x> 0 </x>
+	<y> 0 </y>
+	<locus> &true; </locus>
+	
+
+<include src="darn\system_config.xml" />	
+
+	<image name="button_floating">
+		<visible> <copy src="parent()" trait="mouseover"/> <eq> 1 </eq> </visible>
+		<filename> Menus\Dialog\dialog_selection_full.dds </filename>
+		<width>
+			<copy src="parent()" trait="width"/>
+			<sub> 10 </sub>
+		</width>
+		<height> 64 </height>
+		<depth> 1 </depth>
+		<x> -10 </x>
+		<y> 3 </y>
+		
+		<image name="button_end">
+			<depth> 2 </depth>
+			<filename> Menus\Dialog\dialog_selection_cut.dds </filename>
+			<width> 104 </width>
+			<height> 64 </height>
+			<x>
+				<copy src="parent()" trait="width"/>
+				<add> 8 </add>
+				<sub src="me()" trait="width"/>
+			</x>
+			<y> <copy src="parent()" trait="y"/> </y>
+		</image>
+	</image>
+
+	<!-- DarN AFAIK this file is only referenced from main_menu.xml -->
+	<text name="button_text">
+		<depth> 7 </depth>
+		<string> <copy src="parent()" trait="string"/> </string>
+		<justify> &center; </justify>
+		<font>
+			<copy> 4 </copy>
+			<onlyif>
+				<copy src="darnui_settings" trait="_daedric" />
+				<and> <copy src="parent()" trait="mouseover" /> <eq> 0 </eq> </and>
+			</onlyif>
+			<add>
+				<copy src="darnui_settings" trait="_mmfont" />
+				<onlyifnot src="darnui_settings" trait="_daedric" />
+			</add>
+		</font><!-- DarN add -->
+		<red> <copy src="darnui_settings" trait="_mmred" /> </red> <!-- DarN 117 -->
+		<green> <copy src="darnui_settings" trait="_mmgreen" /> </green> <!-- DarN 59 -->
+		<blue> <copy src="darnui_settings" trait="_mmblue" /> </blue> <!-- DarN 33 -->
+		<alpha> <copy src="darnui_settings" trait="_mmalpha" /> </alpha> <!-- DarN 255 -->
+		<x> <copy src="parent()" trait="width" /><div>2</div><sub>8</sub> </x> <!-- DarN 10 -->
+		<y>
+			<copy src="parent()" trait="height" />
+			<sub src="me()" trait="height"/>
+			<div> 2 </div>
+			<!-- <add> 4 </add> -->
+		</y> <!-- DarN 13 -->
+	</text>
+<!-- /rect -->

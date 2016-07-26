@@ -1,0 +1,87 @@
+﻿<!-- button_map_world_3.xml -->
+
+<!-- image name="button_map_world_3" -->
+	<id> &generic; </id>
+	<visible>
+		<copy src="me()" trait="user2"/>
+	</visible>
+	<locus> &true; </locus>
+	<depth> 1 </depth>
+	<filename> Shared\shared_button_short_off.dds </filename>
+	<width> 64 </width> <!-- DarN 109 -->
+	<height> 26 </height> <!-- DarN 44 -->
+	<x> 0 </x>
+	<y> 0 </y>
+	<alpha>
+		<copy> 255 </copy>
+		<sub>
+			<copy> 255 </copy>
+			<onlyif src="child(button_mouseover_map_world_3)" trait="visible"/>
+		</sub>
+	</alpha>
+	<zoom>
+		<copy> 64 </copy>
+		<div> 109 </div>
+		<mul> 100 </mul>
+	</zoom>
+	<user2> &true; </user2> <!-- is visible -->
+	<user6> -1 </user6> <!-- id -->
+	<user13> &true; </user13>
+	
+	<image name="button_mouseover_map_world_3">
+		<filename> Shared\shared_button_short_on.dds </filename>
+		<visible>
+			<copy src="sibling(button_cover_map_world_3)" trait="mouseover"/>
+			<eq> 1 </eq>
+		</visible>
+		<depth> 2 </depth>
+		<width> 61 </width> <!-- DarN 106 -->
+		<height> 30 </height> <!-- DarN 48 -->
+		<x> 0 </x>
+		<y> 0 </y>
+		<alpha> 255 </alpha>
+		<zoom>
+			<copy> 61 </copy>
+			<div> 106 </div>
+			<mul> 100 </mul>
+		</zoom>
+	</image>
+	
+	<image name="button_content_map_world_3">
+		<filename> darn\pa.dds </filename>
+		<alpha> 255 </alpha>
+		<depth> 3 </depth>
+		<width> 20 </width>
+		<height> 20 </height>
+		<x>
+			<copy src="parent()" trait="width"/>
+			<div> 2 </div>
+			<sub>
+				<copy src="me()" trait="width" />
+				<div> 2 </div>
+			</sub>
+			<sub> 2 </sub>
+		</x>
+		<y>
+			<copy src="parent()" trait="height"/>
+			<div> 2 </div>
+			<sub>
+				<copy src="me()" trait="height" />
+				<div> 2 </div>
+			</sub>
+			<sub> 2 </sub>
+		</y>
+		<zoom> 62.5 </zoom>
+	</image>
+	
+	<rect name="button_cover_map_world_3">
+		<id> <copy src="parent()" trait="user6"/> </id>
+		<target> <copy src="parent()" trait="user13"/> </target>
+		<depth> 4 </depth>
+		<width> 64 </width>
+		<height> 26 </height>
+		<x> 0 </x>
+		<y> 0 </y>
+		<clicksound> 2 </clicksound>
+	</rect>
+<!-- /image -->

@@ -1,0 +1,145 @@
+<!-- DarN Version 1.0 -->
+<!--
+	MAGIC CONFIG
+	CONFIG VERSION : 15 Slot, Extended, Default fonts
+	
+	CONFIG FOR BTMOD BY : Beider & Tikigod
+	CONFIG BY : Beider
+	
+	If you are make changes and want to test them without restarting the game then
+	open your console by hitting the tilde key (key left of the 1 key). Then type,
+		
+		reload magicmenu
+		
+	Then hit the Tilde key again to exit the console.
+
+-->
+<rect name="darnui_settings">
+
+	<!-- MAGIC TEXT
+	
+		- Changes the font of the spell names and cost values
+		- Changes color of the text (RGB values)
+		- Change the opacity of the text
+	 -->
+	
+	<_magicfont> 2 </_magicfont> 		<!-- DEFAULT : 3 -->
+	<_magicred> 0 </_magicred> 		<!-- DEFAULT : 117 -->
+	<_magicgreen> 0 </_magicgreen>		<!-- DEFAULT : 59 -->
+	<_magicblue> 0 </_magicblue>		<!-- DEFAULT : 33 -->
+	<_magicalpha> 255 </_magicalpha> 	<!-- DEFAULT : 255 -->
+	
+	
+	<!-- MAGIC LIST ICONS
+	
+		- Adjusts the icon for each item
+	 -->
+	
+	<_magiciconwidth> 22 </_magiciconwidth>		<!-- DEFAULT : 32 -->
+	<_magiciconheight> 22 </_magiciconheight>	<!-- DEFAULT : 32 -->
+	<_magiciconx> 23 </_magiciconx>				<!-- DEFAULT : 23 -->
+	<_magicicony> 5 </_magicicony>				<!-- DEFAULT : 5 -->
+	<_magiciconzoom>35</_magiciconzoom>		<!-- DEFAULT : 50 --> <!-- 50 = 50%, 100 = 100% -->
+	
+	
+	<!-- MAGIC LIST
+	
+		- Adjusts the number of items shown in the list
+		- Adjust the height spacing between items in the list
+		
+		NOTE:
+		Make sure _magiclistheightneg is the same as _magiclistheight only negative,
+		else you will get scrolling bugs.
+	 -->
+	
+	<_magiclistnum> 20 </_magiclistnum>				<!-- DEFAULT : 15 -->
+	<_magiclistheight> 30 </_magiclistheight>			<!-- DEFAULT : 40 -->
+		<!-- This has to be the same as above only negative -->
+	<_magiclistheightneg> -30 </_magiclistheightneg>		<!-- DEFAULT : -40 -->
+	
+	
+	<!-- MAGIC EXTENTION
+		- &true; = Extend
+		- &false; = No extention
+		
+		NOTE:
+		If you set this to true you probably have to increase the amount of items
+		listed. Set it to false and you have to reduce it.
+	-->
+	
+	<_extendmagiclist> &true; </_extendmagiclist>	<!-- DEFAULT : &true; -->
+	
+	<!-- MAGIC LIST HEADERS
+	
+		- Adjust the headers for the magic list
+		- Also adjust all the icons in the header
+	 -->
+	
+	<_magiclistheaderfont> 3 </_magiclistheaderfont> 				<!-- DEFAULT : 3 -->
+	<_magiclistheaderred> 51 </_magiclistheaderred>				<!-- DEFAULT : 51 -->
+	<_magiclistheadergreen> 79 </_magiclistheadergreen>				<!-- DEFAULT : 79 -->
+	<_magiclistheaderblue> 142 </_magiclistheaderblue>				<!-- DEFAULT : 142 -->
+	<_magiclistheaderalpha> 255 </_magiclistheaderalpha>			<!-- DEFAULT : 255 -->
+	<_magiclistheadborderoffsety> 5 </_magiclistheadborderoffsety>		<!-- DEFAULT : 7 -->
+	<_magiclistheadoffsety> 5 </_magiclistheadoffsety>		<!-- DEFAULT : 5 -->
+	
+	<!-- EXTRA DATA
+	
+		- Spell effectiveness text
+	 -->
+	
+	<_magicextrafont> 3 </_magicextrafont>			 	<!-- DEFAULT : 1 -->
+	<_magicextrared> 117 </_magicextrared>				<!-- DEFAULT : 117 -->
+	<_magicextragreen> 59 </_magicextragreen>				<!-- DEFAULT : 59 -->
+	<_magicextrablue> 33 </_magicextrablue>				<!-- DEFAULT : 33 -->
+	<_magicextraalpha> 255 </_magicextraalpha>				<!-- DEFAULT : 255 -->
+	
+	
+	<!-- MAGIC MARKER
+	
+		- Changes the blue line behind active spells
+		- Should be changed if you modify the amount of items in the list
+	 -->
+	
+	<_magicmarkeralpha> 160 </_magicmarkeralpha>		<!-- DEFAULT : 160 -->
+	<_magicmarkerwidth> 637 </_magicmarkerwidth>		<!-- DEFAULT : 637 -->
+	<_magicmarkerheight> 24 </_magicmarkerheight>		<!-- DEFAULT : 34 -->
+	<_magicmarkercropy> 5 </_magicmarkercropy>			<!-- DEFAULT : 5 -->
+	<_magicmarkerx> 7 </_magicmarkerx>				<!-- DEFAULT : 7 -->
+	<_magicmarkery> 4 </_magicmarkery>				<!-- DEFAULT : 4 -->
+	
+	
+	<!-- TEXTURES
+	
+		- This is to allow skinning of the menu screens	
+	-->
+	
+	<_sharedmainback1> Menus\darn\shared_main_background_1_notile.dds </_sharedmainback1>
+	<_sharedmainback2> Menus\Shared\shared_main_background_2.dds </_sharedmainback2>
+	
+	<_sharedtab1> Menus\Shared\shared_01_tab.dds </_sharedtab1>
+	<_sharedtab2> Menus\darn\shared_02_tab_noline.dds </_sharedtab2>
+	<_sharedtab3> Menus\Shared\shared_03_tab.dds </_sharedtab3>
+	<_sharedtab4> Menus\Shared\shared_04_tab.dds </_sharedtab4>
+	<_sharedtab5> Menus\Shared\shared_05_tab.dds </_sharedtab5>
+	
+	<_invequipmarker1> Menus\Inventory\inv_equiped_marker_1.dds </_invequipmarker1>
+	
+	<_sharedborderhorizontal1> Menus\Shared\shared_border_horizontal_1.dds </_sharedborderhorizontal1>
+	<_sharedborderhorizontal2> Menus\Shared\shared_border_horizontal_2.dds </_sharedborderhorizontal2>
+	<_sharedbordervertical1> Menus\Shared\shared_border_vertical_1.dds </_sharedbordervertical1>
+	<_sharedbordervertical2> Menus\Shared\shared_border_vertical_2.dds </_sharedbordervertical2>
+	
+	<_allsmallicons> Menus\Shared\all_small_icons.dds </_allsmallicons>
+	<_alltabsicons> Menus\Shared\all_tabs_icons.dds </_alltabsicons>
+	<_sharedpagetabs> Menus\Shared\shared_page_tabs.dds </_sharedpagetabs>
+	
+	<_generaltaboff> Menus\Shared\general_tab_selection_off.dds </_generaltaboff>
+	<_generaltabon> Menus\Shared\general_tab_selection_on.dds </_generaltabon>
+	
+	<_shareddecorblueleft> Menus\Shared\shared_decor_blue_left.dds </_shareddecorblueleft>
+	<_shareddecorblueright> Menus\Shared\shared_decor_blue_right.dds </_shareddecorblueright>
+	
+	<_iconpathname> icon/pathname.dds </_iconpathname>
+
+</rect>

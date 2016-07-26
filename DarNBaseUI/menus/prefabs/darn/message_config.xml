@@ -1,0 +1,29 @@
+
+<!--	DARNIFIED MESSAGE CONFIG 1.0
+-->
+<rect name="darnui_settings">
+	<_configversion> 1.0 </_configversion>
+
+	<!-- Maxwidth depends on the font used. defaults to 460 for normal fonts, and 500 for large -->
+	<_maxwidth> 460 </_maxwidth>
+	<!-- Maxheight is the maximum height of the text above the buttons
+		default (and max) is 600 -->
+	<_maxheight> 600 </_maxheight>
+
+	<!-- Message text (def. 3,0,0,0,200) -->
+	<_mtfont> 3 </_mtfont>
+	<_mtred> 0 </_mtred>
+	<_mtgreen> 0 </_mtgreen>
+	<_mtblue> 0 </_mtblue>
+	<_mtalpha> 200 </_mtalpha>
+
+	<!-- Button text (def. 3,117,59,33,2550,0) -->
+	<_btfont> 3 </_btfont>
+	<_btred> 117 </_btred>
+	<_btgreen> 59 </_btgreen>
+	<_btblue> 33 </_btblue>
+	<_btalpha> 255 </_btalpha>
+	<_btxoffset> 0 </_btxoffset>
+	<_btyoffset> 0 </_btyoffset>
+
+</rect>

@@ -1,0 +1,53 @@
+<!--	DARNIFIED LEVEL UP CONFIG 1.0
+-->
+<rect name="darnui_settings">
+	<_configversion> 1.0 </_configversion>
+
+	<!-- Title "You have ascended to..." (def. 3,0,0,0,255) -->
+	<_lutfont>3</_lutfont>
+	<_lutred>0</_lutred>
+	<_lutgreen>0</_lutgreen>
+	<_lutblue>0</_lutblue>
+	<_lutalpha>255</_lutalpha>
+
+	<!--Description text "You realize that..." (def. 2,0,0,0,200) -->
+	<_ludfont>2</_ludfont>
+	<_ludred>0</_ludred>
+	<_ludgreen>0</_ludgreen>
+	<_ludblue>0</_ludblue>
+	<_ludalpha>200</_ludalpha>
+
+	<!-- If you have KCAS or AF installed the settings below this line has no effect -->
+	<!-- Instructions text "Choose 3 attributes..." (def. 2,117,59,33,255) -->
+	<_luifont>2</_luifont>
+	<_luired>117</_luired>
+	<_luigreen>59</_luigreen>
+	<_luiblue>33</_luiblue>
+	<_luialpha>255</_luialpha>
+
+	<!-- Attribute item text "Strength" (def. 3,117,59,33) -->
+	<_luaifont>3</_luaifont>
+	<_luaired>117</_luaired>
+	<_luaigreen>59</_luaigreen>
+	<_luaiblue>33</_luaiblue>
+
+	<!-- Current level text "30" (def. 3,50,50,50) -->
+	<_luclfont>3</_luclfont>
+	<_luclred>50</_luclred>
+	<_luclgreen>50</_luclgreen>
+	<_luclblue>50</_luclblue>
+	
+	<!-- Modifier text "+2" (def. 3,30,100,50) -->
+	<_lumfont>3</_lumfont>
+	<_lumred>30</_lumred>
+	<_lumgreen>100</_lumgreen>
+	<_lumblue>50</_lumblue>
+	
+	<!-- Attribute description text (def. 2,0,0,0,200) -->
+	<_luadfont>2</_luadfont>
+	<_luadred>0</_luadred>
+	<_luadgreen>0</_luadgreen>
+	<_luadblue>0</_luadblue>
+	<_luadalpha>200</_luadalpha>
+
+</rect>

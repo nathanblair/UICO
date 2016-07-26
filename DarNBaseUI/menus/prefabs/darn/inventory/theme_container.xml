@@ -1,0 +1,531 @@
+<!-- "container" inventory by wz -->
+
+	<user10>
+		<!-- X-position of fully-exposed magic popup menu -->
+		<copy src="me()" trait="x"/>
+		<add src="child(inv_background)" trait="x"/>
+		<add src="child(inv_background)" trait="width"/>
+		<add> 16 </add>
+	</user10>
+
+	<_iScrColumns>
+		<copy src="me()" trait="_iGridNumColumns"/>
+		<add src="inv_sizebar" trait="user7"/>
+		<max src="me()" trait="_minCols"/>
+		<onlyif> <copy src="me()" trait="_bEnableGrid"/> </onlyif>
+		<add>
+			<copy> 1 </copy>
+			<onlyifnot> <copy src="me()" trait="_bEnableGrid"/> </onlyifnot>
+		</add>
+	</_iScrColumns>
+
+	<_minCols>
+		<copy> 480 </copy>
+		<div>
+			<copy src="me()" trait="_iGridItemSize"/>
+			<add> 4 </add>
+		</div>
+		<ceil> 0 </ceil>
+	</_minCols>
+
+
+	<rect name="inv_background">
+		<rect name="inv_background_image">
+<include src="darn\inventory\inventory_background.xml"/>
+			<width> <copy src="parent()" trait="width"/> </width>
+			<height> <copy src="parent()" trait="height"/> </height>
+			<x> 0 </x>
+			<y> 0 </y>
+			<locus> &true; </locus>
+			<alpha> <copy src="InventoryMenu" trait="_iInventoryAlpha"/> </alpha>
+		</rect>
+
+		<id> &generic; </id>
+		<target> &true; </target>
+		<depth> 1 </depth>
+
+		<width>
+			<copy src="inv_window" trait="width"/>
+			<add src="inv_tabs" trait="width"/>
+			<add> 4 </add>
+			<add>
+				<copy src="inv_scroll_bar" trait="width"/>
+				<onlyifnot>
+					<copy src="InventoryMenu" trait="_bEnableHGrid"/>
+				</onlyifnot>
+				<onlyif>
+					<copy src="inv_scroll_bar" trait="visible"/>
+				</onlyif>
+			</add>
+			<add>
+				<copy> 16 </copy>
+				<onlyif>
+					<copy src="InventoryMenu" trait="_bEnableHGrid"/>
+					<or> <copy src="inv_scroll_bar" trait="visible"/><eq> &false; </eq> </or>
+				</onlyif>
+			</add>
+		</width>
+		<height>
+			<copy src="inv_headers_top" trait="height"/>
+			<add src="inv_window" trait="height"/>
+			<add> 1 </add> <!-- DarN 4 -->
+			<add>
+				<copy> 3 </copy>
+				<onlyif src="InventoryMenu" trait="_bEnableGrid"/>
+			</add>
+			<add>
+				<copy src="inv_scroll_bar" trait="height"/>
+				<sub> 12 </sub>
+				<onlyif>
+					<copy src="InventoryMenu" trait="_bEnableHGrid"/>
+					<and src="inv_scroll_bar" trait="visible"/>
+				</onlyif>
+			</add>
+			<add src="inv_extra_data" trait="height"/>
+			<!-- <add> 20 </add> --> <!-- DarN add -->
+		</height>
+
+		<x>
+			<copy> 64 </copy>
+			<add src="InventoryMenu" trait="_iHudHSpace"/>
+		</x>
+		<y>
+			<copy src="screen()" trait="height"/>
+			<sub src="me()" trait="height"/>
+			<div> 2 </div>
+			<sub src="InventoryMenu" trait="_iHudVSpace"/>
+		</y>
+		<locus> &true; </locus>
+		<visible> &true; </visible>
+
+		<rect name="inv_sizebar">
+<include src="darn\inventory\inventory_sizebar.xml"/>
+			<x>
+				<copy src="inv_tabs" trait="x"/>
+				<add src="inv_tabs" trait="width"/>
+				<div> 2 </div>
+			</x>
+			<y>
+				<copy src="inv_headers_top" trait="y"/>
+				<add src="inv_headers_top" trait="height"/>
+				<div> 2 </div>
+			</y>
+		</rect>
+
+
+		<!-- LINES ============================================================== -->
+		<rect name="inv_lines">
+<include src="darn\inventory\inventory_lines.xml"/>
+		</rect>
+
+		<rect name="inv_list_lines">
+<include src="darn\inventory\inventory_listlines.xml"/>
+		</rect>
+
+
+
+		<!-- TABS ============================================================== -->
+		<rect name="inv_tabs">
+			<locus> &true; </locus>
+			<depth> 1 </depth>
+			<width> 80 </width>
+			<height> <copy src="inv_window" trait="height"/> </height>
+			<x> 0 </x>
+			<y> <copy src="inv_window" trait="y"/> </y>
+				
+			<rect name="inv_tabs_prev">
+				<id> 7 </id>
+				<target> &true; </target>
+				<width> 1 </width>
+				<height> 1 </height>
+				<x> -1 </x>
+				<y> -1 </y>
+				<clicksound>5</clicksound>
+			</rect>
+			
+			<rect name="inv_tabs_next">
+				<id> 8 </id>
+				<target> &true; </target>
+				<width> 1 </width>
+				<height> 1 </height>
+				<x> -1 </x>
+				<y> -1 </y>
+				<clicksound>5</clicksound>
+			</rect>
+			
+			<rect name="inv_p1">
+<include src="focus_box.xml"/>
+				<visible> <copy src="InventoryMenu" trait="user0"/> <eq> 1 </eq> </visible>	<!-- current visible tab page = me -->
+				<width> 48 </width>
+				<height>
+					<copy src="inv_window" trait="height"/>
+					<div> 5 </div>
+					<sub> 8 </sub>
+				</height>
+				<x>
+					<copy src="parent()" trait="width"/>
+					<sub src="me()" trait="width"/>
+					<div> 2 </div>
+				</x>
+				<y>
+					<copy src="inv_window" trait="height"/>
+					<div> 5 </div>
+					<mul> 0 </mul>
+				</y>
+				<depth> 2 </depth>
+			</rect>
+
+			<rect name="inv_tabs_p1">
+				<id> 1 </id>
+				<target> <copy src="inv_p1" trait="visible"/> <eq> &false; </eq> </target>
+				<depth> 7 </depth>
+				<width> <copy src="inv_p1" trait="width"/> </width>
+				<height> <copy src="inv_p1" trait="height"/> </height>
+				<x> <copy src="inv_p1" trait="x"/> </x>
+				<y> <copy src="inv_p1" trait="y"/> </y>
+				<locus> &true; </locus>
+				<clicksound>5</clicksound>
+				<image name="inv_tabs_p1_icon">
+					<filename> Shared\all_tabs_icons.dds </filename>
+					<depth> 9 </depth>
+					<cropx> 0 </cropx>
+					<cropy> 0 </cropy>
+					<width> 48 </width>
+					<height> 48 </height>
+					<zoom> 75 </zoom>
+					<x>
+						<copy src="parent()" trait="width"/>
+						<sub src="me()" trait="width"/>
+						<div> 2 </div>
+					</x>
+					<y>
+						<copy src="parent()" trait="height"/>
+						<sub src="me()" trait="height"/>
+						<div> 2 </div>
+					</y>
+					<image name="p1_hoverbox">
+						<include src="focus_box.xml"/>
+						<x><copy src="parent()" trait="x"/></x>
+						<y><copy src="parent()" trait="y"/></y>
+						<width> 48 </width>
+						<height> 48 </height>
+						<visible><copy src="inv_tabs_p1" trait="mouseover"/><gt>0</gt></visible>
+					</image>
+				</image>
+			</rect>
+
+			<rect name="inv_p2">
+<include src="focus_box.xml"/>
+				<visible> <copy src="InventoryMenu" trait="user0"/> <eq> 2 </eq> </visible>	<!-- current visible tab page = me -->
+				<width> 48 </width>
+				<height>
+					<copy src="inv_window" trait="height"/>
+					<div> 5 </div>
+					<sub> 8 </sub>
+				</height>
+				<x>
+					<copy src="parent()" trait="width"/>
+					<sub src="me()" trait="width"/>
+					<div> 2 </div>
+				</x>
+				<y>
+					<copy src="inv_window" trait="height"/>
+					<div> 5 </div>
+					<mul> 1 </mul>
+				</y>
+				<depth> 2 </depth>
+			</rect>
+
+
+			<rect name="inv_tabs_p2">
+				<id> 2 </id>
+				<target> <copy src="inv_p2" trait="visible"/> <eq> &false; </eq> </target>
+				<depth> 7 </depth>
+				<width> <copy src="inv_p2" trait="width"/> </width>
+				<height> <copy src="inv_p2" trait="height"/> </height>
+				<x> <copy src="inv_p2" trait="x"/> </x>
+				<y> <copy src="inv_p2" trait="y"/> </y>
+				<locus> &true; </locus>
+				<clicksound>5</clicksound>
+				<image name="inv_tabs_p2_icon">
+					<filename> Shared\all_tabs_icons.dds </filename>
+					<depth> 9 </depth>
+					<cropx> 48 </cropx>
+					<cropy> 0 </cropy>
+					<width> 48 </width>
+					<height> 48 </height>
+					<zoom> 75 </zoom>
+					<x>
+						<copy src="parent()" trait="width"/>
+						<sub src="me()" trait="width"/>
+						<div> 2 </div>
+					</x>
+					<y>
+						<copy src="parent()" trait="height"/>
+						<sub src="me()" trait="height"/>
+						<div> 2 </div>
+					</y>
+					<image name="p2_hoverbox">
+						<include src="focus_box.xml"/>
+						<x><copy src="parent()" trait="x"/></x>
+						<y><copy src="parent()" trait="y"/></y>
+						<width> 48 </width>
+						<height> 48 </height>
+						<visible><copy src="inv_tabs_p2" trait="mouseover"/><gt>0</gt></visible>
+					</image>
+				</image>
+			</rect>
+
+			<rect name="inv_p3">
+<include src="focus_box.xml"/>
+				<visible> <copy src="InventoryMenu" trait="user0"/> <eq> 3 </eq> </visible>	<!-- current visible tab page = me -->
+				<width> 48 </width>
+				<height>
+					<copy src="inv_window" trait="height"/>
+					<div> 5 </div>
+					<sub> 8 </sub>
+				</height>
+				<x>
+					<copy src="parent()" trait="width"/>
+					<sub src="me()" trait="width"/>
+					<div> 2 </div>
+				</x>
+				<y>
+					<copy src="inv_window" trait="height"/>
+					<div> 5 </div>
+					<mul> 2 </mul>
+				</y>
+				<depth> 2 </depth>
+			</rect>
+
+
+			<rect name="inv_tabs_p3">
+				<id> 3 </id>
+				<target> <copy src="inv_p3" trait="visible"/> <eq> &false; </eq> </target>
+				<depth> 7 </depth>
+				<width> <copy src="inv_p3" trait="width"/> </width>
+				<height> <copy src="inv_p3" trait="height"/> </height>
+				<x> <copy src="inv_p3" trait="x"/> </x>
+				<y> <copy src="inv_p3" trait="y"/> </y>
+				<locus> &true; </locus>
+				<clicksound>5</clicksound>
+				<image name="inv_tabs_p3_icon">
+					<filename> Shared\all_tabs_icons.dds </filename>
+					<depth> 9 </depth>
+					<cropx> 96 </cropx>
+					<cropy> 0 </cropy>
+					<width> 48 </width>
+					<height> 48 </height>
+					<zoom> 75 </zoom>
+					<x>
+						<copy src="parent()" trait="width"/>
+						<sub src="me()" trait="width"/>
+						<div> 2 </div>
+					</x>
+					<y>
+						<copy src="parent()" trait="height"/>
+						<sub src="me()" trait="height"/>
+						<div> 2 </div>
+					</y>
+					<image name="p3_hoverbox">
+						<include src="focus_box.xml"/>
+						<x><copy src="parent()" trait="x"/></x>
+						<y><copy src="parent()" trait="y"/></y>
+						<width> 48 </width>
+						<height> 48 </height>
+						<visible><copy src="inv_tabs_p3" trait="mouseover"/><gt>0</gt></visible>
+					</image>
+				</image>
+			</rect>
+
+			<rect name="inv_p4">
+<include src="focus_box.xml"/>
+				<visible> <copy src="InventoryMenu" trait="user0"/> <eq> 4 </eq> </visible>	<!-- current visible tab page = me -->
+				<width> 48 </width>
+				<height>
+					<copy src="inv_window" trait="height"/>
+					<div> 5 </div>
+					<sub> 8 </sub>
+				</height>
+				<x>
+					<copy src="parent()" trait="width"/>
+					<sub src="me()" trait="width"/>
+					<div> 2 </div>
+				</x>
+				<y>
+					<copy src="inv_window" trait="height"/>
+					<div> 5 </div>
+					<mul> 3 </mul>
+				</y>
+				<depth> 2 </depth>
+			</rect>
+
+
+			<rect name="inv_tabs_p4">
+				<id> 4 </id>
+				<target> <copy src="inv_p4" trait="visible"/> <eq> &false; </eq> </target>
+				<depth> 7 </depth>
+				<width> <copy src="inv_p4" trait="width"/> </width>
+				<height> <copy src="inv_p4" trait="height"/> </height>
+				<x> <copy src="inv_p4" trait="x"/> </x>
+				<y> <copy src="inv_p4" trait="y"/> </y>
+				<locus> &true; </locus>
+				<clicksound>5</clicksound>
+				<image name="inv_tabs_p4_icon">
+					<filename> Shared\all_tabs_icons.dds </filename>
+					<depth> 9 </depth>
+					<cropx> 144 </cropx>
+					<cropy> 0 </cropy>
+					<width> 48 </width>
+					<height> 48 </height>
+					<zoom> 75 </zoom>
+					<x>
+						<copy src="parent()" trait="width"/>
+						<sub src="me()" trait="width"/>
+						<div> 2 </div>
+					</x>
+					<y>
+						<copy src="parent()" trait="height"/>
+						<sub src="me()" trait="height"/>
+						<div> 2 </div>
+					</y>
+					<image name="p4_hoverbox">
+						<include src="focus_box.xml"/>
+						<x><copy src="parent()" trait="x"/></x>
+						<y><copy src="parent()" trait="y"/></y>
+						<width> 48 </width>
+						<height> 48 </height>
+						<visible><copy src="inv_tabs_p4" trait="mouseover"/><gt>0</gt></visible>
+					</image>
+				</image>
+			</rect>
+
+			<rect name="inv_p5">
+<include src="focus_box.xml"/>
+				<visible> <copy src="InventoryMenu" trait="user0"/> <eq> 5 </eq> </visible>	<!-- current visible tab page = me -->
+				<width> 48 </width>
+				<height>
+					<copy src="inv_window" trait="height"/>
+					<div> 5 </div>
+					<sub> 8 </sub>
+				</height>
+				<x>
+					<copy src="parent()" trait="width"/>
+					<sub src="me()" trait="width"/>
+					<div> 2 </div>
+				</x>
+				<y>
+					<copy src="inv_window" trait="height"/>
+					<div> 5 </div>
+					<mul> 4 </mul>
+				</y>
+				<depth> 2 </depth>
+			</rect>
+
+
+			<rect name="inv_tabs_p5">
+				<id> 5 </id>
+				<target> <copy src="inv_p5" trait="visible"/> <eq> &false; </eq> </target>
+				<depth> 7 </depth>
+				<width> <copy src="inv_p5" trait="width"/> </width>
+				<height> <copy src="inv_p5" trait="height"/> </height>
+				<x> <copy src="inv_p5" trait="x"/> </x>
+				<y> <copy src="inv_p5" trait="y"/> </y>
+				<locus> &true; </locus>
+				<clicksound>5</clicksound>
+				<image name="inv_tabs_p5_icon">
+					<filename> Shared\all_tabs_icons.dds </filename>
+					<depth> 9 </depth>
+					<cropx> 192 </cropx>
+					<cropy> 0 </cropy>
+					<width> 48 </width>
+					<height> 48 </height>
+					<zoom> 75 </zoom>
+					<x>
+						<copy src="parent()" trait="width"/>
+						<sub src="me()" trait="width"/>
+						<div> 2 </div>
+					</x>
+					<y>
+						<copy src="parent()" trait="height"/>
+						<sub src="me()" trait="height"/>
+						<div> 2 </div>
+					</y>
+					<image name="p5_hoverbox">
+						<include src="focus_box.xml"/>
+						<x><copy src="parent()" trait="x"/></x>
+						<y><copy src="parent()" trait="y"/></y>
+						<width> 48 </width>
+						<height> 48 </height>
+						<visible><copy src="inv_tabs_p5" trait="mouseover"/><gt>0</gt></visible>
+					</image>
+				</image>
+			</rect>
+		</rect>
+
+
+		<!-- TOP HEADERS ============================================================== -->
+		<rect name="inv_headers_top">
+<include src="darn\inventory\inventory_header.xml"/>
+		</rect> <!-- inv_headers_top -->
+
+
+		<!-- EXTRAS ============================================================== -->
+		<rect name="inv_extra_data">
+<include src="darn\inventory\inventory_extradata.xml"/>
+		</rect>
+
+
+		<!-- SCROLL ============================================================== -->
+		<rect name="inv_scroll_bar">
+<include src="darn\inventory\inventory_scrollbar.xml"/>
+		</rect>
+
+
+		<!-- WINDOW ============================================================== -->
+		<rect name="inv_window">
+			<depth> 10 </depth>
+			<clipwindow> &false; </clipwindow>
+			<locus> &true; </locus>
+			<width>
+				<copy src="InventoryMenu" trait="_iItemSize"/>
+				<add> 4 </add>
+				<mul src="InventoryMenu" trait="_iScrColumns"/>
+				<sub> 4 </sub>
+				<onlyif> <copy src="InventoryMenu" trait="_bEnableGrid"/> </onlyif>
+				<add>
+					<copy> 645 </copy>
+					<onlyifnot> <copy src="InventoryMenu" trait="_bEnableGrid"/> </onlyifnot>
+				</add>
+			</width>
+			<height>
+				<copy src="InventoryMenu" trait="_iItemSize"/>
+				<add> 1 </add> <!-- DarN 4 -->
+				<add>
+					<copy> 3 </copy>
+					<onlyif src="InventoryMenu" trait="_bEnableGrid"/>
+				</add>
+				<mul src="InventoryMenu" trait="_iNumRows"/>
+				<sub> 1 </sub>
+				<sub>
+					<copy> 3 </copy>
+					<onlyif src="InventoryMenu" trait="_bEnableGrid"/>
+				</sub>
+			</height>
+			<x>
+				<copy src="inv_tabs" trait="x"/>
+				<add src="inv_tabs" trait="width"/>
+				<add> 4 </add>
+			</x>
+			<y> 
+				<copy src="inv_headers_top" trait="height"/>
+				<add> 2 </add>
+			</y>
+					
+			<rect name="inv_pane">
+<include src="darn\inventory\inventory_pane.xml"/>
+			</rect>	<!-- inv_pane -->
+
+		</rect>	<!-- inv_window -->
+
+	</rect> <!-- inv_background -->
