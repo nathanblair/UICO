@@ -194,7 +194,7 @@
 
 	<!-- FOCUS BOX ==================================================================-->
 	<rect name="inv_FocusBox">
-<include src="focus_box.xml" />
+<include src="darn\focus_box.xml" />
 		<id> 9 </id>
 		<visible> &false; </visible>
 	</rect>
@@ -375,7 +375,7 @@
 				<width> 576 </width>
 				<height> 249 </height>
 				<x> 0 </x>
-				<y> 250 </y>
+				<y> 300 </y>
 			</image>
 			<image name="inv_border_bottom">
 				<filename> <copy src="darnui_settings" trait="_ibb" /> </filename>
@@ -437,41 +437,35 @@
 				<font> <copy src="darnui_settings" trait="_invextrafont" /> </font>
 				<!-- DarN encumbrance color -->
 				<red>
-					<copy> 0 </copy>
+					<copy> 217 </copy>
 					<add>
-						<copy src="darnui_settings" trait="_invextrared" />
+						<copy> 217 </copy>
 						<onlyif>
-							<copy src="InventoryMenu" trait="user6" />
-							<lte src="InventoryMenu" trait="user7" />
-						</onlyif>
-					</add>
-					<add>
-						<copy> 255 </copy>
-						<onlyif>
-							<copy src="InventoryMenu" trait="user6" />
-							<gt src="InventoryMenu" trait="user7" />
+							<copy src="InventoryMenu" trait="user7"/>
+							<lt> <copy src="InventoryMenu" trait="user6"/> </lt>
 						</onlyif>
 					</add>
 				</red>
-				<green>
-					<copy> 0 </copy>
-					<add>
-						<copy src="darnui_settings" trait="_invextragreen" />
+				<green> 
+					<copy> 185 </copy>
+					<sub>
+						<copy> 185 </copy>
 						<onlyif>
-							<copy src="InventoryMenu" trait="user6" />
-							<lte src="InventoryMenu" trait="user7" />
+							<copy src="InventoryMenu" trait="user7"/>
+							<lt> <copy src="InventoryMenu" trait="user6"/> </lt>
 						</onlyif>
-					</add>
+					</sub>
 				</green>
-				<blue>
-					<copy> 0 </copy>
-					<add>
-						<copy src="darnui_settings" trait="_invextrablue" />
+				<blue> 
+					<copy> 102 </copy>
+					<sub>
+						<copy> 102 </copy>
 						<onlyif>
-							<copy src="InventoryMenu" trait="user6" />
-							<lte src="InventoryMenu" trait="user7" />
+							<copy src="InventoryMenu" trait="user7"/>
+							<lt> <copy src="InventoryMenu" trait="user6"/> </lt>
 						</onlyif>
-					</add>
+					</sub>
+					<add> 
 				</blue>
 				<alpha> <copy src="darnui_settings" trait="_invextraalpha" /> </alpha>
 				<x> 45 </x>
@@ -485,10 +479,10 @@
 				</y>
 			</text>
 			<text name="inv_encumberance_slash">
-				<red> <copy src="inv_encumberance_text" trait="red" /> </red>
-				<green> <copy src="inv_encumberance_text" trait="green" /> </green>
-				<blue> <copy src="inv_encumberance_text" trait="blue" /> </blue>
-				<alpha> <copy src="inv_encumberance_text" trait="alpha" /> </alpha>
+				<red>217</red>
+				<green>185</green>
+				<blue>102</blue>
+				<alpha>255</alpha>
 				<font> <copy src="inv_encumberance_text" trait="font" /> </font>
 				<x>
 					<copy src="inv_encumberance_text" trait="x" />
@@ -499,10 +493,10 @@
 				<string>/</string>
 			</text>
 			<text name="inv_encumberance_max">
-				<red> <copy src="inv_encumberance_text" trait="red" /> </red>
-				<green> <copy src="inv_encumberance_text" trait="green" /> </green>
-				<blue> <copy src="inv_encumberance_text" trait="blue" /> </blue>
-				<alpha> <copy src="inv_encumberance_text" trait="alpha" /> </alpha>
+				<red>217</red>
+				<green>185</green>
+				<blue>102</blue>
+				<alpha>255</alpha>
 				<font> <copy src="inv_encumberance_text" trait="font" /> </font>
 				<x>
 					<copy src="inv_encumberance_slash" trait="x" />
@@ -628,7 +622,7 @@
 				<locus> &true; </locus>
 				<clicksound> 5 </clicksound>
 				<image name="inv_tabs_p1_icon">
-					<filename> Shared\all_tabs_icons.dds </filename>
+					<filename> Textures\Darkui\Menus\Shared\all_tabs_iconsdui.dds </filename>
 					<cropx> 0 </cropx>
 					<cropy> 0 </cropy> <!-- DarN 128 -->
 					<width> <!-- DarN 64 -->
@@ -689,7 +683,7 @@
 				<locus> &true; </locus>
 				<clicksound> 5 </clicksound>
 				<image name="inv_tabs_p2_icon">
-					<filename> Shared\all_tabs_icons.dds </filename>
+					<filename> Textures\Darkui\Menus\Shared\all_tabs_iconsdui.dds </filename>
 					<cropx>
 						<copy> 64 </copy>
 						<mul src="me()" trait="zoom" />
@@ -754,7 +748,7 @@
 				<locus> &true; </locus>
 				<clicksound> 5 </clicksound>
 				<image name="inv_tabs_p3_icon">
-					<filename> Shared\all_tabs_icons.dds </filename>
+					<filename> Textures\Darkui\Menus\Shared\all_tabs_iconsdui.dds </filename>
 					<cropx>
 						<copy> 128 </copy>
 						<mul src="me()" trait="zoom" />
@@ -819,7 +813,7 @@
 				<locus> &true; </locus>
 				<clicksound> 5 </clicksound>
 				<image name="inv_tabs_p4_icon">
-					<filename> Shared\all_tabs_icons.dds </filename>
+					<filename> Textures\Darkui\Menus\Shared\all_tabs_iconsdui.dds </filename>
 					<depth> -1 </depth>
 					<cropx>
 						<copy> 192 </copy>
@@ -886,7 +880,7 @@
 				<locus> &true; </locus>
 				<clicksound> 5 </clicksound>
 				<image name="inv_tabs_p5_icon">
-					<filename> Shared\all_tabs_icons.dds </filename>
+					<filename> Textures\Darkui\Menus\Shared\all_tabs_iconsdui.dds </filename>
 					<cropx>
 						<copy> 256 </copy>
 						<mul src="me()" trait="zoom" />
@@ -2499,8 +2493,8 @@
 					<target> &false; </target>
 					<xdefault> &true; </xdefault>
 					<xlist> &xlist; </xlist>
-					<xup> &prev; <!-- <ref src="inv_p123_header_text" trait="mouseover" /> --> </xup>
-					<xdown> &next; </xdown>
+					<xup> &first; <!-- <ref src="inv_p123_header_text" trait="mouseover" /> --> </xup>
+					<xdown> &last; </xdown>
 					<xscroll> <ref src="inv_scroll_bar" trait="user5" /> </xscroll>
 				</rect>
 
@@ -2636,9 +2630,9 @@
 				<depth> 5 </depth>
 				<justify> &right; </justify>
 				<font> <copy src="darnui_settings" trait="_inventorycountfont" /> </font>
-				<red> 117 </red>
-				<green> 59 </green>
-				<blue> 33  </blue>
+				<red> 217 </red>
+				<green> 185 </green>
+				<blue> 102 </blue>
 				<alpha> <copy src="darnui_settings" trait="_inventoryalpha" /> </alpha>
 				<wrapwidth> 55 </wrapwidth>
 				<wraplines> 1 </wraplines>
@@ -2730,9 +2724,9 @@
 				<depth> 3 </depth>
 				<justify> &left; </justify>
 				<font> <copy src="darnui_settings" trait="_inventoryfont" /> </font>
-				<red> 0 </red>
-				<green> 0 </green>
-				<blue> 0  </blue>
+				<red> 217 </red>
+				<green> 185 </green>
+				<blue> 102 </blue>
 				<alpha> <copy src="darnui_settings" trait="_inventoryalpha" /> </alpha>
 				<wrapwidth> 320 </wrapwidth>
 				<wraplines> 2 </wraplines>

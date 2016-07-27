@@ -1,7 +1,7 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://qconsulting.ca/fo3/ModConfig5.0.xsd">
 	<moduleName>UI Controls for Oblivion</moduleName>
 
-	<installSteps>
+	<installSteps order="Explicit">
 		<installStep name="Set UI">
 			<optionalFileGroups order="Explicit">
 				<group name="Select Your UI" type="SelectExactlyOne">
@@ -13,23 +13,29 @@
 							<files>
 								<folder source="VanillaUI/menus" destination="menus"/>
 							</files>
+							<conditionFlags>
+								<flag name="DarkDarNSelected">Off</flag>
+								<flag name="BaseDarNSelected">Off</flag>
+							</conditionFlags>
 						</plugin>
 						<plugin name="Base DarN UI">
 							<description>
 								Select this if you use the DarNified UI by DarN himself. This will load in some xml files that overwrite his UI files and allows for navigating UI elements with keyboard keys or a gamepad.
-
-								Note: This install currently does not support classic inventory or alternate level-up menus!
 							</description>
 							<files>
 								<folder source="BaseDarNUI/menus" destination="menus" priority="1"/> <!--Priority is set for later when additional options allow user to specify if they require any alternate DarN UI menus from the custom_files folder-->
 							</files>
+							<conditionFlags>
+								<flag name="DarkDarNSelected">Off</flag>
+								<flag name="BaseDarNSelected">On</flag>
+							</conditionFlags>
 						</plugin>
 						<plugin name="Dark DarN UI">
 							<description>
 								Select this if you use the dark version of DarNified UI submitted by Gothic251. This will load in some xml files that overwrite those UI files and allows for navigating UI elements with keyboard keys or a gamepad.
 							</description>
 							<files>
-								<folder source="DarkDarNUI/menus" destination="menus"/>
+								<folder source="DarkDarNUI/menus" destination="menus" priority="1"/>
 								<file source="BaseDarNUI/menus/lockpick_menu.xml" destination="menus/"/>
 								<file source="BaseDarNUI/menus/chargen/class_menu.xml" destination="menus/"/>
 								<file source="BaseDarNUI/menus/chargen/skills_menu.xml" destination="menus/"/>
@@ -39,10 +45,77 @@
 								<file source="BaseDarNUI/menus/message_menu.xml" destination="menus/"/>
 								<file source="BaseDarNUI/menus/training_menu.xml" destination="menus/"/>
 							</files>
+							<conditionFlags>
+								<flag name="BaseDarNSelected">Off</flag>
+								<flag name="DarkDarNSelected">On</flag>
+							</conditionFlags>
+						</plugin>
+					</plugins>
+				</group>
+			</optionalFileGroups>
+		</installStep>
+		<installStep name="Check Base DarN Custom Inventory">
+			<visible>
+				<dependencies>
+					<flagDependency flag="BaseDarNSelected" value="On"/>
+				</dependencies>
+			</visible>
+			<optionalFileGroups order="Explicit">
+				<group name="Use the Classic Inventory" type="SelectAny">
+					<plugins order="Explicit">
+						<plugin name="Base DarN - Classic Inventory">
+							<description>
+								Select this if you use the Classic Inventory UI for your Base DarN UI
+							</description>
+							<conditionFlags>
+								<flag name="InstallBaseDarnClassicInventory">On</flag>
+							</conditionFlags>
+						</plugin>
+					</plugins>
+				</group>
+			</optionalFileGroups>
+		</installStep>
+		<installStep name="Check Dark DarN Custom Inventory">
+			<visible>
+				<dependencies>
+					<flagDependency flag="DarkDarNSelected" value="On"/>
+				</dependencies>
+			</visible>
+			<optionalFileGroups order="Explicit">
+				<group name="Use the Classic Inventory" type="SelectAny">
+					<plugins order="Explicit">
+						<plugin name="Dark DarN - Classic Inventory">
+							<description>
+								Select this if you use the Classic Inventory UI for your Dark DarN UI
+							</description>
+							<conditionFlags>
+								<flag name="InstallDarkDarnClassicInventory">On</flag>
+							</conditionFlags>
 						</plugin>
 					</plugins>
 				</group>
 			</optionalFileGroups>
 		</installStep>
 	</installSteps>
+
+	<!--<conditionalFileInstalls>
+		<patterns>
+			<pattern>
+				<dependencies>
+					<flagDependency name="InstallBaseDarnClassicInventory" value="On">
+				</dependencies>
+				<files>
+					<file source="BaseDarNUI/custom_files/classic_inventory/menus/main/inventory_menu.xml" destination="menus/main/" priority="2">
+				</files>
+			</pattern>
+			<pattern>
+				<dependencies>
+					<flagDependency name="InstallDarkDarnClassicInventory" value="On">
+				</dependencies>
+				<files>
+					<file source="DarkDarNUI/OptionalMenus/classic_inventory/main/inventory_menu.xml" destination="menus/main/" priority="2">
+				</files>
+			</pattern>
+		</patterns>
+	</conditionalFileInstalls>-->
 </config>

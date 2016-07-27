@@ -10,8 +10,8 @@
 	<user1></user1>		<!-- Perk description -->
 	<user2></user2>		<!-- "OK" -->
 	
-	<!-- <xbuttona> <ref src="skillperk_ok_button" trait="clicked" /> </xbuttona> -->
-	<xup> <ref src="skillperk_ok_button" trait="clicked" /> </xup>
+	 <xbuttona> <ref src="skillperk_ok_button" trait="clicked" /> </xbuttona> 
+	<!--<xup> <ref src="skillperk_ok_button" trait="clicked" /> </xup>-->
 
 <include src="darn\skill_perk_config.xml" />
 
@@ -120,7 +120,7 @@
 			</y>
 			
 			<user20> &xbuttona; </user20>
-			<xdefault> &xboxhint; </xdefault>
+			<xdefault> &true; </xdefault>
 		</image>
 	</rect>
 </menu>

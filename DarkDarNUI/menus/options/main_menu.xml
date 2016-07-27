@@ -110,8 +110,8 @@
 			</x>
 			<y>	0 </y>
 			<clicksound> 1 </clicksound>
-			<xleft> <ref src="main_exit" trait="mouseover"/> </xleft>
-			<xright> <ref src="main_new" trait="mouseover"/> </xright>
+			<!--<xleft> <ref src="main_exit" trait="mouseover"/> </xleft>-->
+			<xdown> <ref src="main_new" trait="mouseover"/> </xdown>
 		</rect>
 		
 		<rect name="main_new">
@@ -130,8 +130,8 @@
 				<onlyif src="main_continue" trait="visible"/>
 				<add src="main_continue" trait="y"/>
 			</y>
-			<xleft>  <ref src="main_continue" trait="mouseover"/> </xleft>
-			<xright> <ref src="main_load" trait="mouseover"/> </xright>
+			<xup>  <ref src="main_continue" trait="mouseover"/> </xup>
+			<xdown> <ref src="main_load" trait="mouseover"/> </xdown>
 		</rect>
 		
 		<rect name="main_load">
@@ -151,8 +151,8 @@
 				<add src="main_new" trait="y"/>
 			</y>
 			<clicksound> 1 </clicksound>
-			<xleft>  <ref src="main_new" trait="mouseover"/> </xleft>
-			<xright> <ref src="main_options" trait="mouseover"/> </xright>
+			<xup>  <ref src="main_new" trait="mouseover"/> </xup>
+			<xdown> <ref src="main_options" trait="mouseover"/> </xdown>
 		</rect>
 		
 		<rect name="main_options">
@@ -172,8 +172,8 @@
 				<add src="main_load" trait="y"/>
 			</y>
 			<clicksound> 1 </clicksound>
-			<xleft>  <ref src="main_load" trait="mouseover"/> </xleft>
-			<xright> <ref src="main_credits" trait="mouseover"/> </xright>
+			<xup>  <ref src="main_load" trait="mouseover"/> </xup>
+			<xdown> <ref src="main_credits" trait="mouseover"/> </xdown>
 		</rect>
 		
 		<rect name="main_credits">
@@ -193,8 +193,8 @@
 				<add src="main_options" trait="y"/>
 			</y>
 			<clicksound> 1 </clicksound>
-			<xleft>  <ref src="main_options" trait="mouseover"/> </xleft>
-			<xright> <ref src="main_exit" trait="mouseover"/> </xright>
+			<xup>  <ref src="main_options" trait="mouseover"/> </xup>
+			<xdown> <ref src="main_exit" trait="mouseover"/> </xdown>
 		</rect>
 		
 		<rect name="main_exit">
@@ -214,8 +214,8 @@
 				<onlyif src="main_credits" trait="visible"/>
 				<add src="main_credits" trait="y"/>
 			</y>
-			<xleft>  <ref src="main_credits" trait="mouseover"/> </xleft>
-			<xright>  <ref src="main_continue" trait="mouseover"/> </xright>
+			<xup>  <ref src="main_credits" trait="mouseover"/> </xup>
+			<!--<xright>  <ref src="main_continue" trait="mouseover"/> </xright>-->
 			<_end>
 				<copy src="me()" trait="height"/>
 				<onlyif src="me()" trait="visible"/>

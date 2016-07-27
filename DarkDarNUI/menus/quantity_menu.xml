@@ -9,11 +9,11 @@
 	<y> 0 </y>
 	<explorefade> 0.25 </explorefade>
 
-	<xdefault> &true; </xdefault>
+	<!--<xdefault> &true; </xdefault>
     <xup> <ref src="quantity_button_okay" trait="clicked"/> </xup>
     <xdown> <ref src="quantity_button_cancel" trait="clicked"/> </xdown>
     <xleft> <ref src="horizontal_scroll_left" trait="clicked"/> </xleft>
-    <xright> <ref src="horizontal_scroll_right" trait="clicked"/> </xright>
+    <xright> <ref src="horizontal_scroll_right" trait="clicked"/> </xright>-->
 	<xbuttona> <ref src="quantity_button_okay" trait="clicked"/> </xbuttona>
 	<xbuttonb> <ref src="quantity_button_cancel" trait="clicked"/> </xbuttonb>
 	
@@ -126,6 +126,11 @@
 			<depth> 3 </depth>
 			<locus> &true; </locus>
 
+			<xdefault> &true; </xdefault>
+			<xdown> <ref src="quantity_button_okay" trait="mouseover"/> </xdown>
+			<xleft> <ref src="horizontal_scroll_left" trait="clicked"/> </xleft>
+			<xright> <ref src="horizontal_scroll_right" trait="clicked"/> </xright>
+
 			<image name="quantity_scroll_marker_2">
 				<zoom> 75 </zoom> <!-- DarN add -->
 				<depth> 1 </depth>
@@ -166,6 +171,9 @@
 			<user0> <copy src="strings()" trait="_ok"/> </user0>
 			
 			<user20> &xbuttona; </user20>
+
+			<xup> <ref src="quantity_scroll_marker" trait="mouseover"/> </xup>
+    		<xright> <ref src="quantity_button_cancel" trait="mouseover"/> </xright>
 		</image>
 		
 		
@@ -187,6 +195,9 @@
 			<user0> <copy src="strings()" trait="_cancel"/> </user0>
 			
 			<user20> &xbuttonb; </user20>
+
+			<xup> <ref src="quantity_scroll_marker" trait="mouseover"/> </xup>
+    		<xleft> <ref src="quantity_button_okay" trait="mouseover"/> </xleft>
 		</image>
 		
 	</rect>

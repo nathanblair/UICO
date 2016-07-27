@@ -15,8 +15,8 @@
 	<user7> . </user7>			<!-- Second Button -->
 	<clicksound> 9 </clicksound>
 	
-	<xup> <ref src="qadd_button" trait="clicked"/> </xup>
-	<xdown> <ref src="qadd_button_2" trait="clicked"/> </xdown>
+	<!--<xup> <ref src="qadd_button" trait="clicked"/> </xup>
+	<xdown> <ref src="qadd_button_2" trait="clicked"/> </xdown>-->
 
 <include src="darn\quest_added_config.xml"/>
 	
@@ -48,7 +48,7 @@
 			</sub>
 		</y>
 		<locus> &true; </locus>
-		<xdefault> &true; </xdefault>
+		<xdefault> &false; </xdefault>
 		
 		<text name="qadd_quest_message"> <!-- DarN - "Quest added" -->
 			<font> <copy src="darnui_settings" trait="_qtfont" /> </font>
@@ -211,6 +211,8 @@
 			<clicksound> 2 </clicksound>
 			<user0> <copy src="QuestAddedMenu" trait="user5"/> </user0>
 			
+			<xdown> <ref src="qadd_button_2" trait="mouseover"/> </xdown>
+
 			<user20> &xbuttona; </user20>
 			<xdefault> &true; </xdefault>
 		</rect>
@@ -235,6 +237,8 @@
 			<depth> 6 </depth>
 			<clicksound> 2 </clicksound>
 			<user0> <copy src="QuestAddedMenu" trait="user7"/> </user0>
+
+			<xup> <ref src="qadd_button" trait="mouseover"/> </xup>
 			
 			<user20> &xbuttonx; </user20>
 			<xdefault> &false; </xdefault>
