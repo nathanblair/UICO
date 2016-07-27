@@ -11,3 +11,6 @@ meta.ini
 
 # Ignore archive file as it can't be issued in Git Release - has to be attached manually
 UICO.zip
+
+# Ignore the stock files from the manual download
+/Stock_Files
