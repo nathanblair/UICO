@@ -8,3 +8,6 @@ meta.ini
 
 # Ignore VSCode files
 /.vscode
+
+# Ignore archive file as it can't be issued in Git Release - has to be attached manually
+UICO.zip
