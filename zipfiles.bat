@@ -2,23 +2,21 @@
 :: Eliminates having to click on all the folders and "Send to Compressed File"
 :: Archive will be the distributed file both on GitHub and on Oblivion Nexus
 
-echo off
-echo(
-echo Adding files to UICO.zip archive...
-echo(
-echo(
+:: Delete any UICO.zip file currently in the directory to make sure nothing old stays
+DEL .\UICO.zip
+ECHO off
+ECHO(
+
+ECHO Adding files to UICO.zip archive...
+ECHO(
 "C:\Program Files\7-Zip"\7z a UICO.zip BaseDarNUI\*
-echo(
-echo(
+ECHO(
 "C:\Program Files\7-Zip"\7z a UICO.zip DarkDarNUI\*
-echo(
-echo(
+ECHO(
 "C:\Program Files\7-Zip"\7z a UICO.zip fomod\*
-echo(
-echo(
+ECHO(
 "C:\Program Files\7-Zip"\7z a UICO.zip VanillaUI\*
 
-echo(
-echo(
-echo Completed!
+ECHO(
+ECHO Completed!
 PAUSE
