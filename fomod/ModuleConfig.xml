@@ -1,0 +1,8 @@
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://qconsulting.ca/fo3/ModConfig5.0.xsd">
+	<moduleName>UI Controls for Oblivion</moduleName>
+	<installSteps>
+		<installStep name="Set UI">
+					
+		</installStep>
+	</installSteps>
+</config>

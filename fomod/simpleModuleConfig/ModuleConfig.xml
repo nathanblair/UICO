@@ -1,0 +1,52 @@
+﻿<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://qconsulting.ca/fo3/ModConfig5.0.xsd">
+	<moduleName>This is the name of your mod</moduleName>
+	<installSteps>
+		<installStep name="Custom">
+			<optionalFileGroups order="Explicit">
+				<group name="THIS IS THE NAME OF THIS CATAGORY - this displays in NMM" type="SelectExactlyOne">
+					<plugins order="Explicit">
+						<plugin name="This is the first option">
+							<description>This is the description for the "This is the first option" option - which you'll probably want to change the name of. This section is marked SelectExactlyOne so a user can only select one of these options within this group and HAS to do so to install the mod.
+							</description>
+							<image path="fomod\images\THIS-IS-YOUR-IMAGE-PATH-FOR-THE-NMM-INSTALLER-OPTION1.png"/>
+							<files>
+								<file source="0 - Common\textures\YOUR-MOD-FILES\your-texture.dds" destination="textures\YOUR-MOD-FILES\your-texture.dds"/>
+								<file source="1 - File1\textures\YOUR-MOD-FILES\unique-file-for-this-option1.dds" destination="textures\YOUR-MOD-FILES\unique-file-for-this-option1.dds"/>
+							</files>
+							<typeDescriptor>
+								<type name="Optional"/>
+							</typeDescriptor>
+						</plugin>
+						<plugin name="This is the second option">
+							<description>This is the description for the "This is the second option" option.
+							</description>
+							<image path="fomod\images\THIS-IS-YOUR-IMAGE-PATH-FOR-THE-NMM-INSTALLER-OPTION2.png"/>
+							<files>
+								<file source="0 - Common\textures\YOUR-MOD-FILES\your-texture.dds\textures\YOUR-MOD-FILES\your-texture.dds" destination="textures\YOUR-MOD-FILES\your-texture.dds\textures\YOUR-MOD-FILES\your-texture.dds"/>
+								<file source="2 - File2\textures\YOUR-MOD-FILES\unique-file-for-this-option1.dds" destination="textures\YOUR-MOD-FILES\unique-file-for-this-option1.dds"/>
+							</files>
+							<typeDescriptor>
+								<type name="Optional"/>
+							</typeDescriptor>
+						</plugin>
+					</plugins>
+				</group>
+				<group name="Optional" type="SelectAny">
+					<plugins order="Explicit">
+						<plugin name="This is an optional option">
+							<description>This is the description for the "This is an optional option" option. This section is marked SelectAny so a user can select any or all options added in this group.
+							</description>
+							<image path="fomod\images\cool-optional-file-image.jpg"/>
+							<files>
+								<file source="ChickenButtModCompatability.esp" destination="ChickenButtModCompatability.esp"/>
+							</files>
+							<typeDescriptor>
+								<type name="Optional"/>
+							</typeDescriptor>
+						</plugin>
+					</plugins>
+				</group>
+			</optionalFileGroups>
+		</installStep>
+	</installSteps>
+</config>
