@@ -1,8 +1,16 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://qconsulting.ca/fo3/ModConfig5.0.xsd">
 	<moduleName>UI Controls for Oblivion</moduleName>
 
+	
+	<!--##################################################################                 ############################################################-->
+	<!--################################################# THIS SECTION IS JUST FOR PROMPTING THE USER FOR #############################################-->
+	<!--##################################################### WHAT FILES AND UI MENUS NEED INSTALLED ##################################################-->
+	<!--##################################################################                 ############################################################-->
 	<installSteps order="Explicit">
 		<installStep name="Set UI">
+			<!--###########################################################                 ############################################################-->
+			<!--########################################## Prompt the user for their installed UI system ###############################################-->
+			<!--###########################################################                 ############################################################-->
 			<optionalFileGroups order="Explicit">
 				<group name="Select Your UI" type="SelectExactlyOne">
 					<plugins order="Explicit">
@@ -10,10 +18,8 @@
 							<description>
 								Select this if you don't use any custom UI but instead just use the vanilla UI. This will load in some xml files that overwrite vanilla UI files and allows for navigating UI elements with keyboard keys or a gamepad.
 							</description>
-							<files>
-								<folder source="VanillaUI/menus" destination="menus"/>
-							</files>
 							<conditionFlags>
+								<flag name="VanillaSelected">On</flag>
 								<flag name="DarkDarNSelected">Off</flag>
 								<flag name="BaseDarNSelected">Off</flag>
 							</conditionFlags>
@@ -22,10 +28,8 @@
 							<description>
 								Select this if you use the DarNified UI by DarN himself. This will load in some xml files that overwrite his UI files and allows for navigating UI elements with keyboard keys or a gamepad.
 							</description>
-							<files>
-								<folder source="BaseDarNUI/menus" destination="menus" priority="1"/> <!--Priority is set for later when additional options allow user to specify if they require any alternate DarN UI menus from the custom_files folder-->
-							</files>
 							<conditionFlags>
+								<flag name="VanillaSelected">Off</flag>
 								<flag name="DarkDarNSelected">Off</flag>
 								<flag name="BaseDarNSelected">On</flag>
 							</conditionFlags>
@@ -34,18 +38,8 @@
 							<description>
 								Select this if you use the dark version of DarNified UI submitted by Gothic251. This will load in some xml files that overwrite those UI files and allows for navigating UI elements with keyboard keys or a gamepad.
 							</description>
-							<files>
-								<folder source="DarkDarNUI/menus" destination="menus" priority="1"/>
-								<file source="BaseDarNUI/menus/lockpick_menu.xml" destination="menus/"/>
-								<file source="BaseDarNUI/menus/chargen/class_menu.xml" destination="menus/"/>
-								<file source="BaseDarNUI/menus/chargen/skills_menu.xml" destination="menus/"/>
-								<file source="BaseDarNUI/menus/dialog/dialog_menu.xml" destination="menus/"/>
-								<file source="BaseDarNUI/menus/dialog/persuasion_menu.xml" destination="menus/"/>
-								<file source="BaseDarNUI/menus/main/inventory_menu.xml" destination="menus/"/>
-								<file source="BaseDarNUI/menus/message_menu.xml" destination="menus/"/>
-								<file source="BaseDarNUI/menus/training_menu.xml" destination="menus/"/>
-							</files>
 							<conditionFlags>
+								<flag name="VanillaSelected">Off</flag>
 								<flag name="BaseDarNSelected">Off</flag>
 								<flag name="DarkDarNSelected">On</flag>
 							</conditionFlags>
@@ -54,68 +48,388 @@
 				</group>
 			</optionalFileGroups>
 		</installStep>
-		<installStep name="Check Base DarN Custom Inventory">
+		<!--###########################################################                 ############################################################-->
+		<!--############################################### If a custom UI is installed, prompt for  ###############################################-->
+		<!--################################################### any optional custom UI elements ####################################################-->
+		<!--###########################################################                 ############################################################-->
+		<installStep name="Select Optional DarN UI Menus">
 			<visible>
-				<dependencies>
+				<dependencies operator="Or">
+					<flagDependency flag="DarkDarNSelected" value="On"/>
 					<flagDependency flag="BaseDarNSelected" value="On"/>
 				</dependencies>
 			</visible>
 			<optionalFileGroups order="Explicit">
-				<group name="Use the Classic Inventory" type="SelectAny">
+				<!--############################################ Prompt for Alternate Inventory Menus  #############################################-->
+				<group name="Select Inventory Type" type="SelectExactlyOne">
 					<plugins order="Explicit">
-						<plugin name="Base DarN - Classic Inventory">
+						<plugin name="DarN - Classic Inventory">
 							<description>
-								Select this if you use the Classic Inventory UI for your Base DarN UI
+								Select this if you wish to use the Classic Inventory UI for your DarN UI.
 							</description>
 							<conditionFlags>
-								<flag name="InstallBaseDarnClassicInventory">On</flag>
+								<flag name="InstallClassicDarnInventory">On</flag>
+								<flag name="InstallNewDarnInventory">Off</flag>
 							</conditionFlags>
+							<typeDescriptor>
+								<type name="Recommended"/>
+							</typeDescriptor>
+						</plugin>
+						<plugin name="DarN - New Inventory">
+							<description>
+								Select this if you want the New-Style Inventory UI for your DarN UI. This allows the use of a grid-based inventory management; this type of management is meant more for mouse users and handling its navigation is outside the scope of this mod. Installing this option will use this new inventory menu but it will not be very controller-friendly. If you're using a controller I highly recommend the classic inventory - it is virtually the same (and may even be more performance friendly).
+							</description>
+							<conditionFlags>
+								<flag name="InstallNewDarnInventory">On</flag>
+								<flag name="InstallClassicDarnInventory">Off</flag>
+							</conditionFlags>
+						</plugin>
+					</plugins>
+				</group>
+				<!--############################################ Prompt for Alternate Levelup Menus ##############################################-->
+				<!--####################################### It doesn't appear that these are necessary ###########################################-->
+				<!--<group name="Select Levelup Type" type="SelectExactlyOne">
+					<plugins order="Explicit">
+						<plugin name="DarN - Vanilla Levelup">
+							<description>
+								Select this if you're not using any level-modification systems. This will install a controller-friendly vanilla level-up menu.
+							</description>
+							<conditionFlags>
+								<flag name="InstallVanillaLevelup">On</flag>
+								<flag name="InstallAlternateLevelup">Off</flag>
+							</conditionFlags>
+						</plugin>
+						<plugin name="DarN - Alternate Levelup">
+							<description>
+								Select this if you ARE using a level-modification system (specifically KCAS/AF). This will install a controller-friendly level-up menu.
+							</description>
+							<conditionFlags>
+								<flag name="InstallAlternateLevelup">On</flag>
+								<flag name="InstallVanillaLevelup">Off</flag>
+							</conditionFlags>
+						</plugin>
+					</plugins>
+				</group>-->
+				<!--###################################### Prompt for Showing Quest Added Popup Menus  ############################################-->
+				<group name="Show Or Hide Quest Added" type="SelectAny">
+					<plugins order="Explicit">
+						<plugin name="Show Quest Added Prompt">
+							<description>
+								Selecting this will keep a Quest Added Popup whenever prompted by the game. This will automatically be included as a controller-friendly menu file (i.e. Popup will default to 'Continue' button, just hit [Enter] to continue. If left unselected, the Quest Added Popup will not be displayed.
+							</description>
+							<conditionFlags>
+								<flag name="ShowQuestAdded">On</flag>
+							</conditionFlags>
+							<typeDescriptor>
+								<type name="Recommended"/>
+							</typeDescriptor>
 						</plugin>
 					</plugins>
 				</group>
 			</optionalFileGroups>
 		</installStep>
-		<installStep name="Check Dark DarN Custom Inventory">
+		<!--###########################################################                 ############################################################-->
+		<!--############################################### If a custom UI is installed, prompt for  ###############################################-->
+		<!--################################################### any specific custom UI elements ####################################################-->
+		<!--###########################################################                 ############################################################-->
+		<installStep name="Select Other Specific Menus From DarN UI">
 			<visible>
-				<dependencies>
+				<dependencies operator="Or">
 					<flagDependency flag="DarkDarNSelected" value="On"/>
+					<flagDependency flag="BaseDarNSelected" value="On"/>
 				</dependencies>
 			</visible>
-			<optionalFileGroups order="Explicit">
-				<group name="Use the Classic Inventory" type="SelectAny">
+			<optionalFileGroups>
+				<group name="Select Misc. UI Elements" type="SelectAny">
 					<plugins order="Explicit">
-						<plugin name="Dark DarN - Classic Inventory">
+						<plugin name="Main Menu">
 							<description>
-								Select this if you use the Classic Inventory UI for your Dark DarN UI
+								Select this to import a more controller-friendly main menu with intuitive spatial navigation.
 							</description>
 							<conditionFlags>
-								<flag name="InstallDarkDarnClassicInventory">On</flag>
+								<flag name="MainMenu">On</flag>
 							</conditionFlags>
+							<typeDescriptor>
+								<type name="Recommended"/>
+							</typeDescriptor>
+						</plugin>
+						<plugin name="Save Menu">
+							<description>
+								Select this to import the customized Save Menu. This will overwrite your custom UI's save menu xml and uses more spatially intuitive controls.
+							</description>
+							<conditionFlags>
+								<flag name="SaveMenu">On</flag>
+							</conditionFlags>
+							<typeDescriptor>
+								<type name="Recommended"/>
+							</typeDescriptor>
+						</plugin>
+						<plugin name="Load Menu">
+							<description>
+								Select this to import the customized Load Menu. This will overwrite your custom UI's load menu xml and uses more spatially intuitive controls.
+							</description>
+							<conditionFlags>
+								<flag name="LoadMenu">On</flag>
+							</conditionFlags>
+							<typeDescriptor>
+								<type name="Recommended"/>
+							</typeDescriptor>
+						</plugin>
+						<plugin name="Message Menu">
+							<description>
+								Select this to replace DarN's not-very-controller-friendly or intuitive message menu. This will effectively allow you to mouseover the list of options in the message box using the arrow keys instead of selecting the current option with the up-arrow. Its much more intuitive and controller friendly, trust me.
+							</description>
+							<conditionFlags>
+								<flag name="MessageMenu">On</flag>
+							</conditionFlags>
+							<typeDescriptor>
+								<type name="Recommended"/>
+							</typeDescriptor>
+						</plugin>
+						<plugin name="Menu Name">
+							<description>
+								Description for what the menu does
+							</description>
+							<conditionFlags>
+								<flag name="MenuName">On</flag>
+							</conditionFlags>
+							<typeDescriptor>
+								<type name="Optional"/>
+							</typeDescriptor>
+						</plugin>
+						<plugin name="Menu Name">
+							<description>
+								Description for what the menu does
+							</description>
+							<conditionFlags>
+								<flag name="MenuName">On</flag>
+							</conditionFlags>
+							<typeDescriptor>
+								<type name="Optional"/>
+							</typeDescriptor>
 						</plugin>
 					</plugins>
 				</group>
 			</optionalFileGroups>
 		</installStep>
 	</installSteps>
-
-	<!--<conditionalFileInstalls>
+	<conditionalFileInstalls>
+		<!--##########################################################                 ############################################################-->
+		<!--####################################### ACTUAL FILE SELECTION FOR INSTALLATION IS IN THIS SECTION #####################################-->
+		<!--##########################################################                 ############################################################-->
 		<patterns>
+			<!--#######################################################                 ###########################################################-->
+			<!--######################################################## Vanilla Menus ############################################################-->
+			<!--#######################################################                 ###########################################################-->
 			<pattern>
 				<dependencies>
-					<flagDependency name="InstallBaseDarnClassicInventory" value="On">
+					<flagDependency flag="VanillaSelected" value="On"/>
 				</dependencies>
 				<files>
-					<file source="BaseDarNUI/custom_files/classic_inventory/menus/main/inventory_menu.xml" destination="menus/main/" priority="2">
+					<folder source="UI_Vanilla/menus" destination="menus"/>
 				</files>
 			</pattern>
-			<pattern>
+			<!--#######################################################                 ###########################################################-->
+			<!--####################################################### Custom UI Menus ###########################################################-->
+			<!--######################################################### Starts Here #############################################################-->
+			<!--#######################################################                 ###########################################################-->
+			<!--################################################### Install INVENTORY Menus #######################################################-->
+			<pattern> <!--############################################ Base DarN Classic ##########################################################-->
 				<dependencies>
-					<flagDependency name="InstallDarkDarnClassicInventory" value="On">
+					<flagDependency flag="BaseDarNSelected" value="On"/>
+					<flagDependency flag="InstallClassicDarnInventory" value="On"/>
 				</dependencies>
 				<files>
-					<file source="DarkDarNUI/OptionalMenus/classic_inventory/main/inventory_menu.xml" destination="menus/main/" priority="2">
+					<file source="UI_DarN_Base/menus/main/ClassicInventory/inventory_config.xml" destination="menus/prefabs/darn/" priority="2"/>
+					<file source="UI_DarN_Base/menus/main/ClassicInventory/inventory_menu.xml" destination="menus/main/" priority="2"/>
+				</files>
+			</pattern>
+			<pattern> <!--############################################# Base DarN New #############################################################-->
+				<dependencies>
+					<flagDependency flag="BaseDarNSelected" value="On"/>
+					<flagDependency flag="InstallNewDarnInventory" value="On"/>
+				</dependencies>
+				<files>
+					<file source="UI_DarN_Base/menus/main/NewInventory/inventory_config.xml" destination="menus/prefabs/darn/" priority="2"/>
+					<file source="UI_DarN_Base/menus/main/NewInventory/inventory_menu.xml" destination="menus/main/" priority="2"/>
+				</files>
+			</pattern>
+			<pattern> <!--############################################ Dark DarN Classic ##########################################################-->
+				<dependencies>
+					<flagDependency flag="DarkDarNSelected" value="On"/>
+					<flagDependency flag="InstallClassicDarnInventory" value="On"/>
+				</dependencies>
+				<files>
+					<file source="UI_DarN_Dark/menus/main/ClassicInventory/inventory_config.xml" destination="menus/prefabs/darn/" priority="2"/>
+					<file source="UI_DarN_Dark/menus/main/ClassicInventory/inventory_menu.xml" destination="menus/main/" priority="2"/>
+				</files>
+			</pattern>
+			<pattern> <!--############################################# Dark DarN New #############################################################-->
+				<dependencies>
+					<flagDependency flag="DarkDarNSelected" value="On"/>
+					<flagDependency flag="InstallNewDarnInventory" value="On"/>
+				</dependencies>
+				<files>
+					<file source="UI_DarN_Dark/menus/main/NewInventory/inventory_config.xml" destination="menus/prefabs/darn/" priority="2"/>
+					<file source="UI_DarN_Dark/menus/main/NewInventory/inventory_menu.xml" destination="menus/main/" priority="2"/>
+				</files>
+			</pattern>
+			<!--###################################################### Install Levelup Menus ########################################################-->
+			<!--######################################################## Base DarN Vanilla ##########################################################-->
+			<!--<pattern>
+				<dependencies>
+					<flagDependency flag="BaseDarNSelected" value="On"/>
+					<flagDependency flag="InstallVanillaLevelup" value="On"/>
+				</dependencies>
+				<files>
+					<file source="UI_DarN_Base/menus/VanillaLevelUp/levelup_menu.xml" destination="menus/" priority="2"/>
+				</files>
+			</pattern>-->
+			<!--####################################################### Base DarN Alternate #########################################################-->
+			<!--<pattern>
+				<dependencies>
+					<flagDependency flag="BaseDarNSelected" value="On"/>
+					<flagDependency flag="InstallAlternateLevelup" value="On"/>
+				</dependencies>
+				<files>
+					<file source="UI_DarN_Base/menus/AlternateLevelUp/levelup_menu.xml" destination="menus/" priority="2"/>
+				</files>
+			</pattern>-->
+			<!--####################################################### Dark DarN Vanilla ############################################################-->
+			<!--<pattern>
+				<dependencies>
+					<flagDependency flag="DarkDarNSelected" value="On"/>
+					<flagDependency flag="InstallVanillaLevelup" value="On"/>
+				</dependencies>
+				<files>
+					<file source="UI_DarN_Dark/menus/VanillaLevelUp/levelup_menu.xml" destination="menus/" priority="2"/>
+					<file source="UI_DarN_Dark/menus/VanillaLevelUp/stats_config.xml" destination="menus/prefabs/darn/" priority="2"/>
+				</files>
+			</pattern>-->
+			<!--##################################################### Dark DarN Alternate ############################################################-->
+			<!--<pattern>
+				<dependencies>
+					<flagDependency flag="DarkDarNSelected" value="On"/>
+					<flagDependency flag="InstallAlternateLevelup" value="On"/>
+				</dependencies>
+				<files>
+					<file source="UI_DarN_Dark/menus/AlternateLevelUp/levelup_menu.xml" destination="menus/" priority="2"/>
+					<file source="UI_DarN_Dark/menus/AlternateLevelUp/stats_config.xml" destination="menus/prefabs/darn/" priority="2"/>
+				</files>
+			</pattern>-->
+			<!--################################################## Install Quest Added Menus ########################################################-->
+			<pattern> <!--############################################# Base DarN Show ##############################################################-->
+				<dependencies>
+					<flagDependency flag="BaseDarNSelected" value="On"/>
+					<flagDependency flag="ShowQuestAdded" value="On"/>
+				</dependencies>
+				<files>
+					<file source="UI_DarN_Base/menus/generic/ShowQuestAdded/quest_added.xml" destination="menus/generic/" priority="2"/>
+				</files>
+			</pattern>
+			<pattern> <!--############################################## Base DarN Hide ##############################################################-->
+				<dependencies>
+					<flagDependency flag="BaseDarNSelected" value="On"/>
+					<flagDependency flag="ShowQuestAdded" value=""/>
+				</dependencies>
+				<files>
+					<file source="UI_DarN_Base/menus/generic/HideQuestAdded/quest_added.xml" destination="menus/generic/" priority="2"/>
+				</files>
+			</pattern>
+			<pattern> <!--############################################### Dark DarN Show ##############################################################-->
+				<dependencies>
+					<flagDependency flag="DarkDarNSelected" value="On"/>
+					<flagDependency flag="ShowQuestAdded" value="On"/>
+				</dependencies>
+				<files>
+					<file source="UI_DarN_Dark/menus/generic/ShowQuestAdded/quest_added.xml" destination="menus/generic/" priority="2"/>
+				</files>
+			</pattern>
+			<pattern> <!--############################################### Dark DarN Hide ###############################################################-->
+				<dependencies>
+					<flagDependency flag="DarkDarNSelected" value="On"/>
+					<flagDependency flag="ShowQuestAdded" value=""/>
+				</dependencies>
+				<files>
+					<file source="UI_DarN_Dark/menus/generic/HideQuestAdded/quest_added.xml" destination="menus/generic/" priority="2"/>
+				</files>
+			</pattern>
+			<!--####################################################### Install LOAD Menu #############################################################-->
+			<pattern> <!--################################################# Base DarN #################################################################-->
+				<dependencies>
+					<flagDependency flag="BaseDarNSelected" value="On"/>
+					<flagDependency flag="LoadMenu" value="On"/>
+				</dependencies>
+				<files>
+					<file source="UI_DarN_Base/menus/options/load_menu.xml" destination="menus/options/" priority="2"/>
+				</files>
+			</pattern>
+			<pattern> <!--################################################ Dark DarN ##############################################################-->
+				<dependencies>
+					<flagDependency flag="DarkDarNSelected" value="On"/>
+					<flagDependency flag="LoadMenu" value="On"/>
+				</dependencies>
+				<files>
+					<file source="UI_DarN_Dark/menus/options/load_menu.xml" destination="menus/options/" priority="2"/>
+				</files>
+			</pattern>
+			<!--######################################################## Install SAVE Menu ############################################################-->
+			<pattern> <!--################################################# Base DarN #################################################################-->
+				<dependencies>
+					<flagDependency flag="BaseDarNSelected" value="On"/>
+					<flagDependency flag="SaveMenu" value="On"/>
+				</dependencies>
+				<files>
+					<file source="UI_DarN_Base/menus/options/save_menu.xml" destination="menus/options/" priority="2"/>
+				</files>
+			</pattern>
+			<pattern> <!--################################################ Dark DarN ##############################################################-->
+				<dependencies>
+					<flagDependency flag="DarkDarNSelected" value="On"/>
+					<flagDependency flag="SaveMenu" value="On"/>
+				</dependencies>
+				<files>
+					<file source="UI_DarN_Dark/menus/options/save_menu.xml" destination="menus/options/" priority="2"/>
+				</files>
+			</pattern>
+			<!--#################################################### Install MESSAGEBOX Menu ##########################################################-->
+			<pattern> <!--################################################# Base DarN #################################################################-->
+				<dependencies>
+					<flagDependency flag="BaseDarNSelected" value="On"/>
+					<flagDependency flag="MessageMenu" value="On"/>
+				</dependencies>
+				<files>
+					<file source="UI_DarN_Base/menus/message_menu.xml" destination="menus/" priority="2"/>
+				</files>
+			</pattern>
+			<pattern> <!--################################################ Dark DarN ##############################################################-->
+				<dependencies>
+					<flagDependency flag="DarkDarNSelected" value="On"/>
+					<flagDependency flag="MessageMenu" value="On"/>
+				</dependencies>
+				<files>
+					<file source="UI_DarN_Dark/menus/message_menu.xml" destination="menus/" priority="2"/>
+				</files>
+			</pattern>
+			<!--#################################################### Install MAIN MENU Menu ###########################################################-->
+			<pattern> <!--################################################# Base DarN #################################################################-->
+				<dependencies>
+					<flagDependency flag="BaseDarNSelected" value="On"/>
+					<flagDependency flag="MainMenu" value="On"/>
+				</dependencies>
+				<files>
+					<file source="UI_DarN_Base/menus/options/main_menu.xml" destination="menus/options/" priority="2"/>
+				</files>
+			</pattern>
+			<pattern> <!--################################################ Dark DarN ##############################################################-->
+				<dependencies>
+					<flagDependency flag="DarkDarNSelected" value="On"/>
+					<flagDependency flag="MainMenu" value="On"/>
+				</dependencies>
+				<files>
+					<file source="UI_DarN_Dark/menus/options/main_menu.xml" destination="menus/options/" priority="2"/>
 				</files>
 			</pattern>
 		</patterns>
-	</conditionalFileInstalls>-->
+	</conditionalFileInstalls>
 </config>

@@ -1,0 +1,701 @@
+<!-- message_menu.xml -->
+ <!-- DarN Version 1.1 -->
+<menu name="Messagemenu">
+	<class> &MessageMenu; </class>
+	<stackingtype> &no_click_past; </stackingtype>
+	<alpha>	0 </alpha>
+	<locus> &true; </locus>
+	<explorefade> 0.0 </explorefade>
+
+	<!--<xdefault> &true; </xdefault>
+    <xup><ref src="button_1" trait="clicked" /></xup>
+    <xdown><ref src="button_2" trait="clicked" /></xdown>--><!--Removed by Thinker-->
+
+	<rect name="message_focus_box">
+<include src="darn\focus_box.xml" />
+		<id> 3 </id>
+		<depth> 1 </depth>
+		<visible> &false; </visible>
+	</rect>
+
+<include src="darn\message_config.xml" />
+
+	<rect name="background">
+<include src="darn\generic_background75.xml" />
+		<visible> &true; </visible>
+		<target> &true; </target>
+		<depth> 3 </depth>
+		<id> 1 </id>
+		<user0> <!-- DarN 700 -->
+			<copy> 300 </copy>
+			<max>
+				<copy src="message_text" trait="width" />
+				<add>
+					<copy src="msg_vertical_scroll" trait="width" />
+					<onlyif src="msg_vertical_scroll" trait="visible" />
+				</add>
+			</max>
+			<max src="button_1" trait="width" />
+			<max src="button_2" trait="width" />
+			<max src="button_3" trait="width" />
+			<max src="button_4" trait="width" />
+			<max src="button_5" trait="width" />
+			<max src="button_6" trait="width" />
+			<max src="button_7" trait="width" />
+			<max src="button_8" trait="width" />
+			<max src="button_9" trait="width" />
+			<max src="button_10" trait="width" />
+			<add> 30 </add>
+			<min> <copy src="darnui_settings" trait="_maxwidth" /> </min> <!-- DarN 700 -->
+		</user0>
+		<user1>
+			<copy src="child(msg_text_rect)" trait="height" />
+			<add src="parent()" trait="_offSet" />
+		</user1>
+		<locus> &true; </locus>
+
+		<_center_x>
+			<copy src="me()" trait="width" />
+			<div> 2 </div>
+			<add src="me()" trait="x" />
+		</_center_x>
+
+
+		<rect name="msg_text_rect">
+			<clipwindow> &true; </clipwindow>
+			<width>
+				<copy src="parent()" trait="user0" />
+				<sub> 30 </sub>
+				<sub>
+					<copy> 16 </copy>
+					<onlyif src="MessageMenu" trait="_needScroll" />
+				</sub>
+			</width>
+			<height>
+				<copy src="child(message_text)" trait="height" />
+				<min src="darnui_settings" trait="_maxheight" />
+				<min> 600 </min>
+				<max src="child(dummy)" trait="height" />
+			</height>
+			<x> 15 </x>
+			<y> 15 </y> <!-- DarN 50 -->
+			<alpha> 0 </alpha>
+			<depth> 5 </depth>
+			<locus> &true; </locus>
+
+			<text name="message_text">
+				<id> 2 </id>
+				<clips> <copy src="MessageMenu" trait="_needScroll" /> </clips>
+				<red> <copy src="darnui_settings" trait="_mtred" /> </red>
+				<green> <copy src="darnui_settings" trait="_mtgreen" /> </green>
+				<blue> <copy src="darnui_settings" trait="_mtblue" /> </blue>
+				<depth> 0 </depth>
+				<string></string>
+				<font> <copy src="darnui_settings" trait="_mtfont" /> </font>
+				<alpha> <copy src="darnui_settings" trait="_mtalpha" /> </alpha>
+				<justify> &left; </justify>
+				<wrapwidth>
+					<copy src="darnui_settings" trait="_maxwidth" />
+					<sub> 70 </sub>
+				</wrapwidth>
+				<x>
+					<copy> 0 </copy>
+					<add> <!-- DarN 1.3.2 - center align for short texts -->
+						<copy src="parent()" trait="width" />
+						<sub src="me()" trait="width" />
+						<div> 2 </div>
+						<onlyif>
+							<copy src="parent()" trait="width" />
+							<eq> 300 </eq>
+						</onlyif>
+					</add>
+				</x>
+				<y> <copy src="sibling(msg_vertical_scroll)" trait="_val" /> </y>
+			</text>
+
+			<text name="dummy">
+				<string> <copy src="parent()" trait="width" /> </string>
+				<visible> 1 </visible>
+				<font> <copy src="sibling(message_text)" trait="font" /> </font>
+				<x><copy src="sibling(message_text)" trait="x" /></x>
+				<y><copy src="sibling(message_text)" trait="y" /><sub>20</sub></y>
+			</text>
+
+			<image name="msg_vertical_scroll">
+<!-- <include src="darn\vert_floating_scroll.xml" /> -->
+<include src="darn/msg_menu_vertical_scroll.xml" />
+				<id> &generic; </id>
+				<x>
+					<copy src="parent()" trait="width" />
+					<add> 8 </add>
+				</x>
+				<y> <copy src="child(vertical_scroll_top)" trait="height" /> </y>
+				<height>
+					<copy src="parent()" trait="height" />
+					<sub src="child(vertical_scroll_top)" trait="height" />
+					<sub src="child(vertical_scroll_bottom)" trait="height" />
+				</height>
+				<_max>
+					<copy src="sibling(message_text)" trait="height" />
+					<div src="sibling(dummy)" trait="height" />
+				</_max>
+				<user1>
+					<copy src="me()" trait="user2" />
+					<sub src="me()" trait="_max" />
+					<add src="me()" trait="user8" />
+				</user1>
+				<user2>
+					<copy src="sibling(message_text)" trait="height" /> <!-- DarN _max = no -->
+					<div src="sibling(dummy)" trait="height" />
+					<sub src="me()" trait="user8" />
+				</user2>
+				<user3> 1 </user3>
+				<user4>
+					<copy src="me()" trait="user8" />
+					<sub> 1 </sub>
+				</user4>							<!-- jump distance -->
+				<user5> 0 </user5>					<!-- starting pos -->
+				<user6> &generic; </user6>			<!-- marker id -->
+				<_val>
+					<copy src="me()" trait="user7" />
+					<mul src="sibling(dummy)" trait="height" />
+					<mul> -1 </mul>
+				</_val>
+				<user8>								<!-- num visible -->
+					<copy src="parent()" trait="height" />
+					<div src="dummy" trait="height" />
+					<floor> 0 </floor>
+				</user8>
+				<visible> <copy src="MessageMenu" trait="_needScroll" /> </visible>
+			</image>
+		</rect>
+
+		<image name="button_1">
+			<target> &true; </target>
+			<id> 4 </id>
+			<filename> Menus\Shared\shared_empty.dds</filename>
+			<visible> &true; </visible>
+			<depth> 6 </depth>
+			<alpha> 0 </alpha>
+			<locus> &true; </locus>
+			<x>
+				<copy src="parent()" trait="_center_x" />
+				<sub>
+					<copy src="me()" trait="width" />
+					<div> 2 </div>
+				</sub>
+			</x>
+			<y>
+				<copy src="msg_text_rect" trait="height" />
+				<add> 30 </add>
+			</y>
+			<width> <copy src="child(button_1_text)" trait="width" /> </width>
+			<height> <copy src="child(button_1_text)" trait="height" /> </height>
+
+			<xdefault> &true; </xdefault><!--Added by Thinker-->
+			<xdown> <ref src="button_2" trait="mouseover"/> </xdown><!--Added by Thinker-->
+
+			<text name="button_1_text">
+				<string> <copy src="parent()" trait="string" /> </string>
+				<wrapwidth>
+					<copy src="darnui_settings" trait="_maxwidth" />
+					<sub> 24 </sub> <!-- DarN 24 -->
+				</wrapwidth>
+				<x> <copy> 0 </copy> <add src="darnui_settings" trait="_btxoffset" /> </x> <!-- DarN 0 -->
+				<y> <copy> 0 </copy> <add src="darnui_settings" trait="_btyoffset" /> </y> <!-- DarN 4 -->
+				<font> <copy src="darnui_settings" trait="_btfont" /> </font> <!-- DarN add -->
+				<red> <copy src="darnui_settings" trait="_btred" /> </red>
+				<green> <copy src="darnui_settings" trait="_btgreen" /> </green>
+				<blue> <copy src="darnui_settings" trait="_btblue" /> </blue>
+				<alpha> <copy src="darnui_settings" trait="_btalpha" /> </alpha>
+			</text>
+		</image>
+
+		<image name="button_2">
+			<target> &true; </target>
+			<id> 5 </id>
+			<filename> Menus\Shared\shared_empty.dds</filename>
+			<visible> &false; </visible>
+			<depth> 6 </depth>
+			<alpha> 0 </alpha>
+			<locus> &true; </locus>
+			<x>
+				<copy src="parent()" trait="_center_x" />
+				<sub>
+					<copy src="me()" trait="width" />
+					<div> 2 </div>
+				</sub>
+			</x>
+			<y>
+				<copy src="button_1" trait="height" />
+				<add> 10 </add>
+				<onlyif src="button_1" trait="visible" />
+				<add src="button_1" trait="y" />
+			</y>
+			<width> <copy src="child(button_2_text)" trait="width" /> </width>
+			<height> <copy src="child(button_2_text)" trait="height" /> </height>
+
+			<xdefault> &false; </xdefault><!--Added by Thinker-->
+			<xup>   <ref src="button_1" trait="mouseover"/> </xup><!--Added by Thinker-->
+			<xdown> <ref src="button_3" trait="mouseover"/> </xdown><!--Added by Thinker-->
+
+			<text name="button_2_text">
+				<string> <copy src="parent()" trait="string" /> </string>
+				<wrapwidth>
+					<copy src="darnui_settings" trait="_maxwidth" />
+					<sub> 24 </sub> <!-- DarN 24 -->
+				</wrapwidth>
+				<x> <copy> 0 </copy> <add src="darnui_settings" trait="_btxoffset" /> </x> <!-- DarN 0 -->
+				<y> <copy> 0 </copy> <add src="darnui_settings" trait="_btyoffset" /> </y> <!-- DarN 4 -->
+				<font> <copy src="darnui_settings" trait="_btfont" /> </font> <!-- DarN add -->
+				<red> <copy src="darnui_settings" trait="_btred" /> </red>
+				<green> <copy src="darnui_settings" trait="_btgreen" /> </green>
+				<blue> <copy src="darnui_settings" trait="_btblue" /> </blue>
+				<alpha> <copy src="darnui_settings" trait="_btalpha" /> </alpha>
+			</text>
+		</image>
+
+		<image name="button_3">
+			<target> &true; </target>
+			<id> 6 </id>
+			<filename> Menus\Shared\shared_empty.dds</filename>
+			<visible> &false; </visible>
+			<depth> 6 </depth>
+			<alpha> 0 </alpha>
+			<locus> &true; </locus>
+			<x>
+				<copy src="parent()" trait="_center_x" />
+				<sub>
+					<copy src="me()" trait="width" />
+					<div> 2 </div>
+				</sub>
+			</x>
+			<y>
+				<copy src="button_2" trait="height" />
+				<add> 10 </add>
+				<onlyif src="button_2" trait="visible" />
+				<add src="button_2" trait="y" />
+			</y>
+			<width> <copy src="child(button_3_text)" trait="width" /> </width>
+			<height> <copy src="child(button_3_text)" trait="height" /> </height>
+
+			<xdefault> &false; </xdefault><!--Added by Thinker-->
+			<xup>   <ref src="button_2" trait="mouseover"/> </xup><!--Added by Thinker-->
+			<xdown> <ref src="button_4" trait="mouseover"/> </xdown><!--Added by Thinker-->
+
+			<text name="button_3_text">
+				<string> <copy src="parent()" trait="string" /> </string>
+				<wrapwidth>
+					<copy src="darnui_settings" trait="_maxwidth" />
+					<sub> 24 </sub> <!-- DarN 24 -->
+				</wrapwidth>
+				<x> <copy> 0 </copy> <add src="darnui_settings" trait="_btxoffset" /> </x> <!-- DarN 0 -->
+				<y> <copy> 0 </copy> <add src="darnui_settings" trait="_btyoffset" /> </y> <!-- DarN 4 -->
+				<font> <copy src="darnui_settings" trait="_btfont" /> </font> <!-- DarN add -->
+				<red> <copy src="darnui_settings" trait="_btred" /> </red>
+				<green> <copy src="darnui_settings" trait="_btgreen" /> </green>
+				<blue> <copy src="darnui_settings" trait="_btblue" /> </blue>
+				<alpha> <copy src="darnui_settings" trait="_btalpha" /> </alpha>
+			</text>
+		</image>
+
+		<image name="button_4">
+			<target> &true; </target>
+			<id> 7 </id>
+			<filename> Menus\Shared\shared_empty.dds</filename>
+			<visible> &false; </visible>
+			<depth> 6 </depth>
+			<alpha> 0 </alpha>
+			<locus> &true; </locus>
+			<x>
+				<copy src="parent()" trait="_center_x" />
+				<sub>
+					<copy src="me()" trait="width" />
+					<div> 2 </div>
+				</sub>
+			</x>
+			<y>
+				<copy src="button_3" trait="height" />
+				<add> 10 </add>
+				<onlyif src="button_3" trait="visible" />
+				<add src="button_3" trait="y" />
+			</y>
+			<width> <copy src="child(button_4_text)" trait="width" /> </width>
+			<height> <copy src="child(button_4_text)" trait="height" /> </height>
+
+			<xdefault> &false; </xdefault><!--Added by Thinker-->
+			<xup>   <ref src="button_3" trait="mouseover"/> </xup><!--Added by Thinker-->
+			<xdown> <ref src="button_5" trait="mouseover"/> </xdown><!--Added by Thinker-->
+
+			<text name="button_4_text">
+				<string> <copy src="parent()" trait="string" /> </string>
+				<wrapwidth>
+					<copy src="darnui_settings" trait="_maxwidth" />
+					<sub> 24 </sub> <!-- DarN 24 -->
+				</wrapwidth>
+				<x> <copy> 0 </copy> <add src="darnui_settings" trait="_btxoffset" /> </x> <!-- DarN 0 -->
+				<y> <copy> 0 </copy> <add src="darnui_settings" trait="_btyoffset" /> </y> <!-- DarN 4 -->
+				<font> <copy src="darnui_settings" trait="_btfont" /> </font> <!-- DarN add -->
+				<red> <copy src="darnui_settings" trait="_btred" /> </red>
+				<green> <copy src="darnui_settings" trait="_btgreen" /> </green>
+				<blue> <copy src="darnui_settings" trait="_btblue" /> </blue>
+				<alpha> <copy src="darnui_settings" trait="_btalpha" /> </alpha>
+			</text>
+		</image>
+
+		<image name="button_5">
+			<target> &true; </target>
+			<id> 8 </id>
+			<filename> Menus\Shared\shared_empty.dds</filename>
+			<visible> &false; </visible>
+			<depth> 6 </depth>
+			<alpha> 0 </alpha>
+			<locus> &true; </locus>
+			<x>
+				<copy src="parent()" trait="_center_x" />
+				<sub>
+					<copy src="me()" trait="width" />
+					<div> 2 </div>
+				</sub>
+			</x>
+			<y>
+				<copy src="button_4" trait="height" />
+				<add> 10 </add>
+				<onlyif src="button_4" trait="visible" />
+				<add src="button_4" trait="y" />
+			</y>
+			<width> <copy src="child(button_5_text)" trait="width" /> </width>
+			<height> <copy src="child(button_5_text)" trait="height" /> </height>
+
+			<xdefault> &false; </xdefault><!--Added by Thinker-->
+			<xup>   <ref src="button_4" trait="mouseover"/> </xup><!--Added by Thinker-->
+			<xdown> <ref src="button_6" trait="mouseover"/> </xdown><!--Added by Thinker-->
+
+			<text name="button_5_text">
+				<string> <copy src="parent()" trait="string" /> </string>
+				<wrapwidth>
+					<copy src="darnui_settings" trait="_maxwidth" />
+					<sub> 24 </sub> <!-- DarN 24 -->
+				</wrapwidth>
+				<x> <copy> 0 </copy> <add src="darnui_settings" trait="_btxoffset" /> </x> <!-- DarN 0 -->
+				<y> <copy> 0 </copy> <add src="darnui_settings" trait="_btyoffset" /> </y> <!-- DarN 4 -->
+				<font> <copy src="darnui_settings" trait="_btfont" /> </font> <!-- DarN add -->
+				<red> <copy src="darnui_settings" trait="_btred" /> </red>
+				<green> <copy src="darnui_settings" trait="_btgreen" /> </green>
+				<blue> <copy src="darnui_settings" trait="_btblue" /> </blue>
+				<alpha> <copy src="darnui_settings" trait="_btalpha" /> </alpha>
+			</text>
+		</image>
+
+		<image name="button_6">
+			<target> &true; </target>
+			<id> 9 </id>
+			<filename> Menus\Shared\shared_empty.dds</filename>
+			<visible> &false; </visible>
+			<depth> 6 </depth>
+			<alpha> 0 </alpha>
+			<locus> &true; </locus>
+			<x>
+				<copy src="parent()" trait="_center_x" />
+				<sub>
+					<copy src="me()" trait="width" />
+					<div> 2 </div>
+				</sub>
+			</x>
+			<y>
+				<copy src="button_5" trait="height" />
+				<add> 10 </add>
+				<onlyif src="button_5" trait="visible" />
+				<add src="button_5" trait="y" />
+			</y>
+			<width> <copy src="child(button_6_text)" trait="width" /> </width>
+			<height> <copy src="child(button_6_text)" trait="height" /> </height>
+
+			<xdefault> &false; </xdefault><!--Added by Thinker-->
+			<xup>   <ref src="button_5" trait="mouseover"/> </xup><!--Added by Thinker-->
+			<xdown> <ref src="button_7" trait="mouseover"/> </xdown><!--Added by Thinker-->
+
+			<text name="button_6_text">
+				<string> <copy src="parent()" trait="string" /> </string>
+				<wrapwidth>
+					<copy src="darnui_settings" trait="_maxwidth" />
+					<sub> 24 </sub> <!-- DarN 24 -->
+				</wrapwidth>
+				<x> <copy> 0 </copy> <add src="darnui_settings" trait="_btxoffset" /> </x> <!-- DarN 0 -->
+				<y> <copy> 0 </copy> <add src="darnui_settings" trait="_btyoffset" /> </y> <!-- DarN 4 -->
+				<font> <copy src="darnui_settings" trait="_btfont" /> </font> <!-- DarN add -->
+				<red> <copy src="darnui_settings" trait="_btred" /> </red>
+				<green> <copy src="darnui_settings" trait="_btgreen" /> </green>
+				<blue> <copy src="darnui_settings" trait="_btblue" /> </blue>
+				<alpha> <copy src="darnui_settings" trait="_btalpha" /> </alpha>
+			</text>
+		</image>
+
+		<image name="button_7">
+			<target> &true; </target>
+			<id> 10 </id>
+			<filename> Menus\Shared\shared_empty.dds</filename>
+			<visible> &false; </visible>
+			<depth> 6 </depth>
+			<alpha> 0 </alpha>
+			<locus> &true; </locus>
+			<x>
+				<copy src="parent()" trait="_center_x" />
+				<sub>
+					<copy src="me()" trait="width" />
+					<div> 2 </div>
+				</sub>
+			</x>
+			<y>
+				<copy src="button_6" trait="height" />
+				<add> 10 </add>
+				<onlyif src="button_6" trait="visible" />
+				<add src="button_6" trait="y" />
+			</y>
+			<width> <copy src="child(button_7_text)" trait="width" /> </width>
+			<height> <copy src="child(button_7_text)" trait="height" /> </height>
+
+			<xdefault> &false; </xdefault><!--Added by Thinker-->
+			<xup>   <ref src="button_6" trait="mouseover"/> </xup><!--Added by Thinker-->
+			<xdown> <ref src="button_8" trait="mouseover"/> </xdown><!--Added by Thinker-->
+
+			<text name="button_7_text">
+				<string> <copy src="parent()" trait="string" /> </string>
+				<wrapwidth>
+					<copy src="darnui_settings" trait="_maxwidth" />
+					<sub> 24 </sub> <!-- DarN 24 -->
+				</wrapwidth>
+				<x> <copy> 0 </copy> <add src="darnui_settings" trait="_btxoffset" /> </x> <!-- DarN 0 -->
+				<y> <copy> 0 </copy> <add src="darnui_settings" trait="_btyoffset" /> </y> <!-- DarN 4 -->
+				<font> <copy src="darnui_settings" trait="_btfont" /> </font> <!-- DarN add -->
+				<red> <copy src="darnui_settings" trait="_btred" /> </red>
+				<green> <copy src="darnui_settings" trait="_btgreen" /> </green>
+				<blue> <copy src="darnui_settings" trait="_btblue" /> </blue>
+				<alpha> <copy src="darnui_settings" trait="_btalpha" /> </alpha>
+			</text>
+		</image>
+
+		<image name="button_8">
+			<target> &true; </target>
+			<id> 11 </id>
+			<filename> Menus\Shared\shared_empty.dds</filename>
+			<visible> &false; </visible>
+			<depth> 6 </depth>
+			<alpha> 0 </alpha>
+			<locus> &true; </locus>
+			<x>
+				<copy src="parent()" trait="_center_x" />
+				<sub>
+					<copy src="me()" trait="width" />
+					<div> 2 </div>
+				</sub>
+			</x>
+			<y>
+				<copy src="button_7" trait="height" />
+				<add> 10 </add>
+				<onlyif src="button_7" trait="visible" />
+				<add src="button_7" trait="y" />
+			</y>
+			<width> <copy src="child(button_8_text)" trait="width" /> </width>
+			<height> <copy src="child(button_8_text)" trait="height" /> </height>
+
+			<xdefault> &false; </xdefault><!--Added by Thinker-->
+			<xup>   <ref src="button_7" trait="mouseover"/> </xup><!--Added by Thinker-->
+			<xdown> <ref src="button_9" trait="mouseover"/> </xdown><!--Added by Thinker-->
+
+			<text name="button_8_text">
+				<string> <copy src="parent()" trait="string" /> </string>
+				<wrapwidth>
+					<copy src="darnui_settings" trait="_maxwidth" />
+					<sub> 24 </sub> <!-- DarN 24 -->
+				</wrapwidth>
+				<x> <copy> 0 </copy> <add src="darnui_settings" trait="_btxoffset" /> </x> <!-- DarN 0 -->
+				<y> <copy> 0 </copy> <add src="darnui_settings" trait="_btyoffset" /> </y> <!-- DarN 4 -->
+				<font> <copy src="darnui_settings" trait="_btfont" /> </font> <!-- DarN add -->
+				<red> <copy src="darnui_settings" trait="_btred" /> </red>
+				<green> <copy src="darnui_settings" trait="_btgreen" /> </green>
+				<blue> <copy src="darnui_settings" trait="_btblue" /> </blue>
+				<alpha> <copy src="darnui_settings" trait="_btalpha" /> </alpha>
+			</text>
+		</image>
+
+		<image name="button_9">
+			<target> &true; </target>
+			<id> 12 </id>
+			<filename> Menus\Shared\shared_empty.dds</filename>
+			<visible> &false; </visible>
+			<depth> 6 </depth>
+			<alpha> 0 </alpha>
+			<locus> &true; </locus>
+			<x>
+				<copy src="parent()" trait="_center_x" />
+				<sub>
+					<copy src="me()" trait="width" />
+					<div> 2 </div>
+				</sub>
+			</x>
+			<y>
+				<copy src="button_8" trait="height" />
+				<add> 10 </add>
+				<onlyif src="button_8" trait="visible" />
+				<add src="button_8" trait="y" />
+			</y>
+			<width> <copy src="child(button_9_text)" trait="width" /> </width>
+			<height> <copy src="child(button_9_text)" trait="height" /> </height>
+
+			<xdefault> &false; </xdefault><!--Added by Thinker-->
+			<xup>   <ref src="button_8" trait="mouseover"/> </xup><!--Added by Thinker-->
+			<xdown> <ref src="button_10" trait="mouseover"/> </xdown><!--Added by Thinker-->
+
+			<text name="button_9_text">
+				<string> <copy src="parent()" trait="string" /> </string>
+				<wrapwidth>
+					<copy src="darnui_settings" trait="_maxwidth" />
+					<sub> 24 </sub> <!-- DarN 24 -->
+				</wrapwidth>
+				<x> <copy> 0 </copy> <add src="darnui_settings" trait="_btxoffset" /> </x> <!-- DarN 0 -->
+				<y> <copy> 0 </copy> <add src="darnui_settings" trait="_btyoffset" /> </y> <!-- DarN 4 -->
+				<font> <copy src="darnui_settings" trait="_btfont" /> </font> <!-- DarN add -->
+				<red> <copy src="darnui_settings" trait="_btred" /> </red>
+				<green> <copy src="darnui_settings" trait="_btgreen" /> </green>
+				<blue> <copy src="darnui_settings" trait="_btblue" /> </blue>
+				<alpha> <copy src="darnui_settings" trait="_btalpha" /> </alpha>
+			</text>
+		</image>
+
+		<image name="button_10">
+			<target> &true; </target>
+			<id> 13 </id>
+			<filename> Menus\Shared\shared_empty.dds</filename>
+			<visible> &false; </visible>
+			<depth> 6 </depth>
+			<alpha> 0 </alpha>
+			<locus> &true; </locus>
+			<x>
+				<copy src="parent()" trait="_center_x" />
+				<sub>
+					<copy src="me()" trait="width" />
+					<div> 2 </div>
+				</sub>
+			</x>
+			<y>
+				<copy src="button_9" trait="height" />
+				<add> 10 </add>
+				<onlyif src="button_9" trait="visible" />
+				<add src="button_9" trait="y" />
+			</y>
+			<width> <copy src="child(button_10_text)" trait="width" /> <add> 6 </add> </width>
+			<height> <copy src="child(button_10_text)" trait="height" /> </height>
+
+			<xdefault> &false; </xdefault><!--Added by Thinker-->
+			<xup>   <ref src="button_9" trait="mouseover"/> </xup><!--Added by Thinker-->
+
+			<text name="button_10_text">
+				<string> <copy src="parent()" trait="string" /> </string>
+				<wrapwidth>
+					<copy src="darnui_settings" trait="_maxwidth" />
+					<sub> 24 </sub> <!-- DarN 24 -->
+				</wrapwidth>
+				<x> <copy> 0 </copy> <add src="darnui_settings" trait="_btxoffset" /> </x> <!-- DarN 0 -->
+				<y> <copy> 0 </copy> <add src="darnui_settings" trait="_btyoffset" /> </y> <!-- DarN 4 -->
+				<font> <copy src="darnui_settings" trait="_btfont" /> </font> <!-- DarN add -->
+				<red> <copy src="darnui_settings" trait="_btred" /> </red>
+				<green> <copy src="darnui_settings" trait="_btgreen" /> </green>
+				<blue> <copy src="darnui_settings" trait="_btblue" /> </blue>
+				<alpha> <copy src="darnui_settings" trait="_btalpha" /> </alpha>
+			</text>
+		</image>
+		<text name="scroll_text">
+			<depth> 4 </depth>
+			<string> <copy src="dummy" trait="height" /> </string>
+			<wrapwidth> <copy src="message_text" trait="wrapwidth" /> </wrapwidth>
+			<visible> 1 </visible>
+			<x> <copy> 0 </copy> <add src="darnui_settings" trait="_btxoffset" /> </x>
+			<y> <copy src="parent()" trait="height" /> <sub> 40 </sub> </y>
+			<font> 3 </font> <!-- DarN add -->
+			<red> 255 </red>
+			<green> 0 </green>
+			<blue> 255 </blue>
+			<alpha> 255 </alpha>
+		</text>
+	</rect>
+
+	<!-- This needs to go after the background so we get the proper
+	width and height -->
+	<x>
+		<copy src="screen()" trait="width" />
+		<div> 2 </div>
+		<sub>
+			<copy src="background" trait="width" />
+			<div> 2 </div>
+		</sub>
+	</x>
+	<y>
+		<copy src="screen()" trait="height" />
+		<div> 2 </div>
+		<sub>
+			<copy src="background" trait="height" />
+			<div> 2 </div>
+		</sub>
+	</y>
+
+	<_needScroll>
+		<copy src="message_text" trait="height" />
+		<gt src="msg_text_rect" trait="height" />
+	</_needScroll>
+
+	<_buttonCount>
+		<copy> 0 </copy>
+		<add>
+			<copy> 1 </copy>
+			<onlyif src="button_1" trait="visible" />
+		</add>
+		<add>
+			<copy> 1 </copy>
+			<onlyif src="button_2" trait="visible" />
+		</add>
+		<add>
+			<copy> 1 </copy>
+			<onlyif src="button_3" trait="visible" />
+		</add>
+		<add>
+			<copy> 1 </copy>
+			<onlyif src="button_4" trait="visible" />
+		</add>
+		<add>
+			<copy> 1 </copy>
+			<onlyif src="button_5" trait="visible" />
+		</add>
+		<add>
+			<copy> 1 </copy>
+			<onlyif src="button_6" trait="visible" />
+		</add>
+		<add>
+			<copy> 1 </copy>
+			<onlyif src="button_7" trait="visible" />
+		</add>
+		<add>
+			<copy> 1 </copy>
+			<onlyif src="button_8" trait="visible" />
+		</add>
+		<add>
+			<copy> 1 </copy>
+			<onlyif src="button_9" trait="visible" />
+		</add>
+		<add>
+			<copy> 1 </copy>
+			<onlyif src="button_10" trait="visible" />
+		</add>
+	</_buttonCount>
+
+	<_offSet>
+		<copy src="me()" trait="_buttonCount" />
+		<mul src="button_1" trait="height" />
+		<add>
+			<copy> 10 </copy>
+			<mul src="me()" trait="_buttonCount" />
+		</add>
+		<add> 40 </add> <!-- DarN magic cookie -->
+	</_offSet>
+
+</menu>

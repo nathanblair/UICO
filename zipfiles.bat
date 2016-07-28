@@ -9,13 +9,13 @@ ECHO(
 
 ECHO Adding files to UICO.zip archive...
 ECHO(
-"C:\Program Files\7-Zip"\7z a UICO.zip BaseDarNUI\*
+"C:\Program Files\7-Zip"\7z a UICO.zip UI_DarN_Base\*
 ECHO(
-"C:\Program Files\7-Zip"\7z a UICO.zip DarkDarNUI\*
+"C:\Program Files\7-Zip"\7z a UICO.zip UI_DarN_Dark\*
+ECHO(
+"C:\Program Files\7-Zip"\7z a UICO.zip UI_Vanilla\*
 ECHO(
 "C:\Program Files\7-Zip"\7z a UICO.zip fomod\*
-ECHO(
-"C:\Program Files\7-Zip"\7z a UICO.zip VanillaUI\*
 
 ECHO(
 ECHO Completed!

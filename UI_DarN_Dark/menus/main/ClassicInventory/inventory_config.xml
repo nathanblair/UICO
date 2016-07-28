@@ -1,0 +1,153 @@
+<!-- DarN Version 1.1 -->
+<!--
+	INVENTORY CONFIG
+	CONFIG VERSION : 15 Slot, Extended, Default fonts
+	
+	CONFIG FOR BTMOD BY : Beider & Tikigod
+	CONFIG BY : Beider
+	
+	If you make changes and want to test them without restarting the game then
+	open your console by hitting the tilde key (key left of the 1 key). Then type,
+		
+		reload inventorymenu
+		
+	Then hit the Tilde key again to exit the console.
+	
+	BEIDER COMMENT:
+		Adjusted the file so all you have to change to change amount of inventory items is
+		_inventorylistnum, all other values should scale with it. Might need some small adjustments
+		here and there. Just a warning, this might cause the inventory to be even slower when loaded up
+		the first time.
+
+-->
+
+<rect name="darnui_settings">
+	
+	<!-- INVENTORY TEXT
+	
+		- Changes the font of the item names and stat values
+		- Changes color of the text (RGB values)
+		- Change the opacity of the text
+	 -->
+	
+	<_inventoryfont> 2 </_inventoryfont> 		<!-- DEFAULT : 3 -->
+	<_inventoryred> 217 </_inventoryred> 			<!-- DEFAULT : 117 -->
+	<_inventorygreen> 185 </_inventorygreen>		<!-- DEFAULT : 59 -->
+	<_inventoryblue> 102 </_inventoryblue>		<!-- DEFAULT : 33 -->
+	<_inventoryalpha> 255 </_inventoryalpha> 	<!-- DEFAULT : 255 -->
+	
+	<!-- ITEM COUNT ADDITIONAL OPTIONS
+	
+		- Options to adjust the item count font and positioning
+	 -->
+	
+	<_inventorycountfont> 2 </_inventorycountfont>		<!-- DEFAULT : 3  -->
+	<_inventorycountx> 65 </_inventorycountx>			<!-- DEFAULT : 65 -->
+	<_inventorycounty> 16 </_inventorycounty>			<!-- DEFAULT : 13 -->
+	
+	<!-- INVENTORY LIST ICONS
+	
+		- Adjusts the icon for each item
+	 -->
+	<_inventoryiconwidth> 22 </_inventoryiconwidth>		<!-- DEFAULT : 32 -->
+	<_inventoryiconheight> 22 </_inventoryiconheight>	<!-- DEFAULT : 32 -->
+	
+	<_inventoryiconzoom> 36 </_inventoryiconzoom>		<!-- DEFAULT : 50 --> <!-- 50 = 50%, 100 = 100% -->
+	
+	<!-- INVENTORY LIST
+	
+		- Adjusts the number of items shown in the list
+		- Adjust the height spacing between items in the list
+		
+		NOTE:
+		Make sure _inventorylistheightneg is the same as _inventorylistheight only negative,
+		else you will get scrolling bugs.
+	 -->
+	
+	<_inventorylistnum> 20 </_inventorylistnum>	<!-- DEFAULT : 15 -->
+	<_inventorylistheight> 30 </_inventorylistheight>			<!-- DEFAULT : 40 -->
+		<!-- This has to be the same as above only negative -->
+	<_inventorylistheightneg> -30 </_inventorylistheightneg>		<!-- DEFAULT : -40 -->
+	
+	<!-- INVENTORY HEIGHT EXTENTION
+		- &true; = Extend
+		- &false; = No extention
+		
+		NOTE:
+		If you set this to true you probably have to increase the amount of items
+		listed. Set it to false and you have to reduce it.
+	-->
+	
+	<_extendinventory> &true; </_extendinventory>	<!-- DEFAULT : &true; -->
+	
+	<!-- INVENTORY LIST HEADERS
+	
+		- Adjust the headers for the inventory
+		- Also adjust all the icons in the header
+	 -->
+	
+	<_invlistheaderfont> 3 </_invlistheaderfont> 				<!-- DEFAULT : 3 -->
+	<_invlistheaderred> 237 </_invlistheaderred>					<!-- DEFAULT : 51 -->
+	<_invlistheadergreen> 228 </_invlistheadergreen>				<!-- DEFAULT : 79 -->
+	<_invlistheaderblue> 160 </_invlistheaderblue>				<!-- DEFAULT : 142 -->
+	<_invlistheaderalpha> 255 </_invlistheaderalpha>				<!-- DEFAULT : 255 -->
+	<_invlistheadericonalpha> 255 </_invlistheadericonalpha>		<!-- DEFAULT : 255 -->
+	<_invlistheadborderoffsety> 5 </_invlistheadborderoffsety>		<!-- DEFAULT : 5 -->
+	<_inventorylistheadoffsety> 5 </_inventorylistheadoffsety>		<!-- DEFAULT : 5 -->
+	
+	
+	<!-- EXTRA DATA
+	
+		- Adjust the data at the bottom of the list, encumberance, armor, money.
+	 -->
+	
+	<_invextrafont> 3 </_invextrafont>			 	<!-- DEFAULT : 1 -->
+	<_invextrared> 217 </_invextrared>				<!-- DEFAULT : 117 -->
+	<_invextragreen> 185 </_invextragreen>				<!-- DEFAULT : 59 -->
+	<_invextrablue> 102 </_invextrablue>				<!-- DEFAULT : 33 -->
+	<_invextraalpha> 255 </_invextraalpha>				<!-- DEFAULT : 255 -->
+	
+	<!-- INVENTORY MARKER
+	
+		- Changes the blue line behind equipped items
+		- Should be changed if you modify the amount of items in the list
+	 -->
+	
+	<_invmarkeralpha> 160 </_invmarkeralpha>		<!-- DEFAULT : 160 -->
+	<_invmarkerwidth> 638 </_invmarkerwidth>		<!-- DEFAULT : 637 -->
+	<_invmarkerheight> 23	</_invmarkerheight>		<!-- DEFAULT : 35 -->
+	<_invmarkercropy> 5 </_invmarkercropy>			<!-- DEFAULT : 5 -->
+	<_invmarkerx> 6 </_invmarkerx>				<!-- DEFAULT : 7 -->
+	<_invmarkery> 4 </_invmarkery>				<!-- DEFAULT : 3 -->
+	
+	
+	<!-- TEXTURES
+	
+		- This is to allow skinning of the menu screens	
+	-->
+	
+	<_smb1> Textures\DarkUI\Menus\Shared\shared_main_background_1dui.dds </_smb1>
+	<_smb2> Textures\DarkUI\Menus\Shared\shared_main_background_2dui.dds </_smb2>
+	
+	<_s01t> Textures\DarkUI\Menus\Shared\shared_01_tabdui.dds </_s01t>
+	<_s02t> Textures\DarkUI\Menus\Shared\shared_02_tabdui.dds </_s02t>
+	<_s03t> Textures\DarkUI\Menus\Shared\shared_03_tabdui.dds </_s03t>
+	<_s04t> Textures\DarkUI\Menus\Shared\shared_04_tabdui.dds </_s04t>
+	<_s05t> Textures\DarkUI\Menus\Shared\shared_05_tabdui.dds </_s05t>
+	
+	<_iem1> Textures\DarkUI\Menus\Inventory\inv_equiped_marker_1dui.dds </_iem1>
+	
+	<_ibt> Textures\DarkUI\Menus\Inventory\inv_border_topdui.dds </_ibt>
+	<_ibm> Textures\DarkUI\Menus\Inventory\inv_border_middledui.dds </_ibm>
+	<_ibb> Textures\DarkUI\Menus\Inventory\inv_border_bottomdui.dds </_ibb>
+	
+	<_asi> Textures\DarkUI\Menus\Shared\all_small_iconsdui.dds </_asi>
+	<_ati> Textures\DarkUI\Menus\Shared\all_tabs_iconsdui.dds </_ati>
+	
+	<_gtso> Textures\DarkUI\Menus\Shared\general_tab_selection_offdui.dds </_gtso>
+	<_gtson> Textures\DarkUI\Menus\Shared\general_tab_selection_ondui.dds </_gtson>
+	
+	<_sdbl> Textures\DarkUI\Menus\Shared\shared_decor_blue_leftdui.dds </_sdbl>
+	<_sdbr> Textures\DarkUI\Menus\Shared\shared_decor_blue_rightdui.dds </_sdbr>
+	
+</rect>
