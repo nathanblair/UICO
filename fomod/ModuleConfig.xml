@@ -1,5 +1,5 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://qconsulting.ca/fo3/ModConfig5.0.xsd">
-	<moduleName>UI Controls for Oblivion</moduleName>
+	<moduleName>UI Controls for Oblivion (UICO) - Controller Compatible</moduleName>
 
 	
 	<!--##################################################################                 ############################################################-->
@@ -186,15 +186,15 @@
 								<type name="Recommended"/>
 							</typeDescriptor>
 						</plugin>
-						<plugin name="Menu Name">
+						<plugin name="Dialog Menu">
 							<description>
-								Description for what the menu does
+								Select this to install a controller-friendly and intuitive dialog menu. This will make navigating the dialog options possible with the [Up] and [Down] arrow keys. It also makes the dialog buttons accessible only by scrolling through the last dialog entry list, with the exception of the 'Goodbye' option which can be quickly accessed by pressing the [Right] arrow key.
 							</description>
 							<conditionFlags>
-								<flag name="MenuName">On</flag>
+								<flag name="DialogMenu">On</flag>
 							</conditionFlags>
 							<typeDescriptor>
-								<type name="Optional"/>
+								<type name="Recommended"/>
 							</typeDescriptor>
 						</plugin>
 						<plugin name="Menu Name">
@@ -354,6 +354,25 @@
 					<file source="UI_DarN_Dark/menus/generic/HideQuestAdded/quest_added.xml" destination="menus/generic/" priority="2"/>
 				</files>
 			</pattern>
+			<!--#################################################### Install MAIN MENU Menu ###########################################################-->
+			<pattern> <!--################################################# Base DarN #################################################################-->
+				<dependencies>
+					<flagDependency flag="BaseDarNSelected" value="On"/>
+					<flagDependency flag="MainMenu" value="On"/>
+				</dependencies>
+				<files>
+					<file source="UI_DarN_Base/menus/options/main_menu.xml" destination="menus/options/" priority="2"/>
+				</files>
+			</pattern>
+			<pattern> <!--################################################ Dark DarN ##############################################################-->
+				<dependencies>
+					<flagDependency flag="DarkDarNSelected" value="On"/>
+					<flagDependency flag="MainMenu" value="On"/>
+				</dependencies>
+				<files>
+					<file source="UI_DarN_Dark/menus/options/main_menu.xml" destination="menus/options/" priority="2"/>
+				</files>
+			</pattern>
 			<!--####################################################### Install LOAD Menu #############################################################-->
 			<pattern> <!--################################################# Base DarN #################################################################-->
 				<dependencies>
@@ -402,7 +421,7 @@
 					<file source="UI_DarN_Base/menus/message_menu.xml" destination="menus/" priority="2"/>
 				</files>
 			</pattern>
-			<pattern> <!--################################################ Dark DarN ##############################################################-->
+			<pattern> <!--################################################### Dark DarN ###############################################################-->
 				<dependencies>
 					<flagDependency flag="DarkDarNSelected" value="On"/>
 					<flagDependency flag="MessageMenu" value="On"/>
@@ -411,23 +430,23 @@
 					<file source="UI_DarN_Dark/menus/message_menu.xml" destination="menus/" priority="2"/>
 				</files>
 			</pattern>
-			<!--#################################################### Install MAIN MENU Menu ###########################################################-->
+			<!--####################################################### Install DIALOG Menu ###########################################################-->
 			<pattern> <!--################################################# Base DarN #################################################################-->
 				<dependencies>
 					<flagDependency flag="BaseDarNSelected" value="On"/>
-					<flagDependency flag="MainMenu" value="On"/>
+					<flagDependency flag="DialogMenu" value="On"/>
 				</dependencies>
 				<files>
-					<file source="UI_DarN_Base/menus/options/main_menu.xml" destination="menus/options/" priority="2"/>
+					<file source="UI_DarN_Base/menus/dialog/dialog_menu.xml" destination="menus/dialog/" priority="2"/>
 				</files>
 			</pattern>
-			<pattern> <!--################################################ Dark DarN ##############################################################-->
+			<pattern> <!--################################################## Dark DarN #################################################################-->
 				<dependencies>
 					<flagDependency flag="DarkDarNSelected" value="On"/>
-					<flagDependency flag="MainMenu" value="On"/>
+					<flagDependency flag="DialogMenu" value="On"/>
 				</dependencies>
 				<files>
-					<file source="UI_DarN_Dark/menus/options/main_menu.xml" destination="menus/options/" priority="2"/>
+					<file source="UI_DarN_Dark/menus/dialog/dialog_menu.xml" destination="menus/dialog/" priority="2"/>
 				</files>
 			</pattern>
 		</patterns>
