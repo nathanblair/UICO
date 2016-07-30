@@ -208,7 +208,33 @@
 						</plugin>
 					</plugins>
 				</group>
-				<group name="Selct Dialog Menus" type="SelectAny">
+				<group name="Select Character Generation Menus" type="SelectAny">
+					<plugins order="Explicit">
+						<plugin name="Class Menu">
+							<description>
+								Select this to install a more intuitive Class menu.
+							</description>
+							<conditionFlags>
+								<flag name="ClassMenu">On</flag>
+							</conditionFlags>
+							<typeDescriptor>
+								<type name="Recommended"/>
+							</typeDescriptor>
+						</plugin>
+						<plugin name="Birthsign/Custom Class Menu">
+							<description>
+								Select this to install a more intuitive Birthsign menu. This menu is also used when creating a custom class and selecting specific skills that govern that class.
+							</description>
+							<conditionFlags>
+								<flag name="SkillsMenu">On</flag>
+							</conditionFlags>
+							<typeDescriptor>
+								<type name="Recommended"/>
+							</typeDescriptor>
+						</plugin>
+					</plugins>
+				</group>
+				<group name="Select Dialog Menus" type="SelectAny">
 					<plugins order="Explicit">
 						<plugin name="Dialog Menu">
 							<description>
@@ -223,7 +249,7 @@
 						</plugin>
 					</plugins>
 				</group>
-				<group name="Selct Misc. Menus" type="SelectAny">
+				<group name="Select Misc. Menus" type="SelectAny">
 					<plugins order="Explicit">
 						<plugin name="Message Menu">
 							<description>
@@ -478,23 +504,42 @@
 					<file source="UI_DarN_Dark/menus/options/video_menu.xml" destination="menus/options/" priority="2"/>
 				</files>
 			</pattern>
-			<!--#################################################### Install MESSAGEBOX Menu ##########################################################-->
+			<!--####################################################### Install CLASS Menu ###########################################################-->
 			<pattern> <!--################################################# Base DarN #################################################################-->
 				<dependencies>
 					<flagDependency flag="BaseDarNSelected" value="On"/>
-					<flagDependency flag="MessageMenu" value="On"/>
+					<flagDependency flag="ClassMenu" value="On"/>
 				</dependencies>
 				<files>
-					<file source="UI_DarN_Base/menus/message_menu.xml" destination="menus/" priority="2"/>
+					<file source="UI_DarN_Base/menus/chargen/class_menu.xml" destination="menus/chargen/" priority="2"/>
 				</files>
 			</pattern>
-			<pattern> <!--################################################### Dark DarN ###############################################################-->
+			<pattern> <!--################################################## Dark DarN #################################################################-->
 				<dependencies>
 					<flagDependency flag="DarkDarNSelected" value="On"/>
-					<flagDependency flag="MessageMenu" value="On"/>
+					<flagDependency flag="DialogMenu" value="On"/>
 				</dependencies>
 				<files>
-					<file source="UI_DarN_Dark/menus/message_menu.xml" destination="menus/" priority="2"/>
+					<file source="UI_DarN_Dark/menus/chargen/class_menu.xml" destination="menus/chargen/" priority="2"/>
+				</files>
+			</pattern>
+			<!--####################################################### Install SKILLS Menu ###########################################################-->
+			<pattern> <!--################################################# Base DarN #################################################################-->
+				<dependencies>
+					<flagDependency flag="BaseDarNSelected" value="On"/>
+					<flagDependency flag="SkillsMenu" value="On"/>
+				</dependencies>
+				<files>
+					<file source="UI_DarN_Base/menus/chargen/skills_menu.xml" destination="menus/chargen/" priority="2"/>
+				</files>
+			</pattern>
+			<pattern> <!--################################################## Dark DarN #################################################################-->
+				<dependencies>
+					<flagDependency flag="DarkDarNSelected" value="On"/>
+					<flagDependency flag="DialogMenu" value="On"/>
+				</dependencies>
+				<files>
+					<file source="UI_DarN_Dark/menus/chargen/skills_menu.xml" destination="menus/chargen/" priority="2"/>
 				</files>
 			</pattern>
 			<!--####################################################### Install DIALOG Menu ###########################################################-->
@@ -514,6 +559,25 @@
 				</dependencies>
 				<files>
 					<file source="UI_DarN_Dark/menus/dialog/dialog_menu.xml" destination="menus/dialog/" priority="2"/>
+				</files>
+			</pattern>
+			<!--#################################################### Install MESSAGEBOX Menu ##########################################################-->
+			<pattern> <!--################################################# Base DarN #################################################################-->
+				<dependencies>
+					<flagDependency flag="BaseDarNSelected" value="On"/>
+					<flagDependency flag="MessageMenu" value="On"/>
+				</dependencies>
+				<files>
+					<file source="UI_DarN_Base/menus/message_menu.xml" destination="menus/" priority="2"/>
+				</files>
+			</pattern>
+			<pattern> <!--################################################### Dark DarN ###############################################################-->
+				<dependencies>
+					<flagDependency flag="DarkDarNSelected" value="On"/>
+					<flagDependency flag="MessageMenu" value="On"/>
+				</dependencies>
+				<files>
+					<file source="UI_DarN_Dark/menus/message_menu.xml" destination="menus/" priority="2"/>
 				</files>
 			</pattern>
 		</patterns>
