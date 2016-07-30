@@ -86,30 +86,6 @@
 						</plugin>
 					</plugins>
 				</group>
-				<!--############################################ Prompt for Alternate Levelup Menus ##############################################-->
-				<!--####################################### It doesn't appear that these are necessary ###########################################-->
-				<!--<group name="Select Levelup Type" type="SelectExactlyOne">
-					<plugins order="Explicit">
-						<plugin name="DarN - Vanilla Levelup">
-							<description>
-								Select this if you're not using any level-modification systems. This will install a controller-friendly vanilla level-up menu.
-							</description>
-							<conditionFlags>
-								<flag name="InstallVanillaLevelup">On</flag>
-								<flag name="InstallAlternateLevelup">Off</flag>
-							</conditionFlags>
-						</plugin>
-						<plugin name="DarN - Alternate Levelup">
-							<description>
-								Select this if you ARE using a level-modification system (specifically KCAS/AF). This will install a controller-friendly level-up menu.
-							</description>
-							<conditionFlags>
-								<flag name="InstallAlternateLevelup">On</flag>
-								<flag name="InstallVanillaLevelup">Off</flag>
-							</conditionFlags>
-						</plugin>
-					</plugins>
-				</group>-->
 				<!--###################################### Prompt for Showing Quest Added Popup Menus  ############################################-->
 				<group name="Show Or Hide Quest Added" type="SelectAny">
 					<plugins order="Explicit">
@@ -140,7 +116,7 @@
 				</dependencies>
 			</visible>
 			<optionalFileGroups>
-				<group name="Select Misc. UI Elements" type="SelectAny">
+				<group name="Select System Menus" type="SelectAny">
 					<plugins order="Explicit">
 						<plugin name="Main Menu">
 							<description>
@@ -219,17 +195,21 @@
 								<type name="Recommended"/>
 							</typeDescriptor>
 						</plugin>
-						<plugin name="Message Menu">
+						<plugin name="Menu Name">
 							<description>
-								Select this to replace DarN's not-very-controller-friendly or intuitive message menu. This will effectively allow you to mouseover the list of options in the message box using the arrow keys instead of selecting the current option with the up-arrow. Its much more intuitive and controller friendly, trust me.
+								Description for what the menu does
 							</description>
 							<conditionFlags>
-								<flag name="MessageMenu">On</flag>
+								<flag name="MenuName">On</flag>
 							</conditionFlags>
 							<typeDescriptor>
-								<type name="Recommended"/>
+								<type name="Optional"/>
 							</typeDescriptor>
 						</plugin>
+					</plugins>
+				</group>
+				<group name="Selct Dialog Menus" type="SelectAny">
+					<plugins order="Explicit">
 						<plugin name="Dialog Menu">
 							<description>
 								Select this to install a controller-friendly and intuitive dialog menu. This will make navigating the dialog options possible with the [Up] and [Down] arrow keys. It also makes the dialog buttons accessible only by scrolling through the last dialog entry list, with the exception of the 'Goodbye' option which can be quickly accessed by pressing the [Right] arrow key.
@@ -241,15 +221,19 @@
 								<type name="Recommended"/>
 							</typeDescriptor>
 						</plugin>
-						<plugin name="Menu Name">
+					</plugins>
+				</group>
+				<group name="Selct Misc. Menus" type="SelectAny">
+					<plugins order="Explicit">
+						<plugin name="Message Menu">
 							<description>
-								Description for what the menu does
+								Select this to replace DarN's not-very-controller-friendly or intuitive message menu. This will effectively allow you to mouseover the list of options in the message box using the arrow keys instead of selecting the current option with the up-arrow. Its much more intuitive and controller friendly, trust me.
 							</description>
 							<conditionFlags>
-								<flag name="MenuName">On</flag>
+								<flag name="MessageMenu">On</flag>
 							</conditionFlags>
 							<typeDescriptor>
-								<type name="Optional"/>
+								<type name="Recommended"/>
 							</typeDescriptor>
 						</plugin>
 					</plugins>
@@ -276,6 +260,9 @@
 			<!--#######################################################                 ###########################################################-->
 			<!--####################################################### Custom UI Menus ###########################################################-->
 			<!--######################################################### Starts Here #############################################################-->
+			<!--#######################################################                 ###########################################################-->
+			<!--#######################################################                 ###########################################################-->
+			<!--#################################################### Install OPTIONAL Menus #######################################################-->
 			<!--#######################################################                 ###########################################################-->
 			<!--################################################### Install INVENTORY Menus #######################################################-->
 			<pattern> <!--############################################ Base DarN Classic ##########################################################-->
@@ -318,49 +305,6 @@
 					<file source="UI_DarN_Dark/menus/main/NewInventory/inventory_menu.xml" destination="menus/main/" priority="2"/>
 				</files>
 			</pattern>
-			<!--###################################################### Install Levelup Menus ########################################################-->
-			<!--######################################################## Base DarN Vanilla ##########################################################-->
-			<!--<pattern>
-				<dependencies>
-					<flagDependency flag="BaseDarNSelected" value="On"/>
-					<flagDependency flag="InstallVanillaLevelup" value="On"/>
-				</dependencies>
-				<files>
-					<file source="UI_DarN_Base/menus/VanillaLevelUp/levelup_menu.xml" destination="menus/" priority="2"/>
-				</files>
-			</pattern>-->
-			<!--####################################################### Base DarN Alternate #########################################################-->
-			<!--<pattern>
-				<dependencies>
-					<flagDependency flag="BaseDarNSelected" value="On"/>
-					<flagDependency flag="InstallAlternateLevelup" value="On"/>
-				</dependencies>
-				<files>
-					<file source="UI_DarN_Base/menus/AlternateLevelUp/levelup_menu.xml" destination="menus/" priority="2"/>
-				</files>
-			</pattern>-->
-			<!--####################################################### Dark DarN Vanilla ############################################################-->
-			<!--<pattern>
-				<dependencies>
-					<flagDependency flag="DarkDarNSelected" value="On"/>
-					<flagDependency flag="InstallVanillaLevelup" value="On"/>
-				</dependencies>
-				<files>
-					<file source="UI_DarN_Dark/menus/VanillaLevelUp/levelup_menu.xml" destination="menus/" priority="2"/>
-					<file source="UI_DarN_Dark/menus/VanillaLevelUp/stats_config.xml" destination="menus/prefabs/darn/" priority="2"/>
-				</files>
-			</pattern>-->
-			<!--##################################################### Dark DarN Alternate ############################################################-->
-			<!--<pattern>
-				<dependencies>
-					<flagDependency flag="DarkDarNSelected" value="On"/>
-					<flagDependency flag="InstallAlternateLevelup" value="On"/>
-				</dependencies>
-				<files>
-					<file source="UI_DarN_Dark/menus/AlternateLevelUp/levelup_menu.xml" destination="menus/" priority="2"/>
-					<file source="UI_DarN_Dark/menus/AlternateLevelUp/stats_config.xml" destination="menus/prefabs/darn/" priority="2"/>
-				</files>
-			</pattern>-->
 			<!--################################################## Install Quest Added Menus ########################################################-->
 			<pattern> <!--############################################# Base DarN Show ##############################################################-->
 				<dependencies>
@@ -398,7 +342,10 @@
 					<file source="UI_DarN_Dark/menus/generic/HideQuestAdded/quest_added.xml" destination="menus/generic/" priority="2"/>
 				</files>
 			</pattern>
-			<!--#################################################### Install MAIN MENU Menu ###########################################################-->
+			<!--#######################################################                     ###########################################################-->
+			<!--####################################################### Install MISC. Menus ###########################################################-->
+			<!--#######################################################                     ###########################################################-->
+			<!--###################################################### Install MAIN MENU Menu #########################################################-->
 			<pattern> <!--################################################# Base DarN #################################################################-->
 				<dependencies>
 					<flagDependency flag="BaseDarNSelected" value="On"/>
