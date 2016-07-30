@@ -266,6 +266,17 @@
 								<type name="Recommended"/>
 							</typeDescriptor>
 						</plugin>
+						<plugin name="Container Menu">
+							<description>
+								Select this to replace the not-very-controller-friendly or intuitive container menu. This adjusts the 'Take All', 'Haggle', and Container Select elements and allows for better spatial navigation of container menus. These menus are seen when buying general items from merchants as well as when gathering loot.
+							</description>
+							<conditionFlags>
+								<flag name="ContainerMenu">On</flag>
+							</conditionFlags>
+							<typeDescriptor>
+								<type name="Recommended"/>
+							</typeDescriptor>
+						</plugin>
 					</plugins>
 				</group>
 			</optionalFileGroups>
@@ -601,6 +612,25 @@
 				</dependencies>
 				<files>
 					<file source="UI_DarN_Dark/menus/message_menu.xml" destination="menus/" priority="2"/>
+				</files>
+			</pattern>
+			<!--#################################################### Install CONTAINER Menu ##########################################################-->
+			<pattern> <!--################################################# Base DarN #################################################################-->
+				<dependencies>
+					<flagDependency flag="BaseDarNSelected" value="On"/>
+					<flagDependency flag="ContainerMenu" value="On"/>
+				</dependencies>
+				<files>
+					<file source="UI_DarN_Base/menus/container_menu.xml" destination="menus/" priority="2"/>
+				</files>
+			</pattern>
+			<pattern> <!--################################################### Dark DarN ###############################################################-->
+				<dependencies>
+					<flagDependency flag="DarkDarNSelected" value="On"/>
+					<flagDependency flag="ContainerMenu" value="On"/>
+				</dependencies>
+				<files>
+					<file source="UI_DarN_Dark/menus/container_menu.xml" destination="menus/" priority="2"/>
 				</files>
 			</pattern>
 		</patterns>
