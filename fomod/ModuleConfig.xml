@@ -175,6 +175,50 @@
 								<type name="Recommended"/>
 							</typeDescriptor>
 						</plugin>
+						<plugin name="Audio Menu">
+							<description>
+								Select this to import the customized Audio Menu. This will overwrite your custom UI's audio menu xml and uses more spatially intuitive controls.
+							</description>
+							<conditionFlags>
+								<flag name="AudioMenu">On</flag>
+							</conditionFlags>
+							<typeDescriptor>
+								<type name="Recommended"/>
+							</typeDescriptor>
+						</plugin>
+						<plugin name="Gameplay Menu">
+							<description>
+								Select this to import the customized Gameplay Menu. This will overwrite your custom UI's gameplay menu xml and uses more spatially intuitive controls.
+							</description>
+							<conditionFlags>
+								<flag name="GameplayMenu">On</flag>
+							</conditionFlags>
+							<typeDescriptor>
+								<type name="Recommended"/>
+							</typeDescriptor>
+						</plugin>
+						<plugin name="Pause Menu">
+							<description>
+								Select this to import the customized Pause Menu. This will overwrite your custom UI's pause menu xml and uses more spatially intuitive controls.
+							</description>
+							<conditionFlags>
+								<flag name="PauseMenu">On</flag>
+							</conditionFlags>
+							<typeDescriptor>
+								<type name="Recommended"/>
+							</typeDescriptor>
+						</plugin>
+						<plugin name="Video Menu">
+							<description>
+								Select this to import the customized Video Menu. This will overwrite your custom UI's video menu xml and uses more spatially intuitive controls.
+							</description>
+							<conditionFlags>
+								<flag name="VideoMenu">On</flag>
+							</conditionFlags>
+							<typeDescriptor>
+								<type name="Recommended"/>
+							</typeDescriptor>
+						</plugin>
 						<plugin name="Message Menu">
 							<description>
 								Select this to replace DarN's not-very-controller-friendly or intuitive message menu. This will effectively allow you to mouseover the list of options in the message box using the arrow keys instead of selecting the current option with the up-arrow. Its much more intuitive and controller friendly, trust me.
@@ -373,6 +417,25 @@
 					<file source="UI_DarN_Dark/menus/options/main_menu.xml" destination="menus/options/" priority="2"/>
 				</files>
 			</pattern>
+			<!--######################################################## Install SAVE Menu ############################################################-->
+			<pattern> <!--################################################# Base DarN #################################################################-->
+				<dependencies>
+					<flagDependency flag="BaseDarNSelected" value="On"/>
+					<flagDependency flag="SaveMenu" value="On"/>
+				</dependencies>
+				<files>
+					<file source="UI_DarN_Base/menus/options/save_menu.xml" destination="menus/options/" priority="2"/>
+				</files>
+			</pattern>
+			<pattern> <!--################################################ Dark DarN ##############################################################-->
+				<dependencies>
+					<flagDependency flag="DarkDarNSelected" value="On"/>
+					<flagDependency flag="SaveMenu" value="On"/>
+				</dependencies>
+				<files>
+					<file source="UI_DarN_Dark/menus/options/save_menu.xml" destination="menus/options/" priority="2"/>
+				</files>
+			</pattern>
 			<!--####################################################### Install LOAD Menu #############################################################-->
 			<pattern> <!--################################################# Base DarN #################################################################-->
 				<dependencies>
@@ -392,23 +455,80 @@
 					<file source="UI_DarN_Dark/menus/options/load_menu.xml" destination="menus/options/" priority="2"/>
 				</files>
 			</pattern>
-			<!--######################################################## Install SAVE Menu ############################################################-->
+			<!--####################################################### Install Audio Menu #############################################################-->
 			<pattern> <!--################################################# Base DarN #################################################################-->
 				<dependencies>
 					<flagDependency flag="BaseDarNSelected" value="On"/>
-					<flagDependency flag="SaveMenu" value="On"/>
+					<flagDependency flag="AudioMenu" value="On"/>
 				</dependencies>
 				<files>
-					<file source="UI_DarN_Base/menus/options/save_menu.xml" destination="menus/options/" priority="2"/>
+					<file source="UI_DarN_Base/menus/options/audio_menu.xml" destination="menus/options/" priority="2"/>
 				</files>
 			</pattern>
 			<pattern> <!--################################################ Dark DarN ##############################################################-->
 				<dependencies>
 					<flagDependency flag="DarkDarNSelected" value="On"/>
-					<flagDependency flag="SaveMenu" value="On"/>
+					<flagDependency flag="AudioMenu" value="On"/>
 				</dependencies>
 				<files>
-					<file source="UI_DarN_Dark/menus/options/save_menu.xml" destination="menus/options/" priority="2"/>
+					<file source="UI_DarN_Dark/menus/options/audio_menu.xml" destination="menus/options/" priority="2"/>
+				</files>
+			</pattern>
+			<!--####################################################### Install Gameplay Menu #############################################################-->
+			<pattern> <!--################################################# Base DarN #################################################################-->
+				<dependencies>
+					<flagDependency flag="BaseDarNSelected" value="On"/>
+					<flagDependency flag="GameplayMenu" value="On"/>
+				</dependencies>
+				<files>
+					<file source="UI_DarN_Base/menus/options/gameplay_menu.xml" destination="menus/options/" priority="2"/>
+				</files>
+			</pattern>
+			<pattern> <!--################################################ Dark DarN ##############################################################-->
+				<dependencies>
+					<flagDependency flag="DarkDarNSelected" value="On"/>
+					<flagDependency flag="GameplayMenu" value="On"/>
+				</dependencies>
+				<files>
+					<file source="UI_DarN_Dark/menus/options/gameplay_menu.xml" destination="menus/options/" priority="2"/>
+				</files>
+			</pattern>
+			<!--####################################################### Install Pause Menu #############################################################-->
+			<pattern> <!--################################################# Base DarN #################################################################-->
+				<dependencies>
+					<flagDependency flag="BaseDarNSelected" value="On"/>
+					<flagDependency flag="PauseMenu" value="On"/>
+				</dependencies>
+				<files>
+					<file source="UI_DarN_Base/menus/options/pause_menu.xml" destination="menus/options/" priority="2"/>
+				</files>
+			</pattern>
+			<pattern> <!--################################################ Dark DarN ##############################################################-->
+				<dependencies>
+					<flagDependency flag="DarkDarNSelected" value="On"/>
+					<flagDependency flag="PauseMenu" value="On"/>
+				</dependencies>
+				<files>
+					<file source="UI_DarN_Dark/menus/options/pause_menu.xml" destination="menus/options/" priority="2"/>
+				</files>
+			</pattern>
+			<!--####################################################### Install Video Menu #############################################################-->
+			<pattern> <!--################################################# Base DarN #################################################################-->
+				<dependencies>
+					<flagDependency flag="BaseDarNSelected" value="On"/>
+					<flagDependency flag="VideoMenu" value="On"/>
+				</dependencies>
+				<files>
+					<file source="UI_DarN_Base/menus/options/video_menu.xml" destination="menus/options/" priority="2"/>
+				</files>
+			</pattern>
+			<pattern> <!--################################################ Dark DarN ##############################################################-->
+				<dependencies>
+					<flagDependency flag="DarkDarNSelected" value="On"/>
+					<flagDependency flag="VideoMenu" value="On"/>
+				</dependencies>
+				<files>
+					<file source="UI_DarN_Dark/menus/options/video_menu.xml" destination="menus/options/" priority="2"/>
 				</files>
 			</pattern>
 			<!--#################################################### Install MESSAGEBOX Menu ##########################################################-->
