@@ -195,15 +195,19 @@
 								<type name="Recommended"/>
 							</typeDescriptor>
 						</plugin>
-						<plugin name="Menu Name">
+					</plugins>
+				</group>
+				<group name="Select Main Menus" type="SelectAny">
+					<plugins order="Explicit">
+						<plugin name="Player Stats Menu">
 							<description>
-								Description for what the menu does
+								Select this to install a corrected version of the player stats/skills menu. The version used in the DarN UI install has a bug that only allows navigating to the first and last skill element; this menu version fixes and allows properly navigating through each skill element.
 							</description>
 							<conditionFlags>
-								<flag name="MenuName">On</flag>
+								<flag name="StatsMenu">On</flag>
 							</conditionFlags>
 							<typeDescriptor>
-								<type name="Optional"/>
+								<type name="Recommended"/>
 							</typeDescriptor>
 						</plugin>
 					</plugins>
@@ -371,6 +375,25 @@
 			<!--#######################################################                     ###########################################################-->
 			<!--####################################################### Install MISC. Menus ###########################################################-->
 			<!--#######################################################                     ###########################################################-->
+			<!--#################################################### Install PLAYER STATS Menu ########################################################-->
+			<pattern> <!--################################################## Base DarN ################################################################-->
+				<dependencies>
+					<flagDependency flag="BaseDarNSelected" value="On"/>
+					<flagDependency flag="StatsMenu" value="On"/>
+				</dependencies>
+				<files>
+					<file source="UI_DarN_Base/menus/main/stats_menu.xml" destination="menus/main/" priority="2"/>
+				</files>
+			</pattern>
+			<pattern> <!--################################################## Dark DarN ################################################################-->
+				<dependencies>
+					<flagDependency flag="DarkDarNSelected" value="On"/>
+					<flagDependency flag="StatsMenu" value="On"/>
+				</dependencies>
+				<files>
+					<file source="UI_DarN_Dark/menus/main/stats_menu.xml" destination="menus/main/" priority="2"/>
+				</files>
+			</pattern>
 			<!--###################################################### Install MAIN MENU Menu #########################################################-->
 			<pattern> <!--################################################# Base DarN #################################################################-->
 				<dependencies>
