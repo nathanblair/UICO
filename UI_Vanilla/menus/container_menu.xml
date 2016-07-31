@@ -458,6 +458,8 @@
 					</user2>
 					<user20> &xbuttonx; </user20>
 
+					<xdefault> &true; </xdefault><!--Added by Thinker-->
+
 					<xup><ref src="cont_list_contents" trait="mouseover"/></xup><!--Added by Thinker-->
 					<xright><ref src="cont_button_exit" trait="mouseover"/></xright><!--Added by Thinker-->
 
@@ -490,6 +492,8 @@
 					</user2>
 					<user20> &xbuttony; </user20>
 
+					<xdefault> &true; </xdefault><!--Added by Thinker-->
+
 					<xup><ref src="cont_list_contents" trait="mouseover"/></xup><!--Added by Thinker-->
 					<xleft><ref src="cont_button_exit" trait="mouseover"/></xleft><!--Added by Thinker-->
 
@@ -518,8 +522,6 @@
 						<add> 1 </add>
 					</user2>
 					<user20> &xbuttonb; </user20>
-
-					<xdefault> &true; </xdefault><!--Added by Thinker-->
 
 					<xup><ref src="cont_list_contents" trait="mouseover"/></xup><!--Added by Thinker-->
 					<xright><ref src="cont_button_haggle" trait="mouseover"/></xright><!--Added by Thinker-->
