@@ -197,7 +197,7 @@
 			<xleft> <ref src="horizontal_scroll_left" trait="clicked"/> </xleft>
 			<xright> <ref src="horizontal_scroll_right" trait="clicked"/> </xright>
 			<xdown> <ref src="negotiate_button_okay" trait="mouseover"/> </xdown>
-			<xup> <ref src="negotiate_button_cancel" trait="mouseover"/> </xup>
+			<!--<xup> <ref src="negotiate_button_cancel" trait="mouseover"/> </xup>--><!--Removed by Thinker-->
 			
 			<image name="negotiate_scroll_marker_2">
 				<zoom> 75 </zoom> <!-- DarN add -->
@@ -353,9 +353,9 @@
 			
 			<user20> &xbuttona; </user20>
 			<xdefault> &xboxhint; </xdefault>
-			<xleft> <ref src="negotiate_button_cancel" trait="mouseover"/> </xleft>
+			<!--<xleft> <ref src="negotiate_button_cancel" trait="mouseover"/> </xleft>--><!--Removed by Thinker-->
 			<xright> <ref src="negotiate_button_cancel" trait="mouseover"/> </xright>
-			<xdown> <ref src="negotiate_scroll_marker" trait="mouseover"/> </xdown>
+			<!--<xdown> <ref src="negotiate_scroll_marker" trait="mouseover"/> </xdown>--><!--Removed by Thinker-->
 			<xup> <ref src="negotiate_scroll_marker" trait="mouseover"/> </xup>
 		</image>
 		
@@ -378,8 +378,8 @@
 			<user20> &xbuttonb; </user20>
 			<xdefault> &xboxhint; </xdefault>
 			<xleft> <ref src="negotiate_button_okay" trait="mouseover"/> </xleft>
-			<xright> <ref src="negotiate_button_okay" trait="mouseover"/> </xright>
-			<xdown> <ref src="negotiate_scroll_marker" trait="mouseover"/> </xdown>
+			<!--<xright> <ref src="negotiate_button_okay" trait="mouseover"/> </xright>--><!--Removed by Thinker-->
+			<!--<xdown> <ref src="negotiate_scroll_marker" trait="mouseover"/> </xdown>--><!--Removed by Thinker-->
 			<xup> <ref src="negotiate_scroll_marker" trait="mouseover"/> </xup>
 		</image>
 		

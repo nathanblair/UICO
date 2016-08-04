@@ -261,7 +261,7 @@
 			
 			<user20> &xbuttona; </user20>
 			<xdefault> &xboxhint; </xdefault>
-			<xleft> <ref src="sleep_button_cancel" trait="mouseover"/> </xleft>
+			<!--<xleft> <ref src="sleep_button_cancel" trait="mouseover"/> </xleft>--><!--Removed by Thinker-->
 			<xright> <ref src="sleep_button_cancel" trait="mouseover"/> </xright>
 			<xup> <ref src="sleep_scroll_marker" trait="mouseover"/> </xup>
 		</image>
@@ -286,7 +286,7 @@
 			<user20> &xbuttonb; </user20>
 			<xdefault> &xboxhint; </xdefault>
 			<xleft> <ref src="sleep_button_sleep_wait" trait="mouseover"/> </xleft>
-			<xright> <ref src="sleep_button_sleep_wait" trait="mouseover"/> </xright>
+			<!--<xright> <ref src="sleep_button_sleep_wait" trait="mouseover"/> </xright>--><!--Removed by Thinker-->
 			<xup> <ref src="sleep_scroll_marker" trait="mouseover"/> </xup>
 		</image>
 		

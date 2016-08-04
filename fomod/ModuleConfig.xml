@@ -279,6 +279,43 @@
 						</plugin>
 					</plugins>
 				</group>
+				<group name="Select Quantity Menus" type="SelectAny">
+					<plugins order="Explicit">
+						<plugin name="Quantity Menu">
+							<description>
+								Select this to install a more controller-friendly and intuitive quantity menu.
+							</description>
+							<conditionFlags>
+								<flag name="QuantityMenu">On</flag>
+							</conditionFlags>
+							<typeDescriptor>
+								<type name="Recommended"/>
+							</typeDescriptor>
+						</plugin>
+						<plugin name="Negotiate Menu">
+							<description>
+								Select this to install a more controller-friendly and intuitive negotiate menu.
+							</description>
+							<conditionFlags>
+								<flag name="NegotiateMenu">On</flag>
+							</conditionFlags>
+							<typeDescriptor>
+								<type name="Recommended"/>
+							</typeDescriptor>
+						</plugin>
+						<plugin name="Sleep/Wait Menu">
+							<description>
+								Select this to install more controller-friendly and intuitive sleep and wait menus.
+							</description>
+							<conditionFlags>
+								<flag name="Sleep_WaitMenu">On</flag>
+							</conditionFlags>
+							<typeDescriptor>
+								<type name="Recommended"/>
+							</typeDescriptor>
+						</plugin>
+					</plugins>
+				</group>
 			</optionalFileGroups>
 		</installStep>
 	</installSteps>
@@ -631,6 +668,63 @@
 				</dependencies>
 				<files>
 					<file source="UI_DarN_Dark/menus/container_menu.xml" destination="menus/" priority="2"/>
+				</files>
+			</pattern>
+			<!--#################################################### Install NEGOTIATE Menu ##########################################################-->
+			<pattern> <!--################################################# Base DarN #################################################################-->
+				<dependencies>
+					<flagDependency flag="BaseDarNSelected" value="On"/>
+					<flagDependency flag="NegotiateMenu" value="On"/>
+				</dependencies>
+				<files>
+					<file source="UI_DarN_Base/menus/negotiate_menu.xml" destination="menus/" priority="2"/>
+				</files>
+			</pattern>
+			<pattern> <!--################################################### Dark DarN ###############################################################-->
+				<dependencies>
+					<flagDependency flag="DarkDarNSelected" value="On"/>
+					<flagDependency flag="NegotiateMenu" value="On"/>
+				</dependencies>
+				<files>
+					<file source="UI_DarN_Dark/menus/negotiate_menu.xml" destination="menus/" priority="2"/>
+				</files>
+			</pattern>
+			<!--#################################################### Install QUANTITY Menu ##########################################################-->
+			<pattern> <!--################################################# Base DarN #################################################################-->
+				<dependencies>
+					<flagDependency flag="BaseDarNSelected" value="On"/>
+					<flagDependency flag="QuantityMenu" value="On"/>
+				</dependencies>
+				<files>
+					<file source="UI_DarN_Base/menus/quantity_menu.xml" destination="menus/" priority="2"/>
+				</files>
+			</pattern>
+			<pattern> <!--################################################### Dark DarN ###############################################################-->
+				<dependencies>
+					<flagDependency flag="DarkDarNSelected" value="On"/>
+					<flagDependency flag="QuantityMenu" value="On"/>
+				</dependencies>
+				<files>
+					<file source="UI_DarN_Dark/menus/quantity_menu.xml" destination="menus/" priority="2"/>
+				</files>
+			</pattern>
+			<!--#################################################### Install SLEEP_WAIT Menu ##########################################################-->
+			<pattern> <!--################################################# Base DarN #################################################################-->
+				<dependencies>
+					<flagDependency flag="BaseDarNSelected" value="On"/>
+					<flagDependency flag="Sleep_WaitMenu" value="On"/>
+				</dependencies>
+				<files>
+					<file source="UI_DarN_Base/menus/sleep_wait_menu.xml" destination="menus/" priority="2"/>
+				</files>
+			</pattern>
+			<pattern> <!--################################################### Dark DarN ###############################################################-->
+				<dependencies>
+					<flagDependency flag="DarkDarNSelected" value="On"/>
+					<flagDependency flag="Sleep_WaitMenu" value="On"/>
+				</dependencies>
+				<files>
+					<file source="UI_DarN_Dark/menus/sleep_wait_menu.xml" destination="menus/" priority="2"/>
 				</files>
 			</pattern>
 		</patterns>
