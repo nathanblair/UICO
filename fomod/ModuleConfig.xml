@@ -251,6 +251,17 @@
 								<type name="Recommended"/>
 							</typeDescriptor>
 						</plugin>
+						<plugin name="Persuasion Menu">
+							<description>
+								Select this to install a controller-friendly and intuitive persuasion menu. This will make navigating the persuasion options possible with the [Up], [Down], [Right], and [Left] arrow keys. It rearranges the buttons into those respective directions and upon activating that key, the corresponding option will be executed.
+							</description>
+							<conditionFlags>
+								<flag name="PersuasionMenu">On</flag>
+							</conditionFlags>
+							<typeDescriptor>
+								<type name="Recommended"/>
+							</typeDescriptor>
+						</plugin>
 					</plugins>
 				</group>
 				<group name="Select Misc. Menus" type="SelectAny">
@@ -630,6 +641,25 @@
 				</dependencies>
 				<files>
 					<file source="UI_DarN_Dark/menus/dialog/dialog_menu.xml" destination="menus/dialog/" priority="2"/>
+				</files>
+			</pattern>
+			<!--####################################################### Install PERSUASION Menu ###########################################################-->
+			<pattern> <!--################################################# Base DarN #################################################################-->
+				<dependencies>
+					<flagDependency flag="BaseDarNSelected" value="On"/>
+					<flagDependency flag="PersuasionMenu" value="On"/>
+				</dependencies>
+				<files>
+					<file source="UI_DarN_Base/menus/dialog/persuasion_menu.xml" destination="menus/dialog/" priority="2"/>
+				</files>
+			</pattern>
+			<pattern> <!--################################################## Dark DarN #################################################################-->
+				<dependencies>
+					<flagDependency flag="DarkDarNSelected" value="On"/>
+					<flagDependency flag="PersuasionMenu" value="On"/>
+				</dependencies>
+				<files>
+					<file source="UI_DarN_Dark/menus/dialog/persuasion_menu.xml" destination="menus/dialog/" priority="2"/>
 				</files>
 			</pattern>
 			<!--#################################################### Install MESSAGEBOX Menu ##########################################################-->
