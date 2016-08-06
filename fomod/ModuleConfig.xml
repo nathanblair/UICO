@@ -288,6 +288,17 @@
 								<type name="Recommended"/>
 							</typeDescriptor>
 						</plugin>
+						<plugin name="Book/Scroll Menu">
+							<description>
+								Select this to replace the not-very-controller-friendly or intuitive book and scroll menus.
+							</description>
+							<conditionFlags>
+								<flag name="BookMenu">On</flag>
+							</conditionFlags>
+							<typeDescriptor>
+								<type name="Recommended"/>
+							</typeDescriptor>
+						</plugin>
 					</plugins>
 				</group>
 				<group name="Select Quantity Menus" type="SelectAny">
@@ -698,6 +709,25 @@
 				</dependencies>
 				<files>
 					<file source="UI_DarN_Dark/menus/container_menu.xml" destination="menus/" priority="2"/>
+				</files>
+			</pattern>
+			<!--#################################################### Install BOOK_SCROLL Menu ##########################################################-->
+			<pattern> <!--################################################# Base DarN #################################################################-->
+				<dependencies>
+					<flagDependency flag="BaseDarNSelected" value="On"/>
+					<flagDependency flag="BookMenu" value="On"/>
+				</dependencies>
+				<files>
+					<file source="UI_DarN_Base/menus/book_menu.xml" destination="menus/" priority="2"/>
+				</files>
+			</pattern>
+			<pattern> <!--################################################### Dark DarN ###############################################################-->
+				<dependencies>
+					<flagDependency flag="DarkDarNSelected" value="On"/>
+					<flagDependency flag="BookMenu" value="On"/>
+				</dependencies>
+				<files>
+					<file source="UI_DarN_Dark/menus/book_menu.xml" destination="menus/" priority="2"/>
 				</files>
 			</pattern>
 			<!--#################################################### Install NEGOTIATE Menu ##########################################################-->
