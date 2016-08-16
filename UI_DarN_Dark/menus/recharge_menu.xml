@@ -1,0 +1,502 @@
+<!-- DarN Version 1.1 -->
+<!-- recharge_menu.xml -->
+<menu name="RechargeMenu">
+	<class> &RechargeMenu; </class>
+	<stackingtype> &no_click_past; </stackingtype>
+	<alpha>	0 </alpha>
+	<locus> &true; </locus>
+	<x> 0 </x>
+	<y> 0 </y>
+	<menufade> 0.25 </menufade>
+	
+	<user0> 1 </user0>									<!-- 0 = Recharging with soul gem
+															 1 = Buying recharge from NPC. -->
+	<user1> 0 </user1>									<!-- Icon index 0=uses, 1=weight, etc) -->
+	<user2></user2>										<!-- Soul gem name / Player gold -->
+	<user3> 
+		<copy src="recharge_contents" trait="height"/>
+		<div src="recharge_scroll_bar" trait="user8"/>
+	</user3>											<!-- Template item height -->
+	<user4></user4>										<!-- Soul gem pts / Cost to recharge -->
+	<user6> 0 </user6>									<!-- Soul gem count -->
+	
+	<xbuttonb> <ref src="recharge_button_exit" trait="clicked"/> </xbuttonb>
+
+<include src="darn\recharge_config.xml"/>	
+	
+	<rect name="recharge_FocusBox">
+<include src="darn\focus_box.xml"/>
+		<id> 1 </id>
+		<visible> &false; </visible>
+		<user15>
+			<copy src="parent()" trait="depth" />
+			<add> 0.5 </add>
+		</user15>
+	</rect>
+	
+	<image name="recharge_background">
+		<target> &true; </target>
+		<filename> Textures\DarkUI\Menus\Recharge\recharge_backgrounddui.dds </filename>
+		<depth> 1 </depth>
+		<width> 956 </width>
+		<height> 837 </height>
+		<zoom> -1 </zoom>
+		<locus> &true; </locus>
+		<x> 
+			<copy src="screen()" trait="width" />
+			<sub src="me()" trait="width" />
+			<div> 2 </div>
+		</x>
+		<y> 
+			<copy src="screen()" trait="height" />
+			<sub src="me()" trait="height" />
+			<div> 2 </div>
+		</y>
+
+		<image name="recharge_info_icon"> <!-- DarN "Azuras Star||Soul Gem" icon -->
+			<locus> &true; </locus>
+			<depth> 2 </depth>
+			<filename>
+				<copy src="RechargeMenu" trait="user0"/>
+				<eq> 0 </eq> <!-- DarN &true; = 2? -->
+				<copy src="me()" trait="_filename_"/>
+			</filename>
+			<_filename_1> Textures\DarkUI\Menus\Shared\all_small_iconsdui.dds </_filename_1> <!-- DarN gold icon -->
+			<_filename_2> <copy src="RechargeMenu" trait="user1"/> </_filename_2>
+			<cropx>
+				<copy> 168 </copy> <!-- DarN 224 -->
+				<onlyifnot>
+					<copy src="RechargeMenu" trait="user0"/>
+					<eq> 0 </eq>
+				</onlyifnot>
+			</cropx>
+			<width>
+				<copy> 24 </copy> <!-- DarN 32 -->
+				<onlyif>
+					<copy src="RechargeMenu" trait="user0"/>
+					<eq> 0 </eq>
+				</onlyif>
+				<add> 24 </add> <!-- DarN 32 -->
+			</width>
+			<height> <copy src="me()" trait="width"/> </height>
+			<x>
+				<copy> 214 </copy>
+				<add>
+					<copy src="RechargeMenu" trait="user0"/>
+					<mul> 16 </mul>
+				</add>
+			</x>
+			<y>
+				<copy> 114 </copy> <!-- DarN 108 -->
+				<add>
+					<copy src="RechargeMenu" trait="user0"/>
+					<mul> 16 </mul>
+				</add>
+			</y>
+			<zoom> 75 </zoom> <!-- DarN add -->
+			<text name="recharge_info_count">
+				<depth> 2 </depth>
+				<string> <copy src="RechargeMenu" trait="user6"/> </string>
+				<visible>
+					<copy src="RechargeMenu" trait="user6"/>
+					<gt> 1 </gt>
+				</visible>
+				<justify> &right; </justify>
+				<font> 3 </font>
+				<red> 217 </red> <!-- DarN 117 -->
+				<green> 185 </green> <!-- DarN 59 -->
+				<blue> 102 </blue> <!-- DarN 33 -->
+				<alpha> 255 </alpha>
+				<x> 49 </x> <!-- DarN 65 REVISIT -->
+				<y> 42 </y>
+			</text>
+
+			<text name="recharge_info_text"> <!-- DarN "Azuras Star/Grand Soul Gem" -->
+				<depth> 2 </depth>
+				<string> <copy src="RechargeMenu" trait="user2"/> </string>
+				<red> 217 </red> <!-- DarN 117 -->
+				<green> 185 </green> <!-- DarN 59 -->
+				<blue> 102 </blue> <!-- DarN 33 -->
+				<font> 3 </font> <!-- DarN add -->
+				<alpha> 255 </alpha>
+				<x>
+					<copy src="parent()" trait="width"/>
+					<add> 10 </add>
+				</x>
+				<y> 0 </y>
+				<wrapwidth> 350 </wrapwidth> <!-- DarN 300 -->
+				<wraplines> 1 </wraplines> <!-- DarN 2 -->
+			</text>
+
+			<!-- DarN moved from "recharge_soulgem_soul_layout" -->
+			<text name="recharge_soulgem_soul_label"> <!-- DarN "Soul:" -->
+				<depth> 2 </depth>
+				<visible>
+					<copy src="RechargeMenu" trait="user0"/>
+					<eq> 0 </eq>
+				</visible>
+				<string> <copy src="strings()" trait="_soul"/> </string>
+				<font> 3 </font> <!-- DarN add -->
+				<red> 217 </red>
+				<green> 185 </green>
+				<blue> 102 </blue>
+				<alpha> 255 </alpha>
+				<x> <copy src="recharge_info_text" trait="x"/> </x>
+				<y> <!-- DarN 0 -->
+					<copy src="recharge_info_text" trait="y" />
+					<add src="me()" trait="height" />
+				</y>
+			</text>
+		
+			<text name="recharge_cost"> <!-- DarN "1600 pts" -->
+				<depth> 2 </depth>
+				<visible>
+					<copy src="RechargeMenu" trait="user0"/>
+					<eq> 0 </eq>
+				</visible>
+				<string> <copy src="RechargeMenu" trait="user4"/> </string>
+				<font> 3 </font>  <!-- DarN add -->
+				<red> 217 </red>
+				<green> 185 </green>	
+				<blue> 102 </blue>
+				<alpha> 255 </alpha>
+				<x>
+					<copy src="recharge_soulgem_soul_label" trait="x"/>
+					<add src="recharge_soulgem_soul_label" trait="width"/>
+					<add> 5 </add>
+				</x>
+				<y> <copy src="recharge_soulgem_soul_label" trait="y"/> </y>
+			</text>
+		</image>
+
+		<text name="items_header_text">
+			<string> <copy src="darnui_settings" trait="_itemsheader_text" /> </string>
+			<depth> 3 </depth>
+			<font> 3 </font>
+			<red> 237 </red>
+			<green> 228 </green>
+			<blue> 160 </blue>
+			<x>
+				<copy src="parent()" trait="width" />
+				<mul> 0.42 </mul>
+				<sub>
+					<copy src="me()" trait="width" />
+					<div> 2 </div>
+				</sub>
+			</x>
+			<y> <copy src="recharge_health_icon" trait="y"/> </y>
+		</text>
+		<image name="items_header_left">
+			<filename> Textures\DarkUI\Menus\Stats\stat_attr_border_leftdui.dds </filename>
+			<depth> 3 </depth>
+			<width> 35 </width>
+			<height> 17 </height>
+			<alpha> 255 </alpha>
+			<x>
+				<copy src="items_header_text" trait="x"/>
+				<sub> 55 </sub>
+			</x>
+			<y>
+				<copy src="items_header_text" trait="y"/>
+				<add> 5 </add>
+			</y>
+		</image>
+		<image name="items_header_right">
+			<filename> Textures\DarkUI\Menus\Stats\stat_attr_border_rightdui.dds </filename>
+			<depth> 3 </depth>
+			<width> 35 </width>
+			<height> 17 </height>
+			<alpha> 255 </alpha>
+			<x>
+				<copy src="items_header_text" trait="x"/>
+				<add src="items_header_text" trait="width" />
+				<add> 20 </add>
+			</x>
+			<y> <copy src="items_header_left" trait="y"/> </y>
+		</image>
+	
+		<image name="spell_gold_money_icon"> <!-- DarN when buying recharge -->
+			<depth> 2 </depth>
+			<visible>
+				<copy src="RechargeMenu" trait="user0"/>
+				<eq> 1 </eq>
+			</visible>
+			<filename> Textures\DarkUI\Menus\Shared\all_small_iconsdui.dds </filename>
+			<cropx> 168 </cropx> <!-- DarN 224 -->
+			<width> 24 </width> <!-- DarN 32 -->
+			<height> 24 </height> <!-- DarN 32 -->
+			<x> 645 </x> <!-- DarN 600 -->
+			<y> <copy src="recharge_info_icon" trait="y"/> </y>
+			<zoom> 75 </zoom> <!-- DarN add -->
+			<locus> &true; </locus>
+			
+			<image name="spell_gold_arrow_icon">
+				<filename> Textures\DarkUI\Menus\Shared\all_small_iconsdui.dds </filename>
+				<cropx> 264 </cropx> <!-- DarN 352 -->
+				<width> 24 </width> <!-- DarN 32 -->
+				<height> 24 </height> <!-- DarN 32 -->
+				<x> 18 </x>
+				<y> 0 </y>
+				<depth> 2 </depth>
+				<alpha> <copy src="parent()" trait="alpha"/> </alpha>
+				<zoom> 75 </zoom> <!-- DarN add -->
+			</image>
+		
+			<text name="recharge_cost">
+				<depth> 2 </depth>
+				<string> <copy src="RechargeMenu" trait="user4"/> </string>
+				<red> 217 </red>
+				<green> 185 </green>	
+				<blue> 102 </blue>
+				<x> 45 </x><!-- DarN 55 -->
+				<y> 0 </y> <!-- DarN -3 -->
+				<font> 3 </font> <!-- DarN add -->
+			</text>
+		</image>
+
+		<image name="recharge_health_icon">
+			<depth> 2 </depth>
+			<filename> Textures\DarkUI\Menus\Shared\all_small_iconsdui.dds </filename>
+			<cropx> 240 </cropx> <!-- DarN 320 -->
+			<width> 24 </width> <!-- DarN 32 -->
+			<height> 24 </height> <!-- DarN 32 -->
+			<x>
+				<copy src="parent()" trait="width"/>
+				<mul>0.705</mul> <!-- DarN 0.7 -->
+			</x>
+			<y>
+				<copy src="parent()" trait="height"/>
+				<mul>0.23</mul>  <!-- DarN 0.22 -->
+			</y>
+			<zoom> 75 </zoom> <!-- DarN add -->
+		</image>
+		
+		<rect name="recharge_contents">
+			<locus> &true; </locus>
+			<clipwindow> &true; </clipwindow>
+			<depth> 2 </depth>
+			<x> 208 </x> <!-- DarN 138 (nrs are totally screwed up) -->
+			<y> 226 </y>
+			<width> 572 </width> <!--DarN 640 (nrs are totally screwed up) -->
+			<height> 475 </height> <!-- 475 -->
+			
+			<rect name="recharge_list_pane">
+				<id> 6 </id>
+				<clips> &true; </clips>
+				<locus> &true; </locus>
+				<x> 0 </x>
+				<y>
+					<copy> 0 </copy>
+					<sub>
+						<copy src="recharge_scroll_bar" trait="user7"/> <!-- user7 = current value -->
+						<mul src="RechargeMenu" trait="user3"/>
+					</sub>
+				</y>
+				<width>
+					<copy src="parent()" trait="width"/>
+				</width>
+				<height>
+					<copy src="me()" trait="childcount"/>
+					<mul src="RechargeMenu" trait="user3"/>
+				</height>
+						
+				<!-- This is a list pane, and is not a focus itself, but when the child elements don't know how to handle
+					an input command, they defer to their parent. The following directions are for those times. -->
+				<target> &false; </target>
+				<xdefault> &false; </xdefault>
+				<xlist> &xlist; </xlist>
+				<xleft> <ref src="recharge_button_exit" trait="mouseover" /> </xleft>
+				<xright> <ref src="recharge_button_exit" trait="mouseover" /> </xright>
+				<!--xup> &last; </xup>
+				<xdown> &first; </xdown-->
+				<xscroll> <ref src="recharge_scroll_bar" trait="user5" /> </xscroll>
+				
+				<!-- template items go here from code -->
+				
+			</rect>
+
+			<image name="recharge_scroll_bar">
+<include src="vertical_scroll.xml"/>
+				<id> 4 </id>
+				<depth> 0 </depth>
+				<x>
+					<copy src="parent()" trait="width"/>
+					<add> 20 </add>
+				</x>
+				<y> 32 </y>
+				<height>
+					<copy src="parent()" trait="height" />
+					<sub> 64 </sub>
+				</height>
+				
+				<user1> 0 </user1>		<!-- Minimum value that can be scrolled to (should usually be zero) -->
+				<user2>
+					<copy src="recharge_list_pane" trait="child_count" />
+					<sub src="me()" trait="user8" />
+				</user2>				<!-- Maximum value that can be scrolled to (should be the number of
+											 items minus the number of items visible.  i.e. if your list has
+											 8 items and you can see 2 at any one time, this should be 6 -->
+				<user3> 1 </user3>		<!-- When the scroll arrow is clicked on, this is how many items it will advance -->
+				<user4>		<!-- When the scroll bar is clicked on, this is how many items it will advance DarN 5 -->
+					<copy src="me()" trait="user8" />
+					<sub> 1 </sub>
+				</user4>
+				<user5> 0 </user5>		<!-- The starting position of the scroll bar (set this only once) -->
+				<user6> 5 </user6>		<!-- A unique ID so that the scroll marker can be dragged around -->
+				<!-- user7: current value -->
+				<user8> <copy src="darnui_settings" trait="_itemcount" /> </user8>		<!-- How many items are visible at once DarN 6 -->
+				<user9> 0 </user9>		<!-- Manual step value (multiplied by step distance and added to scroll value -->
+				<user10></user10>		<!-- reserved -->
+			</image>
+		</rect>
+		
+		
+		<!-- BUTTON EXIT =====================================================================-->
+		<image name="recharge_button_exit">
+<include src="darn\button_short.xml"/>
+			<id> 3 </id>
+			<depth> 2 </depth>
+			<target> &true; </target>
+			<user0> <copy src="strings()" trait="_exit"/> </user0>
+			<x>
+				<copy src="parent()" trait="width"/>
+				<mul> 0.68 </mul> <!-- DarN 0.7 -->
+				<sub>
+					<copy>50</copy>
+					<onlyif>&xbox;</onlyif>
+				</sub>
+			</x>
+			<y>
+				<copy src="parent()" trait="height"/>
+				<mul>0.86</mul> <!-- DarN 0.85 -->
+			</y>
+			
+			<user20> &xbuttonb; </user20>
+			<xdefault> &xboxhint; </xdefault>
+			<xdown> <ref src="recharge_list_pane" trait="mouseover"/> </xdown>
+			<xup> <ref src="recharge_list_pane" trait="mouseover"/> </xup>
+		</image>
+	</image>
+
+
+	<!-- TEMPLATE =====================================================================-->
+	<template name="recharge_item_template">
+		<rect name="recharge_item">
+			<focusinset> 6 </focusinset>
+			<target> &true; </target>
+			<repeatvertical> &true; </repeatvertical>
+			<clips> &true; </clips>
+			<locus> &true; </locus>
+			<x> 0 </x>
+			<y>
+				<copy src="me()" trait="listindex" />
+				<mul src="me()" trait="height" />
+				<floor> 0 </floor> <!-- DarN lucky guess... -->
+			</y>
+			<height>
+				<copy src="RechargeMenu" trait="user3"/>
+			</height>
+			<width>
+				<copy src="recharge_contents" trait="width"/>
+			</width>
+			
+			<listindex> <copy src="me()" trait="user0"/> </listindex>
+			<user0> 0 </user0>	<!-- Item Index -->
+			<user1> Item name </user1>
+			<user2> Charge Text </user2>
+			<user3> Icon filename </user3>
+			
+			<!-- This element is a list item. If it gets an input command it doesn't know how to handle
+			     it will defer the command to its parent. The xlist trait set to true triggers this. -->
+			<xdefault> &false; </xdefault>
+			<xlist> &xitem; </xlist>
+			<xup> &prev; </xup>
+			<xdown> &next; </xdown>
+			<xscroll>
+				<copy src="me()" trait="listindex" />
+				<sub>
+					<copy src="recharge_scroll_bar" trait="user8"/>
+					<div> 2 </div>
+					<ceil> 0 </ceil>
+				</sub>
+				<add> 1 </add>
+			</xscroll>
+
+			<image name="item_icon">
+				<clips> &true; </clips>
+				<height>
+					<copy> 64 </copy>
+					<div> 100 </div>
+					<mul src="me()" trait="zoom" />
+				</height> <!-- DarN 64 -->
+				<width> <copy src="me()" trait="height" /> </width> <!-- DarN 64 -->
+				<filename>
+					<copy src="parent()" trait="user3"/>
+				</filename>
+				<x> 4 </x> <!-- DarN 0 -->
+				<y>
+					<copy src="parent()" trait="height"/>
+					<sub src="me()" trait="height"/>
+					<div>2</div>
+				</y>
+				<zoom> <copy src="darnui_settings" trait="_itemiconzoom" /> </zoom> <!-- DarN add -->
+			</image>
+			
+			<text name="item_name">
+				<clips> &true; </clips>
+				<red> <copy src="darnui_settings" trait="_ifnred" /> </red> <!-- DarN 117 -->
+				<green> <copy src="darnui_settings" trait="_ifngreen" /> </green> <!-- DarN 59 -->
+				<blue> <copy src="darnui_settings" trait="_ifnblue" /> </blue> <!-- DarN 33 -->
+				<alpha> 255 </alpha>
+				<wrapwidth> 350 </wrapwidth> <!-- DarN 380 -->
+				<wraplines> 2 </wraplines>
+				<string>
+					<copy src="parent()" trait="user1"/>
+				</string>
+				<x>
+					<copy src="sibling(item_icon)" trait="x"/>
+					<add src="sibling(item_icon)" trait="width"/>
+					<add>10</add>
+				</x>
+				<y>
+					<copy src="parent()" trait="height"/>
+					<sub src="me()" trait="height"/>
+					<div>2</div>
+					<add>
+						<copy> 5 </copy>
+						<onlyif>
+							<copy src="me()" trait="font" />
+							<eq> 2 </eq>
+						</onlyif>
+					</add> <!-- DarN add -->
+				</y>
+				<font> <copy src="darnui_settings" trait="_itemfont" /> </font> <!-- DarN add -->
+			</text>
+			
+			<text name="item_charge">
+				<clips> &true; </clips>
+				<red> <copy src="darnui_settings" trait="_ifcred" /> </red>
+				<green> <copy src="darnui_settings" trait="_ifcgreen" /> </green>
+				<blue> <copy src="darnui_settings" trait="_ifcblue" /> </blue>
+				<alpha> 255 </alpha>
+				<x>
+					<copy src="sibling(item_name)" trait="x"/>
+					<add src="sibling(item_name)" trait="wrapwidth"/>			<!-- This should give the left edge of the charge column -->
+					<add>
+						<copy src="parent()" trait="width"/>			<!-- Center the text in the column	-->
+						<sub>											<!-- by adding half the difference	-->
+							<copy src="sibling(item_name)" trait="x"/>			<!-- between the width of the column-->
+							<add src="sibling(item_name)" trait="wrapwidth"/>	<!-- and the text itself.			-->
+						</sub>
+						<sub src="me()" trait="width"/>
+						<div>2</div>									
+					</add>
+				</x>
+				<y> <copy src="sibling(item_name)" trait="y" /> </y>
+				<string> <copy src="parent()" trait="user2"/> </string>
+				<font> <copy src="sibling(item_name)" trait="font"/> </font> <!-- DarN add -->
+			</text>
+		</rect>
+	</template>
+</menu>
+
