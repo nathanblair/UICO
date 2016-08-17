@@ -54,8 +54,8 @@
 		<sub> 1 </sub> 
 	</_other>
 	
-	<xleft> <ref src="rep_button_exit" trait="mouseover" /> </xleft>
-	<xright> <ref src="rep_button_exit" trait="mouseover" /> </xright>
+	<!--<xleft> <ref src="rep_button_exit" trait="mouseover" /> </xleft>
+	<xright> <ref src="rep_button_exit" trait="mouseover" /> </xright>--><!--Removed by Thinker-->
 	
 	<xbuttonb> <ref src="rep_button_exit" trait="clicked"/> </xbuttonb>
 	<xbuttony> <ref src="rep_button_repair_all" trait="clicked"/> </xbuttony>
@@ -428,6 +428,7 @@
 			<xlist> &xlist; </xlist>
 			<!--xup> &last; </xup>
 			<xdown> &first; </xdown-->
+			<xdown> <ref src="rep_button_exit" trait="mouseover"/> </xdown><!--Added by Thinker-->
 			<xscroll> <ref src="rep_scroll_bar" trait="user5" /> </xscroll>
 		</rect>
 		
@@ -993,7 +994,8 @@
 		<user20> &xbuttonb; </user20>
 		<xdefault> &xboxhint; </xdefault>
 		<xup> <ref src="rep_list_pane" trait="mouseover" /> </xup>
-		<xleft> <ref src="rep_button_remove" trait="mouseover" /> </xleft>
+		<!--<xleft> <ref src="rep_button_remove" trait="mouseover" /> </xleft>--><!--Removed by Thinker-->
+		<xleft> <ref src="rep_button_repair_all" trait="mouseover" /> </xleft><!--Added by Thinker-->
 	</image>
 
 	<image name="repair_info_icon">

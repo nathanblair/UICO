@@ -310,6 +310,28 @@
 								<type name="Recommended"/>
 							</typeDescriptor>
 						</plugin>
+						<plugin name="Repair Menu">
+							<description>
+								Select this to replace the not-very-controller-friendly or intuitive repair menu.
+							</description>
+							<conditionFlags>
+								<flag name="RepairMenu">On</flag>
+							</conditionFlags>
+							<typeDescriptor>
+								<type name="Recommended"/>
+							</typeDescriptor>
+						</plugin>
+						<plugin name="Recharge Menu">
+							<description>
+								Select this to replace the not-very-controller-friendly or intuitive recharge menu.
+							</description>
+							<conditionFlags>
+								<flag name="RechargeMenu">On</flag>
+							</conditionFlags>
+							<typeDescriptor>
+								<type name="Recommended"/>
+							</typeDescriptor>
+						</plugin>
 					</plugins>
 				</group>
 				<group name="Select Quantity Menus" type="SelectAny">
@@ -758,6 +780,44 @@
 				</dependencies>
 				<files>
 					<file source="UI_DarN_Dark/menus/training_menu.xml" destination="menus/" priority="2"/>
+				</files>
+			</pattern>
+			<!--#################################################### Install REPAIR Menu ##########################################################-->
+			<pattern> <!--################################################# Base DarN #################################################################-->
+				<dependencies>
+					<flagDependency flag="BaseDarNSelected" value="On"/>
+					<flagDependency flag="RepairMenu" value="On"/>
+				</dependencies>
+				<files>
+					<file source="UI_DarN_Base/menus/repair_menu.xml" destination="menus/" priority="2"/>
+				</files>
+			</pattern>
+			<pattern> <!--################################################### Dark DarN ###############################################################-->
+				<dependencies>
+					<flagDependency flag="DarkDarNSelected" value="On"/>
+					<flagDependency flag="RepairMenu" value="On"/>
+				</dependencies>
+				<files>
+					<file source="UI_DarN_Dark/menus/repair_menu.xml" destination="menus/" priority="2"/>
+				</files>
+			</pattern>
+			<!--#################################################### Install RECHARGE Menu ##########################################################-->
+			<pattern> <!--################################################# Base DarN #################################################################-->
+				<dependencies>
+					<flagDependency flag="BaseDarNSelected" value="On"/>
+					<flagDependency flag="RechargeMenu" value="On"/>
+				</dependencies>
+				<files>
+					<file source="UI_DarN_Base/menus/recharge_menu.xml" destination="menus/" priority="2"/>
+				</files>
+			</pattern>
+			<pattern> <!--################################################### Dark DarN ###############################################################-->
+				<dependencies>
+					<flagDependency flag="DarkDarNSelected" value="On"/>
+					<flagDependency flag="RechargeMenu" value="On"/>
+				</dependencies>
+				<files>
+					<file source="UI_DarN_Dark/menus/recharge_menu.xml" destination="menus/" priority="2"/>
 				</files>
 			</pattern>
 			<!--#################################################### Install NEGOTIATE Menu ##########################################################-->

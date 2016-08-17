@@ -314,8 +314,9 @@
 				<target> &false; </target>
 				<xdefault> &false; </xdefault>
 				<xlist> &xlist; </xlist>
-				<xleft> <ref src="recharge_button_exit" trait="mouseover" /> </xleft>
-				<xright> <ref src="recharge_button_exit" trait="mouseover" /> </xright>
+				<!--<xleft> <ref src="recharge_button_exit" trait="mouseover" /> </xleft>
+				<xright> <ref src="recharge_button_exit" trait="mouseover" /> </xright>--><!--Removed by Thinker-->
+				<xdown> <ref src="recharge_button_exit" trait="mouseover" /> </xdown><!--Added by Thinker-->
 				<!--xup> &last; </xup>
 				<xdown> &first; </xdown-->
 				<xscroll> <ref src="recharge_scroll_bar" trait="user5" /> </xscroll>
@@ -381,8 +382,9 @@
 			</y>
 			
 			<user20> &xbuttonb; </user20>
-			<xdefault> &xboxhint; </xdefault>
-			<xdown> <ref src="recharge_list_pane" trait="mouseover"/> </xdown>
+			<!--<xdefault> &xboxhint; </xdefault>--><!--Removed by Thinker-->
+			<xdefault> &true; </xdefault><!--Added by Thinker-->
+			<!--<xdown> <ref src="recharge_list_pane" trait="mouseover"/> </xdown>--><!--Removed by Thinker-->
 			<xup> <ref src="recharge_list_pane" trait="mouseover"/> </xup>
 		</image>
 	</image>
