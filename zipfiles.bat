@@ -9,7 +9,7 @@ ECHO(
 
 ECHO Adding files to UICO.zip archive...
 ECHO(
-"C:\Program Files\7-Zip"\7z a UICO.zip fomod wizard.txt [*
+"C:\Program Files\7-Zip"\7z a UICO.zip fomod wizard.txt [*]
 
 ECHO(
 ECHO Completed!

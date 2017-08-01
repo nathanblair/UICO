@@ -8,240 +8,39 @@ Case 'Vanilla'
 	Vanilla=True
 	DarN=False
 	DarkDarN=False
+	SelectSubPackage "[00 Vanilla]"
 	Break
 Case 'DarN'
 	Vanilla=False
 	DarN=True
 	DarkDarN=False
+	SelectSubPackage "[00 DarN]"
 	Break
 Case 'Dark DarN'
 	Vanilla=False
 	DarN=False
 	DarkDarN=True
+	SelectSubPackage "[00 DarkDarN]"
 	Break
 EndSelect
 
-; Shared menus
-SelectMany 'Select the menus you want included', \
-	'|Class Menu', "", '', \
-	'|Skills Menu', "", '', \
-	'|Dialog Menu', "", '', \
-	'|Persuasion Menu', "", '', \
-	'|Spell Purchase Menu', "", '', \
-	'|Audio Menu', "", '', \
-	'|Gameplay Menu', "", '', \
-	'|Save Menu', "", '', \
-	'|Load Menu', "", '', \
-	'|Pause Menu', "", '', \
-	'|Video Menu', "", '', \
-	'|Book Menu', "", '', \
-	'|Container Menu', "", '', \
-	'|Negotiate Menu', "", '', \
-	'|Quantity Menu', "", '', \
-	'|Recharge Menu', "", '', \
-	'|Repair Menu', "", '', \
-	'|SleepWait Menu', "", '', \
-	'|Training Menu', "", '', \
+; DarN and DarkDarN specific menus
+If not Vanilla
+	SelectMany 'Choose DarN-type UI specific packages', \
+		'New Inventory', "Select this if you want the New-Style Inventory UI for your DarN UI. This allows the use of a grid-based inventory management; this type of management is meant more for mouse users and handling its navigation is outside the scope of this mod. Installing this option will use this new inventory menu but it will not be very controller-friendly. If you're using a controller I highly recommend the classic inventory - it is virtually the same (and may even be more performance friendly).", ''
+	Case 'New Inventory'
+		If DarN
+			SelectSubPackage "[01 DarN Optional - New Inventory]"
+		Else
+			SelectSubPackage "[01 DarkDarN Optional - New Inventory]"
+		EndIf
+		Break
+	EndSelect
+EndIf
+
+; Quest Added Popup
+SelectMany 'Select if you want to disable the quest popup dialog', \
 	'No Quest Added Popup', "", ''
-Case 'Class Menu'
-	Class=True
-	If Vanilla
-		SelectSubPackage ""
-	Elif DarN
-		SelectSubPackage ""
-	Else
-		SelectSubPackage ""
-	EndIf
-	Break
-Case 'Skills Menu'
-	If Vanilla
-		SelectSubPackage ""
-	Elif DarN
-		SelectSubPackage ""
-	Else
-		SelectSubPackage ""
-	EndIf
-	Break
-Case 'Dialog Menu'
-	If Vanilla
-		SelectSubPackage ""
-	Elif DarN
-		SelectSubPackage ""
-	Else
-		SelectSubPackage ""
-	EndIf
-	Break
-Case 'Persuasion Menu'
-	If Vanilla
-		SelectSubPackage ""
-	Elif DarN
-		SelectSubPackage ""
-	Else
-		SelectSubPackage ""
-	EndIf
-	Break
-Case 'Spell Purchase Menu'
-	If Vanilla
-		SelectSubPackage ""
-	Elif DarN
-		SelectSubPackage ""
-	Else
-		SelectSubPackage ""
-	EndIf
-	Break
-Case 'Stats Menu'
-	If Vanilla
-		SelectSubPackage ""
-	Elif DarN
-		SelectSubPackage ""
-	Else
-		SelectSubPackage ""
-	EndIf
-	Break
-Case 'Audio Menu'
-	If Vanilla
-		SelectSubPackage ""
-	Elif DarN
-		SelectSubPackage ""
-	Else
-		SelectSubPackage ""
-	EndIf
-	Break
-Case 'Gameplay Menu'
-	If Vanilla
-		SelectSubPackage ""
-	Elif DarN
-		SelectSubPackage ""
-	Else
-		SelectSubPackage ""
-	EndIf
-	Break
-Case 'Save Menu'
-	If Vanilla
-		SelectSubPackage ""
-	Elif DarN
-		SelectSubPackage ""
-	Else
-		SelectSubPackage ""
-	EndIf
-	Break
-Case 'Load Menu'
-	If Vanilla
-		SelectSubPackage ""
-	Elif DarN
-		SelectSubPackage ""
-	Else
-		SelectSubPackage ""
-	EndIf
-	Break
-Case 'Main Menu'
-	If Vanilla
-		SelectSubPackage ""
-	Elif DarN
-		SelectSubPackage ""
-	Else
-		SelectSubPackage ""
-	EndIf
-	Break
-Case 'Pause Menu'
-	If Vanilla
-		SelectSubPackage ""
-	Elif DarN
-		SelectSubPackage ""
-	Else
-		SelectSubPackage ""
-	EndIf
-	Break
-Case 'Video Menu'
-	If Vanilla
-		SelectSubPackage ""
-	Elif DarN
-		SelectSubPackage ""
-	Else
-		SelectSubPackage ""
-	EndIf
-	Break
-Case 'Book Menu'
-	If Vanilla
-		SelectSubPackage ""
-	Elif DarN
-		SelectSubPackage ""
-	Else
-		SelectSubPackage ""
-	EndIf
-	Break
-Case 'Container Menu'
-	If Vanilla
-		SelectSubPackage ""
-	Elif DarN
-		SelectSubPackage ""
-	Else
-		SelectSubPackage ""
-	EndIf
-	Break
-Case 'Message Menu'
-	If Vanilla
-		SelectSubPackage ""
-	Elif DarN
-		SelectSubPackage ""
-	Else
-		SelectSubPackage ""
-	EndIf
-	Break
-Case 'Negotiate Menu'
-	If Vanilla
-		SelectSubPackage ""
-	Elif DarN
-		SelectSubPackage ""
-	Else
-		SelectSubPackage ""
-	EndIf
-	Break
-Case 'Quantity Menu'
-	If Vanilla
-		SelectSubPackage ""
-	Elif DarN
-		SelectSubPackage ""
-	Else
-		SelectSubPackage ""
-	EndIf
-	Break
-Case 'Recharge Menu'
-	If Vanilla
-		SelectSubPackage ""
-	Elif DarN
-		SelectSubPackage ""
-	Else
-		SelectSubPackage ""
-	EndIf
-	Break
-Case 'Repair Menu'
-	If Vanilla
-		SelectSubPackage ""
-	Elif DarN
-		SelectSubPackage ""
-	Else
-		SelectSubPackage ""
-	EndIf
-	Break
-Case 'SleepWait Menu'
-	If Vanilla
-		SelectSubPackage ""
-	Elif DarN
-		SelectSubPackage ""
-	Else
-		SelectSubPackage ""
-	EndIf
-	Break
-Case 'Training Menu'
-	If Vanilla
-		SelectSubPackage ""
-	Elif DarN
-		SelectSubPackage ""
-	Else
-		SelectSubPackage ""
-	EndIf
-	Break
 Case 'No Quest Added Popup'
 	If Vanilla
 		SelectSubPackage "[02 Vanilla Optional - No Quest Added]"
@@ -252,30 +51,4 @@ Case 'No Quest Added Popup'
 	EndIf
 	Break
 EndSelect
-
-; DarN and DarkDarN specific menus
-If not Vanilla
-	SelectMany 'Choose DarN-type UI specific packages', \
-		'|Stats Menu', "", '', \
-		'|Main Menu', "", '', \
-		'|Message Menu', "", '', \
-		'New Inventory', "Select this if you want the New-Style Inventory UI for your DarN UI. This allows the use of a grid-based inventory management; this type of management is meant more for mouse users and handling its navigation is outside the scope of this mod. Installing this option will use this new inventory menu but it will not be very controller-friendly. If you're using a controller I highly recommend the classic inventory - it is virtually the same (and may even be more performance friendly).", ''
-	Case 'Stats Menu'
-
-		Break
-	Case 'Main Menu'
-
-		Break
-	Case 'Message Menu'
-
-		Break
-	Case 'New Inventory'
-		If DarN
-			SelectSubPackage "[01 DarN Optional - New Inventory]"
-		Else
-			SelectSubPackage "[01 DarkDarN Optional - New Inventory]"
-		EndIf
-		Break
-	EndSelect
-EndIf
 
