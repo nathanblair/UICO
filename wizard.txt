@@ -1,24 +1,281 @@
-VanillaSelected=True
-BaseDarNSelected=False
-DarkDarNSelected=False
+DeSelectAll
 
 SelectOne 'Select Your UI', \
-	'|Vanilla', 'Select this if you don't use any custom UI but instead just use the vanilla UI. This will load in some xml files that overwrite vanilla UI files and allows for navigating UI elements with keyboard keys or a gamepad.', '', \
-	'DarN', 'Select this if you use the DarNified UI by DarN himself. This will load in some xml files that overwrite his UI files and allows for navigating UI elements with keyboard keys or a gamepad.', '', \
-	'Dark DarN', 'Select this if you use the dark version of DarNified UI submitted by Gothic251. This will load in some xml files that overwrite those UI files and allows for navigating UI elements with keyboard keys or a gamepad.', '', \
+	'|Vanilla', "Select this if you don't use any custom UI but instead just use the vanilla UI. This will load in some xml files that overwrite vanilla UI files and allows for navigating UI elements with keyboard keys or a gamepad.", '', \
+	'DarN', "Select this if you use the DarNified UI by DarN himself. This will load in some xml files that overwrite his UI files and allows for navigating UI elements with keyboard keys or a gamepad.", '', \
+	'Dark DarN', "Select this if you use the dark version of DarNified UI submitted by Gothic251. This will load in some xml files that overwrite those UI files and allows for navigating UI elements with keyboard keys or a gamepad.", ''
 Case 'Vanilla'
-	VanillaSelected=True
-	BaseDarNSelected=False
-	DarkDarNSelected=False
+	Vanilla=True
+	DarN=False
+	DarkDarN=False
 	Break
 Case 'DarN'
-	VanillaSelected=False
-	BaseDarNSelected=True
-	DarkDarNSelected=False
+	Vanilla=False
+	DarN=True
+	DarkDarN=False
 	Break
 Case 'Dark DarN'
-	VanillaSelected=False
-	BaseDarNSelected=False
-	DarkDarNSelected=True
+	Vanilla=False
+	DarN=False
+	DarkDarN=True
 	Break
 EndSelect
+
+; Shared menus
+SelectMany 'Select the menus you want included', \
+	'|Class Menu', "", '', \
+	'|Skills Menu', "", '', \
+	'|Dialog Menu', "", '', \
+	'|Persuasion Menu', "", '', \
+	'|Spell Purchase Menu', "", '', \
+	'|Audio Menu', "", '', \
+	'|Gameplay Menu', "", '', \
+	'|Save Menu', "", '', \
+	'|Load Menu', "", '', \
+	'|Pause Menu', "", '', \
+	'|Video Menu', "", '', \
+	'|Book Menu', "", '', \
+	'|Container Menu', "", '', \
+	'|Negotiate Menu', "", '', \
+	'|Quantity Menu', "", '', \
+	'|Recharge Menu', "", '', \
+	'|Repair Menu', "", '', \
+	'|SleepWait Menu', "", '', \
+	'|Training Menu', "", '', \
+	'No Quest Added Popup', "", ''
+Case 'Class Menu'
+	Class=True
+	If Vanilla
+		SelectSubPackage ""
+	Elif DarN
+		SelectSubPackage ""
+	Else
+		SelectSubPackage ""
+	EndIf
+	Break
+Case 'Skills Menu'
+	If Vanilla
+		SelectSubPackage ""
+	Elif DarN
+		SelectSubPackage ""
+	Else
+		SelectSubPackage ""
+	EndIf
+	Break
+Case 'Dialog Menu'
+	If Vanilla
+		SelectSubPackage ""
+	Elif DarN
+		SelectSubPackage ""
+	Else
+		SelectSubPackage ""
+	EndIf
+	Break
+Case 'Persuasion Menu'
+	If Vanilla
+		SelectSubPackage ""
+	Elif DarN
+		SelectSubPackage ""
+	Else
+		SelectSubPackage ""
+	EndIf
+	Break
+Case 'Spell Purchase Menu'
+	If Vanilla
+		SelectSubPackage ""
+	Elif DarN
+		SelectSubPackage ""
+	Else
+		SelectSubPackage ""
+	EndIf
+	Break
+Case 'Stats Menu'
+	If Vanilla
+		SelectSubPackage ""
+	Elif DarN
+		SelectSubPackage ""
+	Else
+		SelectSubPackage ""
+	EndIf
+	Break
+Case 'Audio Menu'
+	If Vanilla
+		SelectSubPackage ""
+	Elif DarN
+		SelectSubPackage ""
+	Else
+		SelectSubPackage ""
+	EndIf
+	Break
+Case 'Gameplay Menu'
+	If Vanilla
+		SelectSubPackage ""
+	Elif DarN
+		SelectSubPackage ""
+	Else
+		SelectSubPackage ""
+	EndIf
+	Break
+Case 'Save Menu'
+	If Vanilla
+		SelectSubPackage ""
+	Elif DarN
+		SelectSubPackage ""
+	Else
+		SelectSubPackage ""
+	EndIf
+	Break
+Case 'Load Menu'
+	If Vanilla
+		SelectSubPackage ""
+	Elif DarN
+		SelectSubPackage ""
+	Else
+		SelectSubPackage ""
+	EndIf
+	Break
+Case 'Main Menu'
+	If Vanilla
+		SelectSubPackage ""
+	Elif DarN
+		SelectSubPackage ""
+	Else
+		SelectSubPackage ""
+	EndIf
+	Break
+Case 'Pause Menu'
+	If Vanilla
+		SelectSubPackage ""
+	Elif DarN
+		SelectSubPackage ""
+	Else
+		SelectSubPackage ""
+	EndIf
+	Break
+Case 'Video Menu'
+	If Vanilla
+		SelectSubPackage ""
+	Elif DarN
+		SelectSubPackage ""
+	Else
+		SelectSubPackage ""
+	EndIf
+	Break
+Case 'Book Menu'
+	If Vanilla
+		SelectSubPackage ""
+	Elif DarN
+		SelectSubPackage ""
+	Else
+		SelectSubPackage ""
+	EndIf
+	Break
+Case 'Container Menu'
+	If Vanilla
+		SelectSubPackage ""
+	Elif DarN
+		SelectSubPackage ""
+	Else
+		SelectSubPackage ""
+	EndIf
+	Break
+Case 'Message Menu'
+	If Vanilla
+		SelectSubPackage ""
+	Elif DarN
+		SelectSubPackage ""
+	Else
+		SelectSubPackage ""
+	EndIf
+	Break
+Case 'Negotiate Menu'
+	If Vanilla
+		SelectSubPackage ""
+	Elif DarN
+		SelectSubPackage ""
+	Else
+		SelectSubPackage ""
+	EndIf
+	Break
+Case 'Quantity Menu'
+	If Vanilla
+		SelectSubPackage ""
+	Elif DarN
+		SelectSubPackage ""
+	Else
+		SelectSubPackage ""
+	EndIf
+	Break
+Case 'Recharge Menu'
+	If Vanilla
+		SelectSubPackage ""
+	Elif DarN
+		SelectSubPackage ""
+	Else
+		SelectSubPackage ""
+	EndIf
+	Break
+Case 'Repair Menu'
+	If Vanilla
+		SelectSubPackage ""
+	Elif DarN
+		SelectSubPackage ""
+	Else
+		SelectSubPackage ""
+	EndIf
+	Break
+Case 'SleepWait Menu'
+	If Vanilla
+		SelectSubPackage ""
+	Elif DarN
+		SelectSubPackage ""
+	Else
+		SelectSubPackage ""
+	EndIf
+	Break
+Case 'Training Menu'
+	If Vanilla
+		SelectSubPackage ""
+	Elif DarN
+		SelectSubPackage ""
+	Else
+		SelectSubPackage ""
+	EndIf
+	Break
+Case 'No Quest Added Popup'
+	If Vanilla
+		SelectSubPackage "[02 Vanilla Optional - No Quest Added]"
+	Elif DarN
+		SelectSubPackage "[02 DarN Optional - No Quest Added]"
+	Else
+		SelectSubPackage "[02 DarkDarN Optional - No Quest Added]"
+	EndIf
+	Break
+EndSelect
+
+; DarN and DarkDarN specific menus
+If not Vanilla
+	SelectMany 'Choose DarN-type UI specific packages', \
+		'|Stats Menu', "", '', \
+		'|Main Menu', "", '', \
+		'|Message Menu', "", '', \
+		'New Inventory', "Select this if you want the New-Style Inventory UI for your DarN UI. This allows the use of a grid-based inventory management; this type of management is meant more for mouse users and handling its navigation is outside the scope of this mod. Installing this option will use this new inventory menu but it will not be very controller-friendly. If you're using a controller I highly recommend the classic inventory - it is virtually the same (and may even be more performance friendly).", ''
+	Case 'Stats Menu'
+
+		Break
+	Case 'Main Menu'
+
+		Break
+	Case 'Message Menu'
+
+		Break
+	Case 'New Inventory'
+		If DarN
+			SelectSubPackage "[01 DarN Optional - New Inventory]"
+		Else
+			SelectSubPackage "[01 DarkDarN Optional - New Inventory]"
+		EndIf
+		Break
+	EndSelect
+EndIf
+
