@@ -30,9 +30,9 @@ If not Vanilla
 		'New Inventory', "Select this if you want the New-Style Inventory UI for your DarN UI. This allows the use of a grid-based inventory management; this type of management is meant more for mouse users and handling its navigation is outside the scope of this mod. Installing this option will use this new inventory menu but it will not be very controller-friendly. If you're using a controller I highly recommend the classic inventory - it is virtually the same (and may even be more performance friendly).", ''
 	Case 'New Inventory'
 		If DarN
-			SelectSubPackage "[01 DarN Optional - New Inventory]"
+			SelectSubPackage "[10 DarN - New Inventory]"
 		Else
-			SelectSubPackage "[01 DarkDarN Optional - New Inventory]"
+			SelectSubPackage "[10 DarkDarN - New Inventory]"
 		EndIf
 		Break
 	EndSelect
@@ -43,11 +43,11 @@ SelectMany 'Select if you want to disable the quest popup dialog', \
 	'No Quest Added Popup', "", ''
 Case 'No Quest Added Popup'
 	If Vanilla
-		SelectSubPackage "[02 Vanilla Optional - No Quest Added]"
+		SelectSubPackage "[11 Vanilla - No Quest Added]"
 	Elif DarN
-		SelectSubPackage "[02 DarN Optional - No Quest Added]"
+		SelectSubPackage "[11 DarN - No Quest Added]"
 	Else
-		SelectSubPackage "[02 DarkDarN Optional - No Quest Added]"
+		SelectSubPackage "[11 DarkDarN - No Quest Added]"
 	EndIf
 	Break
 EndSelect
